@@ -1,0 +1,788 @@
+version: '1.0'
+last_updated: '2025-01-01'
+disclaimer: 'هذه القواعد لأغراض إرشادية فقط.
+
+  القرار النهائي دائماً للصيدلي البشري.
+
+  '
+emergencies:
+  chest_pain:
+    keywords:
+      ar:
+      - ألم في الصدر
+      - وجع في القلب
+      ar_eg:
+      - وجع في صدري
+      en:
+      - chest pain
+    action: emergency_call
+    message: اتصل بالإسعاف فوراً على 123
+    emergency_number: '123'
+  difficulty_breathing:
+    keywords:
+      ar:
+      - مخنوق
+      - ضيق تنفس
+      ar_eg:
+      - مش قادر أتنفس
+      en:
+      - can not breathe
+    action: emergency_call
+    message: ضيق التنفس الشديد - اتصل بالإسعاف 123
+    emergency_number: '123'
+  stroke:
+    keywords:
+      ar:
+      - شلل
+      - تنميل
+      ar_eg:
+      - ضعف في نص جسمي
+      en:
+      - stroke
+    action: emergency_call
+    message: أعراض جلطة دماغية - اتصل بالإسعاف 123
+    emergency_number: '123'
+  poisoning:
+    keywords:
+      ar:
+      - تسمم
+      ar_eg:
+      - شربت حاجة سامة
+      en:
+      - poisoning
+    action: emergency_call
+    message: 'مركز السموم: 08008880700'
+    emergency_number: '123'
+    poison_center: 08008880700
+conditions:
+  headache:
+    display_name: صداع
+    keywords:
+      ar:
+      - صداع
+      - ألم في الرأس
+      ar_eg:
+      - وجع في راسي
+      en:
+      - headache
+    first_line:
+    - paracetamol
+    - ibuprofen
+    warnings:
+    - إذا استمر أكثر من 3 أيام، استشر الطبيب
+  stomach_pain:
+    display_name: ألم في المعدة
+    keywords:
+      ar:
+      - ألم في المعدة
+      ar_eg:
+      - وجع في معدتي
+      en:
+      - stomach pain
+    first_line:
+    - omeprazole
+    - antacid
+  fever:
+    display_name: حرارة
+    keywords:
+      ar:
+      - حرارة
+      - حمى
+      ar_eg:
+      - سخونة
+      en:
+      - fever
+    first_line:
+    - paracetamol
+    - ibuprofen
+  allergy:
+    display_name: حساسية
+    keywords:
+      ar:
+      - حساسية
+      - هرش
+      ar_eg:
+      - هرش
+      en:
+      - allergy
+    first_line:
+    - cetirizine
+    - loratadine
+  cough:
+    display_name: كحة
+    keywords:
+      ar:
+      - كحة
+      - سعال
+      ar_eg:
+      - كحة
+      en:
+      - cough
+    first_line:
+    - cough_syrup
+    - throat_lozenges
+  cold_flu:
+    display_name: برد
+    keywords:
+      ar:
+      - برد
+      - زكام
+      ar_eg:
+      - برد
+      - رشح
+      en:
+      - cold
+      - flu
+    first_line:
+    - panadol_cold
+    - congestal
+  diarrhea:
+    display_name: إسهال
+    keywords:
+      ar:
+      - إسهال
+      ar_eg:
+      - إسهال
+      en:
+      - diarrhea
+    first_line:
+    - imodium
+  constipation:
+    display_name: إمساك
+    keywords:
+      ar:
+      - إمساك
+      ar_eg:
+      - إمساك
+      en:
+      - constipation
+    first_line:
+    - lactulose
+  nausea:
+    display_name: غثيان
+    keywords:
+      ar:
+      - غثيان
+      - قيء
+      ar_eg:
+      - ترجيع
+      en:
+      - nausea
+    first_line:
+    - motilium
+    - domperidone
+  muscle_pain:
+    display_name: ألم العضلات
+    keywords:
+      ar:
+      - ألم في العضلات
+      ar_eg:
+      - وجع في عضلاتي
+      en:
+      - muscle pain
+    first_line:
+    - ibuprofen
+    - diclofenac
+  sore_throat:
+    display_name: التهاب الحلق
+    keywords:
+      ar:
+      - التهاب الحلق
+      ar_eg:
+      - حلقي بيوجعني
+      en:
+      - sore throat
+    first_line:
+    - throat_lozenges
+    - paracetamol
+  migraine:
+    display_name: الصداع النصفي
+    keywords:
+      ar:
+      - صداع نصفي
+      - شقيقة
+      ar_eg:
+      - صداع نصفي
+      - صداع نصفي شديد
+      en:
+      - migraine
+      - hemicrania
+    first_line:
+    - paracetamol
+    - ibuprofen
+    - triptan
+    warnings:
+    - الصداع النصفي المتكرر يحتاج استشارة طبيب أعصاب
+  arthritis:
+    display_name: التهاب المفاصل
+    keywords:
+      ar:
+      - التهاب المفاصل
+      - روماتيزم
+      ar_eg:
+      - روماتيزم
+      - مفاصلي بتوجعني
+      en:
+      - arthritis
+      - rheumatism
+    first_line:
+    - ibuprofen
+    - diclofenac
+    - celecoxib
+    avoid:
+    - name: aspirin
+      reason: قد يسبب نزيف معدي
+  back_pain:
+    display_name: ألم الظهر
+    keywords:
+      ar:
+      - ألم في الظهر
+      - ألم أسفل الظهر
+      ar_eg:
+      - ظهري بيوجعني
+      en:
+      - back pain
+      - lower back pain
+    first_line:
+    - paracetamol
+    - ibuprofen
+    - diclofenac
+  menstrual_cramps:
+    display_name: آلام الدورة
+    keywords:
+      ar:
+      - آلام الدورة
+      - ألم الحيض
+      ar_eg:
+      - الدورة وجعاني
+      - مغص الدورة
+      en:
+      - menstrual cramps
+      - dysmenorrhea
+    first_line:
+    - ibuprofen
+    - paracetamol
+  insomnia:
+    display_name: الأرق
+    keywords:
+      ar:
+      - أرق
+      - صعوبة نوم
+      ar_eg:
+      - مش بنام
+      - أرق
+      en:
+      - insomnia
+    first_line:
+    - melatonin
+    warnings:
+    - إذا استمر أكثر من أسبوعين، استشر الطبيب
+  anxiety:
+    display_name: القلق
+    keywords:
+      ar:
+      - قلق
+      - توتر
+      ar_eg:
+      - قلقان
+      - متوتر
+      en:
+      - anxiety
+    first_line:
+    - passiflora
+    warnings:
+    - القلق المستمر يحتاج استشارة نفسية
+  uti:
+    display_name: التهاب المسالك البولية
+    keywords:
+      ar:
+      - التهاب بولي
+      - حرقان في البول
+      ar_eg:
+      - حرقان في البول
+      en:
+      - uti
+      - urinary infection
+    first_line:
+    - ciprofloxacin
+    - cefixime
+    warnings:
+    - يحتاج استشارة طبيب
+  skin_rash:
+    display_name: طفح جلدي
+    keywords:
+      ar:
+      - طفح جلدي
+      - هرش
+      ar_eg:
+      - هرش
+      - طفح
+      en:
+      - rash
+      - itching
+    first_line:
+    - cetirizine
+    - hydrocortisone
+  acne:
+    display_name: حب الشباب
+    keywords:
+      ar:
+      - حب الشباب
+      ar_eg:
+      - حبوب الشباب
+      - حبوب في وشي
+      en:
+      - acne
+    first_line:
+    - benzoyl_peroxide
+    - adapalene
+  hair_loss:
+    display_name: تساقط الشعر
+    keywords:
+      ar:
+      - تساقط شعر
+      ar_eg:
+      - شعري بيقع
+      en:
+      - hair loss
+    first_line:
+    - biotin
+    - zinc
+  toothache:
+    display_name: ألم الأسنان
+    keywords:
+      ar:
+      - ألم الأسنان
+      ar_eg:
+      - سناني بوجعني
+      en:
+      - toothache
+    first_line:
+    - paracetamol
+    - ibuprofen
+    warnings:
+    - يحتاج طبيب أسنان
+  ear_pain:
+    display_name: ألم الأذن
+    keywords:
+      ar:
+      - ألم في الأذن
+      ar_eg:
+      - ودني بتوجعني
+      en:
+      - ear pain
+    first_line:
+    - paracetamol
+    warnings:
+    - يحتاج فحص طبي
+  eye_infection:
+    display_name: التهاب العين
+    keywords:
+      ar:
+      - التهاب العين
+      - عين حمراء
+      ar_eg:
+      - عيني حمراء
+      en:
+      - eye infection
+      - pink eye
+    first_line:
+    - tobramycin_eye_drops
+    warnings:
+    - استشارة طبيب عيون
+  nausea_vomiting:
+    display_name: غثيان وقيء
+    keywords:
+      ar:
+      - غثيان
+      - قيء
+      ar_eg:
+      - ترجيع
+      - هستفرغ
+      en:
+      - nausea
+      - vomiting
+    first_line:
+    - domperidone
+    - metoclopramide
+  heartburn:
+    display_name: حرقة المعدة
+    keywords:
+      ar:
+      - حرقة المعدة
+      ar_eg:
+      - حرقان
+      - حموضة
+      en:
+      - heartburn
+      - acid reflux
+    first_line:
+    - omeprazole
+    - antacid
+  bloating:
+    display_name: انتفاخ
+    keywords:
+      ar:
+      - انتفاخ
+      ar_eg:
+      - انتفاخ
+      - نفخة
+      en:
+      - bloating
+    first_line:
+    - simethicone
+  hemorrhoids:
+    display_name: بواسير
+    keywords:
+      ar:
+      - بواسير
+      ar_eg:
+      - بواسير
+      en:
+      - hemorrhoids
+    first_line:
+    - hydrocortisone_cream
+    warnings:
+    - إذا استمرت، استشر طبيب
+  fungal_infection:
+    display_name: عدوى فطرية
+    keywords:
+      ar:
+      - فطريات
+      ar_eg:
+      - فطريات
+      en:
+      - fungal infection
+    first_line:
+    - clotrimazole
+    - terbinafine
+  flu:
+    display_name: الإنفلونزا
+    keywords:
+      ar:
+      - إنفلونزا
+      ar_eg:
+      - إنفلونزا
+      en:
+      - flu
+      - influenza
+    first_line:
+    - paracetamol
+    - oseltamivir
+  sprain:
+    display_name: التواء
+    keywords:
+      ar:
+      - التواء
+      ar_eg:
+      - لوي
+      en:
+      - sprain
+    first_line:
+    - ibuprofen_gel
+  burn:
+    display_name: حرق
+    keywords:
+      ar:
+      - حرق
+      ar_eg:
+      - حرق
+      en:
+      - burn
+    first_line:
+    - silver_sulfadiazine
+    warnings:
+    - الحرق العميق يحتاج طبيب
+  wound:
+    display_name: جرح
+    keywords:
+      ar:
+      - جرح
+      ar_eg:
+      - جرح
+      en:
+      - wound
+    first_line:
+    - povidone_iodine
+    - antibiotic_ointment
+  insect_bite:
+    display_name: لسعة حشرة
+    keywords:
+      ar:
+      - لسعة حشرة
+      - قرصة
+      ar_eg:
+      - قرصة
+      en:
+      - insect bite
+    first_line:
+    - cetirizine
+    - hydrocortisone_cream
+  sunburn:
+    display_name: حروق الشمس
+    keywords:
+      ar:
+      - حروق الشمس
+      ar_eg:
+      - حروق الشمس
+      en:
+      - sunburn
+    first_line:
+    - aloe_vera_gel
+    - ibuprofen
+  cough_dry:
+    display_name: كحة جافة
+    keywords:
+      ar:
+      - كحة جافة
+      ar_eg:
+      - كحة ناشفة
+      en:
+      - dry cough
+    first_line:
+    - dextromethorphan
+  cough_productive:
+    display_name: كحة بلغم
+    keywords:
+      ar:
+      - كحة بلغم
+      ar_eg:
+      - كحة ببلغم
+      en:
+      - productive cough
+    first_line:
+    - ambroxol
+    - carbocisteine
+  runny_nose:
+    display_name: رشح
+    keywords:
+      ar:
+      - رشح
+      - زكام
+      ar_eg:
+      - رشح
+      - زكام
+      en:
+      - runny nose
+    first_line:
+    - pseudoephedrine
+    - antihistamine
+  stuffy_nose:
+    display_name: انسداد الأنف
+    keywords:
+      ar:
+      - انسداد الأنف
+      ar_eg:
+      - مناخيري مسدودة
+      en:
+      - stuffy nose
+    first_line:
+    - oxymetazoline_spray
+  sinusitis:
+    display_name: التهاب الجيوب الأنفية
+    keywords:
+      ar:
+      - التهاب الجيوب
+      ar_eg:
+      - جيوبي
+      en:
+      - sinusitis
+    first_line:
+    - amoxicillin
+    - pseudoephedrine
+  food_poisoning:
+    display_name: تسمم غذائي
+    keywords:
+      ar:
+      - تسمم غذائي
+      ar_eg:
+      - أكلت حاجة بايظة
+      en:
+      - food poisoning
+    first_line:
+    - ors
+    - loperamide
+    warnings:
+    - إذا استمر أكثر من 24 ساعة، اذهب للمستشفى
+  motion_sickness:
+    display_name: دوار الحركة
+    keywords:
+      ar:
+      - دوار الحركة
+      - دوار السيارة
+      ar_eg:
+      - بحس بدوخة في العربية
+      en:
+      - motion sickness
+    first_line:
+    - dimenhydrinate
+  jet_lag:
+    display_name: إرهاق السفر
+    keywords:
+      ar:
+      - إرهاق السفر
+      ar_eg:
+      - تعب السفر
+      en:
+      - jet lag
+    first_line:
+    - melatonin
+  hangover:
+    display_name: آثار الكحول
+    keywords:
+      ar:
+      - آثار الكحول
+      ar_eg:
+      - بعد شرب
+      en:
+      - hangover
+    first_line:
+    - paracetamol
+    - ors
+    warnings:
+    - لا تستخدم paracetamol مع الكحول المستمر
+  smoking_cessation:
+    display_name: الإقلاع عن التدخين
+    keywords:
+      ar:
+      - الإقلاع عن التدخين
+      ar_eg:
+      - عايز أبطل تدخين
+      en:
+      - smoking cessation
+    first_line:
+    - nicotine_patch
+  weight_loss:
+    display_name: إنقاص الوزن
+    keywords:
+      ar:
+      - إنقاص الوزن
+      ar_eg:
+      - أخس
+      - دايت
+      en:
+      - weight loss
+    first_line:
+    - orlistat
+    warnings:
+    - يجب اتباع حمية مع الدواء
+  athlete_foot:
+    display_name: قدم الرياضي
+    keywords:
+      ar:
+      - قدم الرياضي
+      ar_eg:
+      - فطريات القدم
+      en:
+      - athlete's foot
+    first_line:
+    - clotrimazole
+    - terbinafine
+  dandruff:
+    display_name: قشرة الشعر
+    keywords:
+      ar:
+      - قشرة الرأس
+      ar_eg:
+      - قشرة في شعري
+      en:
+      - dandruff
+    first_line:
+    - ketoconazole_shampoo
+  halitosis:
+    display_name: رائحة الفم
+    keywords:
+      ar:
+      - رائحة الفم
+      ar_eg:
+      - ريحة بقي
+      en:
+      - bad breath
+      - halitosis
+    first_line:
+    - chlorhexidine_mouthwash
+  gingivitis:
+    display_name: التهاب اللثة
+    keywords:
+      ar:
+      - التهاب اللثة
+      ar_eg:
+      - لثتي بتوجعني
+      en:
+      - gingivitis
+    first_line:
+    - chlorhexidine_mouthwash
+  cold_sore:
+    display_name: قرحة البرد
+    keywords:
+      ar:
+      - قرحة البرد
+      ar_eg:
+      - حبة في شفايفي
+      en:
+      - cold sore
+    first_line:
+    - acyclovir_cream
+  hay_fever:
+    display_name: حمى القش
+    keywords:
+      ar:
+      - حمى القش
+      ar_eg:
+      - حساسية الموسم
+      en:
+      - hay fever
+    first_line:
+    - cetirizine
+    - loratadine
+  asthma:
+    display_name: الربو
+    keywords:
+      ar:
+      - الربو
+      ar_eg:
+      - حساسية الصدر
+      en:
+      - asthma
+    first_line:
+    - salbutamol_inhaler
+    warnings:
+    - يحتاج متابعة طبية
+  eczema:
+    display_name: الأكزيما
+    keywords:
+      ar:
+      - الأكزيما
+      ar_eg:
+      - أكزيما
+      en:
+      - eczema
+    first_line:
+    - hydrocortisone_cream
+    - moisturizer
+special_populations:
+  pregnancy:
+    warning: استشارة الطبيب إلزامية
+    safe:
+    - paracetamol
+    - folic_acid
+    - vitamin_d
+    avoid:
+    - name: ibuprofen
+      reason: ممنوع في الثلث الثالث
+    - name: aspirin
+      reason: قد يسبب مشاكل للجنين
+  children:
+    general_warnings:
+    - احسب الجرعة حسب الوزن
+    - لا تعطي aspirin تحت 16 سنة
+prescription_required:
+  keywords:
+    ar:
+    - روشتة
+    - وصفة طبية
+    ar_eg:
+    - روشتة
+    en:
+    - prescription
+  message: هذا الدواء يحتاج وصفة طبية

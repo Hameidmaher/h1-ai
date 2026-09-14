@@ -1,0 +1,8 @@
+{
+  "primary": {"500": "#0EA5E9", "600": "#0284C7", "700": "#0369A1"},
+  "secondary": {"500": "#10B981", "600": "#059669", "700": "#047857"},
+  "accent": {"500": "#F59E0B", "600": "#D97706"},
+  "semantic": {"danger": "#EF4444", "warning": "#F97316", "info": "#3B82F6", "success": "#22C55E"},
+  "neutral": {"background": "#F8FAFC", "surface": "#FFFFFF", "text_primary": "#0F172A", "text_secondary": "#64748B"},
+  "brand": {"whatsapp": "#25D366", "emergency": "#DC2626"}
+}

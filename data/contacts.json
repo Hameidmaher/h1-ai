@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "contacts": {},
+  "stats": {
+    "customer": 0,
+    "supplier": 0,
+    "blacklist": 0,
+    "total": 0
+  }
+}

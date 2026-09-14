@@ -1,0 +1,56 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        working-directory: backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Lint
+        working-directory: backend
+        run: ruff check . || true
+
+      - name: Run tests
+        working-directory: backend
+        run: pytest --no-cov -v
+        env:
+          JWT_SECRET_KEY: test_ci_only
+          ENVIRONMENT: test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup flyctl
+        if: ${{ secrets.FLY_API_TOKEN != '' }}
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Deploy
+        if: ${{ secrets.FLY_API_TOKEN != '' }}
+        working-directory: backend
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

@@ -1,0 +1,757 @@
+ItemCode,ItemName,Category,Price,StockQty,ExpiryDate,Description
+1001,Paracetamol 500mg,Analgesic,15.50,150,2027-12-31,مسكن للألم وخافض للحرارة
+1002,Panadol Extra,Analgesic,25.00,180,2027-02-10,مسكن قوي مع كافيين
+1003,Ibuprofen 400mg,Analgesic,22.00,180,2027-11-10,مسكن مضاد للالتهاب
+1004,Aspirin 81mg,Analgesic,12.00,220,2028-01-15,مضاد لتجلط الدم
+1005,Ketoprofen Gel,Topical,38.00,70,2027-09-25,جل موضعي للألم
+1006,Diclofenac 50mg,Analgesic,28.00,100,2027-08-20,مسكن مضاد للالتهاب
+1007,Naproxen 500mg,Analgesic,42.00,60,2027-10-15,مسكن قوي
+1008,Tramadol 50mg,Analgesic,55.00,40,2027-06-30,مسكن أفيوني
+1101,Amoxicillin 500mg,Antibiotic,45.00,80,2027-06-30,مضاد حيوي واسع الطيف
+1102,Augmentin 1g,Antibiotic,95.00,25,2027-04-15,مضاد حيوي مركب
+1103,Azithromycin 500mg,Antibiotic,65.00,45,2027-05-20,مضاد حيوي ماكروليد
+1104,Ciprofloxacin 500mg,Antibiotic,55.00,50,2027-07-10,مضاد حيوي كينولون
+1105,Cefixime 400mg,Antibiotic,75.00,40,2027-08-15,سيفالوسبورين
+1106,Doxycycline 100mg,Antibiotic,38.00,70,2027-09-01,تتراسيكلين
+1201,Vitamin C 1000mg,Vitamin,35.00,200,2028-03-15,فيتامين سي لتعزيز المناعة
+1202,Vitamin D3 5000IU,Vitamin,45.00,150,2028-05-10,فيتامين د
+1203,Folic Acid 5mg,Vitamin,20.00,160,2028-04-20,حمض الفوليك للحوامل
+1204,Calcium D3,Vitamin,42.00,95,2028-07-15,كالسيوم مع فيتامين د
+1205,Iron Supplement 65mg,Vitamin,28.00,130,2028-03-10,مكمل حديد
+1206,Multivitamin Complex,Vitamin,65.00,100,2028-06-01,فيتامينات متعددة
+1207,Vitamin B12 1000mcg,Vitamin,55.00,120,2028-08-20,فيتامين ب12
+1208,Omega-3 Fish Oil,Vitamin,85.00,80,2028-09-15,أوميغا 3
+1301,Omeprazole 20mg,Gastrointestinal,28.00,120,2027-09-20,لعلاج حموضة المعدة
+1302,Nexium 40mg,Gastrointestinal,68.00,50,2027-08-12,لعلاج ارتجاع المريء
+1303,Antacid Suspension,Gastrointestinal,18.00,200,2027-12-01,مضاد حموضة سائل
+1304,Motilium 10mg,Gastrointestinal,35.00,80,2027-10-25,لعلاج الغثيان
+1305,Imodium 2mg,Gastrointestinal,22.00,150,2027-11-15,لعلاج الإسهال
+1306,Buscopan 10mg,Gastrointestinal,32.00,100,2027-09-30,مضاد تشنجات
+1401,Concor 5mg,Cardiovascular,52.00,40,2028-06-18,لعلاج ضغط الدم
+1402,Atorvastatin 20mg,Cardiovascular,55.00,45,2027-10-05,لخفض الكوليسترول
+1403,Metoprolol 50mg,Cardiovascular,48.00,60,2028-04-10,لعلاج ضغط الدم
+1404,Amlodipine 5mg,Cardiovascular,42.00,80,2028-05-15,لعلاج ضغط الدم
+1405,Lisinopril 10mg,Cardiovascular,38.00,70,2028-03-20,لعلاج ضغط الدم
+1406,Clopidogrel 75mg,Cardiovascular,68.00,30,2027-11-10,مضاد للصفائح
+1407,Warfarin 5mg,Cardiovascular,45.00,25,2027-09-20,مضاد للتخثر
+1501,Metformin 500mg,Diabetes,32.00,60,2027-07-18,لعلاج السكري
+1502,Glimepiride 2mg,Diabetes,45.00,50,2027-09-25,سلفونيل يوريا
+1503,Insulin Pen,Diabetes,185.00,25,2027-08-30,أنسولين
+1601,Salbutamol Inhaler,Respiratory,85.00,35,2027-05-20,موسع للشعب
+1602,Ventolin Inhaler,Respiratory,95.00,30,2027-06-15,موسع للشعب
+1603,Montelukast 10mg,Respiratory,75.00,45,2027-10-10,لعلاج الربو
+1701,Cetirizine 10mg,Antihistamine,18.00,90,2027-08-25,مضاد للحساسية
+1702,Loratadine 10mg,Antihistamine,22.00,100,2027-09-15,مضاد للحساسية
+1703,Fexofenadine 180mg,Antihistamine,48.00,60,2027-11-20,مضاد للحساسية
+1801,Panadol Cold,OTC,28.00,150,2027-12-20,لعلاج البرد
+1802,Congestal,OTC,22.00,180,2027-11-25,لعلاج البرد والزكام
+1803,Cough Syrup,OTC,35.00,100,2027-10-30,شراب للسعال
+1804,Throat Lozenges,OTC,18.00,200,2028-01-10,أقراص للحلق
+1901,Ketoconazole Cream,Topical,55.00,60,2027-09-15,كريم مضاد للفطريات
+1902,Hydrocortisone Cream,Topical,32.00,80,2027-10-20,كريم كورتيزون
+2001,Moisturizing Cream,Cosmetic,45.00,110,2028-12-01,كريم مرطب للبشرة الجافة
+2002,Sunscreen SPF50,Cosmetic,75.00,85,2028-05-30,واقي شمس للبشرة الحساسة
+2101,Tobramycin Eye Drops,Eye/Ear,42.00,70,2027-10-15,قطرة مضاد حيوي
+2102,Artificial Tears,Eye/Ear,35.00,100,2027-12-20,دموع صناعية
+2301,Digital Thermometer,Device,85.00,50,2030-01-01,ميزان حرارة
+2302,Blood Pressure Monitor,Device,450.00,20,2030-01-01,جهاز ضغط
+2303,Glucose Meter,Device,320.00,25,2030-01-01,جهاز سكر
+2401,Adhesive Bandages,First Aid,25.00,200,2030-01-01,لاصق جروح
+2402,Gauze Roll,First Aid,18.00,150,2030-01-01,شاش طبي
+2403,Antiseptic Wipes,First Aid,22.00,180,2029-12-01,مناديل مطهرة
+2003,Cataflam 50mg,Analgesic,71.00,247,2027-12-13,Analgesic - Cataflam 50mg
+2004,Celebrex 200mg,Analgesic,123.00,99,2027-05-27,Analgesic - Celebrex 200mg
+2005,Arcoxia 90mg,Analgesic,153.00,275,2028-05-29,Analgesic - Arcoxia 90mg
+2006,Feldene Gel,Analgesic,76.00,150,2027-11-29,Analgesic - Feldene Gel
+2007,Fastum Gel,Analgesic,78.00,67,2028-08-16,Analgesic - Fastum Gel
+2008,Brufen 600mg,Analgesic,45.00,169,2027-09-30,Analgesic - Brufen 600mg
+2009,Panadol Advance,Analgesic,46.00,204,2028-06-09,Analgesic - Panadol Advance
+2010,Solpadeine,Analgesic,52.00,215,2028-07-05,Analgesic - Solpadeine
+2011,Migravent,Analgesic,116.00,275,2027-12-04,Analgesic - Migravent
+2012,Zomig 2.5mg,Analgesic,226.00,284,2028-05-30,Analgesic - Zomig 2.5mg
+2013,Imigran 50mg,Analgesic,282.00,114,2028-03-28,Analgesic - Imigran 50mg
+2014,Voltaren 100mg,Analgesic,110.00,75,2027-11-06,Analgesic - Voltaren 100mg
+2015,Mobic 15mg,Analgesic,97.00,192,2028-05-06,Analgesic - Mobic 15mg
+2016,Ponstan 500mg,Analgesic,44.00,103,2028-05-14,Analgesic - Ponstan 500mg
+2017,Piroxicam 20mg,Analgesic,43.00,246,2028-04-19,Analgesic - Piroxicam 20mg
+2018,Indomethacin 25mg,Analgesic,54.00,177,2028-04-20,Analgesic - Indomethacin 25mg
+2019,Ketorolac 10mg,Analgesic,76.00,188,2027-05-15,Analgesic - Ketorolac 10mg
+2020,Nalbuphine 10mg,Analgesic,155.00,200,2028-05-04,Analgesic - Nalbuphine 10mg
+2021,Zithromax 500mg,Antibiotic,117.00,120,2027-06-08,Antibiotic - Zithromax 500mg
+2022,Klacid 500mg,Antibiotic,134.00,50,2028-09-01,Antibiotic - Klacid 500mg
+2023,Velosef 500mg,Antibiotic,71.00,173,2027-12-15,Antibiotic - Velosef 500mg
+2024,Zinnat 500mg,Antibiotic,96.00,264,2028-07-02,Antibiotic - Zinnat 500mg
+2025,Flagyl 500mg,Antibiotic,43.00,272,2028-01-13,Antibiotic - Flagyl 500mg
+2026,Rovamycin 3MIU,Antibiotic,175.00,298,2028-06-23,Antibiotic - Rovamycin 3MIU
+2027,Dalacin C 300mg,Antibiotic,133.00,139,2027-07-18,Antibiotic - Dalacin C 300mg
+2028,Erythrocin 500mg,Antibiotic,71.00,224,2028-05-29,Antibiotic - Erythrocin 500mg
+2029,Suprax 400mg,Antibiotic,104.00,162,2028-07-14,Antibiotic - Suprax 400mg
+2030,Tavanic 500mg,Antibiotic,143.00,261,2028-01-24,Antibiotic - Tavanic 500mg
+2031,Zyvox 600mg,Antibiotic,517.00,88,2028-08-10,Antibiotic - Zyvox 600mg
+2032,Amoxil 250mg,Antibiotic,42.00,207,2028-03-12,Antibiotic - Amoxil 250mg
+2033,Ciprobay 500mg,Antibiotic,113.00,203,2028-03-24,Antibiotic - Ciprobay 500mg
+2034,Bactrim,Antibiotic,34.00,77,2028-04-24,Antibiotic - Bactrim
+2035,Septrin,Antibiotic,36.00,89,2027-12-26,Antibiotic - Septrin
+2036,Unasyn 375mg,Antibiotic,96.00,171,2027-12-30,Antibiotic - Unasyn 375mg
+2037,Keflex 500mg,Antibiotic,49.00,299,2028-01-22,Antibiotic - Keflex 500mg
+2038,Minocin 100mg,Antibiotic,112.00,283,2028-07-04,Antibiotic - Minocin 100mg
+2039,Vibramycin 100mg,Antibiotic,99.00,203,2028-07-13,Antibiotic - Vibramycin 100mg
+2040,Fucidin 500mg,Antibiotic,141.00,148,2027-10-11,Antibiotic - Fucidin 500mg
+2041,Vitamin A 10000IU,Vitamin,42.00,274,2027-07-19,Vitamin - Vitamin A 10000IU
+2042,Vitamin E 400IU,Vitamin,56.00,294,2028-02-22,Vitamin - Vitamin E 400IU
+2043,Vitamin K2,Vitamin,122.00,144,2027-12-25,Vitamin - Vitamin K2
+2044,Vitamin B Complex,Vitamin,75.00,106,2027-09-18,Vitamin - Vitamin B Complex
+2045,Vitamin B1 100mg,Vitamin,35.00,268,2027-06-02,Vitamin - Vitamin B1 100mg
+2046,Vitamin B6 50mg,Vitamin,36.00,187,2028-04-28,Vitamin - Vitamin B6 50mg
+2047,Folic Acid 400mcg,Vitamin,20.00,243,2028-08-12,Vitamin - Folic Acid 400mcg
+2048,Biotin 5000mcg,Vitamin,102.00,253,2028-04-04,Vitamin - Biotin 5000mcg
+2049,Collagen Peptides,Vitamin,241.00,138,2028-01-13,Vitamin - Collagen Peptides
+2050,Hyaluronic Acid,Vitamin,221.00,120,2028-07-10,Vitamin - Hyaluronic Acid
+2051,Glucosamine 1500mg,Vitamin,145.00,89,2028-03-07,Vitamin - Glucosamine 1500mg
+2052,Chondroitin 800mg,Vitamin,215.00,215,2027-07-31,Vitamin - Chondroitin 800mg
+2053,MSM 1000mg,Vitamin,123.00,283,2027-09-26,Vitamin - MSM 1000mg
+2054,CoQ10 100mg,Vitamin,259.00,231,2027-06-02,Vitamin - CoQ10 100mg
+2055,Alpha Lipoic Acid,Vitamin,168.00,283,2027-10-28,Vitamin - Alpha Lipoic Acid
+2056,L-Carnitine 1000mg,Vitamin,159.00,300,2028-02-14,Vitamin - L-Carnitine 1000mg
+2057,Probiotics 10B,Vitamin,124.00,273,2027-08-11,Vitamin - Probiotics 10B
+2058,Prebiotic Fiber,Vitamin,83.00,219,2027-05-25,Vitamin - Prebiotic Fiber
+2059,Selenium 200mcg,Vitamin,53.00,209,2028-03-20,Vitamin - Selenium 200mcg
+2060,Chromium Picolinate,Vitamin,61.00,188,2027-12-17,Vitamin - Chromium Picolinate
+2061,Iodine 150mcg,Vitamin,42.00,224,2027-09-24,Vitamin - Iodine 150mcg
+2062,Manganese 5mg,Vitamin,38.00,164,2028-07-24,Vitamin - Manganese 5mg
+2063,Copper 2mg,Vitamin,39.00,276,2028-05-20,Vitamin - Copper 2mg
+2064,Boron 3mg,Vitamin,50.00,151,2028-02-22,Vitamin - Boron 3mg
+2065,Molybdenum 100mcg,Vitamin,61.00,245,2028-02-13,Vitamin - Molybdenum 100mcg
+2066,Losec 20mg,Gastrointestinal,96.00,94,2028-04-17,Gastrointestinal - Losec 20mg
+2067,Pariet 20mg,Gastrointestinal,134.00,231,2027-08-30,Gastrointestinal - Pariet 20mg
+2068,Controloc 40mg,Gastrointestinal,146.00,271,2028-02-28,Gastrointestinal - Controloc 40mg
+2069,Zantac 150mg,Gastrointestinal,32.00,277,2027-09-23,Gastrointestinal - Zantac 150mg
+2070,Gaviscon Advance,Gastrointestinal,52.00,128,2028-01-10,Gastrointestinal - Gaviscon Advance
+2071,Maalox Plus,Gastrointestinal,47.00,62,2028-02-06,Gastrointestinal - Maalox Plus
+2072,Mucaine Gel,Gastrointestinal,53.00,199,2027-12-01,Gastrointestinal - Mucaine Gel
+2073,Colofac 135mg,Gastrointestinal,85.00,157,2028-01-18,Gastrointestinal - Colofac 135mg
+2074,Debridat 100mg,Gastrointestinal,81.00,234,2027-10-07,Gastrointestinal - Debridat 100mg
+2075,Motilium 10mg,Gastrointestinal,46.00,104,2027-10-12,Gastrointestinal - Motilium 10mg
+2076,Primperan 10mg,Gastrointestinal,35.00,170,2028-01-06,Gastrointestinal - Primperan 10mg
+2077,Zofran 8mg,Gastrointestinal,176.00,183,2028-06-11,Gastrointestinal - Zofran 8mg
+2078,Duspatalin 200mg,Gastrointestinal,125.00,154,2028-05-17,Gastrointestinal - Duspatalin 200mg
+2079,Iberogast,Gastrointestinal,131.00,267,2027-08-05,Gastrointestinal - Iberogast
+2080,Duphalac,Gastrointestinal,56.00,194,2027-07-20,Gastrointestinal - Duphalac
+2081,Fybogel,Gastrointestinal,56.00,297,2028-07-06,Gastrointestinal - Fybogel
+2082,Movicol,Gastrointestinal,69.00,300,2028-01-18,Gastrointestinal - Movicol
+2083,Prepulsid 10mg,Gastrointestinal,103.00,194,2027-08-04,Gastrointestinal - Prepulsid 10mg
+2084,Librax,Gastrointestinal,91.00,250,2027-09-19,Gastrointestinal - Librax
+2085,Buscopan Plus,Gastrointestinal,37.00,63,2027-09-09,Gastrointestinal - Buscopan Plus
+2086,Norvasc 5mg,Cardiovascular,82.00,201,2027-10-10,Cardiovascular - Norvasc 5mg
+2087,Zestril 10mg,Cardiovascular,66.00,270,2028-05-04,Cardiovascular - Zestril 10mg
+2088,Cozaar 50mg,Cardiovascular,104.00,79,2027-10-11,Cardiovascular - Cozaar 50mg
+2089,Diovan 80mg,Cardiovascular,140.00,168,2027-05-26,Cardiovascular - Diovan 80mg
+2090,Micardis 40mg,Cardiovascular,145.00,101,2028-04-22,Cardiovascular - Micardis 40mg
+2091,Aprovel 150mg,Cardiovascular,203.00,146,2028-02-13,Cardiovascular - Aprovel 150mg
+2092,Tenormin 50mg,Cardiovascular,55.00,251,2027-08-28,Cardiovascular - Tenormin 50mg
+2093,Lopressor 50mg,Cardiovascular,73.00,216,2028-08-10,Cardiovascular - Lopressor 50mg
+2094,Zebeta 5mg,Cardiovascular,62.00,141,2028-04-18,Cardiovascular - Zebeta 5mg
+2095,Crestor 10mg,Cardiovascular,231.00,118,2028-08-12,Cardiovascular - Crestor 10mg
+2096,Lipitor 20mg,Cardiovascular,95.00,160,2027-11-26,Cardiovascular - Lipitor 20mg
+2097,Zocor 20mg,Cardiovascular,97.00,148,2028-05-02,Cardiovascular - Zocor 20mg
+2098,Pravachol 20mg,Cardiovascular,104.00,288,2027-07-27,Cardiovascular - Pravachol 20mg
+2099,Plavix 75mg,Cardiovascular,170.00,171,2027-08-01,Cardiovascular - Plavix 75mg
+2100,Efient 10mg,Cardiovascular,197.00,146,2028-03-23,Cardiovascular - Efient 10mg
+2103,Tambocor 100mg,Cardiovascular,172.00,192,2027-08-15,Cardiovascular - Tambocor 100mg
+2104,Aldactone 25mg,Cardiovascular,85.00,280,2027-09-07,Cardiovascular - Aldactone 25mg
+2105,Lasix 40mg,Cardiovascular,40.00,300,2027-12-08,Cardiovascular - Lasix 40mg
+2106,Capoten 25mg,Cardiovascular,57.00,188,2027-06-10,Cardiovascular - Capoten 25mg
+2107,Renitec 10mg,Cardiovascular,72.00,87,2028-01-22,Cardiovascular - Renitec 10mg
+2108,Tritace 5mg,Cardiovascular,85.00,150,2028-02-26,Cardiovascular - Tritace 5mg
+2109,Adalat 30mg,Cardiovascular,76.00,233,2027-09-27,Cardiovascular - Adalat 30mg
+2110,Isoptin 80mg,Cardiovascular,79.00,121,2028-01-15,Cardiovascular - Isoptin 80mg
+2111,Glucophage 850mg,Diabetes,61.00,118,2028-01-05,Diabetes - Glucophage 850mg
+2112,Amaryl 2mg,Diabetes,73.00,286,2027-12-22,Diabetes - Amaryl 2mg
+2113,Diamicron MR 60mg,Diabetes,94.00,276,2028-02-12,Diabetes - Diamicron MR 60mg
+2114,Novonorm 2mg,Diabetes,190.00,198,2028-08-23,Diabetes - Novonorm 2mg
+2115,Actos 30mg,Diabetes,209.00,277,2028-03-26,Diabetes - Actos 30mg
+2116,Galvus 50mg,Diabetes,294.00,209,2028-08-06,Diabetes - Galvus 50mg
+2117,Janumet 50/1000,Diabetes,370.00,151,2027-09-24,Diabetes - Janumet 50/1000
+2118,Forxiga 10mg,Diabetes,233.00,119,2027-10-24,Diabetes - Forxiga 10mg
+2119,Jardiance 25mg,Diabetes,348.00,216,2028-01-16,Diabetes - Jardiance 25mg
+2120,Lantus SoloStar,Diabetes,321.00,282,2027-07-01,Diabetes - Lantus SoloStar
+2121,NovoRapid FlexPen,Diabetes,410.00,161,2028-01-16,Diabetes - NovoRapid FlexPen
+2122,Humalog KwikPen,Diabetes,436.00,80,2028-02-11,Diabetes - Humalog KwikPen
+2123,Symbicort 160/4.5,Respiratory,389.00,264,2028-03-28,Respiratory - Symbicort 160/4.5
+2124,Seretide 250,Respiratory,386.00,237,2027-09-16,Respiratory - Seretide 250
+2125,Singulair 5mg,Respiratory,133.00,130,2028-04-25,Respiratory - Singulair 5mg
+2126,Accolate 20mg,Respiratory,197.00,99,2027-12-25,Respiratory - Accolate 20mg
+2127,Atrovent Inhaler,Respiratory,115.00,149,2028-02-11,Respiratory - Atrovent Inhaler
+2128,Spiriva Respimat,Respiratory,551.00,115,2028-08-08,Respiratory - Spiriva Respimat
+2129,Bricanyl Turbuhaler,Respiratory,171.00,151,2027-09-28,Respiratory - Bricanyl Turbuhaler
+2130,Berodual Inhaler,Respiratory,127.00,99,2028-06-09,Respiratory - Berodual Inhaler
+2131,Pulmicort Respules,Respiratory,171.00,241,2027-05-23,Respiratory - Pulmicort Respules
+2132,Flixotide Evohaler,Respiratory,200.00,56,2027-12-09,Respiratory - Flixotide Evohaler
+2133,Serevent Diskus,Respiratory,241.00,295,2027-12-02,Respiratory - Serevent Diskus
+2134,Combivent,Respiratory,163.00,217,2028-07-03,Respiratory - Combivent
+2135,Theo-Dur,Respiratory,97.00,228,2028-01-20,Respiratory - Theo-Dur
+2136,Zaditen,Respiratory,99.00,51,2028-07-10,Respiratory - Zaditen
+2137,Ketotifen 1mg,Respiratory,77.00,125,2028-05-07,Respiratory - Ketotifen 1mg
+2138,Claritin 10mg,Antihistamine,70.00,183,2028-03-19,Antihistamine - Claritin 10mg
+2139,Zyrtec 10mg,Antihistamine,65.00,168,2027-12-29,Antihistamine - Zyrtec 10mg
+2140,Allegra 120mg,Antihistamine,73.00,50,2028-05-03,Antihistamine - Allegra 120mg
+2141,Telfast 180mg,Antihistamine,118.00,55,2027-11-27,Antihistamine - Telfast 180mg
+2142,Aerius 5mg,Antihistamine,92.00,168,2027-09-24,Antihistamine - Aerius 5mg
+2143,Xyzal 5mg,Antihistamine,89.00,217,2027-08-06,Antihistamine - Xyzal 5mg
+2144,Benadryl 25mg,Antihistamine,24.00,298,2028-01-09,Antihistamine - Benadryl 25mg
+2145,Atarax 25mg,Antihistamine,56.00,287,2028-07-03,Antihistamine - Atarax 25mg
+2146,Phenergan 25mg,Antihistamine,42.00,141,2027-05-22,Antihistamine - Phenergan 25mg
+2147,Nasonex Spray,Antihistamine,132.00,218,2028-08-18,Antihistamine - Nasonex Spray
+2148,Flixonase Spray,Antihistamine,124.00,263,2027-11-25,Antihistamine - Flixonase Spray
+2149,Rhinocort Aqua,Antihistamine,147.00,270,2028-08-21,Antihistamine - Rhinocort Aqua
+2150,Panadol Cold & Flu,OTC,37.00,98,2027-12-03,OTC - Panadol Cold & Flu
+2151,Theraflu,OTC,65.00,90,2028-08-21,OTC - Theraflu
+2152,Coldrex,OTC,43.00,132,2027-05-17,OTC - Coldrex
+2153,Otrivin Nasal Spray,OTC,79.00,155,2028-02-12,OTC - Otrivin Nasal Spray
+2154,Vicks VapoRub,OTC,59.00,222,2027-09-14,OTC - Vicks VapoRub
+2155,Strepsils,OTC,30.00,115,2028-06-13,OTC - Strepsils
+2156,Septolete,OTC,32.00,122,2027-07-24,OTC - Septolete
+2157,Sinutab,OTC,70.00,148,2028-03-01,OTC - Sinutab
+2158,Actifed,OTC,40.00,240,2027-11-25,OTC - Actifed
+2159,Rhinathiol,OTC,67.00,293,2028-08-23,OTC - Rhinathiol
+2160,Lamisil Cream,Topical,86.00,244,2027-07-02,Topical - Lamisil Cream
+2161,Canesten Cream,Topical,85.00,287,2027-11-16,Topical - Canesten Cream
+2162,Daktarin Cream,Topical,98.00,265,2027-07-12,Topical - Daktarin Cream
+2163,Fucidin Cream,Topical,132.00,213,2027-07-06,Topical - Fucidin Cream
+2164,Bactroban Ointment,Topical,160.00,62,2028-01-03,Topical - Bactroban Ointment
+2165,Elocon Cream,Topical,136.00,136,2028-03-30,Topical - Elocon Cream
+2166,Dermovate Cream,Topical,165.00,252,2028-04-16,Topical - Dermovate Cream
+2167,Locoid Cream,Topical,106.00,262,2027-08-28,Topical - Locoid Cream
+2168,Diproson Cream,Topical,107.00,214,2028-04-25,Topical - Diproson Cream
+2169,Protopic Ointment,Topical,400.00,278,2028-02-10,Topical - Protopic Ointment
+2170,Acnelyse Cream,Topical,95.00,181,2027-07-26,Topical - Acnelyse Cream
+2171,Differin Gel,Topical,158.00,293,2028-01-10,Topical - Differin Gel
+2172,Benzac 5% Gel,Topical,57.00,173,2027-06-03,Topical - Benzac 5% Gel
+2173,Skinoren Cream,Topical,126.00,216,2028-05-02,Topical - Skinoren Cream
+2174,Soolantra Cream,Topical,227.00,159,2027-10-04,Topical - Soolantra Cream
+2175,Aldara Cream,Topical,334.00,160,2028-01-30,Topical - Aldara Cream
+2176,Silkis Ointment,Topical,245.00,82,2027-11-06,Topical - Silkis Ointment
+2177,Zovirax Cream,Topical,113.00,136,2028-02-19,Topical - Zovirax Cream
+2178,Fenistil Gel,Topical,59.00,246,2027-06-27,Topical - Fenistil Gel
+2179,Calmurid Cream,Topical,89.00,138,2027-10-30,Topical - Calmurid Cream
+2180,La Roche-Posay Effaclar,Cosmetic,278.00,286,2027-10-30,Cosmetic - La Roche-Posay Effaclar
+2181,Vichy Normaderm,Cosmetic,317.00,190,2027-08-18,Cosmetic - Vichy Normaderm
+2182,Bioderma Sensibio,Cosmetic,225.00,220,2027-12-26,Cosmetic - Bioderma Sensibio
+2183,Avene Cicalfate,Cosmetic,237.00,58,2028-01-08,Cosmetic - Avene Cicalfate
+2184,Eucerin Anti-Age,Cosmetic,250.00,156,2027-12-25,Cosmetic - Eucerin Anti-Age
+2185,Nivea Soft,Cosmetic,76.00,148,2028-04-20,Cosmetic - Nivea Soft
+2186,Cetaphil Cleanser,Cosmetic,162.00,163,2028-06-25,Cosmetic - Cetaphil Cleanser
+2187,CeraVe Moisturizer,Cosmetic,170.00,92,2028-03-14,Cosmetic - CeraVe Moisturizer
+2188,The Ordinary Niacinamide,Cosmetic,199.00,116,2027-08-04,Cosmetic - The Ordinary Niacinamide
+2189,The Ordinary Hyaluronic,Cosmetic,134.00,56,2027-10-25,Cosmetic - The Ordinary Hyaluronic
+2190,The Ordinary Retinol,Cosmetic,152.00,156,2027-07-04,Cosmetic - The Ordinary Retinol
+2191,Neutrogena Hydro Boost,Cosmetic,192.00,101,2027-07-20,Cosmetic - Neutrogena Hydro Boost
+2192,Loreal Revitalift,Cosmetic,185.00,119,2027-12-02,Cosmetic - Loreal Revitalift
+2193,Olay Regenerist,Cosmetic,289.00,263,2028-08-20,Cosmetic - Olay Regenerist
+2194,Garnier Micellar Water,Cosmetic,106.00,257,2027-08-18,Cosmetic - Garnier Micellar Water
+2195,Systane Ultra,Eye/Ear,114.00,230,2027-07-26,Eye/Ear - Systane Ultra
+2196,Refresh Plus,Eye/Ear,128.00,180,2028-02-07,Eye/Ear - Refresh Plus
+2197,Visine Eye Drops,Eye/Ear,61.00,101,2028-03-25,Eye/Ear - Visine Eye Drops
+2198,Maxitrol Eye Drops,Eye/Ear,106.00,180,2027-10-11,Eye/Ear - Maxitrol Eye Drops
+2199,Tobradex Eye Drops,Eye/Ear,159.00,249,2028-03-01,Eye/Ear - Tobradex Eye Drops
+2200,Xalatan Eye Drops,Eye/Ear,360.00,97,2027-10-08,Eye/Ear - Xalatan Eye Drops
+2201,Timoptic Eye Drops,Eye/Ear,238.00,177,2028-06-17,Eye/Ear - Timoptic Eye Drops
+2202,Ciprofloxacin Ear Drops,Eye/Ear,85.00,141,2027-06-30,Eye/Ear - Ciprofloxacin Ear Drops
+2203,Candibiotic Ear Drops,Eye/Ear,104.00,273,2027-10-17,Eye/Ear - Candibiotic Ear Drops
+2204,Otosporin Ear Drops,Eye/Ear,92.00,226,2028-02-04,Eye/Ear - Otosporin Ear Drops
+2205,Polydexa Ear Drops,Eye/Ear,115.00,299,2028-03-17,Eye/Ear - Polydexa Ear Drops
+2206,Sofradex Eye Drops,Eye/Ear,156.00,178,2028-01-21,Eye/Ear - Sofradex Eye Drops
+2207,Listerine Mouthwash,OTC,85.00,198,2028-03-22,OTC - Listerine Mouthwash
+2208,Sensodyne Toothpaste,OTC,88.00,250,2027-11-18,OTC - Sensodyne Toothpaste
+2209,Colgate Total,OTC,47.00,100,2027-12-09,OTC - Colgate Total
+2210,Oral-B Mouthwash,OTC,110.00,128,2028-03-29,OTC - Oral-B Mouthwash
+2211,Corsodyl Mouthwash,OTC,106.00,115,2028-02-10,OTC - Corsodyl Mouthwash
+2212,Bonjela Gel,OTC,65.00,139,2028-06-13,OTC - Bonjela Gel
+2213,Dentyl Mouthwash,OTC,58.00,291,2028-03-24,OTC - Dentyl Mouthwash
+2214,Tongue Cleaner,OTC,25.00,88,2028-05-14,OTC - Tongue Cleaner
+2215,Omron BP Monitor,Device,941.00,161,2027-08-06,Device - Omron BP Monitor
+2216,Accu-Chek Glucose Meter,Device,515.00,190,2027-08-14,Device - Accu-Chek Glucose Meter
+2217,Omron Nebulizer,Device,1248.00,198,2028-07-06,Device - Omron Nebulizer
+2218,Pulse Oximeter Pro,Device,289.00,202,2028-04-19,Device - Pulse Oximeter Pro
+2219,Digital Thermometer,Device,111.00,97,2028-02-12,Device - Digital Thermometer
+2220,Infrared Thermometer,Device,312.00,130,2027-05-20,Device - Infrared Thermometer
+2221,Ear Thermometer,Device,473.00,175,2028-01-18,Device - Ear Thermometer
+2222,Stethoscope Pro,Device,477.00,128,2028-04-16,Device - Stethoscope Pro
+2223,Nebulizer Mask,Device,50.00,255,2028-06-25,Device - Nebulizer Mask
+2224,Blood Glucose Strips,Device,251.00,265,2028-01-02,Device - Blood Glucose Strips
+2225,BP Cuff Pediatric,Device,190.00,112,2027-09-28,Device - BP Cuff Pediatric
+2226,Nebulizer Kit,Device,123.00,177,2028-03-14,Device - Nebulizer Kit
+2227,First Aid Kit Complete,First Aid,447.00,273,2027-08-14,First Aid - First Aid Kit Complete
+2228,Elastic Bandage,First Aid,33.00,269,2028-07-31,First Aid - Elastic Bandage
+2229,Triangular Bandage,First Aid,42.00,151,2027-09-29,First Aid - Triangular Bandage
+2230,Cotton Wool,First Aid,24.00,100,2028-04-14,First Aid - Cotton Wool
+2231,Medical Scissors,First Aid,70.00,78,2027-10-03,First Aid - Medical Scissors
+2232,Tweezers,First Aid,49.00,261,2027-11-23,First Aid - Tweezers
+2233,Instant Cold Pack,First Aid,48.00,128,2027-09-04,First Aid - Instant Cold Pack
+2234,Hot Water Bag,First Aid,78.00,82,2027-12-17,First Aid - Hot Water Bag
+2235,Povidone Iodine,First Aid,57.00,175,2028-08-28,First Aid - Povidone Iodine
+2236,Hydrogen Peroxide,First Aid,45.00,51,2028-09-02,First Aid - Hydrogen Peroxide
+5001,Panadol 40mg,Analgesic,50.00,283,2027-06-26,Analgesic - Panadol
+5002,Adol 1g (20 tabs),Analgesic,18.00,113,2027-06-26,Analgesic - Adol
+5003,Panadol Extra 100mg (cream 30g),Analgesic,45.00,223,2028-05-11,Analgesic - Panadol Extra
+5004,Panadol Joint 500mg (20 tabs),Analgesic,67.00,85,2027-03-16,Analgesic - Panadol Joint
+5005,Cataflam 10mg (cream 30g),Analgesic,65.00,35,2028-08-10,Analgesic - Cataflam
+5006,Voltaren 200mg (30 tabs),Analgesic,76.00,200,2027-11-03,Analgesic - Voltaren
+5007,Brufen 250mg (20 tabs),Analgesic,55.00,72,2027-07-27,Analgesic - Brufen
+5008,Celebrex 100mg (20 tabs),Analgesic,144.00,219,2027-09-15,Analgesic - Celebrex
+5009,Arcoxia 400mg (100ml),Analgesic,161.00,162,2028-01-09,Analgesic - Arcoxia
+5010,Ponstan 20mg (gel 50g),Analgesic,44.00,144,2027-05-16,Analgesic - Ponstan
+5011,Mobic 100mg (100ml),Analgesic,135.00,216,2027-05-10,Analgesic - Mobic
+5012,Feldene 100mg (100ml),Analgesic,61.00,252,2027-10-15,Analgesic - Feldene
+5013,Diclac 200mg (100ml),Analgesic,49.00,113,2027-03-13,Analgesic - Diclac
+5014,Olfen 250mg (200ml),Analgesic,57.00,99,2027-12-06,Analgesic - Olfen
+5015,Indocid 1g (20 tabs),Analgesic,46.00,250,2028-08-17,Analgesic - Indocid
+5016,Ketorol 40mg (20 tabs),Analgesic,76.00,48,2028-05-31,Analgesic - Ketorol
+5017,Naproxen 500mg (200ml),Analgesic,46.00,91,2027-06-26,Analgesic - Naproxen
+5018,Aleve 1g (cream 30g),Analgesic,65.00,141,2028-06-09,Analgesic - Aleve
+5019,Augmentin 100mg (60 tabs),Antibiotic,137.00,80,2028-07-15,Antibiotic - Augmentin
+5020,Amoxil 100mg (60 tabs),Antibiotic,45.00,270,2027-12-20,Antibiotic - Amoxil
+5021,Hiconcil 20mg (200ml),Antibiotic,36.00,292,2027-08-04,Antibiotic - Hiconcil
+5022,E-Mox 1g,Antibiotic,38.00,196,2027-11-20,Antibiotic - E-Mox
+5023,Zithromax 400mg (30 tabs),Antibiotic,144.00,68,2027-10-25,Antibiotic - Zithromax
+5024,Azomax 1g (60 tabs),Antibiotic,122.00,40,2027-11-24,Antibiotic - Azomax
+5025,Klacid 500mg (cream 30g),Antibiotic,173.00,296,2027-03-13,Antibiotic - Klacid
+5026,Klaricid 400mg (20 tabs),Antibiotic,122.00,122,2028-08-11,Antibiotic - Klaricid
+5027,Cipro 100mg (100ml),Antibiotic,77.00,122,2027-05-05,Antibiotic - Cipro
+5028,Ciprobay 400mg (200ml),Antibiotic,90.00,62,2027-04-16,Antibiotic - Ciprobay
+5029,Velosef 40mg (gel 50g),Antibiotic,63.00,39,2028-08-25,Antibiotic - Velosef
+5030,Keflex 400mg (60 tabs),Antibiotic,67.00,197,2027-11-27,Antibiotic - Keflex
+5031,Zinnat 400mg (200ml),Antibiotic,110.00,107,2028-02-28,Antibiotic - Zinnat
+5032,Suprax 20mg (cream 30g),Antibiotic,115.00,240,2027-12-06,Antibiotic - Suprax
+5033,Tavanic 400mg (200ml),Antibiotic,190.00,57,2028-02-08,Antibiotic - Tavanic
+5034,Flagyl 20mg (100ml),Antibiotic,64.00,176,2028-09-01,Antibiotic - Flagyl
+5035,Rovamycin 200mg (60 tabs),Antibiotic,170.00,299,2028-06-10,Antibiotic - Rovamycin
+5036,Dalacin 1g (30 tabs),Antibiotic,127.00,95,2027-04-08,Antibiotic - Dalacin
+5037,Erythrocin 20mg (100ml),Antibiotic,58.00,68,2027-07-23,Antibiotic - Erythrocin
+5038,Vibramycin 10mg (20 tabs),Antibiotic,100.00,98,2028-01-21,Antibiotic - Vibramycin
+5039,Unasyn 20mg (gel 50g),Antibiotic,92.00,166,2027-11-09,Antibiotic - Unasyn
+5040,Septrin 400mg (100ml),Antibiotic,40.00,276,2028-04-02,Antibiotic - Septrin
+5041,Bactrim 200mg (30 tabs),Antibiotic,34.00,103,2028-06-22,Antibiotic - Bactrim
+5042,Minocin 100mg (60 tabs),Antibiotic,130.00,67,2027-09-09,Antibiotic - Minocin
+5043,Fucidin 40mg (60 tabs),Antibiotic,141.00,269,2027-05-12,Antibiotic - Fucidin
+5044,Zyvox 10mg,Antibiotic,525.00,138,2028-07-19,Antibiotic - Zyvox
+5045,Zerstat 20mg,Antibiotic,107.00,195,2027-04-06,Antibiotic - Zerstat
+5046,Cebion 250mg (20 tabs),Vitamin,26.00,278,2028-06-05,Vitamin - Cebion
+5047,Redoxon 100mg (gel 50g),Vitamin,83.00,42,2027-08-04,Vitamin - Redoxon
+5048,Vitacid C 400mg (20 tabs),Vitamin,56.00,168,2027-04-16,Vitamin - Vitacid C
+5049,Vidrop 20mg (100ml),Vitamin,79.00,57,2028-05-09,Vitamin - Vidrop
+5050,Devarol 10mg (100ml),Vitamin,108.00,81,2027-07-29,Vitamin - Devarol
+5051,Calcitriol 250mg (cream 30g),Vitamin,97.00,109,2028-08-04,Vitamin - Calcitriol
+5052,Folic Acid 100mg (30 tabs),Vitamin,27.00,177,2027-10-07,Vitamin - Folic Acid
+5053,Folvite 250mg (cream 30g),Vitamin,60.00,105,2027-03-23,Vitamin - Folvite
+5054,Calcium Sandoz 250mg (cream 30g),Vitamin,49.00,107,2028-05-03,Vitamin - Calcium Sandoz
+5055,Caltrate 40mg (gel 50g),Vitamin,72.00,64,2027-05-04,Vitamin - Caltrate
+5056,Caltron 500mg (200ml),Vitamin,68.00,97,2028-01-30,Vitamin - Caltron
+5057,Iron Plus 1g (gel 50g),Vitamin,35.00,155,2027-07-21,Vitamin - Iron Plus
+5058,Feroglobin 250mg (gel 50g),Vitamin,100.00,159,2028-03-23,Vitamin - Feroglobin
+5059,Sideral 400mg,Vitamin,85.00,35,2027-06-06,Vitamin - Sideral
+5060,Zinc Plus 200mg (cream 30g),Vitamin,35.00,193,2027-09-24,Vitamin - Zinc Plus
+5061,Zinc Sulfate 500mg (30 tabs),Vitamin,19.00,170,2027-11-20,Vitamin - Zinc Sulfate
+5062,Magnesium Plus 400mg,Vitamin,40.00,117,2028-02-19,Vitamin - Magnesium Plus
+5063,Mg Plus 1g (gel 50g),Vitamin,56.00,227,2027-10-15,Vitamin - Mg Plus
+5064,Omega-3 20mg (200ml),Vitamin,145.00,226,2027-03-24,Vitamin - Omega-3
+5065,Multivit 250mg (20 tabs),Vitamin,88.00,173,2027-10-08,Vitamin - Multivit
+5066,Pharmaton 250mg,Vitamin,95.00,229,2027-06-03,Vitamin - Pharmaton
+5067,StressTabs 200mg (20 tabs),Vitamin,172.00,214,2028-06-11,Vitamin - StressTabs
+5068,Supradyn 400mg (30 tabs),Vitamin,95.00,148,2027-06-29,Vitamin - Supradyn
+5069,Centrum 1g (30 tabs),Vitamin,138.00,295,2027-10-11,Vitamin - Centrum
+5070,Vit B Complex 250mg (cream 30g),Vitamin,57.00,196,2027-10-21,Vitamin - Vit B Complex
+5071,Neurobion 10mg (30 tabs),Vitamin,121.00,287,2028-03-01,Vitamin - Neurobion
+5072,Neuroton 100mg (gel 50g),Vitamin,115.00,224,2028-08-09,Vitamin - Neuroton
+5073,Collagen 400mg (60 tabs),Vitamin,182.00,38,2028-07-24,Vitamin - Collagen
+5074,Hyaluronic 400mg (100ml),Vitamin,261.00,40,2027-12-03,Vitamin - Hyaluronic
+5075,Biotin 250mg (100ml),Vitamin,117.00,245,2028-08-12,Vitamin - Biotin
+5076,Glucosamine 200mg,Vitamin,191.00,267,2028-03-29,Vitamin - Glucosamine
+5077,CoQ10 10mg (20 tabs),Vitamin,240.00,270,2027-09-04,Vitamin - CoQ10
+5078,L-Carnitine 200mg (200ml),Vitamin,204.00,245,2028-03-13,Vitamin - L-Carnitine
+5079,Probiotics 20mg (60 tabs),Vitamin,121.00,213,2027-09-25,Vitamin - Probiotics
+5080,Losec 1g (100ml),Gastrointestinal,119.00,43,2027-07-08,Gastrointestinal - Losec
+5081,Antopral 1g (60 tabs),Gastrointestinal,59.00,294,2027-07-10,Gastrointestinal - Antopral
+5082,Omez 250mg (gel 50g),Gastrointestinal,77.00,271,2027-10-09,Gastrointestinal - Omez
+5083,Nexium 1g,Gastrointestinal,83.00,144,2027-09-29,Gastrointestinal - Nexium
+5084,Pariet 100mg (100ml),Gastrointestinal,163.00,283,2028-08-19,Gastrointestinal - Pariet
+5085,Controloc 20mg (gel 50g),Gastrointestinal,170.00,124,2028-01-01,Gastrointestinal - Controloc
+5086,Zantac 400mg (60 tabs),Gastrointestinal,46.00,95,2027-05-31,Gastrointestinal - Zantac
+5087,Ranitidine 250mg (60 tabs),Gastrointestinal,37.00,210,2028-05-24,Gastrointestinal - Ranitidine
+5088,Gaviscon 40mg (30 tabs),Gastrointestinal,45.00,191,2027-04-21,Gastrointestinal - Gaviscon
+5089,Maalox 200mg (60 tabs),Gastrointestinal,55.00,263,2028-07-27,Gastrointestinal - Maalox
+5090,Mucaine 500mg (20 tabs),Gastrointestinal,69.00,286,2027-11-08,Gastrointestinal - Mucaine
+5091,Colofac 200mg (20 tabs),Gastrointestinal,110.00,299,2027-09-15,Gastrointestinal - Colofac
+5092,Duspatalin 250mg (gel 50g),Gastrointestinal,158.00,148,2028-05-06,Gastrointestinal - Duspatalin
+5093,Debridat 400mg (100ml),Gastrointestinal,90.00,180,2028-06-20,Gastrointestinal - Debridat
+5094,Motilium 10mg (cream 30g),Gastrointestinal,51.00,53,2027-07-10,Gastrointestinal - Motilium
+5095,Domperidone 200mg (60 tabs),Gastrointestinal,60.00,95,2027-10-20,Gastrointestinal - Domperidone
+5096,Primperan 250mg (20 tabs),Gastrointestinal,56.00,273,2027-03-21,Gastrointestinal - Primperan
+5097,Zofran 400mg (cream 30g),Gastrointestinal,175.00,72,2027-07-26,Gastrointestinal - Zofran
+5098,Iberogast 40mg (60 tabs),Gastrointestinal,101.00,100,2027-06-14,Gastrointestinal - Iberogast
+5099,Duphalac 1g (cream 30g),Gastrointestinal,64.00,225,2027-04-28,Gastrointestinal - Duphalac
+5100,Fybogel 500mg,Gastrointestinal,70.00,194,2027-10-27,Gastrointestinal - Fybogel
+5101,Movicol 250mg,Gastrointestinal,91.00,294,2027-09-12,Gastrointestinal - Movicol
+5102,Librax 500mg (100ml),Gastrointestinal,89.00,117,2028-08-21,Gastrointestinal - Librax
+5103,Buscopan 400mg,Gastrointestinal,49.00,183,2027-10-27,Gastrointestinal - Buscopan
+5104,Spasfon 40mg (20 tabs),Gastrointestinal,75.00,78,2027-10-28,Gastrointestinal - Spasfon
+5105,Imodium 40mg (30 tabs),Gastrointestinal,31.00,147,2028-02-08,Gastrointestinal - Imodium
+5106,Antinal 200mg (60 tabs),Gastrointestinal,33.00,132,2027-11-22,Gastrointestinal - Antinal
+5107,Streptoquin 500mg,Gastrointestinal,68.00,116,2028-02-28,Gastrointestinal - Streptoquin
+5108,Concor 250mg (gel 50g),Cardiovascular,63.00,73,2027-08-20,Cardiovascular - Concor
+5109,Bisoprolol 400mg (100ml),Cardiovascular,50.00,59,2027-10-04,Cardiovascular - Bisoprolol
+5110,Tenormin 1g (60 tabs),Cardiovascular,79.00,206,2027-09-23,Cardiovascular - Tenormin
+5111,Atenolol 250mg (20 tabs),Cardiovascular,39.00,88,2028-08-12,Cardiovascular - Atenolol
+5112,Lopressor 10mg (cream 30g),Cardiovascular,66.00,132,2027-08-19,Cardiovascular - Lopressor
+5113,Metoprolol 400mg (20 tabs),Cardiovascular,42.00,129,2027-06-12,Cardiovascular - Metoprolol
+5114,Norvasc 250mg (60 tabs),Cardiovascular,73.00,134,2027-09-30,Cardiovascular - Norvasc
+5115,Amlodipine 10mg (100ml),Cardiovascular,45.00,263,2028-04-29,Cardiovascular - Amlodipine
+5116,Zestril 400mg (gel 50g),Cardiovascular,63.00,188,2027-08-22,Cardiovascular - Zestril
+5117,Lisinopril 250mg (20 tabs),Cardiovascular,49.00,267,2027-11-14,Cardiovascular - Lisinopril
+5118,Renitec 400mg (60 tabs),Cardiovascular,70.00,251,2028-07-21,Cardiovascular - Renitec
+5119,Cozaar 1g (60 tabs),Cardiovascular,153.00,253,2027-09-18,Cardiovascular - Cozaar
+5120,Losartan 40mg (200ml),Cardiovascular,108.00,108,2028-02-19,Cardiovascular - Losartan
+5121,Diovan 400mg (100ml),Cardiovascular,194.00,38,2027-10-16,Cardiovascular - Diovan
+5122,Valsartan 100mg (cream 30g),Cardiovascular,158.00,77,2028-05-19,Cardiovascular - Valsartan
+5123,Micardis 1g (cream 30g),Cardiovascular,160.00,208,2028-07-26,Cardiovascular - Micardis
+5124,Aprovel 40mg (cream 30g),Cardiovascular,201.00,260,2027-11-16,Cardiovascular - Aprovel
+5125,Atacand 100mg (cream 30g),Cardiovascular,159.00,157,2027-07-12,Cardiovascular - Atacand
+5126,Crestor 10mg (200ml),Cardiovascular,313.00,34,2028-04-11,Cardiovascular - Crestor
+5127,Lipitor 400mg (100ml),Cardiovascular,131.00,81,2028-02-24,Cardiovascular - Lipitor
+5128,Zocor 200mg (100ml),Cardiovascular,98.00,159,2027-06-16,Cardiovascular - Zocor
+5129,Pravachol 400mg (60 tabs),Cardiovascular,85.00,80,2027-11-22,Cardiovascular - Pravachol
+5130,Plavix 500mg,Cardiovascular,197.00,268,2028-05-28,Cardiovascular - Plavix
+5131,Clopidogrel 20mg (30 tabs),Cardiovascular,134.00,155,2028-08-09,Cardiovascular - Clopidogrel
+5132,Efient 400mg (30 tabs),Cardiovascular,247.00,48,2027-11-26,Cardiovascular - Efient
+5133,Lanoxin 400mg (200ml),Cardiovascular,61.00,223,2028-05-25,Cardiovascular - Lanoxin
+5134,Cordarone 40mg (cream 30g),Cardiovascular,138.00,30,2027-06-23,Cardiovascular - Cordarone
+5135,Aldactone 200mg (60 tabs),Cardiovascular,78.00,164,2028-08-23,Cardiovascular - Aldactone
+5136,Lasix 40mg (100ml),Cardiovascular,33.00,245,2027-03-16,Cardiovascular - Lasix
+5137,Furosemide 40mg (200ml),Cardiovascular,37.00,33,2028-03-01,Cardiovascular - Furosemide
+5138,Capoten 100mg (200ml),Cardiovascular,44.00,226,2028-03-20,Cardiovascular - Capoten
+5139,Tritace 20mg (100ml),Cardiovascular,104.00,200,2027-07-20,Cardiovascular - Tritace
+5140,Adalat 500mg (20 tabs),Cardiovascular,68.00,146,2028-02-14,Cardiovascular - Adalat
+5141,Isoptin 400mg (cream 30g),Cardiovascular,75.00,71,2027-10-20,Cardiovascular - Isoptin
+5142,Verapamil 500mg (200ml),Cardiovascular,70.00,70,2028-08-13,Cardiovascular - Verapamil
+5143,Glucophage 40mg (30 tabs),Diabetes,47.00,251,2027-07-20,Diabetes - Glucophage
+5144,Metformin 1g (cream 30g),Diabetes,32.00,234,2027-09-20,Diabetes - Metformin
+5145,Amaryl 40mg (20 tabs),Diabetes,76.00,161,2028-04-09,Diabetes - Amaryl
+5146,Glimepiride 20mg (cream 30g),Diabetes,62.00,168,2027-05-09,Diabetes - Glimepiride
+5147,Diamicron 10mg,Diabetes,131.00,180,2027-04-15,Diabetes - Diamicron
+5148,Gliclazide 500mg,Diabetes,88.00,58,2028-06-15,Diabetes - Gliclazide
+5149,Novonorm 10mg (20 tabs),Diabetes,167.00,190,2027-05-31,Diabetes - Novonorm
+5150,Repaglinide 200mg (20 tabs),Diabetes,144.00,120,2027-10-15,Diabetes - Repaglinide
+5151,Actos 1g (30 tabs),Diabetes,167.00,227,2028-01-25,Diabetes - Actos
+5152,Pioglitazone 20mg (cream 30g),Diabetes,135.00,275,2028-02-16,Diabetes - Pioglitazone
+5153,Galvus 400mg (100ml),Diabetes,312.00,42,2027-08-15,Diabetes - Galvus
+5154,Januvia 200mg,Diabetes,241.00,103,2028-08-15,Diabetes - Januvia
+5155,Janumet 200mg (20 tabs),Diabetes,297.00,104,2028-01-16,Diabetes - Janumet
+5156,Forxiga 500mg (200ml),Diabetes,278.00,260,2027-12-01,Diabetes - Forxiga
+5157,Jardiance 200mg (cream 30g),Diabetes,292.00,200,2028-01-08,Diabetes - Jardiance
+5158,Lantus 10mg (100ml),Diabetes,445.00,168,2028-03-19,Diabetes - Lantus
+5159,NovoRapid 100mg (60 tabs),Diabetes,381.00,287,2027-09-25,Diabetes - NovoRapid
+5160,Humalog 400mg (30 tabs),Diabetes,411.00,242,2027-09-04,Diabetes - Humalog
+5161,Mixtard 250mg (30 tabs),Diabetes,234.00,234,2028-03-17,Diabetes - Mixtard
+5162,Insulin 40mg (100ml),Diabetes,170.00,274,2027-11-30,Diabetes - Insulin
+5163,Ventolin 400mg (cream 30g),Respiratory,99.00,278,2027-03-16,Respiratory - Ventolin
+5164,Salbutamol 400mg (gel 50g),Respiratory,72.00,273,2027-10-20,Respiratory - Salbutamol
+5165,Asthalin 40mg (30 tabs),Respiratory,67.00,171,2027-07-30,Respiratory - Asthalin
+5166,Symbicort 500mg (gel 50g),Respiratory,292.00,259,2028-05-09,Respiratory - Symbicort
+5167,Seretide 10mg (200ml),Respiratory,409.00,104,2027-05-08,Respiratory - Seretide
+5168,Singulair 10mg (200ml),Respiratory,130.00,46,2027-10-11,Respiratory - Singulair
+5169,Montelukast 500mg (cream 30g),Respiratory,146.00,121,2028-02-08,Respiratory - Montelukast
+5170,Accolate 500mg (200ml),Respiratory,229.00,282,2027-03-30,Respiratory - Accolate
+5171,Atrovent 100mg (100ml),Respiratory,118.00,259,2027-08-22,Respiratory - Atrovent
+5172,Spiriva 20mg (gel 50g),Respiratory,582.00,199,2027-11-07,Respiratory - Spiriva
+5173,Bricanyl 200mg,Respiratory,138.00,187,2027-03-15,Respiratory - Bricanyl
+5174,Berodual 10mg (60 tabs),Respiratory,136.00,245,2027-06-26,Respiratory - Berodual
+5175,Pulmicort 400mg (200ml),Respiratory,255.00,208,2028-02-22,Respiratory - Pulmicort
+5176,Flixotide 20mg,Respiratory,149.00,201,2027-06-12,Respiratory - Flixotide
+5177,Serevent 40mg (60 tabs),Respiratory,272.00,264,2027-05-25,Respiratory - Serevent
+5178,Combivent 10mg (cream 30g),Respiratory,186.00,168,2028-05-14,Respiratory - Combivent
+5179,Theo-Dur 40mg,Respiratory,104.00,109,2028-01-16,Respiratory - Theo-Dur
+5180,Zaditen 500mg (30 tabs),Respiratory,133.00,46,2027-11-30,Respiratory - Zaditen
+5181,Claritin 500mg (200ml),Antihistamine,45.00,72,2028-05-15,Antihistamine - Claritin
+5182,Loratadine 20mg (100ml),Antihistamine,45.00,155,2027-04-05,Antihistamine - Loratadine
+5183,Zyrtec 100mg (30 tabs),Antihistamine,62.00,114,2028-05-20,Antihistamine - Zyrtec
+5184,Cetirizine 100mg (cream 30g),Antihistamine,37.00,256,2027-03-28,Antihistamine - Cetirizine
+5185,Aerius 40mg (200ml),Antihistamine,99.00,264,2028-01-23,Antihistamine - Aerius
+5186,Desloratadine 200mg (20 tabs),Antihistamine,42.00,101,2028-05-27,Antihistamine - Desloratadine
+5187,Allegra 1g (60 tabs),Antihistamine,105.00,265,2028-05-02,Antihistamine - Allegra
+5188,Telfast 250mg (20 tabs),Antihistamine,107.00,272,2027-11-04,Antihistamine - Telfast
+5189,Fexofenadine 200mg (200ml),Antihistamine,59.00,60,2027-07-11,Antihistamine - Fexofenadine
+5190,Xyzal 40mg (200ml),Antihistamine,109.00,196,2028-01-28,Antihistamine - Xyzal
+5191,Levocetirizine 10mg (30 tabs),Antihistamine,57.00,39,2027-09-15,Antihistamine - Levocetirizine
+5192,Benadryl 100mg,Antihistamine,38.00,149,2028-04-01,Antihistamine - Benadryl
+5193,Atarax 100mg (60 tabs),Antihistamine,41.00,234,2027-07-12,Antihistamine - Atarax
+5194,Phenergan 10mg (20 tabs),Antihistamine,36.00,235,2028-04-02,Antihistamine - Phenergan
+5195,Nasonex 500mg (20 tabs),Antihistamine,163.00,96,2027-10-10,Antihistamine - Nasonex
+5196,Flixonase 10mg (gel 50g),Antihistamine,124.00,38,2027-07-06,Antihistamine - Flixonase
+5197,Rhinocort 10mg,Antihistamine,139.00,255,2028-06-13,Antihistamine - Rhinocort
+5198,Avamys 1g,Antihistamine,182.00,184,2028-08-18,Antihistamine - Avamys
+5199,Panadol Cold 40mg (30 tabs),OTC,45.00,186,2028-04-21,OTC - Panadol Cold
+5200,Theraflu 20mg (gel 50g),OTC,62.00,151,2028-03-11,OTC - Theraflu
+5201,Coldrex 100mg (cream 30g),OTC,48.00,246,2027-06-12,OTC - Coldrex
+5202,Otrivin 1g (gel 50g),OTC,57.00,245,2028-04-29,OTC - Otrivin
+5203,Vicks 250mg (30 tabs),OTC,69.00,122,2028-08-21,OTC - Vicks
+5204,Strepsils 250mg (60 tabs),OTC,47.00,154,2027-06-14,OTC - Strepsils
+5205,Septolete 40mg (30 tabs),OTC,35.00,31,2027-04-30,OTC - Septolete
+5206,Sinutab 400mg (30 tabs),OTC,55.00,222,2027-07-08,OTC - Sinutab
+5207,Actifed 40mg (200ml),OTC,59.00,276,2027-04-09,OTC - Actifed
+5208,Rhinathiol 20mg (30 tabs),OTC,54.00,174,2027-12-14,OTC - Rhinathiol
+5209,Congestal 1g (20 tabs),OTC,38.00,110,2028-07-31,OTC - Congestal
+5210,Listerine 400mg (cream 30g),OTC,88.00,254,2028-04-01,OTC - Listerine
+5211,Sensodyne 1g (60 tabs),OTC,94.00,129,2027-07-20,OTC - Sensodyne
+5212,Colgate 20mg (30 tabs),OTC,51.00,40,2027-11-25,OTC - Colgate
+5213,Corsodyl 40mg (20 tabs),OTC,136.00,174,2027-09-21,OTC - Corsodyl
+5214,Bonjela 100mg,OTC,46.00,150,2027-05-05,OTC - Bonjela
+5215,Lamisil 100mg,Topical,142.00,245,2028-04-21,Topical - Lamisil
+5216,Canesten 40mg (30 tabs),Topical,95.00,131,2028-02-03,Topical - Canesten
+5217,Daktarin 20mg,Topical,92.00,91,2028-01-13,Topical - Daktarin
+5218,Fucidin 1g (20 tabs),Topical,120.00,176,2028-05-16,Topical - Fucidin
+5219,Bactroban 1g (30 tabs),Topical,132.00,54,2028-06-09,Topical - Bactroban
+5220,Elocon 40mg,Topical,166.00,70,2028-08-21,Topical - Elocon
+5221,Dermovate 250mg (20 tabs),Topical,150.00,71,2028-03-24,Topical - Dermovate
+5222,Locoid 400mg (20 tabs),Topical,147.00,283,2027-08-03,Topical - Locoid
+5223,Diproson 400mg (gel 50g),Topical,145.00,245,2027-05-14,Topical - Diproson
+5224,Protopic 20mg (gel 50g),Topical,429.00,143,2027-05-14,Topical - Protopic
+5225,Acnelyse 200mg (100ml),Topical,80.00,222,2027-06-12,Topical - Acnelyse
+5226,Differin 400mg (30 tabs),Topical,181.00,162,2027-09-04,Topical - Differin
+5227,Benzac 400mg (100ml),Topical,57.00,217,2027-03-29,Topical - Benzac
+5228,Skinoren 100mg (20 tabs),Topical,129.00,65,2027-05-19,Topical - Skinoren
+5229,Zovirax 20mg (30 tabs),Topical,142.00,248,2028-05-30,Topical - Zovirax
+5230,Fenistil 400mg (cream 30g),Topical,80.00,51,2027-08-17,Topical - Fenistil
+5231,Betadine 400mg (gel 50g),Topical,44.00,67,2028-08-03,Topical - Betadine
+5232,Hydrocortisone 1g (200ml),Topical,37.00,89,2028-01-01,Topical - Hydrocortisone
+5233,Silver Sulfadiazine 40mg (100ml),Topical,98.00,113,2027-09-29,Topical - Silver Sulfadiazine
+5234,La Roche-Posay 500mg (cream 30g),Cosmetic,224.00,276,2028-05-30,Cosmetic - La Roche-Posay
+5235,Vichy 10mg,Cosmetic,361.00,193,2028-06-26,Cosmetic - Vichy
+5236,Bioderma 20mg (200ml),Cosmetic,248.00,179,2028-05-12,Cosmetic - Bioderma
+5237,Avene 200mg (cream 30g),Cosmetic,201.00,245,2027-04-15,Cosmetic - Avene
+5238,Eucerin 100mg (gel 50g),Cosmetic,385.00,119,2028-08-03,Cosmetic - Eucerin
+5239,Nivea 1g (cream 30g),Cosmetic,92.00,104,2028-06-26,Cosmetic - Nivea
+5240,Cetaphil 40mg (gel 50g),Cosmetic,136.00,288,2028-01-19,Cosmetic - Cetaphil
+5241,CeraVe 500mg,Cosmetic,236.00,144,2027-05-15,Cosmetic - CeraVe
+5242,The Ordinary 10mg (100ml),Cosmetic,206.00,46,2028-07-06,Cosmetic - The Ordinary
+5243,Neutrogena 500mg,Cosmetic,190.00,226,2027-11-24,Cosmetic - Neutrogena
+5244,Loreal 10mg (gel 50g),Cosmetic,219.00,109,2027-04-11,Cosmetic - Loreal
+5245,Olay 10mg (100ml),Cosmetic,371.00,154,2028-03-24,Cosmetic - Olay
+5246,Garnier 1g (200ml),Cosmetic,92.00,79,2027-11-12,Cosmetic - Garnier
+5247,Ponds 500mg (gel 50g),Cosmetic,104.00,250,2028-04-13,Cosmetic - Ponds
+5248,Filorga 100mg (gel 50g),Cosmetic,534.00,95,2028-07-31,Cosmetic - Filorga
+5249,Systane 250mg (gel 50g),Eye/Ear,107.00,113,2028-07-14,Eye/Ear - Systane
+5250,Refresh Plus 20mg (20 tabs),Eye/Ear,126.00,176,2027-12-25,Eye/Ear - Refresh Plus
+5251,Visine 40mg (20 tabs),Eye/Ear,55.00,300,2027-09-05,Eye/Ear - Visine
+5252,Maxitrol 20mg (30 tabs),Eye/Ear,132.00,191,2027-12-02,Eye/Ear - Maxitrol
+5253,Tobradex 250mg,Eye/Ear,113.00,213,2027-04-15,Eye/Ear - Tobradex
+5254,Xalatan 200mg (30 tabs),Eye/Ear,344.00,30,2028-04-30,Eye/Ear - Xalatan
+5255,Timoptic 500mg (gel 50g),Eye/Ear,183.00,227,2028-04-03,Eye/Ear - Timoptic
+5256,Ciprofloxacin 100mg (gel 50g),Eye/Ear,92.00,103,2027-11-21,Eye/Ear - Ciprofloxacin
+5257,Candibiotic 200mg (30 tabs),Eye/Ear,89.00,192,2027-09-20,Eye/Ear - Candibiotic
+5258,Otosporin 200mg (200ml),Eye/Ear,142.00,123,2028-01-08,Eye/Ear - Otosporin
+5259,Polydexa 10mg (30 tabs),Eye/Ear,134.00,128,2027-07-18,Eye/Ear - Polydexa
+5260,Sofradex 400mg (20 tabs),Eye/Ear,160.00,85,2028-06-20,Eye/Ear - Sofradex
+5261,Omron BP 400mg (20 tabs),Device,1023.00,160,2027-12-13,Device - Omron BP
+5262,Omron HEM 20mg (cream 30g),Device,1065.00,100,2028-08-09,Device - Omron HEM
+5263,Accu-Chek 100mg (cream 30g),Device,499.00,158,2028-03-21,Device - Accu-Chek
+5264,Accu-Chek Active 20mg (30 tabs),Device,664.00,40,2028-09-03,Device - Accu-Chek Active
+5265,Omron Nebulizer 100mg (20 tabs),Device,1282.00,167,2027-09-23,Device - Omron Nebulizer
+5266,Omron Compressor 40mg,Device,1665.00,154,2028-03-27,Device - Omron Compressor
+5267,Pulse Oximeter 10mg,Device,266.00,167,2028-06-13,Device - Pulse Oximeter
+5268,Digital Thermometer 1g (60 tabs),Device,89.00,127,2027-07-26,Device - Digital Thermometer
+5269,Infrared Thermometer 250mg (20 tabs),Device,457.00,173,2027-05-08,Device - Infrared Thermometer
+5270,Ear Thermometer 40mg (20 tabs),Device,516.00,134,2027-07-02,Device - Ear Thermometer
+5271,Stethoscope 1g,Device,536.00,46,2027-06-03,Device - Stethoscope
+5272,Nebulizer Mask 100mg (gel 50g),Device,75.00,212,2028-08-24,Device - Nebulizer Mask
+5273,Glucose Strips 1g (cream 30g),Device,275.00,144,2027-03-28,Device - Glucose Strips
+5274,BP Cuff 400mg (100ml),Device,127.00,125,2028-08-26,Device - BP Cuff
+5275,Nebulizer Kit 400mg (cream 30g),Device,129.00,30,2027-08-15,Device - Nebulizer Kit
+5276,First Aid Kit 100mg (60 tabs),First Aid,414.00,254,2027-04-23,First Aid - First Aid Kit
+5277,Elastic Bandage 500mg (200ml),First Aid,43.00,71,2027-08-29,First Aid - Elastic Bandage
+5278,Triangular Bandage 20mg (cream 30g),First Aid,29.00,82,2028-04-12,First Aid - Triangular Bandage
+5279,Cotton Wool 100mg (30 tabs),First Aid,28.00,72,2028-03-30,First Aid - Cotton Wool
+5280,Medical Scissors 1g,First Aid,65.00,251,2028-01-27,First Aid - Medical Scissors
+5281,Tweezers 100mg (gel 50g),First Aid,49.00,71,2028-04-03,First Aid - Tweezers
+5282,Cold Pack 1g (20 tabs),First Aid,74.00,286,2028-05-31,First Aid - Cold Pack
+5283,Hot Water Bag 250mg,First Aid,95.00,198,2028-01-13,First Aid - Hot Water Bag
+5284,Povidone Iodine 10mg,First Aid,74.00,115,2027-09-19,First Aid - Povidone Iodine
+5285,Hydrogen Peroxide 10mg (gel 50g),First Aid,28.00,265,2028-01-28,First Aid - Hydrogen Peroxide
+5286,Alcohol Swabs 250mg,First Aid,38.00,240,2028-08-13,First Aid - Alcohol Swabs
+5287,Adhesive Tape 40mg (30 tabs),First Aid,21.00,228,2027-10-26,First Aid - Adhesive Tape
+5288,Face Mask 400mg (200ml),First Aid,58.00,58,2028-01-16,First Aid - Face Mask
+5289,Medical Gloves 400mg (cream 30g),First Aid,76.00,159,2027-03-13,First Aid - Medical Gloves
+5290,Topicrem 40mg (cream 30g),Dermatology,208.00,75,2027-09-03,Dermatology - Topicrem
+5291,Ducray 10mg (200ml),Dermatology,249.00,300,2028-04-23,Dermatology - Ducray
+5292,Klorane 400mg (cream 30g),Dermatology,176.00,79,2027-04-29,Dermatology - Klorane
+5293,Uriage 200mg (cream 30g),Dermatology,285.00,255,2027-12-11,Dermatology - Uriage
+5294,Mustela 100mg (gel 50g),Dermatology,280.00,109,2027-05-05,Dermatology - Mustela
+5295,Bepanthen 1g (cream 30g),Dermatology,165.00,83,2028-08-17,Dermatology - Bepanthen
+5296,Emolium 20mg,Dermatology,231.00,80,2028-07-19,Dermatology - Emolium
+5297,Baby Panadol 400mg (60 tabs),Pediatric,43.00,159,2027-04-25,Pediatric - Baby Panadol
+5298,Calpol 500mg (200ml),Pediatric,59.00,115,2028-05-30,Pediatric - Calpol
+5299,Nurofen Kids 10mg (20 tabs),Pediatric,63.00,167,2028-03-28,Pediatric - Nurofen Kids
+5300,Baby Vit D 200mg (100ml),Pediatric,63.00,144,2027-05-27,Pediatric - Baby Vit D
+5301,Aptamil 500mg (cream 30g),Pediatric,476.00,47,2027-10-03,Pediatric - Aptamil
+5302,NAN 10mg (gel 50g),Pediatric,408.00,83,2027-09-27,Pediatric - NAN
+5303,Pediasure 40mg (100ml),Pediatric,334.00,109,2028-07-30,Pediatric - Pediasure
+5304,Similac 40mg (20 tabs),Pediatric,390.00,200,2027-10-08,Pediatric - Similac
+5305,Baby Cough Syrup 500mg (200ml),Pediatric,76.00,180,2027-06-08,Pediatric - Baby Cough Syrup
+5306,Baby Saline 10mg (100ml),Pediatric,43.00,246,2027-08-01,Pediatric - Baby Saline
+6001,Whey Protein,Sports Nutrition,618.00,159,2027-11-12,Sports Nutrition - Whey Protein
+6002,Mass Gainer,Sports Nutrition,773.00,110,2028-09-02,Sports Nutrition - Mass Gainer
+6003,BCAA,Sports Nutrition,382.00,160,2027-11-02,Sports Nutrition - BCAA
+6004,Creatine,Sports Nutrition,296.00,89,2028-03-14,Sports Nutrition - Creatine
+6005,Pre-Workout,Sports Nutrition,399.00,123,2028-01-11,Sports Nutrition - Pre-Workout
+6006,L-Glutamine,Sports Nutrition,280.00,96,2028-07-24,Sports Nutrition - L-Glutamine
+6007,Beta Alanine,Sports Nutrition,193.00,55,2028-06-12,Sports Nutrition - Beta Alanine
+6008,Casein Protein,Sports Nutrition,705.00,95,2027-05-30,Sports Nutrition - Casein Protein
+6009,Multivitamin Sport,Sports Nutrition,259.00,23,2027-10-14,Sports Nutrition - Multivitamin Sport
+6010,Electrolytes,Sports Nutrition,206.00,102,2028-04-24,Sports Nutrition - Electrolytes
+6011,EAA,Sports Nutrition,421.00,79,2028-01-23,Sports Nutrition - EAA
+6012,CLA,Sports Nutrition,347.00,149,2027-08-29,Sports Nutrition - CLA
+6013,Carnitine Plus,Sports Nutrition,293.00,197,2027-05-28,Sports Nutrition - Carnitine Plus
+6014,ZMA,Sports Nutrition,192.00,138,2028-05-16,Sports Nutrition - ZMA
+6015,Taurine,Sports Nutrition,143.00,104,2028-05-04,Sports Nutrition - Taurine
+6016,Protein Bar,Sports Nutrition,94.00,121,2027-06-29,Sports Nutrition - Protein Bar
+6017,Protein Shake,Sports Nutrition,95.00,99,2027-12-10,Sports Nutrition - Protein Shake
+6018,Energy Gel,Sports Nutrition,62.00,41,2028-02-22,Sports Nutrition - Energy Gel
+6019,Isotonic Drink,Sports Nutrition,94.00,23,2028-05-16,Sports Nutrition - Isotonic Drink
+6020,Recovery Drink,Sports Nutrition,164.00,96,2027-12-03,Sports Nutrition - Recovery Drink
+6021,Prenatal Vitamins,Maternity,193.00,177,2027-08-01,Maternity - Prenatal Vitamins
+6022,Femibion 1,Maternity,208.00,127,2027-07-24,Maternity - Femibion 1
+6023,Femibion 2,Maternity,232.00,97,2027-10-15,Maternity - Femibion 2
+6024,Pregnacare Plus,Maternity,253.00,123,2028-07-10,Maternity - Pregnacare Plus
+6025,Elevit,Maternity,376.00,145,2028-02-28,Maternity - Elevit
+6026,Omega Mom,Maternity,263.00,74,2028-05-12,Maternity - Omega Mom
+6027,Folic Plus,Maternity,136.00,127,2028-04-15,Maternity - Folic Plus
+6028,Iron Mom,Maternity,120.00,26,2027-05-22,Maternity - Iron Mom
+6029,Calcium Mom,Maternity,135.00,70,2028-06-06,Maternity - Calcium Mom
+6030,DHA Mom,Maternity,210.00,81,2028-06-23,Maternity - DHA Mom
+6031,Maternity Belt,Maternity,257.00,77,2027-12-02,Maternity - Maternity Belt
+6032,Nursing Pads,Maternity,100.00,174,2028-08-22,Maternity - Nursing Pads
+6033,Stretch Mark Cream,Maternity,160.00,146,2027-06-06,Maternity - Stretch Mark Cream
+6034,Breast Pump,Maternity,956.00,98,2028-06-29,Maternity - Breast Pump
+6035,Baby Lotion,Baby Care,148.00,92,2028-08-03,Baby Care - Baby Lotion
+6036,Baby Shampoo,Baby Care,126.00,193,2027-10-20,Baby Care - Baby Shampoo
+6037,Baby Oil,Baby Care,127.00,62,2027-11-17,Baby Care - Baby Oil
+6038,Baby Powder,Baby Care,59.00,162,2027-06-02,Baby Care - Baby Powder
+6039,Baby Cream,Baby Care,103.00,84,2027-07-26,Baby Care - Baby Cream
+6040,Diaper Rash Cream,Baby Care,182.00,197,2027-08-09,Baby Care - Diaper Rash Cream
+6041,Baby Wipes,Baby Care,69.00,51,2027-10-25,Baby Care - Baby Wipes
+6042,Baby Sunscreen,Baby Care,289.00,64,2028-07-10,Baby Care - Baby Sunscreen
+6043,Baby Vit D,Baby Care,104.00,117,2028-01-08,Baby Care - Baby Vit D
+6044,Baby Colic Drops,Baby Care,116.00,177,2028-01-10,Baby Care - Baby Colic Drops
+6045,Baby Paracetamol,Baby Care,90.00,138,2027-12-09,Baby Care - Baby Paracetamol
+6046,Baby Saline,Baby Care,68.00,172,2028-07-23,Baby Care - Baby Saline
+6047,Nasal Aspirator,Baby Care,125.00,46,2028-02-25,Baby Care - Nasal Aspirator
+6048,Baby Thermometer,Baby Care,186.00,63,2027-12-29,Baby Care - Baby Thermometer
+6049,Baby Nail Clipper,Baby Care,50.00,119,2027-07-12,Baby Care - Baby Nail Clipper
+6050,Baby Brush Set,Baby Care,82.00,136,2028-03-14,Baby Care - Baby Brush Set
+6051,Baby Bottle,Baby Care,123.00,42,2027-08-04,Baby Care - Baby Bottle
+6052,Pacifier,Baby Care,42.00,91,2028-07-15,Baby Care - Pacifier
+6053,Baby Carrier,Baby Care,725.00,34,2028-02-03,Baby Care - Baby Carrier
+6054,Baby Monitor,Baby Care,1065.00,61,2028-06-23,Baby Care - Baby Monitor
+6055,Antiperspirant,Personal Care,118.00,195,2028-05-03,Personal Care - Antiperspirant
+6056,Deodorant Spray,Personal Care,100.00,168,2028-08-01,Personal Care - Deodorant Spray
+6057,Hand Sanitizer,Personal Care,41.00,122,2028-06-26,Personal Care - Hand Sanitizer
+6058,Body Lotion,Personal Care,107.00,65,2027-06-16,Personal Care - Body Lotion
+6059,Body Wash,Personal Care,93.00,149,2028-03-10,Personal Care - Body Wash
+6060,Shampoo,Personal Care,106.00,84,2027-07-12,Personal Care - Shampoo
+6061,Conditioner,Personal Care,174.00,114,2028-05-28,Personal Care - Conditioner
+6062,Hair Oil,Personal Care,200.00,192,2028-06-05,Personal Care - Hair Oil
+6063,Hair Serum,Personal Care,286.00,195,2027-08-15,Personal Care - Hair Serum
+6064,Face Wash,Personal Care,176.00,48,2027-12-13,Personal Care - Face Wash
+6065,Face Cream,Personal Care,275.00,60,2028-04-21,Personal Care - Face Cream
+6066,Face Serum,Personal Care,442.00,21,2027-09-27,Personal Care - Face Serum
+6067,Sunscreen Facial,Personal Care,353.00,36,2028-06-18,Personal Care - Sunscreen Facial
+6068,Lip Balm,Personal Care,75.00,72,2027-09-22,Personal Care - Lip Balm
+6069,Razor,Personal Care,118.00,189,2027-10-06,Personal Care - Razor
+6070,Shaving Cream,Personal Care,105.00,185,2027-07-05,Personal Care - Shaving Cream
+6071,Toothbrush Electric,Personal Care,520.00,20,2027-09-05,Personal Care - Toothbrush Electric
+6072,Water Flosser,Personal Care,617.00,173,2027-12-20,Personal Care - Water Flosser
+6073,Wheelchair,Medical Devices,2912.00,67,2028-04-20,Medical Devices - Wheelchair
+6074,Crutches,Medical Devices,542.00,53,2028-08-21,Medical Devices - Crutches
+6075,Walker,Medical Devices,841.00,48,2027-11-08,Medical Devices - Walker
+6076,Knee Support,Medical Devices,350.00,120,2028-04-03,Medical Devices - Knee Support
+6077,Ankle Support,Medical Devices,150.00,110,2028-04-29,Medical Devices - Ankle Support
+6078,Wrist Support,Medical Devices,135.00,113,2028-02-24,Medical Devices - Wrist Support
+6079,Back Support,Medical Devices,321.00,66,2028-03-03,Medical Devices - Back Support
+6080,Cervical Collar,Medical Devices,204.00,187,2027-08-03,Medical Devices - Cervical Collar
+6081,Compression Socks,Medical Devices,251.00,21,2027-07-12,Medical Devices - Compression Socks
+6082,Heating Pad,Medical Devices,424.00,37,2028-05-14,Medical Devices - Heating Pad
+6083,TENS Unit,Medical Devices,1045.00,37,2027-09-21,Medical Devices - TENS Unit
+6084,Massage Gun,Medical Devices,1004.00,46,2028-03-28,Medical Devices - Massage Gun
+6085,Vaporizer,Medical Devices,512.00,165,2027-09-01,Medical Devices - Vaporizer
+6086,Humidifier,Medical Devices,867.00,124,2027-11-03,Medical Devices - Humidifier
+6087,Air Purifier,Medical Devices,2173.00,87,2028-05-05,Medical Devices - Air Purifier
+6088,Nebulizer Plus,Medical Devices,1503.00,42,2028-07-10,Medical Devices - Nebulizer Plus
+6089,Blood Pressure Cuff,Medical Devices,293.00,106,2027-08-11,Medical Devices - Blood Pressure Cuff
+6090,Glucose Meter Plus,Medical Devices,717.00,155,2028-02-02,Medical Devices - Glucose Meter Plus
+6091,Pregnancy Test,Diagnostics,73.00,56,2027-11-27,Diagnostics - Pregnancy Test
+6092,Ovulation Test,Diagnostics,141.00,154,2028-06-23,Diagnostics - Ovulation Test
+6093,COVID Antigen Test,Diagnostics,108.00,167,2028-05-17,Diagnostics - COVID Antigen Test
+6094,Blood Pressure Strips,Diagnostics,108.00,78,2028-06-11,Diagnostics - Blood Pressure Strips
+6095,Cholesterol Test,Diagnostics,360.00,126,2027-10-31,Diagnostics - Cholesterol Test
+6096,Uric Acid Test,Diagnostics,265.00,178,2028-07-19,Diagnostics - Uric Acid Test
+6097,Urine Test Strips,Diagnostics,213.00,62,2028-02-25,Diagnostics - Urine Test Strips
+6098,Ketone Test,Diagnostics,228.00,195,2027-12-08,Diagnostics - Ketone Test
+6099,Hemoglobin Meter,Diagnostics,1183.00,85,2027-12-27,Diagnostics - Hemoglobin Meter
+6100,INR Meter,Diagnostics,2035.00,137,2028-08-29,Diagnostics - INR Meter
+6101,Strep Test,Diagnostics,347.00,190,2028-03-25,Diagnostics - Strep Test
+6102,H Pylori Test,Diagnostics,395.00,91,2028-05-25,Diagnostics - H Pylori Test
+6103,Hepatitis Test,Diagnostics,295.00,52,2027-12-04,Diagnostics - Hepatitis Test
+6104,HIV Test,Diagnostics,366.00,125,2028-05-09,Diagnostics - HIV Test
+6105,H2 Blocker,Gastrointestinal Plus,70.00,121,2027-05-20,Gastrointestinal Plus - H2 Blocker
+6106,Probiotic Sachet,Gastrointestinal Plus,85.00,31,2027-10-20,Gastrointestinal Plus - Probiotic Sachet
+6107,ORS Sachet,Gastrointestinal Plus,29.00,53,2028-05-27,Gastrointestinal Plus - ORS Sachet
+6108,Antiemetic Syrup,Gastrointestinal Plus,64.00,41,2027-07-19,Gastrointestinal Plus - Antiemetic Syrup
+6109,Laxative Drops,Gastrointestinal Plus,144.00,122,2027-12-27,Gastrointestinal Plus - Laxative Drops
+6110,Antispasmodic Plus,Gastrointestinal Plus,183.00,96,2027-08-17,Gastrointestinal Plus - Antispasmodic Plus
+6111,Digestive Enzymes,Gastrointestinal Plus,219.00,134,2028-02-07,Gastrointestinal Plus - Digestive Enzymes
+6112,Simethicone Drops,Gastrointestinal Plus,141.00,30,2027-11-16,Gastrointestinal Plus - Simethicone Drops
+6113,Bile Salts,Gastrointestinal Plus,167.00,23,2028-08-26,Gastrointestinal Plus - Bile Salts
+6114,Colon Cleanse,Gastrointestinal Plus,319.00,67,2027-11-30,Gastrointestinal Plus - Colon Cleanse
+6115,CoQ10 Plus 200,Cardiovascular Plus,446.00,28,2028-02-18,Cardiovascular Plus - CoQ10 Plus 200
+6116,Omega Cardio,Cardiovascular Plus,339.00,175,2027-06-16,Cardiovascular Plus - Omega Cardio
+6117,Garlic Extract,Cardiovascular Plus,110.00,92,2027-12-31,Cardiovascular Plus - Garlic Extract
+6118,Red Yeast Rice,Cardiovascular Plus,198.00,29,2027-05-26,Cardiovascular Plus - Red Yeast Rice
+6119,Hawthorn Berry,Cardiovascular Plus,269.00,200,2028-08-28,Cardiovascular Plus - Hawthorn Berry
+6120,Nattokinase,Cardiovascular Plus,259.00,138,2027-10-01,Cardiovascular Plus - Nattokinase
+6121,L-Arginine 1000,Cardiovascular Plus,243.00,146,2028-01-21,Cardiovascular Plus - L-Arginine 1000
+6122,Vitamin K2 MK7,Cardiovascular Plus,308.00,186,2027-11-20,Cardiovascular Plus - Vitamin K2 MK7
+6123,Sugar-Free Sweetener,Diabetes Plus,85.00,79,2028-07-26,Diabetes Plus - Sugar-Free Sweetener
+6124,Diabetic Socks,Diabetes Plus,141.00,176,2027-05-22,Diabetes Plus - Diabetic Socks
+6125,Diabetic Foot Cream,Diabetes Plus,279.00,48,2027-08-29,Diabetes Plus - Diabetic Foot Cream
+6126,Glucose Tablets,Diabetes Plus,57.00,189,2028-02-16,Diabetes Plus - Glucose Tablets
+6127,Insulin Cooler,Diabetes Plus,491.00,47,2027-12-18,Diabetes Plus - Insulin Cooler
+6128,Insulin Pen Needles,Diabetes Plus,136.00,186,2027-08-24,Diabetes Plus - Insulin Pen Needles
+6129,Lancets,Diabetes Plus,55.00,114,2028-06-04,Diabetes Plus - Lancets
+6130,Continuous Monitor,Diabetes Plus,3235.00,54,2028-08-10,Diabetes Plus - Continuous Monitor
+6131,Diabetic Meal,Diabetes Plus,106.00,106,2028-05-07,Diabetes Plus - Diabetic Meal
+6132,Sugar-Free Chocolate,Diabetes Plus,85.00,91,2028-01-12,Diabetes Plus - Sugar-Free Chocolate
+6133,Acne Patches,Dermatology Plus,108.00,193,2028-08-29,Dermatology Plus - Acne Patches
+6134,Salicylic Acid 2%,Dermatology Plus,153.00,172,2027-07-21,Dermatology Plus - Salicylic Acid 2%
+6135,Benzoyl 10%,Dermatology Plus,101.00,138,2028-02-16,Dermatology Plus - Benzoyl 10%
+6136,Retinol 0.5%,Dermatology Plus,258.00,107,2027-06-28,Dermatology Plus - Retinol 0.5%
+6137,Azelaic Acid 20%,Dermatology Plus,336.00,54,2028-03-16,Dermatology Plus - Azelaic Acid 20%
+6138,Vitamin C Serum,Dermatology Plus,319.00,121,2027-09-21,Dermatology Plus - Vitamin C Serum
+6139,Hyaluronic Serum,Dermatology Plus,392.00,197,2028-03-25,Dermatology Plus - Hyaluronic Serum
+6140,Niacinamide 10%,Dermatology Plus,197.00,180,2027-09-02,Dermatology Plus - Niacinamide 10%
+6141,Sunscreen Gel,Dermatology Plus,256.00,130,2027-08-28,Dermatology Plus - Sunscreen Gel
+6142,Micellar Water,Dermatology Plus,148.00,77,2027-10-13,Dermatology Plus - Micellar Water
+6143,Sheet Mask,Dermatology Plus,68.00,152,2028-05-05,Dermatology Plus - Sheet Mask
+6144,Eye Patches,Dermatology Plus,138.00,46,2028-01-06,Dermatology Plus - Eye Patches
+6145,Eye Mask Warm,Eye Care,229.00,37,2027-09-20,Eye Care - Eye Mask Warm
+6146,Eye Mask Cold,Eye Care,149.00,103,2028-03-25,Eye Care - Eye Mask Cold
+6147,Lid Wipes,Eye Care,94.00,122,2027-12-10,Eye Care - Lid Wipes
+6148,Eye Lubricant Gel,Eye Care,239.00,148,2028-02-16,Eye Care - Eye Lubricant Gel
+6149,Contact Lens Solution,Eye Care,147.00,162,2028-08-22,Eye Care - Contact Lens Solution
+6150,Contact Lens Case,Eye Care,46.00,26,2028-01-06,Eye Care - Contact Lens Case
+6151,Burn Gel,First Aid Plus,71.00,23,2028-04-19,First Aid Plus - Burn Gel
+6152,Burn Dressing,First Aid Plus,130.00,177,2028-05-19,First Aid Plus - Burn Dressing
+6153,Emergency Blanket,First Aid Plus,102.00,27,2028-06-16,First Aid Plus - Emergency Blanket
+6154,Trauma Kit,First Aid Plus,1372.00,66,2027-11-05,First Aid Plus - Trauma Kit
+6155,CPR Face Shield,First Aid Plus,86.00,48,2028-08-21,First Aid Plus - CPR Face Shield
+6156,Splint,First Aid Plus,361.00,181,2028-02-02,First Aid Plus - Splint
+6157,Instant Ice Pack,First Aid Plus,74.00,167,2028-03-02,First Aid Plus - Instant Ice Pack
+6158,Instant Heat Pack,First Aid Plus,80.00,99,2028-04-12,First Aid Plus - Instant Heat Pack

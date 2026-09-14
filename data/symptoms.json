@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "symptoms": {
+    "headache": {"name_ar": "صداع"},
+    "fever": {"name_ar": "حرارة"},
+    "cough": {"name_ar": "كحة"},
+    "stomach_pain": {"name_ar": "ألم المعدة"},
+    "allergy": {"name_ar": "حساسية"},
+    "nausea": {"name_ar": "غثيان"},
+    "diarrhea": {"name_ar": "إسهال"},
+    "constipation": {"name_ar": "إمساك"}
+  }
+}
