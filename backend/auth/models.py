@@ -1,22 +1,30 @@
-from pydantic import BaseModel
+"""Auth models — Pydantic schemas."""
+from pydantic import BaseModel, Field
 from typing import Literal
 
 
+Role = Literal["customer", "pharmacist", "admin"]
+
+
 class User(BaseModel):
-    id: str
-    username: str
-    role: Literal["customer", "pharmacist", "admin"]
+    """Public user (no password)."""
+    id: str = Field(..., min_length=1)
+    username: str = Field(..., min_length=1, max_length=50)
+    role: Role
     full_name: str = ""
     is_active: bool = True
 
 
 class UserInDB(User):
+    """Internal user with hashed password."""
     hashed_password: str
 
 
 class TokenPayload(BaseModel):
-    sub: str
+    """JWT payload structure."""
+    sub: str          # user_id
     username: str
     role: str
     exp: int
+    iat: int | None = None
     type: Literal["access", "refresh"] = "access"

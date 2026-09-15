@@ -1,5 +1,11 @@
-"""Advisory Engine — Advanced with Rules + Fusion + Synonym Expansion."""
+"""Advisory Engine — Advanced with Rules + Fusion + Synonym Expansion.
+
+Performance optimizations:
+- Pre-built product index (word → products) for condition matching
+- Word-boundary emergency detection with negation handling
+"""
 from __future__ import annotations
+import re
 from knowledge.types import (
     AdvisoryResult, Product, Warning, Interaction, Emergency,
 )
@@ -14,9 +20,17 @@ import structlog
 logger = structlog.get_logger()
 
 
+# Negation words (if found near emergency keyword, skip)
+NEGATION_WORDS = [
+    "مفيش", "مافيش", "لا يوجد", "لايوجد",
+    "بدون", "من غير", "من دون", "ما فيش",
+]
+
+
 class AdvisoryEngine:
     def __init__(self):
         self._initialized = False
+        self._product_word_index: dict[str, list[dict]] = {}
 
     def initialize(self) -> None:
         if self._initialized:
@@ -25,8 +39,27 @@ class AdvisoryEngine:
         bm25_index.build()
         fuzzy_index.build()
         synonym_index.build()
+        self._build_product_index()
         self._initialized = True
         logger.info("advisory.initialized")
+
+    def _build_product_index(self) -> None:
+        """Build word → products index (once) for fast condition matching."""
+        self._product_word_index = {}
+        for p in knowledge_loader.products:
+            name = p.get("ItemName", "").lower()
+            if not name:
+                continue
+            # Index by each word in name
+            words = set(name.split())
+            for w in words:
+                if len(w) >= 3:  # skip very short words
+                    self._product_word_index.setdefault(w, []).append(p)
+        logger.debug(
+            "advisory.product_index_built",
+            unique_words=len(self._product_word_index),
+            products=len(knowledge_loader.products),
+        )
 
     # ═══════════════════════════════════════════════════════
     # SEARCH (with synonym expansion)
@@ -35,11 +68,9 @@ class AdvisoryEngine:
         if not self._initialized:
             self.initialize()
 
-        # 1. توسيع المرادفات
         expanded = synonym_index.expand(query)
         logger.debug("search.expanded", original=query, expanded=expanded[:3])
 
-        # 2. البحث بكل صيغة + دمج النتائج
         all_results: dict[str, tuple[dict, float]] = {}
         for q in expanded:
             for product, score in bm25_index.search(q, top_k=top_k):
@@ -47,7 +78,6 @@ class AdvisoryEngine:
                 if code not in all_results or score > all_results[code][1]:
                     all_results[code] = (product, score)
 
-        # 3. ترتيب + إرجاع
         sorted_results = sorted(
             all_results.values(),
             key=lambda x: x[1],
@@ -56,7 +86,7 @@ class AdvisoryEngine:
         return [p for p, _ in sorted_results[:top_k]]
 
     # ═══════════════════════════════════════════════════════
-    # EMERGENCY DETECTION
+    # EMERGENCY DETECTION (improved)
     # ═══════════════════════════════════════════════════════
     def _detect_emergency(self, text: str) -> Emergency:
         rules = knowledge_loader.medical_rules
@@ -67,6 +97,13 @@ class AdvisoryEngine:
         ntext = normalizer.normalize(text)
         logger.debug("emergency.check", normalized=ntext[:80])
 
+        # ─── Check for negation first ───
+        for neg in NEGATION_WORDS:
+            nneg = normalizer.normalize(neg)
+            if nneg and nneg in ntext:
+                logger.debug("emergency.negated", negation=neg)
+                return Emergency(detected=False)
+
         for em_type, info in emergencies.items():
             keywords = info.get("keywords", {})
             all_kws = []
@@ -76,10 +113,16 @@ class AdvisoryEngine:
 
             for kw in all_kws:
                 nkw = normalizer.normalize(kw)
-                if nkw and nkw in ntext:
+                if not nkw:
+                    continue
+                # ─── Use word boundaries instead of substring ───
+                # For Arabic, \b doesn't work well, so use space/start/end
+                pattern = r'(?:^|\s)' + re.escape(nkw) + r'(?:\s|$)'
+                if re.search(pattern, ntext):
                     logger.warning(
                         "emergency.detected",
-                        type=em_type, keyword=kw,
+                        type=em_type,
+                        keyword=kw,
                     )
                     return Emergency(
                         detected=True,
@@ -94,10 +137,15 @@ class AdvisoryEngine:
     # ═══════════════════════════════════════════════════════
     def _check_interactions(self, drugs: list[str]) -> list[Interaction]:
         results = []
+        # Normalize input drugs
+        normalized_input = {d.strip().lower() for d in drugs if d}
+
         for i in knowledge_loader.interactions:
-            d1 = i.get("drug1", "")
-            d2 = i.get("drug2", "")
-            if d1 in drugs and d2 in drugs:
+            d1 = (i.get("drug1", "") or "").strip().lower()
+            d2 = (i.get("drug2", "") or "").strip().lower()
+            if not d1 or not d2:
+                continue
+            if d1 in normalized_input and d2 in normalized_input:
                 results.append(Interaction(
                     drug1=d1, drug2=d2,
                     severity=i.get("severity", "minor"),
@@ -137,42 +185,51 @@ class AdvisoryEngine:
 
         return " | ".join(advice_parts), warnings
 
-
     def _conditions_to_products(
         self, conditions: list[str]
     ) -> list[Product]:
-        """
-        يحوّل conditions إلى منتجات محددة من المخزون.
-        مثال: "headache" -> ["paracetamol", "ibuprofen"] -> [Paracetamol 500mg, Ibuprofen 400mg]
-        """
+        """Fast lookup using pre-built word index."""
         rules = knowledge_loader.medical_rules.get("conditions", {})
-        product_names: set[str] = set()
+        drug_names: set[str] = set()
 
         for cond in conditions:
             info = rules.get(cond, {})
             for drug in info.get("first_line", []):
-                product_names.add(drug.lower())
+                drug_names.add(drug.lower())
             for alt in info.get("alternatives", []):
-                product_names.add(alt.lower())
+                drug_names.add(alt.lower())
 
-        if not product_names:
+        if not drug_names:
             return []
 
+        # Fast lookup using pre-built index
+        seen_codes: set[str] = set()
         products: list[Product] = []
-        for p in knowledge_loader.products:
-            name = p.get("ItemName", "").lower()
-            for pname in product_names:
-                if pname in name:
-                    products.append(Product(
-                        item_code=str(p.get("ItemCode", "")),
-                        name=p.get("ItemName", ""),
-                        category=p.get("Category", ""),
-                        price=float(p.get("Price", 0)),
-                        stock_qty=int(p.get("StockQty", 0)),
-                        expiry_date=p.get("ExpiryDate", ""),
-                        description=p.get("Description", ""),
-                    ))
-                    break
+
+        for drug in drug_names:
+            # Try exact match first
+            matches = self._product_word_index.get(drug, [])
+            if not matches:
+                # Try partial match (substring in product names)
+                for word, prods in self._product_word_index.items():
+                    if drug in word or word in drug:
+                        matches.extend(prods)
+
+            for p in matches:
+                code = str(p.get("ItemCode", ""))
+                if code in seen_codes:
+                    continue
+                seen_codes.add(code)
+                products.append(Product(
+                    item_code=code,
+                    name=p.get("ItemName", ""),
+                    category=p.get("Category", ""),
+                    price=float(p.get("Price", 0)),
+                    stock_qty=int(p.get("StockQty", 0)),
+                    expiry_date=p.get("ExpiryDate", ""),
+                    description=p.get("Description", ""),
+                ))
+
         return products
 
     # ═══════════════════════════════════════════════════════
@@ -234,7 +291,7 @@ class AdvisoryEngine:
             analyzed.entities.conditions
         )
 
-        # 3b. Condition -> Products
+        # 3b. Condition → Products (fast index)
         condition_products = self._conditions_to_products(
             analyzed.entities.conditions
         )

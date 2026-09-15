@@ -1,11 +1,18 @@
-"""H1-AI — Main FastAPI App."""
+"""H1-AI — Main FastAPI App (hardened).
+
+Fixes:
+- register endpoint uses DB (was broken with _UsersDBProxy)
+- CORS validation in production
+- docs disabled in production
+"""
 from contextlib import asynccontextmanager
 from uuid import uuid4
+from pathlib import Path as _Path
+
 from fastapi import FastAPI, HTTPException, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
 from slowapi.errors import RateLimitExceeded
 import structlog
 
@@ -37,6 +44,7 @@ from config_validator import validate_and_report
 from session.session_store import session_store
 from services.logging_service import setup_logging
 from services.metrics import metrics
+
 from api.whatsapp_routes import router as whatsapp_router
 from api.whatsapp_webhook import router as whatsapp_webhook_router
 from api.user_routes import router as user_router
@@ -50,6 +58,10 @@ from admin.api.audit_routes import router as admin_audit_router
 from admin.api.export_routes import router as admin_export_router
 from admin.api.import_routes import router as admin_import_router
 
+# DB imports for register endpoint
+from db import SessionLocal
+from db.repositories import UserRepository
+
 setup_logging()
 logger = structlog.get_logger()
 
@@ -58,7 +70,17 @@ logger = structlog.get_logger()
 async def lifespan(app: FastAPI):
     if not validate_and_report():
         raise RuntimeError("Invalid configuration")
-    logger.info("app.startup", app_name=prod_config.app_name)
+
+    logger.info(
+        "app.startup",
+        app_name=prod_config.app_name,
+        environment=settings.environment,
+    )
+
+    # Validate CORS in production
+    if settings.is_production and "*" in settings.cors_origins:
+        raise RuntimeError("CORS wildcard '*' not allowed in production!")
+
     advisory_engine.initialize()
     seed_users()
     logger.info("app.ready")
@@ -69,24 +91,31 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title=prod_config.app_name,
-    version="4.0.0",
+    version="5.0.0",
     lifespan=lifespan,
-    docs_url="/docs" if not prod_config.is_production else None,
+    docs_url="/docs" if not settings.is_production else None,
+    redoc_url="/redoc" if not settings.is_production else None,
+    openapi_url="/openapi.json" if not settings.is_production else None,
 )
 
-app.add_middleware(TimingMiddleware)
-app.add_middleware(RequestContextMiddleware)
-app.add_middleware(AuthContextMiddleware)
+# ─── Middleware (order matters: last added = first executed) ───
 app.add_middleware(RateLimitHeadersMiddleware)
+app.add_middleware(AuthContextMiddleware)
+app.add_middleware(RequestContextMiddleware)
+app.add_middleware(TimingMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    allow_headers=["Authorization", "Content-Type", "X-Request-ID"],
+    expose_headers=["X-Request-ID", "X-RateLimit-Limit", "X-RateLimit-Remaining"],
+    max_age=3600,
 )
 
 app.state.limiter = limiter
+
+# ─── Routers ───
 app.include_router(whatsapp_router)
 app.include_router(health_router)
 app.include_router(admin_products_router)
@@ -109,9 +138,6 @@ async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
     )
 
 
-
-
-
 def _make_token_response(user_db: UserInDB) -> Token:
     return Token(
         access_token=create_access_token(user_db.id, user_db.username, user_db.role),
@@ -121,13 +147,9 @@ def _make_token_response(user_db: UserInDB) -> Token:
     )
 
 
-
-
 # ═══════════════════════════════════════════════════════════
 # ADMIN UI (Static Files)
 # ═══════════════════════════════════════════════════════════
-from pathlib import Path as _Path
-
 _admin_static = _Path(__file__).parent / "admin" / "static"
 if _admin_static.exists():
     app.mount("/admin/static", StaticFiles(directory=str(_admin_static)), name="admin_static")
@@ -137,6 +159,10 @@ if _admin_static.exists():
     async def _admin_index():
         return FileResponse(str(_admin_static / "index.html"))
 
+
+# ═══════════════════════════════════════════════════════════
+# AUTH ENDPOINTS
+# ═══════════════════════════════════════════════════════════
 @app.post("/v1/auth/login", response_model=Token)
 @limiter.limit(settings.rate_limit_auth)
 async def login(request: Request, req: LoginRequest):
@@ -144,6 +170,8 @@ async def login(request: Request, req: LoginRequest):
     if not user_db or not verify_password(req.password, user_db.hashed_password):
         metrics.record_login(success=False)
         raise HTTPException(status_code=401, detail="بيانات دخول غلط")
+    if not user_db.is_active:
+        raise HTTPException(status_code=403, detail="الحساب معطّل")
     metrics.record_login(success=True)
     return _make_token_response(user_db)
 
@@ -151,16 +179,31 @@ async def login(request: Request, req: LoginRequest):
 @app.post("/v1/auth/register", response_model=Token)
 @limiter.limit(settings.rate_limit_auth)
 async def register(request: Request, req: RegisterRequest):
-    if get_user_by_username(req.username):
-        raise HTTPException(status_code=400, detail="اسم المستخدم موجود")
-    user_id = str(uuid4())
-    user_db = UserInDB(
-        id=user_id, username=req.username, role="customer",
-        full_name=req.full_name,
-        hashed_password=hash_password(req.password),
-    )
-    _users_db[user_id] = user_db
-    return _make_token_response(user_db)
+    """Register new user — FIXED: uses DB instead of broken proxy."""
+    db = SessionLocal()
+    try:
+        repo = UserRepository(db)
+        if repo.get_by_username(req.username):
+            raise HTTPException(status_code=400, detail="اسم المستخدم موجود")
+
+        new_user = repo.create(
+            username=req.username,
+            hashed_password=hash_password(req.password),
+            role="customer",
+            full_name=req.full_name or "",
+        )
+
+        user_db = UserInDB(
+            id=new_user.id,
+            username=new_user.username,
+            role=new_user.role,
+            full_name=new_user.full_name or "",
+            is_active=new_user.is_active,
+            hashed_password=new_user.hashed_password,
+        )
+        return _make_token_response(user_db)
+    finally:
+        db.close()
 
 
 @app.post("/v1/auth/refresh", response_model=Token)
@@ -170,7 +213,7 @@ async def refresh_token(req: RefreshRequest):
         raise HTTPException(status_code=401, detail="Invalid refresh token")
     user_db = get_user_by_id(payload.sub)
     if not user_db or not user_db.is_active:
-        raise HTTPException(status_code=401, detail="User not found")
+        raise HTTPException(status_code=401, detail="User not found or inactive")
     return _make_token_response(user_db)
 
 
@@ -179,6 +222,9 @@ async def me(user: User = Depends(get_current_user)):
     return user
 
 
+# ═══════════════════════════════════════════════════════════
+# CHAT & KNOWLEDGE
+# ═══════════════════════════════════════════════════════════
 @app.post("/v1/chat", response_model=ChatResponse)
 @limiter.limit(settings.rate_limit_chat)
 async def chat(
