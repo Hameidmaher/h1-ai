@@ -4,7 +4,7 @@
 import express from "express";
 import axios from "axios";
 import pino from "pino";
-import { CONFIG } from "./config.js";
+import { CONFIG, WEBHOOK_API_KEY } from "./config.js";
 import { BaileysClient } from "./baileys-client.js";
 
 const logger = pino({ level: CONFIG.LOG_LEVEL });

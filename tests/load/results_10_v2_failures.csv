@@ -1,0 +1,7 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+GET,[Health] GET,CatchResponseError('Slow: 4.4s'),1,2026-09-18T09:15:11Z,2026-09-18T09:15:11Z
+GET,[Health] GET,CatchResponseError('Slow: 4.1s'),1,2026-09-18T09:15:11Z,2026-09-18T09:15:11Z
+GET,[Health] GET,CatchResponseError('Slow: 4.3s'),1,2026-09-18T09:15:11Z,2026-09-18T09:15:11Z
+GET,[Health] GET,CatchResponseError('Slow: 1.7s'),2,2026-09-18T09:15:20Z,2026-09-18T09:15:20Z
+GET,[Health] GET,CatchResponseError('Slow: 2.1s'),1,2026-09-18T09:15:20Z,2026-09-18T09:15:20Z
+GET,[Health] GET,CatchResponseError('Slow: 1.1s'),1,2026-09-18T09:15:16Z,2026-09-18T09:15:16Z

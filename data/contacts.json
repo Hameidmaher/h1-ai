@@ -1,10 +1,68 @@
 {
   "version": "1.0",
-  "contacts": {},
+  "contacts": {
+    "+201111111117": {
+      "type": "blacklist",
+      "name": "",
+      "note": "test: spam",
+      "added_at": "2026-09-16T16:06:51.468695",
+      "learned": false
+    },
+    "+201111111102": {
+      "type": "blacklist",
+      "name": "",
+      "note": "auto: spam detected",
+      "added_at": "2026-09-17T09:58:42.132636",
+      "learned": false
+    },
+    "146325375058026": {
+      "type": "blacklist",
+      "name": "",
+      "note": "auto: spam detected",
+      "added_at": "2026-09-17T10:21:52.760505",
+      "learned": false
+    },
+    "238611337371787": {
+      "type": "blacklist",
+      "name": "",
+      "note": "auto: spam detected",
+      "added_at": "2026-09-17T10:32:43.975465",
+      "learned": false
+    },
+    "42666372927557": {
+      "type": "blacklist",
+      "name": "",
+      "note": "auto: spam detected",
+      "added_at": "2026-09-17T10:33:46.711700",
+      "learned": false
+    },
+    "120363316554032179@newsletter": {
+      "type": "blacklist",
+      "name": "",
+      "note": "auto: spam detected",
+      "added_at": "2026-09-17T10:40:14.282791",
+      "learned": false
+    },
+    "135356380901412": {
+      "type": "blacklist",
+      "name": "",
+      "note": "auto: spam detected",
+      "added_at": "2026-09-17T13:18:26.135141",
+      "learned": false
+    },
+    "139466463260888": {
+      "type": "blacklist",
+      "name": "",
+      "note": "auto: spam detected",
+      "added_at": "2026-09-17T14:09:32.190434",
+      "learned": false
+    }
+  },
   "stats": {
     "customer": 0,
     "supplier": 0,
-    "blacklist": 0,
-    "total": 0
-  }
+    "blacklist": 8,
+    "total": 8
+  },
+  "last_updated": "2026-09-17T14:09:32.190452"
 }

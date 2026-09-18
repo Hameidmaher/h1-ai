@@ -1,13 +1,482 @@
 {
-  "version": "1.0",
+  "version": "3.0",
   "symptoms": {
-    "headache": {"name_ar": "صداع"},
-    "fever": {"name_ar": "حرارة"},
-    "cough": {"name_ar": "كحة"},
-    "stomach_pain": {"name_ar": "ألم المعدة"},
-    "allergy": {"name_ar": "حساسية"},
-    "nausea": {"name_ar": "غثيان"},
-    "diarrhea": {"name_ar": "إسهال"},
-    "constipation": {"name_ar": "إمساك"}
-  }
+    "headache": {
+      "name_ar": "صداع"
+    },
+    "fever": {
+      "name_ar": "حرارة"
+    },
+    "cough": {
+      "name_ar": "كحة"
+    },
+    "stomach_pain": {
+      "name_ar": "ألم المعدة"
+    },
+    "allergy": {
+      "name_ar": "حساسية"
+    },
+    "nausea": {
+      "name_ar": "غثيان"
+    },
+    "diarrhea": {
+      "name_ar": "إسهال"
+    },
+    "constipation": {
+      "name_ar": "إمساك"
+    },
+    "sore_throat": {
+      "name_ar": "التهاب الحلق",
+      "related_conditions": [
+        "cold",
+        "flu",
+        "strep"
+      ]
+    },
+    "runny_nose": {
+      "name_ar": "رشح",
+      "related_conditions": [
+        "cold",
+        "allergy"
+      ]
+    },
+    "vomiting": {
+      "name_ar": "قيء",
+      "related_conditions": [
+        "gastroenteritis",
+        "food_poisoning"
+      ]
+    },
+    "abdominal_pain": {
+      "name_ar": "ألم في البطن",
+      "related_conditions": [
+        "gastritis",
+        "ibs",
+        "appendicitis"
+      ]
+    },
+    "heartburn": {
+      "name_ar": "حرقة المعدة",
+      "related_conditions": [
+        "gerd",
+        "gastritis"
+      ]
+    },
+    "bloating": {
+      "name_ar": "انتفاخ",
+      "related_conditions": [
+        "ibs",
+        "gas"
+      ]
+    },
+    "fatigue": {
+      "name_ar": "إرهاق",
+      "related_conditions": [
+        "anemia",
+        "thyroid",
+        "diabetes"
+      ]
+    },
+    "dizziness": {
+      "name_ar": "دوخة",
+      "related_conditions": [
+        "vertigo",
+        "anemia",
+        "hypotension"
+      ]
+    },
+    "chest_pain": {
+      "name_ar": "ألم في الصدر",
+      "related_conditions": [
+        "heart_attack",
+        "angina",
+        "gerd"
+      ],
+      "emergency": true
+    },
+    "shortness_of_breath": {
+      "name_ar": "ضيق في التنفس",
+      "related_conditions": [
+        "asthma",
+        "heart_failure",
+        "anxiety"
+      ],
+      "emergency": true
+    },
+    "palpitations": {
+      "name_ar": "خفقان",
+      "related_conditions": [
+        "arrhythmia",
+        "anxiety",
+        "hyperthyroidism"
+      ]
+    },
+    "rash": {
+      "name_ar": "طفح جلدي",
+      "related_conditions": [
+        "allergy",
+        "eczema",
+        "infection"
+      ]
+    },
+    "itching": {
+      "name_ar": "حكة",
+      "related_conditions": [
+        "allergy",
+        "eczema",
+        "fungal"
+      ]
+    },
+    "swelling": {
+      "name_ar": "تورم",
+      "related_conditions": [
+        "edema",
+        "allergy",
+        "injury"
+      ]
+    },
+    "joint_pain": {
+      "name_ar": "ألم في المفاصل",
+      "related_conditions": [
+        "arthritis",
+        "gout",
+        "injury"
+      ]
+    },
+    "muscle_pain": {
+      "name_ar": "ألم في العضلات",
+      "related_conditions": [
+        "flu",
+        "overuse",
+        "statin_side_effect"
+      ]
+    },
+    "back_pain": {
+      "name_ar": "ألم في الظهر",
+      "related_conditions": [
+        "muscle_strain",
+        "disc_herniation",
+        "kidney"
+      ]
+    },
+    "neck_pain": {
+      "name_ar": "ألم في الرقبة",
+      "related_conditions": [
+        "muscle_strain",
+        "cervical"
+      ]
+    },
+    "insomnia": {
+      "name_ar": "أرق",
+      "related_conditions": [
+        "anxiety",
+        "depression",
+        "sleep_apnea"
+      ]
+    },
+    "anxiety": {
+      "name_ar": "قلق",
+      "related_conditions": [
+        "gad",
+        "panic"
+      ]
+    },
+    "depression": {
+      "name_ar": "اكتئاب",
+      "related_conditions": [
+        "mdd",
+        "bipolar"
+      ]
+    },
+    "memory_loss": {
+      "name_ar": "فقدان الذاكرة",
+      "related_conditions": [
+        "dementia",
+        "alzheimer"
+      ]
+    },
+    "confusion": {
+      "name_ar": "ارتباك",
+      "related_conditions": [
+        "delirium",
+        "infection"
+      ]
+    },
+    "seizure": {
+      "name_ar": "تشنجات",
+      "related_conditions": [
+        "epilepsy",
+        "fever"
+      ],
+      "emergency": true
+    },
+    "vision_blur": {
+      "name_ar": "عدم وضوح الرؤية",
+      "related_conditions": [
+        "diabetes",
+        "hypertension",
+        "eye"
+      ]
+    },
+    "eye_pain": {
+      "name_ar": "ألم في العين",
+      "related_conditions": [
+        "glaucoma",
+        "infection"
+      ]
+    },
+    "ear_pain": {
+      "name_ar": "ألم في الأذن",
+      "related_conditions": [
+        "otitis",
+        "infection"
+      ]
+    },
+    "hearing_loss": {
+      "name_ar": "فقدان السمع",
+      "related_conditions": [
+        "otitis",
+        "wax",
+        "presbycusis"
+      ]
+    },
+    "tooth_pain": {
+      "name_ar": "ألم الأسنان",
+      "related_conditions": [
+        "caries",
+        "abscess"
+      ]
+    },
+    "urinary_pain": {
+      "name_ar": "ألم عند التبول",
+      "related_conditions": [
+        "uti",
+        "cystitis"
+      ]
+    },
+    "frequent_urination": {
+      "name_ar": "كثرة التبول",
+      "related_conditions": [
+        "diabetes",
+        "uti",
+        "bph"
+      ]
+    },
+    "blood_in_urine": {
+      "name_ar": "دم في البول",
+      "related_conditions": [
+        "uti",
+        "kidney_stone"
+      ],
+      "emergency": true
+    },
+    "weight_loss": {
+      "name_ar": "فقدان الوزن",
+      "related_conditions": [
+        "diabetes",
+        "thyroid",
+        "cancer"
+      ]
+    },
+    "weight_gain": {
+      "name_ar": "زيادة الوزن",
+      "related_conditions": [
+        "hypothyroidism",
+        "diabetes"
+      ]
+    },
+    "excessive_thirst": {
+      "name_ar": "عطش شديد",
+      "related_conditions": [
+        "diabetes",
+        "dehydration"
+      ]
+    },
+    "excessive_hunger": {
+      "name_ar": "جوع شديد",
+      "related_conditions": [
+        "diabetes",
+        "hyperthyroidism"
+      ]
+    },
+    "night_sweats": {
+      "name_ar": "تعرق ليلي",
+      "related_conditions": [
+        "tb",
+        "menopause",
+        "lymphoma"
+      ]
+    },
+    "hair_loss": {
+      "name_ar": "تساقط الشعر",
+      "related_conditions": [
+        "thyroid",
+        "alopecia",
+        "deficiency"
+      ]
+    },
+    "skin_discoloration": {
+      "name_ar": "تغير لون الجلد",
+      "related_conditions": [
+        "jaundice",
+        "bruise"
+      ]
+    },
+    "numbness": {
+      "name_ar": "تنميل",
+      "related_conditions": [
+        "neuropathy",
+        "stroke",
+        "b12_deficiency"
+      ]
+    },
+    "tingling": {
+      "name_ar": "وخز",
+      "related_conditions": [
+        "neuropathy",
+        "b12_deficiency"
+      ]
+    },
+    "tremor": {
+      "name_ar": "رجفة",
+      "related_conditions": [
+        "parkinson",
+        "hyperthyroidism"
+      ]
+    },
+    "difficulty_swallowing": {
+      "name_ar": "صعوبة البلع",
+      "related_conditions": [
+        "esophagitis",
+        "stroke"
+      ]
+    },
+    "hoarseness": {
+      "name_ar": "بحة في الصوت",
+      "related_conditions": [
+        "laryngitis",
+        "thyroid"
+      ]
+    },
+    "cold_intolerance": {
+      "name_ar": "عدم تحمل البرد",
+      "related_conditions": [
+        "hypothyroidism"
+      ]
+    },
+    "heat_intolerance": {
+      "name_ar": "عدم تحمل الحر",
+      "related_conditions": [
+        "hyperthyroidism"
+      ]
+    },
+    "breast_lump": {
+      "name_ar": "كتلة في الثدي",
+      "related_conditions": [
+        "breast_cancer",
+        "fibroadenoma"
+      ]
+    },
+    "vaginal_discharge": {
+      "name_ar": "إفرازات مهبلية",
+      "related_conditions": [
+        "infection",
+        "candida"
+      ]
+    },
+    "menstrual_irregularity": {
+      "name_ar": "عدم انتظام الدورة",
+      "related_conditions": [
+        "pcos",
+        "thyroid"
+      ]
+    },
+    "impotence": {
+      "name_ar": "ضعف جنسي",
+      "related_conditions": [
+        "ed",
+        "diabetes"
+      ]
+    },
+    "loss_of_appetite": {
+      "name_ar": "فقدان الشهية",
+      "related_conditions": [
+        "depression",
+        "cancer"
+      ]
+    },
+    "increased_appetite": {
+      "name_ar": "زيادة الشهية",
+      "related_conditions": [
+        "diabetes",
+        "hyperthyroidism"
+      ]
+    },
+    "dark_urine": {
+      "name_ar": "بول داكن",
+      "related_conditions": [
+        "dehydration",
+        "liver"
+      ]
+    },
+    "yellow_skin": {
+      "name_ar": "اصفرار الجلد",
+      "related_conditions": [
+        "jaundice",
+        "liver"
+      ]
+    },
+    "pale_skin": {
+      "name_ar": "شحوب",
+      "related_conditions": [
+        "anemia",
+        "shock"
+      ]
+    },
+    "bruising": {
+      "name_ar": "كدمات",
+      "related_conditions": [
+        "bleeding_disorder",
+        "liver"
+      ]
+    },
+    "bleeding_gums": {
+      "name_ar": "نزيف اللثة",
+      "related_conditions": [
+        "gum_disease",
+        "bleeding_disorder"
+      ]
+    },
+    "nosebleed": {
+      "name_ar": "نزيف الأنف",
+      "related_conditions": [
+        "hypertension",
+        "bleeding_disorder"
+      ]
+    },
+    "back_stiffness": {
+      "name_ar": "تصلب الظهر",
+      "related_conditions": [
+        "arthritis",
+        "injury"
+      ]
+    },
+    "leg_swelling": {
+      "name_ar": "تورم الساق",
+      "related_conditions": [
+        "dvt",
+        "heart_failure",
+        "edema"
+      ]
+    },
+    "cold_sweat": {
+      "name_ar": "تعرق بارد",
+      "related_conditions": [
+        "heart_attack",
+        "shock"
+      ],
+      "emergency": true
+    }
+  },
+  "updated_at": "2026-09-16T12:03:04.920694"
 }

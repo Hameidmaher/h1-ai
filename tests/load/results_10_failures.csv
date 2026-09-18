@@ -1,0 +1,7 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+POST,[Auth] Register,HTTPError('429 Client Error: Too Many Requests for url: [Auth] Register'),5,2026-09-18T09:12:26Z,2026-09-18T09:12:28Z
+GET,[Products] List,HTTPError('401 Client Error: Unauthorized for url: [Products] List'),36,2026-09-18T09:12:26Z,2026-09-18T09:12:52Z
+POST,[Knowledge] Search,HTTPError('401 Client Error: Unauthorized for url: [Knowledge] Search'),15,2026-09-18T09:12:27Z,2026-09-18T09:12:40Z
+POST,[Chat] POST /v1/chat,CatchResponseError('Status 401'),5,2026-09-18T09:12:32Z,2026-09-18T09:12:37Z
+GET,[Products] List,HTTPError('403 Client Error: Forbidden for url: [Products] List'),19,2026-09-18T09:12:25Z,2026-09-18T09:12:40Z
+POST,[Knowledge] Advise,HTTPError('401 Client Error: Unauthorized for url: [Knowledge] Advise'),13,2026-09-18T09:12:27Z,2026-09-18T09:12:52Z

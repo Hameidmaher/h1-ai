@@ -54,6 +54,181 @@ emergencies:
     message: 'مركز السموم: 08008880700'
     emergency_number: '123'
     poison_center: 08008880700
+  severe_bleeding:
+    keywords:
+      ar:
+      - نزيف حاد
+      - نزيف شديد
+      - دم كتير
+      - جروح عميقة
+      - نزيف مش بيتوقف
+      en:
+      - severe bleeding
+      - heavy bleeding
+      - can't stop bleeding
+    message: 🚨 نزيف حاد يحتاج إسعاف فوري!
+    emergency_number: '123'
+  loss_of_consciousness:
+    keywords:
+      ar:
+      - فقدان الوعي
+      - أغمى عليه
+      - مغمى عليه
+      - مش حاسس بنفسه
+      - غاب عن الوعي
+      en:
+      - loss of consciousness
+      - fainted
+      - unconscious
+    message: 🚨 فقدان الوعي حالة طارئة! اتصل بالإسعاف فوراً!
+    emergency_number: '123'
+  stroke_symptoms:
+    keywords:
+      ar:
+      - جلطة
+      - جلطة دماغية
+      - شلل مفاجئ
+      - تنميل في الوجه
+      - مش قادر أتكلم
+      - تشنجات
+      en:
+      - stroke
+      - sudden paralysis
+      - can't speak
+    message: 🚨 أعراض جلطة دماغية! الوقت عامل حاسم — اتصل بالإسعاف فوراً!
+    emergency_number: '123'
+  severe_allergic:
+    keywords:
+      ar:
+      - حساسية شديدة
+      - تورم في الوجه
+      - تورم في الحلق
+      - صعوبة في البلع
+      - طفح جلدي منتشر
+      en:
+      - severe allergy
+      - anaphylaxis
+      - face swelling
+      - throat swelling
+    message: 🚨 حساسية شديدة قد تكون قاتلة! اتصل بالإسعاف فوراً!
+    emergency_number: '123'
+  severe_burns:
+    keywords:
+      ar:
+      - حرق شديد
+      - حرق كبير
+      - حرق واسع
+      - حرق من الدرجة الثالثة
+      en:
+      - severe burns
+      - third degree burns
+      - extensive burns
+    message: 🚨 حروق شديدة تحتاج علاج طارئ!
+    emergency_number: '123'
+  severe_head_injury:
+    keywords:
+      ar:
+      - إصابة في الرأس
+      - ضربة على الرأس
+      - نزيف من الرأس
+      - فقدان وعي بعد إصابة
+      en:
+      - head injury
+      - head trauma
+      - bleeding from head
+    message: 🚨 إصابة في الرأس قد تكون خطيرة! اتصل بالإسعاف فوراً!
+    emergency_number: '123'
+  seizure:
+    keywords:
+      ar:
+      - تشنجات
+      - صرع
+      - نوبة صرع
+      - تشنج مفاجئ
+      en:
+      - seizure
+      - convulsion
+      - epileptic attack
+    message: 🚨 نوبة صرع أو تشنج! اتصل بالإسعاف!
+    emergency_number: '123'
+  high_fever_children:
+    keywords:
+      ar:
+      - حرارة عالية لطفل
+      - حمى شديدة
+      - سخونة عالية
+      - تشنجات حرارية
+      en:
+      - high fever child
+      - severe fever
+      - febrile seizure
+    message: 🚨 حرارة عالية جداً لطفل! اذهب للطوارئ فوراً!
+    emergency_number: '123'
+  suicidal_thoughts:
+    keywords:
+      ar:
+      - أفكار انتحارية
+      - عايز أموت
+      - مش عايز أعيش
+      - هأذي نفسي
+      en:
+      - suicidal
+      - want to die
+      - end my life
+    message: 🚨 أنت مش لوحدك. اتصل بخط الدعم النفسي فوراً!
+    emergency_number: 08008880700
+  pregnancy_bleeding:
+    keywords:
+      ar:
+      - نزيف حمل
+      - نزيف حامل
+      - ألم شديد في الحمل
+      - إجهاض
+      en:
+      - pregnancy bleeding
+      - miscarriage
+      - severe pregnancy pain
+    message: 🚨 نزيف الحمل حالة طارئة! اذهبي للطوارئ فوراً!
+    emergency_number: '123'
+  severe_abdominal_pain:
+    keywords:
+      ar:
+      - ألم شديد في البطن
+      - ألم حاد في البطن
+      - مغص شديد
+      - ألم في المعدة شديد
+      en:
+      - severe abdominal pain
+      - acute abdomen
+      - severe stomach pain
+    message: 🚨 ألم شديد في البطن قد يحتاج جراحة! اذهب للطوارئ!
+    emergency_number: '123'
+  eye_injury:
+    keywords:
+      ar:
+      - إصابة في العين
+      - دخل حاجة في العين
+      - مادة كاوية في العين
+      - فقدان الرؤية المفاجئ
+      en:
+      - eye injury
+      - chemical in eye
+      - sudden vision loss
+    message: 🚨 إصابة في العين! اذهب للطوارئ فوراً!
+    emergency_number: '123'
+  severe_dehydration:
+    keywords:
+      ar:
+      - جفاف شديد
+      - مش قادر أشرب
+      - قيء مستمر
+      - إسهال شديد
+      en:
+      - severe dehydration
+      - continuous vomiting
+      - severe diarrhea
+    message: 🚨 جفاف شديد! يحتاج سوائل وريدية فوراً!
+    emergency_number: '123'
 conditions:
   headache:
     display_name: صداع

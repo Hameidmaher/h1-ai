@@ -148,3 +148,5 @@ temp/
 !backend/logs/.gitkeep
 !.env.example
 !config.production.yaml
+backend/.env
+.env

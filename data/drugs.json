@@ -1,5 +1,5 @@
 {
-  "version": "3.0",
+  "version": "5.0",
   "drugs": {
     "paracetamol": {
       "name_ar": "باراسيتامول",
@@ -2472,6 +2472,2278 @@
       ],
       "safe_pregnancy": false,
       "safe_children": false
+    },
+    "amoxicillin": {
+      "name_ar": "أموكسيسيلين",
+      "name_en": "Amoxicillin",
+      "aliases": [],
+      "class": "penicillin",
+      "indications": [
+        "infection"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "nitrofurantoin": {
+      "name_ar": "نيتروفورانتوين",
+      "name_en": "Nitrofurantoin",
+      "aliases": [],
+      "class": "nitrofuran",
+      "indications": [
+        "uti"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "nifedipine": {
+      "name_ar": "نيفيديبين",
+      "name_en": "Nifedipine",
+      "aliases": [],
+      "class": "ccb",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "verapamil": {
+      "name_ar": "فيراباميل",
+      "name_en": "Verapamil",
+      "aliases": [],
+      "class": "ccb",
+      "indications": [
+        "hypertension",
+        "arrhythmia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "diltiazem": {
+      "name_ar": "ديلتيازيم",
+      "name_en": "Diltiazem",
+      "aliases": [],
+      "class": "ccb",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "candesartan": {
+      "name_ar": "كانديسارتان",
+      "name_en": "Candesartan",
+      "aliases": [],
+      "class": "arb",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "hydrochlorothiazide": {
+      "name_ar": "هيدروكلوروثيازيد",
+      "name_en": "Hydrochlorothiazide",
+      "aliases": [],
+      "class": "diuretic",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "spironolactone": {
+      "name_ar": "سبيرونولاكتون",
+      "name_en": "Spironolactone",
+      "aliases": [],
+      "class": "k_sparing_diuretic",
+      "indications": [
+        "edema"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "simvastatin": {
+      "name_ar": "سيمفاستاتين",
+      "name_en": "Simvastatin",
+      "aliases": [],
+      "class": "statin",
+      "indications": [
+        "hyperlipidemia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "bisoprolol": {
+      "name_ar": "بيسوبرولول",
+      "name_en": "Bisoprolol",
+      "aliases": [],
+      "class": "beta_blocker",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "carvedilol": {
+      "name_ar": "كارفيديلول",
+      "name_en": "Carvedilol",
+      "aliases": [],
+      "class": "beta_blocker",
+      "indications": [
+        "heart_failure"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "digoxin": {
+      "name_ar": "ديجوكسين",
+      "name_en": "Digoxin",
+      "aliases": [],
+      "class": "cardiac_glycoside",
+      "indications": [
+        "heart_failure"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "esomeprazole": {
+      "name_ar": "إيزوميبرازول",
+      "name_en": "Esomeprazole",
+      "aliases": [],
+      "class": "ppi",
+      "indications": [
+        "gerd"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "famotidine": {
+      "name_ar": "فاموتيدين",
+      "name_en": "Famotidine",
+      "aliases": [],
+      "class": "h2_blocker",
+      "indications": [
+        "gerd"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "bisacodyl": {
+      "name_ar": "بيساكوديل",
+      "name_en": "Bisacodyl",
+      "aliases": [],
+      "class": "laxative",
+      "indications": [
+        "constipation"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "insulin_glargine": {
+      "name_ar": "إنسولين جلارجين",
+      "name_en": "Insulin Glargine",
+      "aliases": [],
+      "class": "insulin",
+      "indications": [
+        "diabetes_type1",
+        "diabetes_type2"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "insulin_aspart": {
+      "name_ar": "إنسولين أسبارت",
+      "name_en": "Insulin Aspart",
+      "aliases": [],
+      "class": "insulin",
+      "indications": [
+        "diabetes_type1",
+        "diabetes_type2"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "pioglitazone": {
+      "name_ar": "بيوجليتازون",
+      "name_en": "Pioglitazone",
+      "aliases": [],
+      "class": "tzd",
+      "indications": [
+        "diabetes_type2"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "albuterol": {
+      "name_ar": "ألبوتيرول",
+      "name_en": "Albuterol",
+      "aliases": [],
+      "class": "saba",
+      "indications": [
+        "asthma"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "fluticasone": {
+      "name_ar": "فلوتيكاسون",
+      "name_en": "Fluticasone",
+      "aliases": [],
+      "class": "ics",
+      "indications": [
+        "asthma",
+        "allergy"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "beclomethasone": {
+      "name_ar": "بيكلوميثازون",
+      "name_en": "Beclomethasone",
+      "aliases": [],
+      "class": "ics",
+      "indications": [
+        "asthma"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "chlorpheniramine": {
+      "name_ar": "كلورفينيرامين",
+      "name_en": "Chlorpheniramine",
+      "aliases": [],
+      "class": "antihistamine",
+      "indications": [
+        "allergy"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "codeine": {
+      "name_ar": "كودايين",
+      "name_en": "Codeine",
+      "aliases": [],
+      "class": "opioid",
+      "indications": [
+        "pain",
+        "cough"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "citalopram": {
+      "name_ar": "سيتالوبرام",
+      "name_en": "Citalopram",
+      "aliases": [],
+      "class": "ssri",
+      "indications": [
+        "depression"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "fluvoxamine": {
+      "name_ar": "فلوفوكسامين",
+      "name_en": "Fluvoxamine",
+      "aliases": [],
+      "class": "ssri",
+      "indications": [
+        "ocd"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "nortriptyline": {
+      "name_ar": "نورتريبتيلين",
+      "name_en": "Nortriptyline",
+      "aliases": [],
+      "class": "tca",
+      "indications": [
+        "depression"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "haloperidol": {
+      "name_ar": "هالوبيريدول",
+      "name_en": "Haloperidol",
+      "aliases": [],
+      "class": "antipsychotic",
+      "indications": [
+        "schizophrenia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "aripiprazole": {
+      "name_ar": "أريبيبرازول",
+      "name_en": "Aripiprazole",
+      "aliases": [],
+      "class": "antipsychotic",
+      "indications": [
+        "schizophrenia",
+        "bipolar"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "lithium": {
+      "name_ar": "ليثيوم",
+      "name_en": "Lithium",
+      "aliases": [],
+      "class": "mood_stabilizer",
+      "indications": [
+        "bipolar"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "topiramate": {
+      "name_ar": "توبيراميت",
+      "name_en": "Topiramate",
+      "aliases": [],
+      "class": "antiepileptic",
+      "indications": [
+        "epilepsy",
+        "migraine"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "donepezil": {
+      "name_ar": "دونيبيزيل",
+      "name_en": "Donepezil",
+      "aliases": [],
+      "class": "cholinesterase",
+      "indications": [
+        "alzheimer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "memantine": {
+      "name_ar": "ميمانتين",
+      "name_en": "Memantine",
+      "aliases": [],
+      "class": "nmda",
+      "indications": [
+        "alzheimer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "levodopa": {
+      "name_ar": "ليفودوبا",
+      "name_en": "Levodopa",
+      "aliases": [],
+      "class": "dopamine",
+      "indications": [
+        "parkinson"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "levonorgestrel": {
+      "name_ar": "ليفونورجيستريل",
+      "name_en": "Levonorgestrel",
+      "aliases": [],
+      "class": "progestin",
+      "indications": [
+        "contraception"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "iron_sulfate": {
+      "name_ar": "كبريتات الحديد",
+      "name_en": "Iron Sulfate",
+      "aliases": [],
+      "class": "mineral",
+      "indications": [
+        "anemia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "calcium_carbonate": {
+      "name_ar": "كربونات الكالسيوم",
+      "name_en": "Calcium Carbonate",
+      "aliases": [],
+      "class": "mineral",
+      "indications": [
+        "deficiency"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "omega3": {
+      "name_ar": "أوميغا ٣",
+      "name_en": "Omega3",
+      "aliases": [],
+      "class": "supplement",
+      "indications": [
+        "cardiovascular"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "isotretinoin": {
+      "name_ar": "أيزوتريتينوين",
+      "name_en": "Isotretinoin",
+      "aliases": [],
+      "class": "retinoid",
+      "indications": [
+        "acne"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "tretinoin": {
+      "name_ar": "تريتينوين",
+      "name_en": "Tretinoin",
+      "aliases": [],
+      "class": "retinoid",
+      "indications": [
+        "acne",
+        "aging"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ampicillin": {
+      "name_ar": "أمبيسيلين",
+      "name_en": "Ampicillin",
+      "aliases": [],
+      "class": "penicillin",
+      "indications": [
+        "infection"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "benzylpenicillin": {
+      "name_ar": "بنزيل بنسلين",
+      "name_en": "Benzylpenicillin",
+      "aliases": [],
+      "class": "penicillin",
+      "indications": [
+        "infection"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "cefazolin": {
+      "name_ar": "سيفازولين",
+      "name_en": "Cefazolin",
+      "aliases": [],
+      "class": "cephalosporin",
+      "indications": [
+        "infection"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ceftriaxone": {
+      "name_ar": "سيفترياكسون",
+      "name_en": "Ceftriaxone",
+      "aliases": [],
+      "class": "cephalosporin",
+      "indications": [
+        "infection"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "cefuroxime": {
+      "name_ar": "سيفيوروكسيم",
+      "name_en": "Cefuroxime",
+      "aliases": [],
+      "class": "cephalosporin",
+      "indications": [
+        "infection"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "clindamycin": {
+      "name_ar": "كليندامايسين",
+      "name_en": "Clindamycin",
+      "aliases": [],
+      "class": "lincosamide",
+      "indications": [
+        "infection"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "erythromycin": {
+      "name_ar": "إريثرومايسين",
+      "name_en": "Erythromycin",
+      "aliases": [],
+      "class": "macrolide",
+      "indications": [
+        "infection"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "minocycline": {
+      "name_ar": "مينوسيكلين",
+      "name_en": "Minocycline",
+      "aliases": [],
+      "class": "tetracycline",
+      "indications": [
+        "infection",
+        "acne"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "moxifloxacin": {
+      "name_ar": "موكسيفلوكساسين",
+      "name_en": "Moxifloxacin",
+      "aliases": [],
+      "class": "fluoroquinolone",
+      "indications": [
+        "infection"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "penicillin_v": {
+      "name_ar": "بنسلين في",
+      "name_en": "Penicillin V",
+      "aliases": [],
+      "class": "penicillin",
+      "indications": [
+        "infection"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "piperacillin_tazobactam": {
+      "name_ar": "بيبراسيلين/تازوباكتام",
+      "name_en": "Piperacillin Tazobactam",
+      "aliases": [],
+      "class": "penicillin",
+      "indications": [
+        "infection"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "rifampin": {
+      "name_ar": "ريفامبين",
+      "name_en": "Rifampin",
+      "aliases": [],
+      "class": "rifamycin",
+      "indications": [
+        "tuberculosis"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sulfamethoxazole_trimethoprim": {
+      "name_ar": "سلفاميثوكسازول/تريميثوبريم",
+      "name_en": "Sulfamethoxazole Trimethoprim",
+      "aliases": [],
+      "class": "sulfonamide",
+      "indications": [
+        "uti"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "tobramycin": {
+      "name_ar": "توبراميسين",
+      "name_en": "Tobramycin",
+      "aliases": [],
+      "class": "aminoglycoside",
+      "indications": [
+        "infection"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "entecavir": {
+      "name_ar": "إنتيكافير",
+      "name_en": "Entecavir",
+      "aliases": [],
+      "class": "antiviral",
+      "indications": [
+        "hepatitis_b"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ganciclovir": {
+      "name_ar": "جانجيكلوفير",
+      "name_en": "Ganciclovir",
+      "aliases": [],
+      "class": "antiviral",
+      "indications": [
+        "cmv"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ribavirin": {
+      "name_ar": "ريبافيرين",
+      "name_en": "Ribavirin",
+      "aliases": [],
+      "class": "antiviral",
+      "indications": [
+        "hepatitis_c"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "tenofovir": {
+      "name_ar": "تينوفوفير",
+      "name_en": "Tenofovir",
+      "aliases": [],
+      "class": "antiviral",
+      "indications": [
+        "hiv",
+        "hepatitis_b"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "zidovudine": {
+      "name_ar": "زيدوفودين",
+      "name_en": "Zidovudine",
+      "aliases": [],
+      "class": "antiviral",
+      "indications": [
+        "hiv"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "amphotericin_b": {
+      "name_ar": "أمفوتيريسين ب",
+      "name_en": "Amphotericin B",
+      "aliases": [],
+      "class": "polyene",
+      "indications": [
+        "fungal"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "caspofungin": {
+      "name_ar": "كاسبوفنجين",
+      "name_en": "Caspofungin",
+      "aliases": [],
+      "class": "echinocandin",
+      "indications": [
+        "fungal"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "griseofulvin": {
+      "name_ar": "جريزيوفولفين",
+      "name_en": "Griseofulvin",
+      "aliases": [],
+      "class": "antifungal",
+      "indications": [
+        "fungal"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "posaconazole": {
+      "name_ar": "بوساكونازول",
+      "name_en": "Posaconazole",
+      "aliases": [],
+      "class": "azole",
+      "indications": [
+        "fungal"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "amiodarone": {
+      "name_ar": "أميودارون",
+      "name_en": "Amiodarone",
+      "aliases": [],
+      "class": "antiarrhythmic",
+      "indications": [
+        "arrhythmia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "bumetanide": {
+      "name_ar": "بوميتانيد",
+      "name_en": "Bumetanide",
+      "aliases": [],
+      "class": "loop_diuretic",
+      "indications": [
+        "edema"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "captopril": {
+      "name_ar": "كابتوبريل",
+      "name_en": "Captopril",
+      "aliases": [],
+      "class": "ace_inhibitor",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "clonidine": {
+      "name_ar": "كلونيدين",
+      "name_en": "Clonidine",
+      "aliases": [],
+      "class": "alpha_agonist",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "doxazosin": {
+      "name_ar": "دوكسازوسين",
+      "name_en": "Doxazosin",
+      "aliases": [],
+      "class": "alpha_blocker",
+      "indications": [
+        "bph",
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "enalapril": {
+      "name_ar": "إنالابريل",
+      "name_en": "Enalapril",
+      "aliases": [],
+      "class": "ace_inhibitor",
+      "indications": [
+        "hypertension",
+        "heart_failure"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "eplerenone": {
+      "name_ar": "إبليرينون",
+      "name_en": "Eplerenone",
+      "aliases": [],
+      "class": "k_sparing_diuretic",
+      "indications": [
+        "heart_failure"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "felodipine": {
+      "name_ar": "فيلوديبين",
+      "name_en": "Felodipine",
+      "aliases": [],
+      "class": "ccb",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "flecainide": {
+      "name_ar": "فليكاينيد",
+      "name_en": "Flecainide",
+      "aliases": [],
+      "class": "antiarrhythmic",
+      "indications": [
+        "arrhythmia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "hydralazine": {
+      "name_ar": "هيدرالازين",
+      "name_en": "Hydralazine",
+      "aliases": [],
+      "class": "vasodilator",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "isosorbide": {
+      "name_ar": "إيزوسوربيد",
+      "name_en": "Isosorbide",
+      "aliases": [],
+      "class": "nitrate",
+      "indications": [
+        "angina"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ivabradine": {
+      "name_ar": "إيفابرادين",
+      "name_en": "Ivabradine",
+      "aliases": [],
+      "class": "if_inhibitor",
+      "indications": [
+        "heart_failure"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "labetalol": {
+      "name_ar": "لابيتالول",
+      "name_en": "Labetalol",
+      "aliases": [],
+      "class": "beta_blocker",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "methyldopa": {
+      "name_ar": "ميثيلدوبا",
+      "name_en": "Methyldopa",
+      "aliases": [],
+      "class": "alpha_agonist",
+      "indications": [
+        "hypertension_pregnancy"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "minoxidil": {
+      "name_ar": "مينوكسيديل",
+      "name_en": "Minoxidil",
+      "aliases": [],
+      "class": "vasodilator",
+      "indications": [
+        "hypertension",
+        "hair_loss"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "nicardipine": {
+      "name_ar": "نيكارديبين",
+      "name_en": "Nicardipine",
+      "aliases": [],
+      "class": "ccb",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "perindopril": {
+      "name_ar": "بيريندوبريل",
+      "name_en": "Perindopril",
+      "aliases": [],
+      "class": "ace_inhibitor",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "prazosin": {
+      "name_ar": "برازوسين",
+      "name_en": "Prazosin",
+      "aliases": [],
+      "class": "alpha_blocker",
+      "indications": [
+        "bph",
+        "ptsd"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "propafenone": {
+      "name_ar": "بروبافينون",
+      "name_en": "Propafenone",
+      "aliases": [],
+      "class": "antiarrhythmic",
+      "indications": [
+        "arrhythmia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "quinidine": {
+      "name_ar": "كينيدين",
+      "name_en": "Quinidine",
+      "aliases": [],
+      "class": "antiarrhythmic",
+      "indications": [
+        "arrhythmia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ramipril": {
+      "name_ar": "راميبريل",
+      "name_en": "Ramipril",
+      "aliases": [],
+      "class": "ace_inhibitor",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sacubitril_valsartan": {
+      "name_ar": "ساكوبيتريل/فالسارتان",
+      "name_en": "Sacubitril Valsartan",
+      "aliases": [],
+      "class": "arni",
+      "indications": [
+        "heart_failure"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sotalol": {
+      "name_ar": "سوتالول",
+      "name_en": "Sotalol",
+      "aliases": [],
+      "class": "antiarrhythmic",
+      "indications": [
+        "arrhythmia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "telmisartan": {
+      "name_ar": "تلميسارتان",
+      "name_en": "Telmisartan",
+      "aliases": [],
+      "class": "arb",
+      "indications": [
+        "hypertension"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "torsemide": {
+      "name_ar": "تورسيميد",
+      "name_en": "Torsemide",
+      "aliases": [],
+      "class": "loop_diuretic",
+      "indications": [
+        "edema"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "aluminum_hydroxide": {
+      "name_ar": "هيدروكسيد الألومنيوم",
+      "name_en": "Aluminum Hydroxide",
+      "aliases": [],
+      "class": "antacid",
+      "indications": [
+        "gerd"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "bismuth_subsalicylate": {
+      "name_ar": "بزموت سبساليسيلات",
+      "name_en": "Bismuth Subsalicylate",
+      "aliases": [],
+      "class": "antidiarrheal",
+      "indications": [
+        "diarrhea"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "dicyclomine": {
+      "name_ar": "ديسيكلومين",
+      "name_en": "Dicyclomine",
+      "aliases": [],
+      "class": "antispasmodic",
+      "indications": [
+        "ibs"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "docusate": {
+      "name_ar": "دوكوسات",
+      "name_en": "Docusate",
+      "aliases": [],
+      "class": "stool_softener",
+      "indications": [
+        "constipation"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "hyoscyamine": {
+      "name_ar": "هيوسيامين",
+      "name_en": "Hyoscyamine",
+      "aliases": [],
+      "class": "antispasmodic",
+      "indications": [
+        "ibs"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "lansoprazole": {
+      "name_ar": "لانسوبرازول",
+      "name_en": "Lansoprazole",
+      "aliases": [],
+      "class": "ppi",
+      "indications": [
+        "gerd"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "magaldrate": {
+      "name_ar": "ماجالدرات",
+      "name_en": "Magaldrate",
+      "aliases": [],
+      "class": "antacid",
+      "indications": [
+        "gerd"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "mesalamine": {
+      "name_ar": "ميسالامين",
+      "name_en": "Mesalamine",
+      "aliases": [],
+      "class": "5asa",
+      "indications": [
+        "ibd"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "misoprostol": {
+      "name_ar": "ميزوبروستول",
+      "name_en": "Misoprostol",
+      "aliases": [],
+      "class": "prostaglandin",
+      "indications": [
+        "ulcer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "octreotide": {
+      "name_ar": "أوكتريوتيد",
+      "name_en": "Octreotide",
+      "aliases": [],
+      "class": "somatostatin",
+      "indications": [
+        "varices"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "polyethylene_glycol": {
+      "name_ar": "بولي إيثيلين جليكول",
+      "name_en": "Polyethylene Glycol",
+      "aliases": [],
+      "class": "laxative",
+      "indications": [
+        "constipation"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "simethicone": {
+      "name_ar": "سيميثيكون",
+      "name_en": "Simethicone",
+      "aliases": [],
+      "class": "antiflatulent",
+      "indications": [
+        "gas"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sucralfate": {
+      "name_ar": "سوكرالفات",
+      "name_en": "Sucralfate",
+      "aliases": [],
+      "class": "mucosal_protectant",
+      "indications": [
+        "ulcer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "acarbose": {
+      "name_ar": "أكاربوز",
+      "name_en": "Acarbose",
+      "aliases": [],
+      "class": "alpha_glucosidase",
+      "indications": [
+        "diabetes_type2"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "glipizide": {
+      "name_ar": "جليبيزيد",
+      "name_en": "Glipizide",
+      "aliases": [],
+      "class": "sulfonylurea",
+      "indications": [
+        "diabetes_type2"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "glyburide": {
+      "name_ar": "جليبوريد",
+      "name_en": "Glyburide",
+      "aliases": [],
+      "class": "sulfonylurea",
+      "indications": [
+        "diabetes_type2"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "insulin_detemir": {
+      "name_ar": "إنسولين ديتيمير",
+      "name_en": "Insulin Detemir",
+      "aliases": [],
+      "class": "insulin",
+      "indications": [
+        "diabetes"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "insulin_lispro": {
+      "name_ar": "إنسولين ليسبرو",
+      "name_en": "Insulin Lispro",
+      "aliases": [],
+      "class": "insulin",
+      "indications": [
+        "diabetes"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "insulin_regular": {
+      "name_ar": "إنسولين عادي",
+      "name_en": "Insulin Regular",
+      "aliases": [],
+      "class": "insulin",
+      "indications": [
+        "diabetes"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "nateglinide": {
+      "name_ar": "ناتيجليتنيد",
+      "name_en": "Nateglinide",
+      "aliases": [],
+      "class": "meglitinide",
+      "indications": [
+        "diabetes_type2"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "repaglinide": {
+      "name_ar": "ريباجلينيد",
+      "name_en": "Repaglinide",
+      "aliases": [],
+      "class": "meglitinide",
+      "indications": [
+        "diabetes_type2"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vildagliptin": {
+      "name_ar": "فيلداجليبتين",
+      "name_en": "Vildagliptin",
+      "aliases": [],
+      "class": "dpp4",
+      "indications": [
+        "diabetes_type2"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "aminophylline": {
+      "name_ar": "أمينوفيلين",
+      "name_en": "Aminophylline",
+      "aliases": [],
+      "class": "xanthine",
+      "indications": [
+        "asthma",
+        "copd"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "cromolyn": {
+      "name_ar": "كرومولين",
+      "name_en": "Cromolyn",
+      "aliases": [],
+      "class": "mast_cell_stabilizer",
+      "indications": [
+        "asthma"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "fluticasone_salmeterol": {
+      "name_ar": "فلوتيكاسون/سالميتيرول",
+      "name_en": "Fluticasone Salmeterol",
+      "aliases": [],
+      "class": "ics_laba",
+      "indications": [
+        "asthma",
+        "copd"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "acetaminophen_codeine": {
+      "name_ar": "باراسيتامول/كودايين",
+      "name_en": "Acetaminophen Codeine",
+      "aliases": [],
+      "class": "analgesic_combo",
+      "indications": [
+        "pain"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "buprenorphine": {
+      "name_ar": "ببرينورفين",
+      "name_en": "Buprenorphine",
+      "aliases": [],
+      "class": "opioid",
+      "indications": [
+        "pain",
+        "addiction"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "fentanyl": {
+      "name_ar": "فنتانيل",
+      "name_en": "Fentanyl",
+      "aliases": [],
+      "class": "opioid",
+      "indications": [
+        "severe_pain"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "hydrocodone": {
+      "name_ar": "هيدروكودون",
+      "name_en": "Hydrocodone",
+      "aliases": [],
+      "class": "opioid",
+      "indications": [
+        "pain"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "hydromorphone": {
+      "name_ar": "هيدرومورفون",
+      "name_en": "Hydromorphone",
+      "aliases": [],
+      "class": "opioid",
+      "indications": [
+        "severe_pain"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "meperidine": {
+      "name_ar": "ميبيريدين",
+      "name_en": "Meperidine",
+      "aliases": [],
+      "class": "opioid",
+      "indications": [
+        "pain"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "methadone": {
+      "name_ar": "ميثادون",
+      "name_en": "Methadone",
+      "aliases": [],
+      "class": "opioid",
+      "indications": [
+        "pain",
+        "addiction"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "oxycodone": {
+      "name_ar": "أوكسيكودون",
+      "name_en": "Oxycodone",
+      "aliases": [],
+      "class": "opioid",
+      "indications": [
+        "pain"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sulindac": {
+      "name_ar": "سولينداك",
+      "name_en": "Sulindac",
+      "aliases": [],
+      "class": "nsaid",
+      "indications": [
+        "arthritis"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "buspirone": {
+      "name_ar": "بوسبيرون",
+      "name_en": "Buspirone",
+      "aliases": [],
+      "class": "anxiolytic",
+      "indications": [
+        "anxiety"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "chlordiazepoxide": {
+      "name_ar": "كلورديازيبوكسيد",
+      "name_en": "Chlordiazepoxide",
+      "aliases": [],
+      "class": "benzodiazepine",
+      "indications": [
+        "anxiety"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "chlorpromazine": {
+      "name_ar": "كلوربرومازين",
+      "name_en": "Chlorpromazine",
+      "aliases": [],
+      "class": "antipsychotic",
+      "indications": [
+        "schizophrenia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "clozapine": {
+      "name_ar": "كلوزابين",
+      "name_en": "Clozapine",
+      "aliases": [],
+      "class": "antipsychotic",
+      "indications": [
+        "schizophrenia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "desvenlafaxine": {
+      "name_ar": "ديسفينلافاكسين",
+      "name_en": "Desvenlafaxine",
+      "aliases": [],
+      "class": "snri",
+      "indications": [
+        "depression"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "fluphenazine": {
+      "name_ar": "فلوثينازين",
+      "name_en": "Fluphenazine",
+      "aliases": [],
+      "class": "antipsychotic",
+      "indications": [
+        "schizophrenia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "hydroxyzine": {
+      "name_ar": "هيدروكسيزين",
+      "name_en": "Hydroxyzine",
+      "aliases": [],
+      "class": "antihistamine",
+      "indications": [
+        "anxiety",
+        "allergy"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "iloperidone": {
+      "name_ar": "إيلوبيريدون",
+      "name_en": "Iloperidone",
+      "aliases": [],
+      "class": "antipsychotic",
+      "indications": [
+        "schizophrenia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "lorazepam": {
+      "name_ar": "لورازيبام",
+      "name_en": "Lorazepam",
+      "aliases": [],
+      "class": "benzodiazepine",
+      "indications": [
+        "anxiety"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "lurasidone": {
+      "name_ar": "لوراسيدون",
+      "name_en": "Lurasidone",
+      "aliases": [],
+      "class": "antipsychotic",
+      "indications": [
+        "schizophrenia",
+        "bipolar"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "midazolam": {
+      "name_ar": "ميدازولام",
+      "name_en": "Midazolam",
+      "aliases": [],
+      "class": "benzodiazepine",
+      "indications": [
+        "sedation"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "oxazepam": {
+      "name_ar": "أوكسازيبام",
+      "name_en": "Oxazepam",
+      "aliases": [],
+      "class": "benzodiazepine",
+      "indications": [
+        "anxiety"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "paliperidone": {
+      "name_ar": "باليريدون",
+      "name_en": "Paliperidone",
+      "aliases": [],
+      "class": "antipsychotic",
+      "indications": [
+        "schizophrenia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "temazepam": {
+      "name_ar": "تيمازيبام",
+      "name_en": "Temazepam",
+      "aliases": [],
+      "class": "benzodiazepine",
+      "indications": [
+        "insomnia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "trazodone": {
+      "name_ar": "ترازودون",
+      "name_en": "Trazodone",
+      "aliases": [],
+      "class": "antidepressant",
+      "indications": [
+        "depression",
+        "insomnia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "triazolam": {
+      "name_ar": "تريازولام",
+      "name_en": "Triazolam",
+      "aliases": [],
+      "class": "benzodiazepine",
+      "indications": [
+        "insomnia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ziprasidone": {
+      "name_ar": "زيبراسيدون",
+      "name_en": "Ziprasidone",
+      "aliases": [],
+      "class": "antipsychotic",
+      "indications": [
+        "schizophrenia"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ethosuximide": {
+      "name_ar": "إيثوسوكسيميد",
+      "name_en": "Ethosuximide",
+      "aliases": [],
+      "class": "antiepileptic",
+      "indications": [
+        "epilepsy"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "lacosamide": {
+      "name_ar": "لاكوساميد",
+      "name_en": "Lacosamide",
+      "aliases": [],
+      "class": "antiepileptic",
+      "indications": [
+        "epilepsy"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "oxcarbazepine": {
+      "name_ar": "أوكسكاربازيبين",
+      "name_en": "Oxcarbazepine",
+      "aliases": [],
+      "class": "antiepileptic",
+      "indications": [
+        "epilepsy"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "primidone": {
+      "name_ar": "بريميدون",
+      "name_en": "Primidone",
+      "aliases": [],
+      "class": "antiepileptic",
+      "indications": [
+        "epilepsy"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "rufinamide": {
+      "name_ar": "روفيناميد",
+      "name_en": "Rufinamide",
+      "aliases": [],
+      "class": "antiepileptic",
+      "indications": [
+        "epilepsy"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "tiagabine": {
+      "name_ar": "تياجابين",
+      "name_en": "Tiagabine",
+      "aliases": [],
+      "class": "antiepileptic",
+      "indications": [
+        "epilepsy"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vigabatrin": {
+      "name_ar": "فيجاباترين",
+      "name_en": "Vigabatrin",
+      "aliases": [],
+      "class": "antiepileptic",
+      "indications": [
+        "epilepsy"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "zonisamide": {
+      "name_ar": "زونيساميد",
+      "name_en": "Zonisamide",
+      "aliases": [],
+      "class": "antiepileptic",
+      "indications": [
+        "epilepsy"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "alfuzosin": {
+      "name_ar": "ألفيوزوسين",
+      "name_en": "Alfuzosin",
+      "aliases": [],
+      "class": "alpha_blocker",
+      "indications": [
+        "bph"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "darifenacin": {
+      "name_ar": "داري fenacin",
+      "name_en": "Darifenacin",
+      "aliases": [],
+      "class": "anticholinergic",
+      "indications": [
+        "overactive_bladder"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "dutasteride": {
+      "name_ar": "دوتاستيريد",
+      "name_en": "Dutasteride",
+      "aliases": [],
+      "class": "5ari",
+      "indications": [
+        "bph"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "mirabegron": {
+      "name_ar": "ميرابيجون",
+      "name_en": "Mirabegron",
+      "aliases": [],
+      "class": "beta3_agonist",
+      "indications": [
+        "overactive_bladder"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "tolterodine": {
+      "name_ar": "تولتيرودين",
+      "name_en": "Tolterodine",
+      "aliases": [],
+      "class": "anticholinergic",
+      "indications": [
+        "overactive_bladder"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vardenafil": {
+      "name_ar": "فاردينافيل",
+      "name_en": "Vardenafil",
+      "aliases": [],
+      "class": "pde5",
+      "indications": [
+        "ed"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "calcipotriene": {
+      "name_ar": "كالسيبوترين",
+      "name_en": "Calcipotriene",
+      "aliases": [],
+      "class": "vitamin_d_analog",
+      "indications": [
+        "psoriasis"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "clobetasol": {
+      "name_ar": "كلوبيتاسول",
+      "name_en": "Clobetasol",
+      "aliases": [],
+      "class": "corticosteroid",
+      "indications": [
+        "dermatitis"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "imiquimod": {
+      "name_ar": "إيميكيمود",
+      "name_en": "Imiquimod",
+      "aliases": [],
+      "class": "immune_response_modifier",
+      "indications": [
+        "warts"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "methotrexate_topical": {
+      "name_ar": "ميثوتريكسات موضعي",
+      "name_en": "Methotrexate Topical",
+      "aliases": [],
+      "class": "dmard",
+      "indications": [
+        "psoriasis"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "permethrin": {
+      "name_ar": "بيرميثرين",
+      "name_en": "Permethrin",
+      "aliases": [],
+      "class": "antiparasitic",
+      "indications": [
+        "scabies",
+        "lice"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "podophyllotoxin": {
+      "name_ar": "بودوفيلوتوكسين",
+      "name_en": "Podophyllotoxin",
+      "aliases": [],
+      "class": "antimitotic",
+      "indications": [
+        "warts"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "salicylic_acid": {
+      "name_ar": "حمض الساليسيليك",
+      "name_en": "Salicylic Acid",
+      "aliases": [],
+      "class": "keratolytic",
+      "indications": [
+        "warts",
+        "acne"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "tacrolimus_topical": {
+      "name_ar": "تاكروليموس موضعي",
+      "name_en": "Tacrolimus Topical",
+      "aliases": [],
+      "class": "calcineurin_inhibitor",
+      "indications": [
+        "eczema"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "bimatoprost": {
+      "name_ar": "بيماتوبروست",
+      "name_en": "Bimatoprost",
+      "aliases": [],
+      "class": "prostaglandin",
+      "indications": [
+        "glaucoma"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "brimonidine": {
+      "name_ar": "بريمونيدين",
+      "name_en": "Brimonidine",
+      "aliases": [],
+      "class": "alpha_agonist",
+      "indications": [
+        "glaucoma"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "olopatadine": {
+      "name_ar": "أولوباتادين",
+      "name_en": "Olopatadine",
+      "aliases": [],
+      "class": "antihistamine",
+      "indications": [
+        "allergic_conjunctivitis"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "travoprost": {
+      "name_ar": "ترافوبروست",
+      "name_en": "Travoprost",
+      "aliases": [],
+      "class": "prostaglandin",
+      "indications": [
+        "glaucoma"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "fluticasone_nasal": {
+      "name_ar": "فلوتيكاسون أنفي",
+      "name_en": "Fluticasone Nasal",
+      "aliases": [],
+      "class": "corticosteroid",
+      "indications": [
+        "rhinitis"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "mometasone_nasal": {
+      "name_ar": "موميتازون أنفي",
+      "name_en": "Mometasone Nasal",
+      "aliases": [],
+      "class": "corticosteroid",
+      "indications": [
+        "rhinitis"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "oxymetazoline": {
+      "name_ar": "أوكسي ميتازولين",
+      "name_en": "Oxymetazoline",
+      "aliases": [],
+      "class": "decongestant",
+      "indications": [
+        "congestion"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "xylometazoline": {
+      "name_ar": "زايلو ميتازولين",
+      "name_en": "Xylometazoline",
+      "aliases": [],
+      "class": "decongestant",
+      "indications": [
+        "congestion"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "abatacept": {
+      "name_ar": "أباتاسيبت",
+      "name_en": "Abatacept",
+      "aliases": [],
+      "class": "biologic",
+      "indications": [
+        "ra"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "anakinra": {
+      "name_ar": "أناكينرا",
+      "name_en": "Anakinra",
+      "aliases": [],
+      "class": "biologic",
+      "indications": [
+        "ra"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "certolizumab": {
+      "name_ar": "سيرتوليزوماب",
+      "name_en": "Certolizumab",
+      "aliases": [],
+      "class": "biologic",
+      "indications": [
+        "ra",
+        "crohn"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "golimumab": {
+      "name_ar": "جوليموماب",
+      "name_en": "Golimumab",
+      "aliases": [],
+      "class": "biologic",
+      "indications": [
+        "ra"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "leflunomide": {
+      "name_ar": "ليفلونوميد",
+      "name_en": "Leflunomide",
+      "aliases": [],
+      "class": "dmard",
+      "indications": [
+        "ra"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sulfasalazine": {
+      "name_ar": "سلفاسالازين",
+      "name_en": "Sulfasalazine",
+      "aliases": [],
+      "class": "dmard",
+      "indications": [
+        "ra",
+        "ibd"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "tofacitinib": {
+      "name_ar": "توفاسيتينيب",
+      "name_en": "Tofacitinib",
+      "aliases": [],
+      "class": "jak_inhibitor",
+      "indications": [
+        "ra"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ustekinumab": {
+      "name_ar": "أوستيكينوماب",
+      "name_en": "Ustekinumab",
+      "aliases": [],
+      "class": "biologic",
+      "indications": [
+        "psoriasis",
+        "crohn"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "capecitabine": {
+      "name_ar": "كابيسيتابين",
+      "name_en": "Capecitabine",
+      "aliases": [],
+      "class": "antimetabolite",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "carboplatin": {
+      "name_ar": "كاربوبلاتين",
+      "name_en": "Carboplatin",
+      "aliases": [],
+      "class": "alkylating",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "cisplatin": {
+      "name_ar": "سيسبلاتين",
+      "name_en": "Cisplatin",
+      "aliases": [],
+      "class": "alkylating",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "cyclophosphamide": {
+      "name_ar": "سيكلوفوسفاميد",
+      "name_en": "Cyclophosphamide",
+      "aliases": [],
+      "class": "alkylating",
+      "indications": [
+        "cancer",
+        "autoimmune"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "docetaxel": {
+      "name_ar": "دوسيتاكسيل",
+      "name_en": "Docetaxel",
+      "aliases": [],
+      "class": "taxane",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "doxorubicin": {
+      "name_ar": "دوكسوروبيسين",
+      "name_en": "Doxorubicin",
+      "aliases": [],
+      "class": "anthracycline",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "etoposide": {
+      "name_ar": "إيتوبوسيد",
+      "name_en": "Etoposide",
+      "aliases": [],
+      "class": "topoisomerase",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "fluorouracil": {
+      "name_ar": "فلورويوراسيل",
+      "name_en": "Fluorouracil",
+      "aliases": [],
+      "class": "antimetabolite",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "gemcitabine": {
+      "name_ar": "جيمسيتابين",
+      "name_en": "Gemcitabine",
+      "aliases": [],
+      "class": "antimetabolite",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "imatinib": {
+      "name_ar": "إيماتينيب",
+      "name_en": "Imatinib",
+      "aliases": [],
+      "class": "tki",
+      "indications": [
+        "cml"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "irinotecan": {
+      "name_ar": "إيرينوتيكان",
+      "name_en": "Irinotecan",
+      "aliases": [],
+      "class": "topoisomerase",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "methotrexate_oncology": {
+      "name_ar": "ميثوتريكسات (أورام)",
+      "name_en": "Methotrexate Oncology",
+      "aliases": [],
+      "class": "antimetabolite",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "paclitaxel": {
+      "name_ar": "باكليتاكسيل",
+      "name_en": "Paclitaxel",
+      "aliases": [],
+      "class": "taxane",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "rituximab_oncology": {
+      "name_ar": "ريتوكسيماب (أورام)",
+      "name_en": "Rituximab Oncology",
+      "aliases": [],
+      "class": "biologic",
+      "indications": [
+        "lymphoma"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "tamoxifen": {
+      "name_ar": "تاموكسيفين",
+      "name_en": "Tamoxifen",
+      "aliases": [],
+      "class": "serm",
+      "indications": [
+        "breast_cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "trastuzumab_oncology": {
+      "name_ar": "تراستوزوماب (أورام)",
+      "name_en": "Trastuzumab Oncology",
+      "aliases": [],
+      "class": "biologic",
+      "indications": [
+        "breast_cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vinblastine": {
+      "name_ar": "فينبلاستين",
+      "name_en": "Vinblastine",
+      "aliases": [],
+      "class": "vinca",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vincristine": {
+      "name_ar": "فينكريستين",
+      "name_en": "Vincristine",
+      "aliases": [],
+      "class": "vinca",
+      "indications": [
+        "cancer"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "calcium_citrate": {
+      "name_ar": "سترات الكالسيوم",
+      "name_en": "Calcium Citrate",
+      "aliases": [],
+      "class": "mineral",
+      "indications": [
+        "deficiency"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "coenzyme_q10": {
+      "name_ar": "إنزيم Q10",
+      "name_en": "Coenzyme Q10",
+      "aliases": [],
+      "class": "supplement",
+      "indications": [
+        "cardiovascular"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "copper": {
+      "name_ar": "نحاس",
+      "name_en": "Copper",
+      "aliases": [],
+      "class": "mineral",
+      "indications": [
+        "deficiency"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "iodine": {
+      "name_ar": "يود",
+      "name_en": "Iodine",
+      "aliases": [],
+      "class": "mineral",
+      "indications": [
+        "thyroid"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "multivitamin": {
+      "name_ar": "مالتي فيتامين",
+      "name_en": "Multivitamin",
+      "aliases": [],
+      "class": "vitamin",
+      "indications": [
+        "deficiency"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "potassium_chloride": {
+      "name_ar": "كلوريد البوتاسيوم",
+      "name_en": "Potassium Chloride",
+      "aliases": [],
+      "class": "mineral",
+      "indications": [
+        "deficiency"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "selenium": {
+      "name_ar": "سيلينيوم",
+      "name_en": "Selenium",
+      "aliases": [],
+      "class": "mineral",
+      "indications": [
+        "deficiency"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vitamin_b1": {
+      "name_ar": "فيتامين ب١",
+      "name_en": "Vitamin B1",
+      "aliases": [],
+      "class": "vitamin",
+      "indications": [
+        "deficiency"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vitamin_b6": {
+      "name_ar": "فيتامين ب٦",
+      "name_en": "Vitamin B6",
+      "aliases": [],
+      "class": "vitamin",
+      "indications": [
+        "deficiency"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vitamin_c": {
+      "name_ar": "فيتامين ج",
+      "name_en": "Vitamin C",
+      "aliases": [],
+      "class": "vitamin",
+      "indications": [
+        "deficiency"
+      ],
+      "safe_pregnancy": false,
+      "safe_children": false
     }
-  }
+  },
+  "updated_at": "2026-09-16T12:03:04.911664"
 }
