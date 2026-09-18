@@ -1,52 +1,64 @@
-"""Database session management."""
-import os
-from contextlib import contextmanager
-from typing import Generator
-
+"""Database session — supports SQLite and PostgreSQL."""
+from __future__ import annotations
+from pathlib import Path
 from sqlalchemy import create_engine
-from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import NullPool
+import os
 
-from config_loader import prod_config
-
-# ═══════════════════════════════════════════════════════════
-# Database URL
-# ═══════════════════════════════════════════════════════════
-db_type = os.getenv("DATABASE_TYPE", "sqlite")
-
-if db_type == "postgres":
-    pg = prod_config.get("database.postgres", {})
-    user = pg.get("user", "postgres")
-    password = pg.get("password", "")
-    host = pg.get("host", "localhost")
-    port = pg.get("port", 5432)
-    database = pg.get("database", "h1ai")
-    DATABASE_URL = (
-        f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}"
-    )
-else:
-    # SQLite fallback
-    DATABASE_URL = "sqlite:///./h1ai.db"
+# ─── IMPORTANT: Load .env BEFORE accessing os.environ ───
+try:
+    from dotenv import load_dotenv
+    # Load from backend/.env
+    _env_file = Path(__file__).parent.parent / ".env"
+    if _env_file.exists():
+        load_dotenv(_env_file, override=True)
+except ImportError:
+    pass
 
 
-# ═══════════════════════════════════════════════════════════
-# Engine
-# ═══════════════════════════════════════════════════════════
-if DATABASE_URL.startswith("sqlite"):
-    engine = create_engine(
-        DATABASE_URL,
-        connect_args={"check_same_thread": False},
-        echo=False,
-    )
-else:
-    engine = create_engine(
-        DATABASE_URL,
-        pool_pre_ping=True,
-        pool_size=10,
-        max_overflow=20,
-        echo=False,
-    )
+def _get_database_url() -> str:
+    """Get database URL from env or fallback to SQLite."""
+    url = os.getenv("DATABASE_URL")
+    
+    if url and url.strip():
+        # Print info (but hide password)
+        display_url = url
+        if "@" in url:
+            parts = url.split("@")
+            display_url = parts[0].split("://")[0] + "://***@" + parts[1]
+        print(f"✅ [DB] Using PostgreSQL: {display_url}")
+        return url
+    
+    # Fallback to SQLite
+    sqlite_path = Path(__file__).parent.parent / "h1ai.db"
+    print(f"⚠️  [DB] Using SQLite: {sqlite_path}")
+    return f"sqlite:///{sqlite_path}"
 
 
+def _create_engine():
+    """Create engine with appropriate settings."""
+    url = _get_database_url()
+    
+    if url.startswith("sqlite"):
+        return create_engine(
+            url,
+            connect_args={"check_same_thread": False},
+            poolclass=NullPool,
+            echo=False,
+        )
+    else:
+        return create_engine(
+            url,
+            pool_size=20,
+            max_overflow=40,
+            pool_pre_ping=True,
+            pool_recycle=3600,
+            echo=False,
+        )
+
+
+engine = _create_engine()
 SessionLocal = sessionmaker(
     autocommit=False,
     autoflush=False,
@@ -54,27 +66,10 @@ SessionLocal = sessionmaker(
 )
 
 
-# ═══════════════════════════════════════════════════════════
-# Dependencies
-# ═══════════════════════════════════════════════════════════
-def get_db() -> Generator[Session, None, None]:
+def get_db():
     """FastAPI dependency."""
     db = SessionLocal()
     try:
         yield db
-    finally:
-        db.close()
-
-
-@contextmanager
-def get_db_context() -> Generator[Session, None, None]:
-    """Context manager for scripts."""
-    db = SessionLocal()
-    try:
-        yield db
-        db.commit()
-    except Exception:
-        db.rollback()
-        raise
     finally:
         db.close()
