@@ -19,13 +19,39 @@ def create_llm(temperature: float = 0.3) -> BaseChatModel:
         )
 
     if provider == "groq":
-        from langchain_groq import ChatGroq
         import os
-        return ChatGroq(
-            api_key=os.getenv("GROQ_API_KEY"),
-            model=prod_config.get("llm.groq.model", "llama-3.1-70b-versatile"),
-            temperature=temperature,
-        )
+        api_key = os.getenv("GROQ_API_KEY")
+        
+        if not api_key or not api_key.startswith("gsk_"):
+            logger.warning(
+                "llm.groq_missing_key",
+                fallback="ollama",
+                has_key=bool(api_key),
+            )
+            # Fallback to Ollama
+            from langchain_ollama import ChatOllama
+            return ChatOllama(
+                model=prod_config.get("llm.ollama.model", "qwen2.5:0.5b"),
+                base_url=prod_config.get("llm.ollama.base_url", "http://localhost:11434"),
+                temperature=temperature,
+            )
+        
+        try:
+            from langchain_groq import ChatGroq
+            return ChatGroq(
+                api_key=api_key,
+                model=prod_config.get("llm.groq.model", "llama-3.3-70b-versatile"),
+                temperature=temperature,
+            )
+        except Exception as e:
+            logger.error("llm.groq_init_failed", error=str(e)[:200], fallback="ollama")
+            # Fallback to Ollama
+            from langchain_ollama import ChatOllama
+            return ChatOllama(
+                model=prod_config.get("llm.ollama.model", "qwen2.5:0.5b"),
+                base_url=prod_config.get("llm.ollama.base_url", "http://localhost:11434"),
+                temperature=temperature,
+            )
 
     if provider == "openai":
         from langchain_openai import ChatOpenAI

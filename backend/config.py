@@ -26,13 +26,20 @@ class Settings(BaseSettings):
     jwt_access_token_expire_minutes: int = Field(default=30, ge=5, le=1440)
     jwt_refresh_token_expire_days: int = Field(default=7, ge=1, le=90)
 
+    # ═══ Webhook Security ═══
+    webhook_api_key: str = Field(
+        default="change_me_webhook_key_min_16_chars",
+        min_length=16,
+        description="API key for webhook authentication",
+    )
+
     # ═══ Paths ═══
     products_csv_path: str = "../data/products.csv"
     chroma_persist_dir: str = "./chroma_db"
 
     # ═══ Rate Limiting ═══
-    rate_limit_chat: str = "10/minute"
-    rate_limit_auth: str = "5/minute"
+    rate_limit_chat: str = "30/minute"
+    rate_limit_auth: str = "30/minute"
 
     # ═══ CORS ═══
     cors_origins: list[str] = [
@@ -42,7 +49,7 @@ class Settings(BaseSettings):
     ]
 
     # ═══ LLM ═══
-    ollama_model: str = "llama3.1:8b"
+    ollama_model: str = "qwen2.5:0.5b"
     ollama_base_url: str = "http://localhost:11434"
 
     @field_validator("jwt_secret_key")
@@ -78,3 +85,5 @@ def get_settings() -> Settings:
 
 
 settings = get_settings()
+
+# Webhook security (add to Settings class)

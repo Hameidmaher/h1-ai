@@ -150,3 +150,15 @@ temp/
 !config.production.yaml
 backend/.env
 .env
+
+# ═══ WhatsApp Sessions (ALL locations) ═══
+sessions/
+sessions.*/
+sessions.backup.*/
+**/sessions/
+**/sessions.backup.*/
+**/creds.json
+**/pre-key-*.json
+**/app-state-sync-*.json
+**/session-*.json
+**/sender-key-*.json

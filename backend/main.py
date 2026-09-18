@@ -47,6 +47,7 @@ from services.metrics import metrics
 
 from api.whatsapp_routes import router as whatsapp_router
 from api.whatsapp_webhook import router as whatsapp_webhook_router
+from api.whatsapp_webhook_v2 import router as whatsapp_webhook_v2_router
 from api.user_routes import router as user_router
 from api.audit_routes import router as audit_router
 from admin.api.products_routes import router as admin_products_router
@@ -117,6 +118,8 @@ app.state.limiter = limiter
 
 # ─── Routers ───
 app.include_router(whatsapp_router)
+app.include_router(whatsapp_webhook_router)
+app.include_router(whatsapp_webhook_v2_router)
 app.include_router(health_router)
 app.include_router(admin_products_router)
 app.include_router(admin_drugs_router)
@@ -157,7 +160,11 @@ if _admin_static.exists():
     @app.get("/admin")
     @app.get("/admin/")
     async def _admin_index():
-        return FileResponse(str(_admin_static / "index.html"))
+        return FileResponse(str(_admin_static / "dashboard.html"))
+    
+    @app.get("/admin/dashboard")
+    async def _admin_dashboard():
+        return FileResponse(str(_admin_static / "dashboard.html"))
 
 
 # ═══════════════════════════════════════════════════════════
@@ -234,7 +241,13 @@ async def chat(
 ):
     session_id = req.session_id or str(uuid4())
     try:
-        result = orchestrator.handle(req.message, user_role=user.role)
+        # Run orchestrator in thread pool to avoid blocking event loop
+        import asyncio
+        loop = asyncio.get_event_loop()
+        result = await loop.run_in_executor(
+            None,
+            lambda: orchestrator.handle(req.message, user_role=user.role),
+        )
         session = session_store.get(session_id) or {
             "user_id": user.id, "messages": []
         }
