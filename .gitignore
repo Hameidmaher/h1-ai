@@ -162,3 +162,8 @@ sessions.backup.*/
 **/app-state-sync-*.json
 **/session-*.json
 **/sender-key-*.json
+.git-credentials
+
+# Load test results
+tests/load/*.csv
+tests/load/*.html
