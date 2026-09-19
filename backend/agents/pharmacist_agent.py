@@ -13,6 +13,97 @@ import structlog
 
 logger = structlog.get_logger()
 
+# ═══════════════════════════════════════════════════════════
+# needs_human detection logic
+# ═══════════════════════════════════════════════════════════
+def should_need_human(text: str, original_message: str = "") -> bool:
+    """تحديد إذا كان الرد يحتاج تدخل بشري."""
+    if not text:
+        return False
+    
+    # ═══ 1. ردود أسعار/منتجات → مش محتاج (حتى لو فيها "جرعة")
+    price_indicators = ["السعر", "الكود", "ج.م", "جنيه", "الكمية المتوفرة", "كود الصنف"]
+    if any(k in text for k in price_indicators):
+        # إذا كان الرد فيه جدول أسعار → مش محتاج
+        if "|" in text and ("السعر" in text or "الكود" in text):
+            return False
+    
+    # ═══ 2. ردود غير طبية (greetings, thanks) → مش محتاج
+    non_medical = [
+        "كيف يمكنني مساعدتك", "كيف حالك", "أنا بخير", "مرحباً بك",
+        "وعليكم السلام", "العفو", "أهلاً وسهلاً", "شكراً جزيلاً",
+        "happy to help", "you're welcome",
+    ]
+    if any(phrase in text for phrase in non_medical):
+        if len(text) < 200:
+            return False
+    
+    # ═══ 3. ردود طبية/تحذيرية → محتاج
+    medical_alerts = [
+        "حساسية", "تداخل دوائي", "تحذير", "استشر طبيب", "استشارة",
+        "الحمل", "الأطفال", "جرعة زائدة",
+        "أعراض جانبية", "تفاعل دوائي", "منعت", "ممنوع",
+    ]
+    if any(k in text for k in medical_alerts):
+        return True
+    
+    # ═══ 4. Emergency → محتاج (إلزامي)
+    emergency = ["اتصل", "الطوارئ", "الإسعاف", "123", "فوراً"]
+    if any(k in text for k in emergency):
+        return True
+    
+    # ═══ 5. توصيات دوائية (بدون جدول) → محتاج
+    medical_recs = ["يُنصح", "ينصح", "استخدم", "البديل", "تناول"]
+    if any(k in text for k in medical_recs):
+        # إذا كان الرد طبي (> 300 حرف) وبدون جدول أسعار
+        if len(text) > 300 and "السعر" not in text:
+            return True
+    
+    # ═══ 6. Default: مش محتاج
+    return False
+    
+    text_lower = text.lower()
+    
+    # ═══ 1. ردود غير طبية (greetings, thanks) → مش محتاج
+    non_medical = [
+        "كيف يمكنني مساعدتك", "كيف حالك", "أنا بخير", "مرحباً بك",
+        "وعليكم السلام", "العفو", "أهلاً وسهلاً", "شكراً جزيلاً",
+        "happy to help", "you're welcome",
+    ]
+    if any(phrase in text for phrase in non_medical):
+        # إذا كان الرد قصير (< 200 حرف) → مش محتاج
+        if len(text) < 200:
+            return False
+    
+    # ═══ 2. ردود طبية/تحذيرية → محتاج
+    medical_alerts = [
+        "حساسية", "تداخل دوائي", "تحذير", "استشر طبيب", "استشارة",
+        "حامل", "الحمل", "طفل", "الأطفال", "جرعة زائدة",
+        "أعراض جانبية", "تفاعل", "منعت", "ممنوع",
+    ]
+    if any(k in text for k in medical_alerts):
+        return True
+    
+    # ═══ 3. Emergency → محتاج (بشكل إلزامي)
+    emergency = ["اتصل", "الطوارئ", "الإسعاف", "123", "فوراً"]
+    if any(k in text for k in emergency):
+        return True
+    
+    # ═══ 4. توصيات دوائية → محتاج
+    medical_recs = [
+        "تناول", "الجرعة", "العلاج", "الدواء المناسب",
+        "يُنصح", "ينصح", "استخدم", "البديل",
+    ]
+    if any(k in text for k in medical_recs):
+        # فقط إذا كان الرد طبي (> 300 حرف)
+        if len(text) > 300:
+            return True
+    
+    # ═══ 5. Default: مش محتاج (للتقليل من false positives)
+    return False
+
+
+
 SYSTEM_PROMPT = (
     "أنت مساعد ذكي للصيادلة في H1-AI.\n\n"
     "مهامك:\n"
@@ -89,9 +180,10 @@ class PharmacistAgent:
             )
             last = result["messages"][-1]
             text = last.content if isinstance(last.content, str) else str(last.content)
+            needs_human = should_need_human(text, message)
             return AgentResponse(
                 text=text, action="answer",
-                confidence=0.9, needs_human=True,
+                confidence=0.9, needs_human=needs_human,
             )
         except Exception as e:
             logger.error("pharmacist_agent.error", error=str(e))
