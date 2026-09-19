@@ -11,6 +11,9 @@ const App = {
 
   // ──────── Init ────────
   init() {
+    // Load saved theme
+    this.loadTheme();
+    
     document.getElementById('login-form')
       .addEventListener('submit', (e) => this.handleLogin(e));
     document.getElementById('logout-btn')
@@ -104,6 +107,69 @@ const App = {
     document.getElementById('user-name').textContent =
       this.state.user?.username || 'admin';
     this.navigate('dashboard');
+  },
+
+  toggleTheme() {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('h1ai_theme', isDark ? 'dark' : 'light');
+    const btn = document.querySelector('.theme-toggle');
+    if (btn) btn.textContent = isDark ? '☀️' : '🌙';
+  },
+
+  loadTheme() {
+    const saved = localStorage.getItem('h1ai_theme');
+    if (saved === 'dark') {
+      document.body.classList.add('dark-mode');
+      const btn = document.querySelector('.theme-toggle');
+      if (btn) btn.textContent = '☀️';
+    }
+  },
+
+  // ──────── Notifications ────────
+  notifications: [],
+  notifCount: 0,
+
+  async loadNotifications() {
+    try {
+      const data = await this.api('/webhook/v2/messages?limit=5');
+      const messages = data.messages || [];
+      this.notifications = messages.slice(0, 5);
+      this.notifCount = this.notifications.length;
+      this.updateNotifBadge();
+    } catch (e) {
+      console.warn('Notifications failed:', e);
+    }
+  },
+
+  updateNotifBadge() {
+    const badge = document.getElementById('notif-badge');
+    if (!badge) return;
+    if (this.notifCount > 0) {
+      badge.textContent = this.notifCount;
+      badge.style.display = 'flex';
+    } else {
+      badge.style.display = 'none';
+    }
+  },
+
+  showNotifications() {
+    if (!this.notifications.length) {
+      App.toast('لا توجد إشعارات جديدة', 'success');
+      return;
+    }
+    
+    const items = this.notifications.map(n => 
+      `<div style="padding:10px;border-bottom:1px solid #E2E8F0">
+        <div style="font-size:12px;color:#64748B">${n.from_phone || 'مجهول'}</div>
+        <div style="font-size:14px;margin-top:4px">${this.escapeHtml((n.content || '').slice(0, 60))}</div>
+      </div>`
+    ).join('');
+
+    this.openModal('🔔 الإشعارات', items, 
+      '<button class="btn btn-ghost" onclick="App.closeModal()">إغلاق</button>');
+    
+    this.notifCount = 0;
+    this.updateNotifBadge();
   },
 
   // ──────── Navigation ────────
