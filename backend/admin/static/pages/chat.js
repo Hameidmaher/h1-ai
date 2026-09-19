@@ -278,6 +278,15 @@ Pages.chat = {
           color: white;
           border-color: #0EA5E9;
         }
+        .chat-message.agent.streaming::after {
+          content: '▊';
+          animation: blink 1s infinite;
+          color: #0EA5E9;
+        }
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
       </style>
 
       <div class="chat-container">
@@ -387,16 +396,36 @@ Pages.chat = {
   },
 
   async sendMessage(text) {
+    // Use streaming
+    return this.sendMessageStream(text);
+  },
+
+  async sendMessageStream(text) {
+    // 1. Add user message
     this.messages.push({ type: 'user', text, timestamp: new Date() });
+    
+    // 2. Add empty agent message (will be filled)
+    const agentIndex = this.messages.length;
+    this.messages.push({
+      type: 'agent',
+      text: '',
+      handler: 'agent',
+      confidence: 0,
+      action: 'answer',
+      needsHuman: false,
+      productsReferenced: [],
+      timestamp: new Date(),
+      streaming: true,
+    });
+    
     this.updateMessages();
     this.saveHistory();
-    this.showTyping();
 
     try {
       const payload = { message: text };
       if (this.sessionId) payload.session_id = this.sessionId;
 
-      const res = await fetch('/v1/chat', {
+      const res = await fetch('/v1/chat/stream', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -405,45 +434,61 @@ Pages.chat = {
         body: JSON.stringify(payload),
       });
 
-      this.hideTyping();
-
       if (!res.ok) {
-        this.messages.push({
-          type: 'system',
-          text: `❌ خطأ: ${res.status}`,
-          timestamp: new Date(),
-        });
+        this.messages[agentIndex].text = `❌ خطأ: ${res.status}`;
+        this.messages[agentIndex].streaming = false;
         this.updateMessages();
         this.saveHistory();
         return;
       }
 
-      const data = await res.json();
-      this.sessionId = data.session_id;
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
 
-      const handler = data.handler || 'agent';
-      const isEmergency = handler === 'advisory_emergency';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
 
-      this.messages.push({
-        type: isEmergency ? 'emergency' : 'agent',
-        text: data.data.text,
-        handler,
-        confidence: data.data.confidence,
-        action: data.data.action,
-        needsHuman: data.data.needs_human,
-        productsReferenced: data.data.products_referenced || [],
-        timestamp: new Date(),
-      });
+        buffer += decoder.decode(value, { stream: true });
+        const events = buffer.split('\n\n');
+        buffer = events.pop() || '';
 
-      this.updateMessages();
-      this.saveHistory();
+        for (const event of events) {
+          if (!event.startsWith('data: ')) continue;
+          try {
+            const data = JSON.parse(event.slice(6));
+
+            if (data.type === 'start') {
+              this.sessionId = data.session_id;
+            } else if (data.type === 'chunk') {
+              this.messages[agentIndex].text += data.text;
+              this.updateMessages();
+            } else if (data.type === 'done') {
+              Object.assign(this.messages[agentIndex], {
+                handler: data.handler || 'agent',
+                confidence: data.confidence || 0,
+                action: data.action || 'answer',
+                needsHuman: data.needs_human || false,
+                productsReferenced: data.products_referenced || [],
+                streaming: false,
+              });
+              this.updateMessages();
+              this.saveHistory();
+            } else if (data.type === 'error') {
+              this.messages[agentIndex].text = `❌ خطأ: ${data.message}`;
+              this.messages[agentIndex].streaming = false;
+              this.updateMessages();
+              this.saveHistory();
+            }
+          } catch (parseErr) {
+            console.warn('Parse error:', parseErr);
+          }
+        }
+      }
     } catch (e) {
-      this.hideTyping();
-      this.messages.push({
-        type: 'system',
-        text: `❌ خطأ: ${e.message}`,
-        timestamp: new Date(),
-      });
+      this.messages[agentIndex].text = `❌ خطأ: ${e.message}`;
+      this.messages[agentIndex].streaming = false;
       this.updateMessages();
       this.saveHistory();
     }
@@ -533,7 +578,8 @@ Pages.chat = {
         </div>`;
       } else if (m.type === 'agent') {
         const needsHumanClass = m.needsHuman ? ' needs-human' : '';
-        return `<div class="chat-message agent${needsHumanClass}">
+        const streamingClass = m.streaming ? ' streaming' : '';
+        return `<div class="chat-message agent${needsHumanClass}${streamingClass}">
           <button class="copy-btn" onclick="Pages.chat.copyMessage(${idx})" title="نسخ">📋</button>
           <div class="markdown-content">${this.renderMarkdown(m.text)}</div>
           <div class="chat-message-meta">${this.renderMeta(m)}</div>
