@@ -167,3 +167,10 @@ sessions.backup.*/
 # Load test results
 tests/load/*.csv
 tests/load/*.html
+
+# Backup files
+*.bak
+*.bak.*
+*.save
+*.swp
+*.tmp
