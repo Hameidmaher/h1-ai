@@ -1,13 +1,24 @@
 /**
- * H1-AI — Chat UI
+ * H1-AI — Chat UI (Enhanced)
+ * Features: Markdown, Copy, History, Rich Meta
  */
 Pages.chat = {
   messages: [],
   sessionId: null,
   token: null,
-  currentUser: 'customer1',
+  currentUser: 'admin',
+  storageKey: 'h1ai_chat_history',
+  maxHistory: 100,
 
   async render(el) {
+    // تحميل marked.js
+    if (!window.marked) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+      document.head.appendChild(script);
+      await new Promise(r => script.onload = r);
+    }
+
     el.innerHTML = `
       <style>
         .chat-container {
@@ -46,13 +57,14 @@ Pages.chat = {
           gap: 12px;
         }
         .chat-message {
-          max-width: 70%;
+          max-width: 75%;
           padding: 12px 16px;
           border-radius: 16px;
-          line-height: 1.5;
+          line-height: 1.6;
           font-size: 15px;
           word-wrap: break-word;
           animation: fadeIn 0.3s ease;
+          position: relative;
         }
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
@@ -71,6 +83,9 @@ Pages.chat = {
           border: 1px solid #E2E8F0;
           border-bottom-left-radius: 4px;
         }
+        .chat-message.agent:hover .copy-btn {
+          opacity: 1;
+        }
         .chat-message.system {
           align-self: center;
           background: #FEF3C7;
@@ -86,11 +101,100 @@ Pages.chat = {
           border: 2px solid #EF4444;
           font-weight: 600;
         }
+        .chat-message.needs-human {
+          border-left: 4px solid #F59E0B;
+        }
+
+        /* Markdown styles */
+        .chat-message.agent p { margin: 0 0 8px 0; }
+        .chat-message.agent p:last-child { margin-bottom: 0; }
+        .chat-message.agent code {
+          background: #F1F5F9;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-family: 'Courier New', monospace;
+          font-size: 13px;
+          direction: ltr;
+          display: inline-block;
+        }
+        .chat-message.agent pre {
+          background: #1E293B;
+          color: #E2E8F0;
+          padding: 12px;
+          border-radius: 8px;
+          overflow-x: auto;
+          direction: ltr;
+          text-align: left;
+          margin: 8px 0;
+        }
+        .chat-message.agent pre code {
+          background: none;
+          padding: 0;
+          color: inherit;
+        }
+        .chat-message.agent ul, .chat-message.agent ol {
+          margin: 8px 0;
+          padding-right: 20px;
+        }
+        .chat-message.agent li { margin: 4px 0; }
+        .chat-message.agent strong { color: #0EA5E9; }
+        .chat-message.agent a {
+          color: #0EA5E9;
+          text-decoration: underline;
+        }
+        .chat-message.agent table {
+          border-collapse: collapse;
+          margin: 8px 0;
+          width: 100%;
+        }
+        .chat-message.agent th, .chat-message.agent td {
+          border: 1px solid #E2E8F0;
+          padding: 6px 10px;
+          text-align: right;
+        }
+        .chat-message.agent th {
+          background: #F8FAFC;
+          font-weight: 600;
+        }
+
         .chat-message-meta {
           font-size: 11px;
           opacity: 0.7;
-          margin-top: 4px;
+          margin-top: 6px;
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          flex-wrap: wrap;
         }
+        .meta-badge {
+          background: #F1F5F9;
+          padding: 2px 8px;
+          border-radius: 10px;
+          font-size: 10px;
+        }
+        .meta-badge.human { background: #FEF3C7; color: #92400E; }
+        .meta-badge.product { background: #DBEAFE; color: #1E40AF; }
+        .meta-badge.action { background: #E0E7FF; color: #3730A3; }
+
+        .copy-btn {
+          position: absolute;
+          top: 8px;
+          left: 8px;
+          background: white;
+          border: 1px solid #E2E8F0;
+          border-radius: 6px;
+          padding: 4px 8px;
+          font-size: 12px;
+          cursor: pointer;
+          opacity: 0;
+          transition: all 0.15s;
+        }
+        .copy-btn:hover {
+          background: #0EA5E9;
+          color: white;
+          border-color: #0EA5E9;
+        }
+
         .chat-input-bar {
           padding: 12px 16px;
           background: white;
@@ -179,11 +283,6 @@ Pages.chat = {
       <div class="chat-container">
         <div class="chat-toolbar">
           <strong>💬 اختبار Chat مع النظام</strong>
-          <select id="chat-user" onchange="Pages.chat.switchUser(this.value)">
-            <option value="customer1">👤 customer1 (عميل)</option>
-            <option value="pharmacist1">💊 pharmacist1 (صيدلي)</option>
-            <option value="admin">🎛️ admin (مدير)</option>
-          </select>
           <span id="chat-session-info" style="color:#64748B;font-size:13px"></span>
           <button class="btn btn-ghost btn-sm" onclick="Pages.chat.clearChat()" style="margin-right:auto">🗑️ مسح</button>
         </div>
@@ -198,9 +297,6 @@ Pages.chat = {
         </div>
 
         <div class="chat-messages" id="chat-messages">
-          <div class="chat-message system">
-            💡 اختر مستخدم وابدأ المحادثة
-          </div>
         </div>
 
         <div class="chat-input-bar">
@@ -217,51 +313,71 @@ Pages.chat = {
       </div>
     `;
 
+    // استرجاع الرسائل السابقة
+    this.loadHistory();
+
     // تحميل أول مرة
-    await this.switchUser('customer1');
+    await this.switchUser('admin');
   },
 
-  async getToken(username) {
-    // استخدام token الـ admin الحالي
-    if (username === App.state.user?.username) {
-      return App.state.token;
+  // ──────── History Management ────────
+  loadHistory() {
+    try {
+      const saved = localStorage.getItem(this.storageKey);
+      if (saved) {
+        const data = JSON.parse(saved);
+        this.messages = data.messages || [];
+        this.sessionId = data.sessionId || null;
+        this.updateMessages();
+      } else {
+        this.addSystem('💡 اختر مستخدم وابدأ المحادثة');
+      }
+    } catch (e) {
+      console.warn('Failed to load history:', e);
+      this.addSystem('💡 اختر مستخدم وابدأ المحادثة');
     }
-    // ملاحظة: التبديل بين المستخدمين يتطلب تسجيل دخول منفصل
-    console.warn('User switching requires explicit login. Using current token.');
+  },
+
+  saveHistory() {
+    try {
+      const data = {
+        messages: this.messages.slice(-this.maxHistory),
+        sessionId: this.sessionId,
+        timestamp: Date.now(),
+      };
+      localStorage.setItem(this.storageKey, JSON.stringify(data));
+    } catch (e) {
+      console.warn('Failed to save history:', e);
+    }
+  },
+
+  // ──────── Token ────────
+  async getToken(username) {
     return App.state.token;
   },
 
   async switchUser(username) {
     this.currentUser = username;
     this.token = await this.getToken(username);
-    this.messages = [];
-    this.sessionId = null;
 
     const info = document.getElementById('chat-session-info');
     if (info) {
-      info.textContent = `المستخدم: ${username}`;
+      info.textContent = `المستخدم: ${App.state.user?.username || 'admin'}`;
     }
 
     this.updateMessages();
-
-    // رسالة ترحيبية
-    this.addSystem(`✅ تم تسجيل الدخول كـ ${username}`);
-
-    if (username === 'pharmacist1' || username === 'admin') {
-      this.addSystem('💊 ستُوجَّه الآن كـ صيدلي — يمكنك طلب تقارير المخزون');
-    }
   },
 
   addSystem(text) {
-    this.messages.push({ type: 'system', text });
+    this.messages.push({ type: 'system', text, timestamp: new Date() });
     this.updateMessages();
+    this.saveHistory();
   },
 
   async send() {
     const input = document.getElementById('chat-input');
     const text = input.value.trim();
     if (!text) return;
-
     input.value = '';
     this.sendMessage(text);
   },
@@ -271,14 +387,11 @@ Pages.chat = {
   },
 
   async sendMessage(text) {
-    // أضف رسالة المستخدم
     this.messages.push({ type: 'user', text, timestamp: new Date() });
     this.updateMessages();
-
-    // أظهر "يكتب..."
+    this.saveHistory();
     this.showTyping();
 
-    // أرسل للـ API
     try {
       const payload = { message: text };
       if (this.sessionId) payload.session_id = this.sessionId;
@@ -295,19 +408,19 @@ Pages.chat = {
       this.hideTyping();
 
       if (!res.ok) {
-        const err = await res.text();
         this.messages.push({
           type: 'system',
           text: `❌ خطأ: ${res.status}`,
+          timestamp: new Date(),
         });
         this.updateMessages();
+        this.saveHistory();
         return;
       }
 
       const data = await res.json();
       this.sessionId = data.session_id;
 
-      // اعرض الرد
       const handler = data.handler || 'agent';
       const isEmergency = handler === 'advisory_emergency';
 
@@ -316,24 +429,29 @@ Pages.chat = {
         text: data.data.text,
         handler,
         confidence: data.data.confidence,
+        action: data.data.action,
+        needsHuman: data.data.needs_human,
+        productsReferenced: data.data.products_referenced || [],
         timestamp: new Date(),
       });
 
       this.updateMessages();
+      this.saveHistory();
     } catch (e) {
       this.hideTyping();
       this.messages.push({
         type: 'system',
         text: `❌ خطأ: ${e.message}`,
+        timestamp: new Date(),
       });
       this.updateMessages();
+      this.saveHistory();
     }
   },
 
   showTyping() {
     const container = document.getElementById('chat-messages');
     if (!container) return;
-
     const existing = document.getElementById('typing-indicator');
     if (existing) return;
 
@@ -350,29 +468,79 @@ Pages.chat = {
     if (el) el.remove();
   },
 
+  renderMarkdown(text) {
+    if (!window.marked) return this.escape(text);
+    try {
+      return marked.parse(text, { breaks: true, gfm: true });
+    } catch (e) {
+      return this.escape(text);
+    }
+  },
+
+  renderMeta(m) {
+    const parts = [];
+
+    // Handler badge
+    const handlerLabel = m.handler === 'chatbot' ? '🎭 ChatBot' :
+                        m.handler === 'advisory' ? '🔍 Advisory' :
+                        m.handler === 'advisory_emergency' ? '🚨 Emergency' :
+                        '🧠 Agent';
+    parts.push(`<span>${handlerLabel}</span>`);
+
+    // Confidence
+    if (m.confidence !== undefined && m.confidence > 0) {
+      parts.push(`<span class="meta-badge">${(m.confidence * 100).toFixed(0)}%</span>`);
+    }
+
+    // Action
+    if (m.action && m.action !== 'answer') {
+      const actionLabel = m.action === 'redirect_to_pharmacist' ? '→ صيدلي' :
+                         m.action === 'ask_clarification' ? '؟ توضيح' : m.action;
+      parts.push(`<span class="meta-badge action">${actionLabel}</span>`);
+    }
+
+    // Needs human
+    if (m.needsHuman) {
+      parts.push(`<span class="meta-badge human">👤 يحتاج تدخل</span>`);
+    }
+
+    // Products
+    if (m.productsReferenced && m.productsReferenced.length > 0) {
+      const products = m.productsReferenced.slice(0, 3).join(', ');
+      parts.push(`<span class="meta-badge product">📦 ${products}</span>`);
+    }
+
+    // Time
+    parts.push(`<span>${this.formatTime(m.timestamp)}</span>`);
+
+    return parts.join('');
+  },
+
   updateMessages() {
     const container = document.getElementById('chat-messages');
     if (!container) return;
 
-    container.innerHTML = this.messages.map(m => {
+    if (this.messages.length === 0) {
+      container.innerHTML = '<div class="chat-message system">💡 ابدأ المحادثة</div>';
+      return;
+    }
+
+    container.innerHTML = this.messages.map((m, idx) => {
       if (m.type === 'user') {
         return `<div class="chat-message user">
           ${this.escape(m.text)}
           <div class="chat-message-meta">${this.formatTime(m.timestamp)}</div>
         </div>`;
       } else if (m.type === 'agent') {
-        return `<div class="chat-message agent">
-          ${this.escape(m.text)}
-          <div class="chat-message-meta">
-            ${m.handler === 'chatbot' ? '🎭 ChatBot' :
-              m.handler === 'advisory' ? '🔍 Advisory' :
-              '🧠 Agent'} • ${(m.confidence * 100).toFixed(0)}%
-            • ${this.formatTime(m.timestamp)}
-          </div>
+        const needsHumanClass = m.needsHuman ? ' needs-human' : '';
+        return `<div class="chat-message agent${needsHumanClass}">
+          <button class="copy-btn" onclick="Pages.chat.copyMessage(${idx})" title="نسخ">📋</button>
+          <div class="markdown-content">${this.renderMarkdown(m.text)}</div>
+          <div class="chat-message-meta">${this.renderMeta(m)}</div>
         </div>`;
       } else if (m.type === 'emergency') {
         return `<div class="chat-message emergency">
-          ${this.escape(m.text)}
+          ${this.renderMarkdown(m.text)}
         </div>`;
       } else {
         return `<div class="chat-message system">${this.escape(m.text)}</div>`;
@@ -382,9 +550,31 @@ Pages.chat = {
     container.scrollTop = container.scrollHeight;
   },
 
+  async copyMessage(idx) {
+    const m = this.messages[idx];
+    if (!m) return;
+
+    try {
+      await navigator.clipboard.writeText(m.text);
+      App.toast('✅ تم النسخ', 'success');
+    } catch (e) {
+      // Fallback
+      const textarea = document.createElement('textarea');
+      textarea.value = m.text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      App.toast('✅ تم النسخ', 'success');
+    }
+  },
+
   clearChat() {
+    if (!confirm('هل أنت متأكد من مسح المحادثة؟')) return;
+
     this.messages = [];
     this.sessionId = null;
+    localStorage.removeItem(this.storageKey);
     this.updateMessages();
     this.addSystem('🗑️ تم مسح المحادثة');
   },
