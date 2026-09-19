@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>H1-AI — Admin Dashboard</title>
   <link rel="stylesheet" href="/admin/static/app.css">
+  <link rel="stylesheet" href="/admin/static/css/mobile.css">
+  <link rel="stylesheet" href="/admin/static/css/dark.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
 </head>
 <body>
+<!-- Mobile Menu -->
+<button class="mobile-menu-btn" onclick="App.toggleMobileMenu()" aria-label="القائمة">☰</button>
+<div class="mobile-overlay" onclick="App.toggleMobileMenu()"></div>
+
+<!-- Theme Toggle -->
+<button class="theme-toggle" onclick="App.toggleTheme()" title="تبديل الوضع">🌙</button>
+
 
 <!-- Login Screen -->
 <div id="login-screen" class="login-screen">
@@ -77,7 +86,11 @@
   <main class="main">
     <header class="topbar">
       <h1 id="page-title">لوحة التحكم</h1>
-      <div class="user-info">
+      <div class="user-info" style="display:flex;align-items:center;gap:12px">
+        <button onclick="App.showNotifications()" style="position:relative;background:none;border:none;cursor:pointer;font-size:20px" title="الإشعارات">
+          🔔
+          <span id="notif-badge" style="display:none;position:absolute;top:-4px;left:-4px;background:#EF4444;color:white;font-size:10px;border-radius:50%;width:18px;height:18px;align-items:center;justify-content:center;font-weight:600">0</span>
+        </button>
         <span id="user-name">admin</span>
       </div>
     </header>

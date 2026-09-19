@@ -1,0 +1,229 @@
+/* ═══════════════════════════════════════════════════════════
+   H1-AI — Mobile Responsive Styles
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Mobile Menu Button ─── */
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  background: #0F172A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.mobile-menu-btn:hover {
+  background: #1E293B;
+}
+
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+.mobile-overlay.active {
+  display: block;
+}
+
+/* ─── Tablet (≤ 1024px) ─── */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+  .chart-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+/* ─── Mobile (≤ 768px) ─── */
+@media (max-width: 768px) {
+  /* Show mobile menu button */
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Sidebar slides in from right (RTL) */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100vh;
+    z-index: 1001;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -2px 0 12px rgba(0,0,0,0.1);
+  }
+
+  .sidebar.open {
+    right: 0;
+  }
+
+  /* Main content takes full width */
+  .main {
+    margin-right: 0 !important;
+    padding: 12px;
+    width: 100%;
+  }
+
+  /* Topbar adjustments */
+  .topbar {
+    padding: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .topbar h1 {
+    font-size: 20px;
+  }
+
+  /* Stats cards — 1 column */
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  /* Chart grid — 1 column */
+  .chart-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Chat adjustments */
+  .chat-container {
+    height: calc(100vh - 120px);
+    border-radius: 8px;
+  }
+
+  .chat-message {
+    max-width: 90%;
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  .chat-input-bar {
+    padding: 8px 12px;
+  }
+
+  .chat-input-bar input {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .chat-input-bar button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .quick-actions {
+    padding: 8px 12px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .quick-actions::-webkit-scrollbar {
+    display: none;
+  }
+
+  .quick-action {
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  /* Settings */
+  .settings-row {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 8px;
+  }
+
+  .settings-input {
+    width: 100% !important;
+  }
+
+  .settings-actions {
+    flex-direction: column;
+  }
+
+  .settings-actions button {
+    width: 100%;
+  }
+
+  /* Tables */
+  table {
+    font-size: 13px;
+  }
+
+  table th, table td {
+    padding: 8px 6px;
+  }
+
+  /* Cards */
+  .card, .settings-section {
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  /* Login */
+  .login-box {
+    margin: 20px;
+    padding: 24px;
+    max-width: none;
+  }
+}
+
+/* ─── Small phones (≤ 480px) ─── */
+@media (max-width: 480px) {
+  .main {
+    padding: 8px;
+  }
+
+  .topbar h1 {
+    font-size: 18px;
+  }
+
+  .stat-card .value {
+    font-size: 24px;
+  }
+
+  .chat-message {
+    max-width: 95%;
+    font-size: 13px;
+  }
+
+  .settings-section h3 {
+    font-size: 16px;
+  }
+}
+
+/* ─── Print styles ─── */
+@media print {
+  .sidebar, .mobile-menu-btn, .topbar .user-info {
+    display: none !important;
+  }
+  .main {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}

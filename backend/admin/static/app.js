@@ -24,6 +24,10 @@ const App = {
         e.preventDefault();
         const page = item.dataset.page;
         this.navigate(page);
+        // Auto-close mobile menu
+        if (window.innerWidth <= 768) {
+          this.toggleMobileMenu();
+        }
       });
     });
 
@@ -33,6 +37,15 @@ const App = {
     } else {
       this.showLogin();
     }
+  },
+
+
+  toggleMobileMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.mobile-overlay');
+    if (!sidebar || !overlay) return;
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
   },
 
   // ──────── Auth ────────

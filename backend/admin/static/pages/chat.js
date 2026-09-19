@@ -287,6 +287,53 @@ Pages.chat = {
           0%, 50% { opacity: 1; }
           51%, 100% { opacity: 0; }
         }
+
+        .chat-voice-btn, .chat-file-btn {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          border: none;
+          cursor: pointer;
+          font-size: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.15s;
+          flex-shrink: 0;
+        }
+        .chat-voice-btn {
+          background: #F1F5F9;
+          color: #64748B;
+        }
+        .chat-voice-btn:hover {
+          background: #E2E8F0;
+        }
+        .chat-voice-btn.recording {
+          background: #EF4444;
+          color: white;
+          animation: pulse-recording 1.5s infinite;
+        }
+        @keyframes pulse-recording {
+          0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239,68,68,0.7); }
+          50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(239,68,68,0); }
+        }
+        .chat-file-btn {
+          background: #F1F5F9;
+          color: #64748B;
+        }
+        .chat-file-btn:hover {
+          background: #E2E8F0;
+        }
+        .voice-transcript {
+          background: #FEF3C7;
+          border: 1px solid #F59E0B;
+          border-radius: 8px;
+          padding: 8px 12px;
+          font-size: 13px;
+          color: #92400E;
+          margin-top: 6px;
+        }
+
       </style>
 
       <div class="chat-container">
@@ -309,6 +356,8 @@ Pages.chat = {
         </div>
 
         <div class="chat-input-bar">
+          <button class="chat-voice-btn" id="chat-voice-btn" onclick="Pages.chat.toggleVoice()" title="تسجيل صوتي">🎤</button>
+          <button class="chat-file-btn" onclick="Pages.chat.pickFile()" title="رفع صورة وصفة">📎</button>
           <input
             type="text"
             id="chat-input"
@@ -318,6 +367,7 @@ Pages.chat = {
           <button id="chat-send-btn" onclick="Pages.chat.send()">
             📤 إرسال
           </button>
+          <input type="file" id="chat-file-input" accept="image/*" style="display:none" onchange="Pages.chat.handleFile(this.files[0])">
         </div>
       </div>
     `;
@@ -573,6 +623,7 @@ Pages.chat = {
     container.innerHTML = this.messages.map((m, idx) => {
       if (m.type === 'user') {
         return `<div class="chat-message user">
+          ${m.image ? `<img src="${m.image}" style="max-width:200px;border-radius:8px;margin-bottom:6px;display:block">` : ''}
           ${this.escape(m.text)}
           <div class="chat-message-meta">${this.formatTime(m.timestamp)}</div>
         </div>`;
