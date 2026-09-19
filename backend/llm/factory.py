@@ -28,12 +28,13 @@ def create_llm(temperature: float = 0.3) -> BaseChatModel:
                 fallback="ollama",
                 has_key=bool(api_key),
             )
-            # Fallback to Ollama
+            # Fallback to Ollama (use qwen2.5:7b for better quality)
             from langchain_ollama import ChatOllama
             return ChatOllama(
-                model=prod_config.get("llm.ollama.model", "qwen2.5:0.5b"),
+                model=prod_config.get("llm.ollama.model", "qwen2.5:7b"),
                 base_url=prod_config.get("llm.ollama.base_url", "http://localhost:11434"),
                 temperature=temperature,
+                num_ctx=8192,
             )
         
         try:
@@ -45,12 +46,13 @@ def create_llm(temperature: float = 0.3) -> BaseChatModel:
             )
         except Exception as e:
             logger.error("llm.groq_init_failed", error=str(e)[:200], fallback="ollama")
-            # Fallback to Ollama
+            # Fallback to Ollama (use qwen2.5:7b for better quality)
             from langchain_ollama import ChatOllama
             return ChatOllama(
-                model=prod_config.get("llm.ollama.model", "qwen2.5:0.5b"),
+                model=prod_config.get("llm.ollama.model", "qwen2.5:7b"),
                 base_url=prod_config.get("llm.ollama.base_url", "http://localhost:11434"),
                 temperature=temperature,
+                num_ctx=8192,
             )
 
     if provider == "openai":

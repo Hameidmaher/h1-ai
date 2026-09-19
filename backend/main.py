@@ -31,6 +31,7 @@ from auth.jwt_handler import (
 from auth.dependencies import (
     get_current_user, get_user_by_username, get_user_by_id,
     _users_db, seed_users,
+    require_admin,
 )
 from knowledge.engine import advisory_engine
 from core.orchestrator import orchestrator
@@ -44,6 +45,8 @@ from config_validator import validate_and_report
 from session.session_store import session_store
 from services.logging_service import setup_logging
 from services.metrics import metrics
+from services.chat_cache import chat_cache
+from services.settings_service import settings_service
 
 from api.whatsapp_routes import router as whatsapp_router
 from api.whatsapp_webhook import router as whatsapp_webhook_router
@@ -167,6 +170,61 @@ if _admin_static.exists():
         return FileResponse(str(_admin_static / "index.html"))
 
 
+
+
+# ═══════════════════════════════════════════════════════════
+# SETTINGS MANAGEMENT
+# ═══════════════════════════════════════════════════════════
+@app.get("/v1/admin/settings")
+async def get_settings(user: User = Depends(require_admin)):
+    """Get all settings."""
+    return {
+        "whatsapp": settings_service.get_whatsapp(),
+        "app": settings_service.load().get("app", {}),
+        "features": settings_service.load().get("features", {}),
+    }
+
+
+@app.get("/v1/admin/settings/whatsapp")
+async def get_whatsapp_settings(user: User = Depends(require_admin)):
+    """Get WhatsApp settings."""
+    return settings_service.get_whatsapp()
+
+
+@app.put("/v1/admin/settings/whatsapp")
+async def update_whatsapp_settings(
+    request: Request,
+    user: User = Depends(require_admin),
+):
+    """Update WhatsApp settings."""
+    try:
+        updates = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON")
+
+    # Validate
+    if "phone" in updates:
+        phone = str(updates["phone"]).strip()
+        if phone and not (phone.startswith("+") or phone.isdigit()):
+            raise HTTPException(
+                status_code=400,
+                detail="Phone must start with + or be digits",
+            )
+        updates["phone"] = phone
+
+    if "mode" in updates:
+        if updates["mode"] not in ("link", "qr", "api"):
+            raise HTTPException(
+                status_code=400,
+                detail="Mode must be link, qr, or api",
+            )
+
+    if "enabled" in updates:
+        updates["enabled"] = bool(updates["enabled"])
+
+    result = settings_service.update_whatsapp(updates)
+    return {"success": True, "whatsapp": result}
+
 # ═══════════════════════════════════════════════════════════
 # AUTH ENDPOINTS
 # ═══════════════════════════════════════════════════════════
@@ -240,6 +298,22 @@ async def chat(
     user: User = Depends(get_current_user),
 ):
     session_id = req.session_id or str(uuid4())
+    
+    # ═══ Check cache first ═══
+    cached = chat_cache.get(req.message, user.role)
+    if cached:
+        session = session_store.get(session_id) or {"user_id": user.id, "messages": []}
+        session["messages"].append({"role": "user", "content": req.message})
+        session["messages"].append({"role": "agent", "content": cached["data"]["text"]})
+        session_store.set(session_id, session)
+        return ChatResponse(
+            data=cached["data"],
+            user_type=cached["user_type"],
+            session_id=session_id,
+            route_method="cache",
+            handler=cached["handler"],
+        )
+    
     try:
         # Run orchestrator in thread pool to avoid blocking event loop
         import asyncio
@@ -350,3 +424,27 @@ async def knowledge_advise(
 ):
     result = advisory_engine.analyze(req.query)
     return result.to_dict()
+
+
+# ═══════════════════════════════════════════════════════════
+# CACHE MANAGEMENT
+# ═══════════════════════════════════════════════════════════
+@app.get("/v1/cache/stats")
+async def cache_stats(user: User = Depends(require_admin)):
+    """Get chat cache statistics."""
+    return chat_cache.stats()
+
+
+@app.post("/v1/cache/clear")
+async def cache_clear(user: User = Depends(require_admin)):
+    """Clear chat cache."""
+    chat_cache.clear()
+    return {"success": True, "message": "Cache cleared"}
+
+
+@app.post("/v1/cache/save")
+async def cache_save(user: User = Depends(require_admin)):
+    """Save cache to disk."""
+    chat_cache.save_to_disk()
+    return {"success": True}
+

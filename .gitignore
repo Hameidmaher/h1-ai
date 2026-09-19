@@ -177,3 +177,8 @@ tests/load/*.html
 *.bak*
 *.save
 *.swp
+
+# Backup files
+*.broken.*
+*.bak.*
+main.py.bak.*
