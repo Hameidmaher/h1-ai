@@ -174,3 +174,6 @@ tests/load/*.html
 *.save
 *.swp
 *.tmp
+*.bak*
+*.save
+*.swp
