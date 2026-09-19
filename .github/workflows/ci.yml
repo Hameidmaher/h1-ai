@@ -10,19 +10,29 @@ jobs:
   test:
     runs-on: ubuntu-latest
     
-    services:
-      postgres:
-        image: postgres:17
-        env:
-          POSTGRES_PASSWORD: test
-          POSTGRES_DB: h1ai_test
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    env:
+      # ─── Required by config.py ───
+      JWT_SECRET_KEY: ci-test-jwt-secret-key-must-be-at-least-32-chars-long
+      JWT_ALGORITHM: HS256
+      JWT_ACCESS_TOKEN_EXPIRE_MINUTES: "30"
+      JWT_REFRESH_TOKEN_EXPIRE_DAYS: "7"
+      ENVIRONMENT: test
+      DEBUG: "false"
+      
+      # ─── Required by config_loader.py ───
+      APP_TAGLINE: "Assistant Pharmacy"
+      LLM_PROVIDER: groq
+      DATABASE_TYPE: sqlite
+      
+      # ─── Webhook ───
+      WEBHOOK_API_KEY: ci-test-webhook-key-min-16-chars
+      
+      # ─── Optional (bypass external calls) ───
+      OLLAMA_MODEL: qwen2.5:0.5b
+      OLLAMA_BASE_URL: http://localhost:11434
+      GROQ_API_KEY: dummy-key-for-ci
+      DATABASE_URL: ""
+      CORS_ORIGINS: '["http://localhost:3000"]'
     
     steps:
       - name: Checkout code
@@ -35,21 +45,21 @@ jobs:
           cache: 'pip'
       
       - name: Install dependencies
+        working-directory: backend
         run: |
-          cd backend
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest pytest-asyncio httpx
+          pip install -r requirements-dev.txt
       
       - name: Verify app imports
-        env:
-          DATABASE_URL: postgresql://postgres:test@localhost:5432/h1ai_test
-          JWT_SECRET_KEY: test-secret-key-for-ci-only
-          JWT_ALGORITHM: HS256
-          ENVIRONMENT: test
-          DEBUG: "true"
-          CORS_ORIGINS: '["http://localhost:3000"]'
-          WEBHOOK_API_KEY: test-webhook-key
+        working-directory: backend
         run: |
-          cd backend
-          timeout 30 python -c "from main import app; print('✅ App imports OK')" || exit 1
+          python -c "from main import app; print('✅ App imports OK')"
+      
+      - name: Run tests (without coverage gate)
+        working-directory: backend
+        run: |
+          pytest tests/ -v --tb=short -p no:cacheprovider \
+            --no-header \
+            -o addopts="" \
+            --override-ini="addopts=-v --tb=short"
