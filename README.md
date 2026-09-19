@@ -1,5 +1,6 @@
 # H1-AI
 
+[![CI](https://github.com/Hameidmaher/h1-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Hameidmaher/h1-ai/actions/workflows/ci.yml)
 **Assistant Pharmacy** - Next generation pharmacy assistant.
 
 ## Features
