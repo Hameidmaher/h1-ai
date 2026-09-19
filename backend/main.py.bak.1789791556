@@ -160,11 +160,11 @@ if _admin_static.exists():
     @app.get("/admin")
     @app.get("/admin/")
     async def _admin_index():
-        return FileResponse(str(_admin_static / "index.html"))
+        return FileResponse(str(_admin_static / "dashboard.html"))
     
     @app.get("/admin/dashboard")
     async def _admin_dashboard():
-        return FileResponse(str(_admin_static / "index.html"))
+        return FileResponse(str(_admin_static / "dashboard.html"))
 
 
 # ═══════════════════════════════════════════════════════════

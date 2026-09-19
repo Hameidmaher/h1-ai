@@ -222,13 +222,26 @@ Pages.chat = {
   },
 
   async getToken(username) {
-    // استخدام token الـ admin الحالي
-    if (username === App.state.user?.username) {
-      return App.state.token;
+    const passwords = {
+      'customer1': 'customer123',
+      'pharmacist1': 'pharma123',
+      'admin': 'admin123',
+    };
+    try {
+      const res = await fetch('/v1/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username,
+          password: passwords[username] || 'customer123',
+        }),
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      return data.access_token;
+    } catch (e) {
+      return null;
     }
-    // ملاحظة: التبديل بين المستخدمين يتطلب تسجيل دخول منفصل
-    console.warn('User switching requires explicit login. Using current token.');
-    return App.state.token;
   },
 
   async switchUser(username) {
