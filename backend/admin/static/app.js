@@ -203,6 +203,7 @@ Pages.dashboard = {
     try {
       const stats = await App.api('/v1/admin/products/stats');
       const html = `
+        <div id="dashboard-charts"></div>
         <div class="stats-grid">
           <div class="stat-card">
             <div class="label">المنتجات</div>
@@ -244,6 +245,10 @@ Pages.dashboard = {
         </div>
       `;
       el.innerHTML = html;
+      // Render charts after DOM is ready
+      setTimeout(() => {
+        if (window.Charts) Charts.renderDashboardCharts(stats);
+      }, 100);
     } catch (e) {
       el.innerHTML = `<div class="empty-state">خطأ: ${e.message}</div>`;
     }
