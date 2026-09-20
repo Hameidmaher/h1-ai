@@ -17,7 +17,7 @@ async def overview():
             SELECT
                 (SELECT COUNT(*) FROM chatbot_sessions) AS total_sessions,
                 (SELECT COUNT(*) FROM chatbot_messages) AS total_messages,
-                (SELECT COUNT(*) FROM chatbots_sessions WHERE created_at > now() - interval '24 hours') AS sessions_24h,
+                (SELECT COUNT(*) FROM chatbot_sessions WHERE created_at > now() - interval '24 hours') AS sessions_24h,
                 (SELECT COUNT(*) FROM chatbot_messages WHERE created_at > now() - interval '24 hours') AS messages_24h,
                 (SELECT COUNT(*) FROM drugs) AS total_drugs,
                 (SELECT COUNT(*) FROM customers) AS total_customers,

@@ -19,7 +19,15 @@ def test_detect_category_payment():
 
 
 def test_detect_category_none():
-    assert detect_category("عايز حاجة للصداع") is None
+    """نص عام مش فيه keywords."""
+    assert detect_category("مرحبا ازيك") is None
+    assert detect_category("شكراً") is None
+
+
+def test_detect_category_headache():
+    """الصداع — category صحيحة."""
+    assert detect_category("عايز حاجة للصداع") == "الصداع"
+    assert detect_category("عندي صداع") == "الصداع"
 
 
 @pytest.mark.asyncio

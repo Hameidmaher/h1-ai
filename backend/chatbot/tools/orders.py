@@ -90,7 +90,7 @@ async def create_order_handler(
             """), {"id": customer_id, "ph": f"web_{customer_id[:8]}"})
 
         # 5. أنشئ رقم أوردر
-        order_no = f"ORD-{datetime.now().strftime('%Y%m%d%H%M%S')}-{drug.id[:4]}"
+        order_no = f"ORD-{datetime.now().strftime('%Y%m%d%H%M%S')}-{str(drug.id)[:4]}"
 
         # 6. احسب الإجمالي
         line_total = float(drug.selling_price) * quantity
