@@ -1,0 +1,174 @@
+"""
+Chat API Routes — REST endpoints للشات بوت
+"""
+from __future__ import annotations
+from fastapi import APIRouter, Depends, HTTPException, status
+from pydantic import BaseModel, Field
+from typing import Optional
+import structlog
+
+from chatbot.core import get_core
+
+logger = structlog.get_logger()
+router = APIRouter(prefix="/api/chat", tags=["chat"])
+
+
+# ═══════════════════════════════════════════════════════════
+#  Request / Response Models
+# ═══════════════════════════════════════════════════════════
+class ChatMessageRequest(BaseModel):
+    message: str = Field(..., min_length=1, max_length=4000)
+    channel: str = "web"
+    channel_user_id: str
+    pharmacy_id: Optional[str] = None
+    customer_id: Optional[str] = None
+
+
+class ChatMessageResponse(BaseModel):
+    session_id: str
+    message_id: Optional[int]
+    text: str
+    tools_used: list[str] = []
+    tokens_in: int = 0
+    tokens_out: int = 0
+    latency_ms: int = 0
+    model: str = ""
+
+
+class SessionHistoryResponse(BaseModel):
+    session_id: str
+    messages: list[dict]
+    total: int
+
+
+class FeedbackRequest(BaseModel):
+    message_id: int
+    rating: int = Field(..., ge=-1, le=5)
+    feedback_type: Optional[str] = None
+    comment: Optional[str] = None
+
+
+# ═══════════════════════════════════════════════════════════
+#  POST /api/chat/message — نقطة الدخول الرئيسية
+# ═══════════════════════════════════════════════════════════
+@router.post("/message", response_model=ChatMessageResponse)
+async def send_message(req: ChatMessageRequest):
+    """
+    استقبل رسالة وشغّل ChatbotCore.
+    """
+    try:
+        core = get_core()
+        response = await core.chat(
+            message=req.message,
+            channel=req.channel,
+            channel_user_id=req.channel_user_id,
+            pharmacy_id=req.pharmacy_id,
+            customer_id=req.customer_id,
+        )
+
+        return ChatMessageResponse(
+            session_id=response.session_id,
+            message_id=response.message_id,
+            text=response.text,
+            tools_used=[t["name"] for t in response.tool_calls],
+            tokens_in=response.tokens_in,
+            tokens_out=response.tokens_out,
+            latency_ms=response.latency_ms,
+            model=response.model,
+        )
+    except Exception as e:
+        logger.error("chat.api_failed", error=str(e)[:300])
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="معلش، حصلت مشكلة. جرب تاني.",
+        )
+
+
+# ═══════════════════════════════════════════════════════════
+#  GET /api/chat/sessions/{session_id}/messages
+# ═══════════════════════════════════════════════════════════
+@router.get("/sessions/{session_id}/messages", response_model=SessionHistoryResponse)
+async def get_session_messages(session_id: str, limit: int = 50):
+    """جيب تاريخ محادثة معينة."""
+    from db import SessionLocal
+    from sqlalchemy import text
+
+    session = SessionLocal()
+    try:
+        rows = session.execute(text("""
+            SELECT id, role, content, intent, created_at
+            FROM chatbot_messages
+            WHERE session_id = :sid
+            ORDER BY created_at ASC
+            LIMIT :n
+        """), {"sid": session_id, "n": limit}).fetchall()
+
+        if not rows:
+            raise HTTPException(status_code=404, detail="الجلسة مش موجودة")
+
+        messages = [
+            {
+                "id": r.id,
+                "role": r.role,
+                "content": r.content,
+                "intent": r.intent,
+                "created_at": r.created_at.isoformat(),
+            }
+            for r in rows
+        ]
+
+        return SessionHistoryResponse(
+            session_id=session_id,
+            messages=messages,
+            total=len(messages),
+        )
+    finally:
+        session.close()
+
+
+# ═══════════════════════════════════════════════════════════
+#  POST /api/chat/feedback
+# ═══════════════════════════════════════════════════════════
+@router.post("/feedback")
+async def submit_feedback(req: FeedbackRequest):
+    """قيّم رد الشات بوت."""
+    from db import SessionLocal
+    from sqlalchemy import text
+
+    session = SessionLocal()
+    try:
+        session.execute(text("""
+            INSERT INTO chatbot_feedback (message_id, session_id, rating, feedback_type, comment)
+            SELECT :mid, session_id, :rating, :ftype, :comment
+            FROM chatbot_messages WHERE id = :mid
+        """), {
+            "mid": req.message_id,
+            "rating": req.rating,
+            "ftype": req.feedback_type,
+            "comment": req.comment,
+        })
+        session.commit()
+        return {"status": "ok", "message": "شكراً على تقييمك 🙏"}
+    except Exception as e:
+        session.rollback()
+        logger.error("chat.feedback_failed", error=str(e)[:200])
+        raise HTTPException(status_code=500, detail="مش قادر أحفظ التقييم")
+    finally:
+        session.close()
+
+
+# ═══════════════════════════════════════════════════════════
+#  GET /api/chat/health
+# ═══════════════════════════════════════════════════════════
+@router.get("/health")
+async def health():
+    """فحص صحة الشات بوت."""
+    try:
+        core = get_core()
+        return {
+            "status": "ok",
+            "tools": len(core.tools_schema),
+            "model": getattr(core.llm, "model_name", "unknown"),
+        }
+    except Exception as e:
+        return {"status": "error", "detail": str(e)[:200]}
