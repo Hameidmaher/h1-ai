@@ -109,6 +109,8 @@ def _register_all(registry: ToolRegistry) -> None:
     from chatbot.tools.drug_search import DRUG_SEARCH_TOOLS
     from chatbot.tools.inventory import INVENTORY_TOOLS
     from chatbot.tools.alternatives import ALTERNATIVE_TOOLS
+    from chatbot.tools.orders import ORDER_TOOLS
+    from chatbot.tools.knowledge import KNOWLEDGE_TOOLS
 
-    for tool in DRUG_SEARCH_TOOLS + INVENTORY_TOOLS + ALTERNATIVE_TOOLS:
+    for tool in DRUG_SEARCH_TOOLS + INVENTORY_TOOLS + ALTERNATIVE_TOOLS + ORDER_TOOLS + KNOWLEDGE_TOOLS:
         registry.register(tool)

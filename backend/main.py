@@ -1,3 +1,4 @@
+from pathlib import Path
 """H1-AI — Main FastAPI App (hardened).
 
 Fixes:
@@ -57,6 +58,7 @@ from api.whatsapp_webhook_v2 import router as whatsapp_webhook_v2_router
 from api.user_routes import router as user_router
 from api.audit_routes import router as audit_router
 from api.chat_routes import router as chat_router
+from api.chat_stream import router as chat_stream_router
 from api.whatsapp_chatbot import router as whatsapp_chatbot_router
 from admin.api.products_routes import router as admin_products_router
 from admin.api.drugs_routes import router as admin_drugs_router
@@ -140,6 +142,7 @@ app.include_router(admin_import_router)
 app.include_router(user_router)
 app.include_router(audit_router)
 app.include_router(chat_router)
+app.include_router(chat_stream_router)
 app.include_router(whatsapp_chatbot_router)
 
 
@@ -1730,3 +1733,13 @@ async def cache_save(user: User = Depends(require_admin)):
     chat_cache.save_to_disk()
     return {"success": True}
 
+# ═══════════════════════════════════════════════════════════
+#  Static files for chat UI
+# ═══════════════════════════════════════════════════════════
+_chat_static_dir = Path(__file__).parent / "static" / "chat"
+if _chat_static_dir.exists():
+    app.mount(
+        "/static/chat",
+        StaticFiles(directory=str(_chat_static_dir)),
+        name="chat-static",
+    )

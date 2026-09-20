@@ -1,0 +1,194 @@
+"""
+Order Tools — إنشاء طلبات الأدوية
+"""
+from __future__ import annotations
+from sqlalchemy import text
+from datetime import datetime
+import structlog
+
+from chatbot.tools.registry import Tool, ToolResult
+
+logger = structlog.get_logger()
+
+
+# ═══════════════════════════════════════════════════════════
+#  Handler — إنشاء أوردر
+# ═══════════════════════════════════════════════════════════
+async def create_order_handler(
+    drug_name: str,
+    quantity: int,
+    context: dict,
+    customer_phone: str | None = None,
+) -> ToolResult:
+    """إنشاء أوردر جديد في DB."""
+    from db import SessionLocal
+    from uuid import uuid4
+
+    pharmacy_id = context.get("pharmacy_id")
+    customer_id = context.get("customer_id")
+
+    if not pharmacy_id:
+        return ToolResult.fail("مفيش سياق صيدلية")
+
+    session = SessionLocal()
+    try:
+        # 1. ابحث عن الدواء
+        drug = session.execute(text("""
+            SELECT d.id, d.trade_name, i.id AS inv_id, 
+                   i.selling_price, i.quantity AS stock,
+                   d.prescription_required
+            FROM drugs d
+            JOIN inventory i ON i.drug_id = d.id
+            WHERE i.pharmacy_id = :ph
+              AND (d.trade_name ILIKE :q OR d.trade_name_en ILIKE :q)
+              AND i.quantity > 0
+            ORDER BY i.selling_price ASC
+            LIMIT 1
+        """), {"ph": pharmacy_id, "q": f"%{drug_name}%"}).first()
+
+        if not drug:
+            return ToolResult.ok(
+                data={"created": False},
+                message=f"'{drug_name}' مش موجود في المخزون",
+            )
+
+        # 2. تحقق من الكمية
+        if drug.stock < quantity:
+            return ToolResult.ok(
+                data={"created": False, "available": drug.stock},
+                message=f"المتوفر بس {drug.stock} من '{drug.trade_name}'",
+            )
+
+        # 3. لو محتاج روشتة → ما ننشئش
+        if drug.prescription_required:
+            return ToolResult.ok(
+                data={"created": False, "requires_prescription": True},
+                message=f"'{drug.trade_name}' بيحتاج روشتة، جيبها وأنا أجهزها",
+            )
+
+        # 4. اتأكد من العميل — لو مفيش، ننشئ واحد مؤقت
+        if not customer_id and customer_phone:
+            cust = session.execute(text("""
+                SELECT id FROM customers WHERE phone = :ph LIMIT 1
+            """), {"ph": customer_phone}).first()
+
+            if cust:
+                customer_id = str(cust.id)
+            else:
+                customer_id = str(uuid4())
+                session.execute(text("""
+                    INSERT INTO customers (id, phone, name)
+                    VALUES (:id, :ph, 'عميل جديد')
+                """), {"id": customer_id, "ph": customer_phone})
+
+        if not customer_id:
+            # ننشئ عميل افتراضي
+            customer_id = str(uuid4())
+            session.execute(text("""
+                INSERT INTO customers (id, phone, name)
+                VALUES (:id, :ph, 'عميل chat')
+            """), {"id": customer_id, "ph": f"web_{customer_id[:8]}"})
+
+        # 5. أنشئ رقم أوردر
+        order_no = f"ORD-{datetime.now().strftime('%Y%m%d%H%M%S')}-{drug.id[:4]}"
+
+        # 6. احسب الإجمالي
+        line_total = float(drug.selling_price) * quantity
+
+        # 7. أنشئ الأوردر
+        order_id = str(uuid4())
+        session.execute(text("""
+            INSERT INTO orders (
+                id, order_no, customer_id, pharmacy_id,
+                status, type, subtotal, total,
+                payment_status, source
+            ) VALUES (
+                :id, :no, :cust, :ph,
+                'pending', 'pickup', :total, :total,
+                'unpaid', 'chatbot'
+            )
+        """), {
+            "id": order_id,
+            "no": order_no,
+            "cust": customer_id,
+            "ph": pharmacy_id,
+            "total": line_total,
+        })
+
+        # 8. أضف item
+        session.execute(text("""
+            INSERT INTO order_items (
+                order_id, drug_id, drug_name,
+                quantity, unit_price, line_total
+            ) VALUES (
+                :oid, :did, :dn, :q, :up, :lt
+            )
+        """), {
+            "oid": order_id,
+            "did": drug.id,
+            "dn": drug.trade_name,
+            "q": quantity,
+            "up": float(drug.selling_price),
+            "lt": line_total,
+        })
+
+        # 9. اخصم من المخزون (reserved)
+        session.execute(text("""
+            UPDATE inventory
+            SET reserved = reserved + :q, updated_at = now()
+            WHERE id = :inv
+        """), {"q": quantity, "inv": drug.inv_id})
+
+        session.commit()
+
+        return ToolResult.ok(
+            data={
+                "created": True,
+                "order_no": order_no,
+                "order_id": order_id,
+                "drug_name": drug.trade_name,
+                "quantity": quantity,
+                "unit_price": float(drug.selling_price),
+                "total": line_total,
+            },
+            message=f"✅ أوردر {order_no} — {drug.trade_name} × {quantity} = {line_total} جنيه",
+        )
+
+    except Exception as e:
+        session.rollback()
+        logger.error("order.failed", error=str(e)[:200])
+        return ToolResult.fail(f"فشل إنشاء الأوردر: {str(e)[:100]}")
+    finally:
+        session.close()
+
+
+# ═══════════════════════════════════════════════════════════
+#  Tool Definition
+# ═══════════════════════════════════════════════════════════
+ORDER_TOOLS = [
+    Tool(
+        name="create_order",
+        description=(
+            "أنشئ أوردر جديد لأدوية العميل. "
+            "استخدمها لما العميل يقول 'عايز' أو 'أطلب' دواء محدد بكمية. "
+            "لو الدواء محتاج روشتة، الأداة مش بتنشئ الأوردر."
+        ),
+        parameters={
+            "type": "object",
+            "properties": {
+                "drug_name": {
+                    "type": "string",
+                    "description": "اسم الدواء",
+                },
+                "quantity": {
+                    "type": "integer",
+                    "description": "الكمية المطلوبة",
+                    "default": 1,
+                },
+            },
+            "required": ["drug_name"],
+        },
+        handler=create_order_handler,
+        requires_context=True,
+    ),
+]
