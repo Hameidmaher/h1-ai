@@ -189,6 +189,7 @@ const App = {
       synonyms: 'المرادفات',
       audit: 'سجل التعديلات',
       chat: 'محادثة تجريبية',
+      activity_log: 'سجل النشاطات',
       api_keys: 'مفاتيح API',
       alerts: 'التنبيهات',
       feature_flags: 'ميزات النظام',
@@ -222,6 +223,7 @@ const App = {
       case 'feature_flags':  Pages.feature_flags.render(content); break;
       case 'alerts':  Pages.alerts.render(content); break;
       case 'api_keys':  Pages.api_keys.render(content); break;
+      case 'activity_log': Pages.activity_log.render(content); break;
       default: content.innerHTML = '<div class="empty-state">صفحة غير معروفة</div>';
     }
   },
