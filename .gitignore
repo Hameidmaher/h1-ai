@@ -182,3 +182,4 @@ tests/load/*.html
 *.broken.*
 *.bak.*
 main.py.bak.*
+backups/
