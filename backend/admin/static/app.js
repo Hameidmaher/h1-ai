@@ -189,6 +189,11 @@ const App = {
       synonyms: 'المرادفات',
       audit: 'سجل التعديلات',
       chat: 'محادثة تجريبية',
+      api_keys: 'مفاتيح API',
+      alerts: 'التنبيهات',
+      feature_flags: 'ميزات النظام',
+      subscriptions: 'الاشتراكات',
+      analytics: 'التحليلات',
       pharmacies: 'الصيدليات والأرقام',
       whatsapp_sessions: 'أرقام WhatsApp المتصلة',
       live_feed: 'البث الحي للرسائل',
@@ -212,6 +217,11 @@ const App = {
       case 'whatsapp_sessions': Pages.whatsapp_sessions.render(content); break;
       case 'live_feed': Pages.live_feed.render(content); break;
       case 'settings':    Pages.settings.render(content); break;
+      case 'analytics':  Pages.analytics.render(content); break;
+      case 'subscriptions':  Pages.subscriptions.render(content); break;
+      case 'feature_flags':  Pages.feature_flags.render(content); break;
+      case 'alerts':  Pages.alerts.render(content); break;
+      case 'api_keys':  Pages.api_keys.render(content); break;
       default: content.innerHTML = '<div class="empty-state">صفحة غير معروفة</div>';
     }
   },

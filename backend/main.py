@@ -1441,6 +1441,269 @@ async def list_alerts(
     finally:
         db.close()
 
+
+
+# ═══════════════════════════════════════════════════════════
+# SUBSCRIPTIONS CRUD
+# ═══════════════════════════════════════════════════════════
+@app.post("/v1/admin/subscriptions")
+async def create_subscription(request: Request, user: User = Depends(require_admin)):
+    from sqlalchemy import text
+    from db import SessionLocal
+    from uuid import uuid4
+    
+    data = await request.json()
+    db = SessionLocal()
+    try:
+        sid = str(uuid4())
+        db.execute(text("""
+            INSERT INTO subscriptions (id, pharmacy_id, plan, status, price_monthly, expires_at)
+            VALUES (:id, :pid, :plan, 'active', :price, NOW() + INTERVAL '1 year')
+        """), {
+            "id": sid,
+            "pid": data.get("pharmacy_id"),
+            "plan": data.get("plan", "basic"),
+            "price": data.get("price_monthly", 0),
+        })
+        db.commit()
+        return {"success": True, "id": sid}
+    finally:
+        db.close()
+
+
+@app.put("/v1/admin/subscriptions/{sub_id}")
+async def update_subscription(sub_id: str, request: Request, user: User = Depends(require_admin)):
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    data = await request.json()
+    allowed = ["plan", "status", "price_monthly", "auto_renew", "expires_at"]
+    updates = {k: v for k, v in data.items() if k in allowed}
+    
+    if not updates:
+        return {"success": True}
+    
+    db = SessionLocal()
+    try:
+        set_clause = ", ".join(f"{k} = :{k}" for k in updates.keys())
+        updates["sid"] = sub_id
+        db.execute(text(f"""
+            UPDATE subscriptions SET {set_clause}, updated_at = NOW() WHERE id = :sid
+        """), updates)
+        db.commit()
+        return {"success": True}
+    finally:
+        db.close()
+
+
+# ═══════════════════════════════════════════════════════════
+# FEATURE FLAGS CRUD
+# ═══════════════════════════════════════════════════════════
+@app.put("/v1/admin/feature-flags/{flag_key}")
+async def update_feature_flag(flag_key: str, request: Request, user: User = Depends(require_admin)):
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    data = await request.json()
+    db = SessionLocal()
+    try:
+        db.execute(text("""
+            UPDATE feature_flags 
+            SET is_enabled = COALESCE(:enabled, is_enabled),
+                rollout_percentage = COALESCE(:rollout, rollout_percentage),
+                updated_at = NOW()
+            WHERE key = :key
+        """), {
+            "key": flag_key,
+            "enabled": data.get("is_enabled"),
+            "rollout": data.get("rollout_percentage"),
+        })
+        db.commit()
+        return {"success": True, "key": flag_key}
+    finally:
+        db.close()
+
+
+# ═══════════════════════════════════════════════════════════
+# ALERTS CRUD
+# ═══════════════════════════════════════════════════════════
+@app.post("/v1/admin/alerts/{alert_id}/resolve")
+async def resolve_alert(alert_id: str, user: User = Depends(require_admin)):
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    db = SessionLocal()
+    try:
+        db.execute(text("""
+            UPDATE alerts 
+            SET is_resolved = TRUE, resolved_at = NOW(), resolved_by = :uid
+            WHERE id = :id
+        """), {"id": alert_id, "uid": user.id})
+        db.commit()
+        return {"success": True}
+    finally:
+        db.close()
+
+
+@app.post("/v1/admin/alerts")
+async def create_alert(request: Request, user: User = Depends(require_admin)):
+    from sqlalchemy import text
+    from db import SessionLocal
+    from uuid import uuid4
+    
+    data = await request.json()
+    db = SessionLocal()
+    try:
+        aid = str(uuid4())
+        db.execute(text("""
+            INSERT INTO alerts (id, pharmacy_id, type, severity, title, message)
+            VALUES (:id, :pid, :type, :sev, :title, :msg)
+        """), {
+            "id": aid,
+            "pid": data.get("pharmacy_id"),
+            "type": data.get("type", "info"),
+            "sev": data.get("severity", "info"),
+            "title": data.get("title", ""),
+            "msg": data.get("message", ""),
+        })
+        db.commit()
+        return {"success": True, "id": aid}
+    finally:
+        db.close()
+
+
+# ═══════════════════════════════════════════════════════════
+# API KEYS CRUD
+# ═══════════════════════════════════════════════════════════
+@app.get("/v1/admin/api-keys")
+async def list_api_keys(user: User = Depends(require_admin)):
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    db = SessionLocal()
+    try:
+        result = db.execute(text("""
+            SELECT a.id::text, a.name, a.key_prefix, a.scopes, a.is_active,
+                   a.last_used_at, a.created_at, a.expires_at,
+                   p.name_ar AS pharmacy_name
+            FROM api_keys a
+            LEFT JOIN pharmacies p ON p.id = a.pharmacy_id
+            ORDER BY a.created_at DESC
+        """))
+        return {"keys": [dict(row._mapping) for row in result]}
+    finally:
+        db.close()
+
+
+@app.post("/v1/admin/api-keys")
+async def create_api_key(request: Request, user: User = Depends(require_admin)):
+    from sqlalchemy import text
+    from db import SessionLocal
+    from uuid import uuid4
+    import secrets
+    import hashlib
+    
+    data = await request.json()
+    
+    # Generate key
+    raw_key = "h1ai_" + secrets.token_urlsafe(32)
+    key_hash = hashlib.sha256(raw_key.encode()).hexdigest()
+    key_prefix = raw_key[:12]
+    
+    db = SessionLocal()
+    try:
+        kid = str(uuid4())
+        db.execute(text("""
+            INSERT INTO api_keys (id, pharmacy_id, name, key_hash, key_prefix, scopes)
+            VALUES (:id, :pid, :name, :hash, :prefix, :scopes)
+        """), {
+            "id": kid,
+            "pid": data.get("pharmacy_id"),
+            "name": data.get("name", "API Key"),
+            "hash": key_hash,
+            "prefix": key_prefix,
+            "scopes": '["read", "write"]',
+        })
+        db.commit()
+        
+        # Return the raw key ONLY ONCE
+        return {
+            "success": True,
+            "id": kid,
+            "key": raw_key,
+            "prefix": key_prefix,
+            "warning": "Save this key now — it won\'t be shown again",
+        }
+    finally:
+        db.close()
+
+
+@app.delete("/v1/admin/api-keys/{key_id}")
+async def delete_api_key(key_id: str, user: User = Depends(require_admin)):
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    db = SessionLocal()
+    try:
+        db.execute(text("DELETE FROM api_keys WHERE id = :id"), {"id": key_id})
+        db.commit()
+        return {"success": True}
+    finally:
+        db.close()
+
+
+# ═══════════════════════════════════════════════════════════
+# ANALYTICS ENDPOINTS
+# ═══════════════════════════════════════════════════════════
+@app.get("/v1/admin/analytics/overview")
+async def analytics_overview(user: User = Depends(require_admin)):
+    """Get analytics overview."""
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    db = SessionLocal()
+    try:
+        # Overall stats
+        result = db.execute(text("""
+            SELECT 
+                (SELECT COUNT(*) FROM pharmacies WHERE is_active = TRUE) AS active_pharmacies,
+                (SELECT COUNT(*) FROM pharmacies) AS total_pharmacies,
+                (SELECT COUNT(*) FROM whatsapp_numbers WHERE status = 'connected') AS connected_numbers,
+                (SELECT COUNT(*) FROM users) AS total_users,
+                (SELECT COUNT(*) FROM messages) AS total_messages,
+                (SELECT COUNT(*) FROM messages WHERE received_at >= CURRENT_DATE) AS messages_today
+        """))
+        overview = dict(result.first()._mapping)
+        
+        # Messages by day (last 7 days)
+        result = db.execute(text("""
+            SELECT DATE(received_at) AS date, COUNT(*) AS count
+            FROM messages
+            WHERE received_at >= CURRENT_DATE - INTERVAL '7 days'
+            GROUP BY DATE(received_at)
+            ORDER BY date
+        """))
+        daily = [dict(r._mapping) for r in result]
+        
+        # Top pharmacies by messages
+        result = db.execute(text("""
+            SELECT p.name_ar AS name, COUNT(m.id) AS messages
+            FROM pharmacies p
+            LEFT JOIN messages m ON m.pharmacy_id = p.id
+            GROUP BY p.id, p.name_ar
+            ORDER BY messages DESC
+            LIMIT 5
+        """))
+        top_pharmacies = [dict(r._mapping) for r in result]
+        
+        return {
+            "overview": overview,
+            "daily": daily,
+            "top_pharmacies": top_pharmacies,
+        }
+    finally:
+        db.close()
+
 # ═══════════════════════════════════════════════════════════
 # CACHE MANAGEMENT
 # ═══════════════════════════════════════════════════════════
