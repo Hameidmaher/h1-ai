@@ -1,0 +1,248 @@
+"""
+H1-AI ChatbotCore — المحرك الرئيسي
+يجمع: LLM + Tools + Memory + Session
+"""
+from __future__ import annotations
+import time
+import structlog
+from dataclasses import dataclass, field
+
+from llm.factory import create_llm
+from chatbot.tools.registry import get_registry, ToolResult
+from chatbot.memory.session import SessionManager
+from chatbot.prompts.system_ar import SYSTEM_PROMPT_AR, CONTEXT_HEADER
+
+logger = structlog.get_logger()
+
+
+@dataclass
+class ChatResponse:
+    """نتيجة محادثة واحدة."""
+    text: str
+    session_id: str
+    message_id: int | None = None
+    tool_calls: list = field(default_factory=list)
+    tokens_in: int = 0
+    tokens_out: int = 0
+    latency_ms: int = 0
+    model: str = ""
+    is_error: bool = False
+
+
+class ChatbotCore:
+    """المحرك الرئيسي للشات بوت."""
+
+    MAX_TOOL_ITERATIONS = 3   # أقصى عدد مرات استخدام الأدوات في رد واحد
+
+    def __init__(self):
+        self.llm = create_llm(temperature=0.4)
+        self.registry = get_registry()
+        self.sessions = SessionManager()
+
+        # اربط الأدوات بالـ LLM (OpenAI function calling)
+        self.tools_schema = self.registry.openai_schemas()
+        if self.tools_schema:
+            try:
+                self.llm = self.llm.bind_tools(self.tools_schema)
+                logger.info("chatbot.tools_bound", count=len(self.tools_schema))
+            except Exception as e:
+                logger.warning("chatbot.bind_tools_failed", error=str(e)[:150])
+
+    # ═══════════════════════════════════════════════════
+    #  Main Chat Entry
+    # ═══════════════════════════════════════════════════
+    async def chat(
+        self,
+        message: str,
+        channel: str = "web",
+        channel_user_id: str = "anonymous",
+        pharmacy_id: str | None = None,
+        customer_id: str | None = None,
+    ) -> ChatResponse:
+        """نقطة الدخول الرئيسية."""
+        start = time.monotonic()
+
+        # 1. جيب/أنشئ جلسة
+        session = await self.sessions.get_or_create(
+            channel=channel,
+            channel_user_id=channel_user_id,
+            pharmacy_id=pharmacy_id,
+            customer_id=customer_id,
+        )
+
+        # 2. احفظ رسالة العميل
+        await self.sessions.save_message(
+            session_id=session["id"],
+            role="user",
+            content=message,
+        )
+
+        # 3. جيب السياق
+        context_msgs = await self.sessions.get_context(session["id"])
+
+        # 4. ابنِ الرسائل
+        system = SYSTEM_PROMPT_AR
+        if session["pharmacy_id"]:
+            system += "\n" + CONTEXT_HEADER.format(
+                pharmacy_name=session["pharmacy_id"],
+                customer_name=session.get("customer_id") or "غير معروف",
+                channel=channel,
+                message_count=session["total_messages"] + 1,
+            )
+
+        messages = [{"role": "system", "content": system}]
+        # استبعد آخر رسالة (لأنها مضافة في context)
+        messages.extend(context_msgs[:-1] if len(context_msgs) > 1 else context_msgs)
+        messages.append({"role": "user", "content": message})
+
+        # 5. شغّل الحلقة
+        try:
+            response = await self._run_llm_loop(
+                messages=messages,
+                tool_context={
+                    "pharmacy_id": session["pharmacy_id"],
+                    "customer_id": session["customer_id"],
+                },
+            )
+        except Exception as e:
+            logger.error("chatbot.llm_failed", error=str(e)[:200])
+            response = {
+                "text": "معلش، حصلت مشكلة تقنية. جرب تاني.",
+                "tool_calls": [],
+                "tokens_in": 0,
+                "tokens_out": 0,
+                "is_error": True,
+            }
+
+        latency = int((time.monotonic() - start) * 1000)
+
+        # 6. احفظ رد الـ assistant
+        msg_id = await self.sessions.save_message(
+            session_id=session["id"],
+            role="assistant",
+            content=response["text"],
+            tool_calls=response.get("tool_calls"),
+            tokens_in=response.get("tokens_in", 0),
+            tokens_out=response.get("tokens_out", 0),
+            latency_ms=latency,
+            is_error=response.get("is_error", False),
+        )
+
+        return ChatResponse(
+            text=response["text"],
+            session_id=session["id"],
+            message_id=msg_id,
+            tool_calls=response.get("tool_calls", []),
+            tokens_in=response.get("tokens_in", 0),
+            tokens_out=response.get("tokens_out", 0),
+            latency_ms=latency,
+            model=getattr(self.llm, "model_name", "unknown"),
+            is_error=response.get("is_error", False),
+        )
+
+    # ═══════════════════════════════════════════════════
+    #  LLM Loop with Tool Calling
+    # ═══════════════════════════════════════════════════
+    async def _run_llm_loop(
+        self,
+        messages: list[dict],
+        tool_context: dict,
+    ) -> dict:
+        """حلقة تشغيل LLM مع دعم الأدوات."""
+        from langchain_core.messages import (
+            HumanMessage, SystemMessage, AIMessage, ToolMessage,
+        )
+
+        # حوّل الرسائل لـ LangChain
+        lc_messages = self._to_langchain(messages)
+
+        tool_calls_made = []
+        total_in = 0
+        total_out = 0
+
+        for iteration in range(self.MAX_TOOL_ITERATIONS):
+            # شغّل الـ LLM
+            response = await self.llm.ainvoke(lc_messages)
+
+            # احسب التوكنز
+            usage = getattr(response, "usage_metadata", {}) or {}
+            total_in += usage.get("input_tokens", 0)
+            total_out += usage.get("output_tokens", 0)
+
+            # شوف لو فيه tool calls
+            tool_calls = getattr(response, "tool_calls", None) or []
+
+            if not tool_calls:
+                # خلص — رد نهائي
+                return {
+                    "text": response.content if isinstance(response.content, str)
+                            else str(response.content),
+                    "tool_calls": tool_calls_made,
+                    "tokens_in": total_in,
+                    "tokens_out": total_out,
+                    "is_error": False,
+                }
+
+            # نفّذ الأدوات
+            lc_messages.append(response)
+            for tc in tool_calls:
+                tool_name = tc.get("name")
+                args = tc.get("args", {})
+                tool_id = tc.get("id", "")
+
+                result = await self.registry.execute(
+                    name=tool_name,
+                    arguments=args,
+                    context=tool_context,
+                )
+
+                tool_calls_made.append({
+                    "name": tool_name,
+                    "args": args,
+                    "result": result.data if result.success else None,
+                    "error": result.error,
+                })
+
+                # رجّع النتيجة للـ LLM
+                lc_messages.append(ToolMessage(
+                    content=str(result.data or result.error or ""),
+                    tool_call_id=tool_id,
+                ))
+
+        # لو خلصت الـ iterations
+        return {
+            "text": "معلش، احتاج شوية وقت. ممكن تعيد السؤال؟",
+            "tool_calls": tool_calls_made,
+            "tokens_in": total_in,
+            "tokens_out": total_out,
+            "is_error": False,
+        }
+
+    def _to_langchain(self, messages: list[dict]) -> list:
+        """حوّل قائمة dicts لـ LangChain messages."""
+        from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
+
+        result = []
+        for m in messages:
+            role = m["role"]
+            content = m["content"]
+            if role == "system":
+                result.append(SystemMessage(content=content))
+            elif role == "user":
+                result.append(HumanMessage(content=content))
+            elif role == "assistant":
+                result.append(AIMessage(content=content))
+        return result
+
+
+# ═══════════════════════════════════════════════════════════
+#  Singleton
+# ═══════════════════════════════════════════════════════════
+_core: ChatbotCore | None = None
+
+
+def get_core() -> ChatbotCore:
+    global _core
+    if _core is None:
+        _core = ChatbotCore()
+    return _core
