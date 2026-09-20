@@ -1,0 +1,223 @@
+/* ═══════════════════════════════════════════════════════════
+   Sidebar FORCE Fix — يتغلّب على كل الـ CSS القديم
+   ═══════════════════════════════════════════════════════════ */
+
+/* ═══ 1. SIDEBAR على الموبايل — RTL أنيق ═══ */
+@media (max-width: 900px) {
+    /* overlay دايماً */
+    .mobile-overlay {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(15, 23, 42, 0.6) !important;
+        backdrop-filter: blur(3px) !important;
+        -webkit-backdrop-filter: blur(3px) !important;
+        z-index: 998 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: opacity 0.3s !important;
+        display: block !important;
+        pointer-events: none !important;
+    }
+
+    .mobile-overlay.active,
+    body.sidebar-open .mobile-overlay {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: auto !important;
+        width: 300px !important;
+        max-width: 85vw !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        background: #ffffff !important;
+        z-index: 999 !important;
+        transform: translateX(110%) !important;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.2) !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .sidebar.open,
+    body.sidebar-open .sidebar {
+        transform: translateX(0) !important;
+    }
+
+    /* Brand section */
+    .sidebar .brand {
+        padding: 20px !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        margin: 0 0 8px 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .sidebar .brand h2 {
+        font-size: 22px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: #0ea5e9 !important;
+        font-weight: 800 !important;
+        line-height: 1.2 !important;
+    }
+
+    .sidebar .brand span {
+        font-size: 11px !important;
+        color: #64748b !important;
+        font-weight: 600 !important;
+        letter-spacing: 3px !important;
+    }
+
+    /* Nav container */
+    .sidebar .nav {
+        flex: 1 1 auto !important;
+        padding: 8px 12px 32px !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 4px !important;
+        overflow-y: auto !important;
+    }
+
+    /* Nav items */
+    .sidebar .nav-item {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 14px !important;
+        padding: 14px 16px !important;
+        margin: 0 !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        color: #334155 !important;
+        text-decoration: none !important;
+        border-radius: 10px !important;
+        transition: background 0.15s, color 0.15s !important;
+        min-height: 52px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        transform: none !important;
+        writing-mode: horizontal-tb !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        position: relative !important;
+        right: auto !important;
+        left: auto !important;
+        top: auto !important;
+    }
+
+    .sidebar .nav-item .icon {
+        font-size: 22px !important;
+        width: 28px !important;
+        min-width: 28px !important;
+        height: 28px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .sidebar .nav-item:hover {
+        background: #f1f5f9 !important;
+        color: #0ea5e9 !important;
+    }
+
+    .sidebar .nav-item.active {
+        background: #e0f2fe !important;
+        color: #0369a1 !important;
+        box-shadow: inset -3px 0 0 #0ea5e9 !important;
+    }
+
+    /* إخفاء أي decorations قديمة */
+    .sidebar .nav-item::before,
+    .sidebar .nav-item::after {
+        display: none !important;
+    }
+
+    /* Mobile menu button */
+    .mobile-menu-btn {
+        position: fixed !important;
+        top: 14px !important;
+        right: 14px !important;
+        z-index: 997 !important;
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 12px !important;
+        background: #0f172a !important;
+        color: white !important;
+        border: none !important;
+        font-size: 22px !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .mobile-menu-btn:active {
+        transform: scale(0.92) !important;
+    }
+
+    /* Main content */
+    .main-content,
+    .app-content,
+    .content {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        padding: 12px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* إخفاء الـ sidebar من الـ flow الطبيعي */
+    body {
+        padding-right: 0 !important;
+    }
+
+    body.sidebar-open {
+        overflow: hidden !important;
+    }
+}
+
+/* ═══ على الديسكتوب — كل حاجة عادية ═══ */
+@media (min-width: 901px) {
+    .mobile-menu-btn {
+        display: none !important;
+    }
+    
+    .mobile-overlay {
+        display: none !important;
+    }
+
+    .sidebar {
+        position: relative !important;
+        transform: none !important;
+        width: 260px !important;
+    }
+}

@@ -43,13 +43,7 @@ const App = {
   },
 
 
-  toggleMobileMenu() {
-    const sidebar = document.querySelector('.sidebar');
-    const overlay = document.querySelector('.mobile-overlay');
-    if (!sidebar || !overlay) return;
-    sidebar.classList.toggle('open');
-    overlay.classList.toggle('active');
-  },
+  ,
 
   // ──────── Auth ────────
   async handleLogin(e) {
@@ -351,3 +345,71 @@ Pages.dashboard = {
     }
   },
 };
+
+// ═══════════════════════════════════════════════════════════
+//  Mobile Sidebar Toggle — موحد
+// ═══════════════════════════════════════════════════════════
+(function setupMobileSidebar() {
+    function toggleMobileMenu() {
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.mobile-overlay');
+        if (!sidebar) return;
+
+        const isOpen = sidebar.classList.toggle('open');
+        document.body.classList.toggle('sidebar-open', isOpen);
+        if (overlay) {
+            overlay.classList.toggle('active', isOpen);
+        }
+    }
+
+    function closeMobileMenu() {
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.mobile-overlay');
+        sidebar?.classList.remove('open');
+        overlay?.classList.remove('active');
+        document.body.classList.remove('sidebar-open');
+    }
+
+    // expose globally
+    window.App = window.App || {};
+    window.App.toggleMobileMenu = toggleMobileMenu;
+    window.App.closeMobileMenu = closeMobileMenu;
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+        // زر المنيو
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        menuBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+
+        // overlay يقفل
+        const overlay = document.querySelector('.mobile-overlay');
+        overlay?.addEventListener('click', closeMobileMenu);
+
+        // nav item click → اقفل الـ sidebar
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    setTimeout(closeMobileMenu, 150);
+                }
+            });
+        });
+
+        // ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMobileMenu();
+        });
+
+        // على resize للديسكتوب — اقفل
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (window.innerWidth > 768) closeMobileMenu();
+            }, 150);
+        });
+    });
+})();

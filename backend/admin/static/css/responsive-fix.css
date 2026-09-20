@@ -1,0 +1,416 @@
+/* ═══════════════════════════════════════════════════════════
+   H1-AI Admin — Responsive Layout Fix
+   يشتغل على الموبايل + التابلت + الديسكتوب
+   ═══════════════════════════════════════════════════════════ */
+
+/* ═══ 1. GLOBAL RESET ═══ */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* ═══ 2. TOP HEADER FIX ═══ */
+.header, .top-bar, .app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+.header .user-info,
+.header .admin-name,
+.top-bar .admin,
+[class*="admin-name"] {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+.header .notifications,
+.header .bell,
+.top-bar .bell {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+/* ═══ 3. PAGE TITLE ═══ */
+.page-title,
+h1, h2 {
+    font-size: clamp(18px, 4vw, 28px);
+    line-height: 1.3;
+    margin: 8px 0 4px;
+}
+
+.page-subtitle,
+.subtitle {
+    font-size: clamp(12px, 2.5vw, 15px);
+    color: #64748b;
+    margin-bottom: 16px;
+}
+
+/* ═══ 4. STAT CARDS — الأهم! ═══ */
+/* الديفولت: 4 أعمدة على الشاشات الكبيرة */
+.stats-grid,
+.cards-grid,
+.kpi-grid,
+[class*="stats-"],
+[class*="cards-"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+}
+
+/* الكارت نفسه */
+.stat-card,
+.kpi-card,
+.card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: auto;   /* ← شيلنا min-height الكبير */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.stat-card:active,
+.kpi-card:active {
+    transform: scale(0.98);
+}
+
+/* الرقم — كبير و واضح */
+.stat-card .stat-value,
+.kpi-card .kpi-value,
+.card .value,
+.stat-card h3,
+.kpi-card h3 {
+    font-size: clamp(22px, 5vw, 32px);
+    font-weight: 800;
+    line-height: 1;
+    color: #0f172a;
+    margin: 0;
+    order: 1;   /* الرقم فوق */
+}
+
+/* الأيقونة — صغيرة */
+.stat-card .stat-icon,
+.kpi-card .kpi-icon,
+.card .icon,
+.stat-card img {
+    width: 28px;
+    height: 28px;
+    font-size: 24px;
+    line-height: 1;
+    opacity: 0.9;
+    order: 0;   /* الأيقونة تحت الرقم */
+    margin-bottom: 2px;
+}
+
+/* الليبل — رمادي صغير */
+.stat-card .stat-label,
+.kpi-card .kpi-label,
+.card .label,
+.stat-card p,
+.kpi-card p {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+    margin: 0;
+    order: 2;
+    line-height: 1.3;
+}
+
+/* Trend / delta indicator */
+.stat-card .trend,
+.kpi-card .delta {
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 4px;
+    order: 3;
+}
+
+.trend.up { color: #16a34a; }
+.trend.down { color: #dc2626; }
+
+/* ═══ 5. HEADER ACTIONS ═══ */
+.page-actions,
+.section-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.page-actions button,
+.section-actions button,
+.btn {
+    padding: 10px 16px;
+    font-size: 13px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* ═══ 6. TABLES — متجاوب ═══ */
+table,
+.data-table {
+    width: 100%;
+    font-size: 13px;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 10px 12px;
+    text-align: right;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 12px;
+}
+
+/* ═══ 7. SIDEBAR / NAV — تجاوب ═══ */
+.sidebar {
+    width: 260px;
+    transition: transform 0.25s ease;
+}
+
+.nav-item {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+/* ═══ 8. MAIN CONTENT PADDING ═══ */
+.main-content,
+.content,
+.dashboard-content {
+    padding: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ═══ 9. MOBILE — شاشات صغيرة ═══ */
+@media (max-width: 768px) {
+    /* الحاويات */
+    .main-content,
+    .content {
+        padding: 12px;
+    }
+
+    /* إخفاء السايدبار و استخدم المنيو */
+    .sidebar {
+        position: fixed;
+        right: -280px;
+        top: 0;
+        bottom: 0;
+        z-index: 999;
+        background: #ffffff;
+        box-shadow: -4px 0 16px rgba(0,0,0,0.1);
+    }
+
+    .sidebar.open {
+        transform: translateX(-280px);
+    }
+
+    /* grid بكارت واحد على الشاشات الصغيرة */
+    .stats-grid,
+    .cards-grid,
+    .kpi-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin: 12px 0;
+    }
+
+    /* كارت أفق — أيقونة يمين، قيمة يسار */
+    .stat-card,
+    .kpi-card,
+    .card {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        gap: 12px;
+        min-height: 70px;
+    }
+
+    /* الرقم على اليسار */
+    .stat-card .stat-value,
+    .kpi-card .kpi-value,
+    .card .value {
+        font-size: 28px;
+        flex-shrink: 0;
+    }
+
+    /* الأيقونة على اليمين */
+    .stat-card .stat-icon,
+    .kpi-card .kpi-icon,
+    .card .icon {
+        width: 36px;
+        height: 36px;
+        font-size: 28px;
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    /* الليبل تحت الرقم بشويش */
+    .stat-card .stat-label,
+    .kpi-card .kpi-label,
+    .card .label {
+        position: absolute;
+        bottom: 12px;
+        left: 16px;
+        font-size: 11px;
+        max-width: 60%;
+    }
+
+    .stat-card,
+    .kpi-card {
+        position: relative;
+    }
+
+    /* Header أصغر */
+    .page-title {
+        font-size: 20px;
+    }
+
+    /* الأزرار أصغر */
+    .btn {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+    /* الجداول أصغر */
+    table th,
+    table td {
+        padding: 8px;
+        font-size: 12px;
+    }
+}
+
+/* ═══ 10. MOBILE صغير جداً (< 400px) ═══ */
+@media (max-width: 400px) {
+    .main-content,
+    .content {
+        padding: 10px;
+    }
+
+    .stat-card,
+    .kpi-card,
+    .card {
+        padding: 12px;
+        min-height: 60px;
+    }
+
+    .stat-card .stat-value,
+    .kpi-card .kpi-value {
+        font-size: 24px;
+    }
+
+    .stat-card .stat-icon,
+    .kpi-card .kpi-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 22px;
+    }
+}
+
+/* ═══ 11. TABLET (768px - 1024px) ═══ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .stats-grid,
+    .cards-grid,
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+}
+
+/* ═══ 12. DESKTOP كبير (> 1024px) ═══ */
+@media (min-width: 1025px) {
+    .stats-grid,
+    .cards-grid,
+    .kpi-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+
+    .stat-card,
+    .kpi-card {
+        min-height: 120px;
+        justify-content: center;
+    }
+}
+
+/* ═══ 13. TOUCH IMPROVEMENTS (موبايل) ═══ */
+@media (hover: none) {
+    .nav-item:active,
+    .btn:active,
+    .stat-card:active {
+        opacity: 0.85;
+    }
+}
+
+/* ═══ 14. SCROLLBAR ناعم ═══ */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ═══ 15. FIX للـ Dark mode (لو مفعّل) ═══ */
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .kpi-card,
+[data-theme="dark"] .card {
+    background: #1e293b;
+    border-color: #334155;
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .stat-card .stat-value,
+[data-theme="dark"] .kpi-card .kpi-value {
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .stat-card .stat-label,
+[data-theme="dark"] .kpi-card .kpi-label {
+    color: #94a3b8;
+}
+
+/* ═══ 16. SVG / IMG responsive ═══ */
+img, svg {
+    max-width: 100%;
+    height: auto;
+}
