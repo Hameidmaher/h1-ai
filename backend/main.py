@@ -58,6 +58,7 @@ from api.whatsapp_webhook_v2 import router as whatsapp_webhook_v2_router
 from api.user_routes import router as user_router
 from api.audit_routes import router as audit_router
 from api.chat_routes import router as chat_router
+from api.analytics_routes import router as analytics_router
 from api.chat_stream import router as chat_stream_router
 from api.whatsapp_chatbot import router as whatsapp_chatbot_router
 from admin.api.products_routes import router as admin_products_router
@@ -142,6 +143,7 @@ app.include_router(admin_import_router)
 app.include_router(user_router)
 app.include_router(audit_router)
 app.include_router(chat_router)
+app.include_router(analytics_router)
 app.include_router(chat_stream_router)
 app.include_router(whatsapp_chatbot_router)
 

@@ -1,150 +1,162 @@
 /**
- * H1-AI — Analytics Dashboard
+ * Analytics Dashboard Page
  */
-Pages.analytics = {
-  data: null,
+(function () {
+    'use strict';
 
-  async render(el) {
-    el.innerHTML = `
-      <style>
-        .an-header{margin-bottom:20px}
-        .an-header h1{margin:0;font-size:24px}
-        .an-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:24px}
-        .an-kpi{background:white;border-radius:12px;padding:20px;border:1px solid #E2E8F0;text-align:center;transition:all 0.15s}
-        .an-kpi:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.06)}
-        .an-kpi-value{font-size:32px;font-weight:700;color:#0EA5E9}
-        .an-kpi-label{font-size:12px;color:#64748B;margin-top:4px}
-        .an-charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
-        .an-card{background:white;border-radius:12px;padding:20px;border:1px solid #E2E8F0}
-        .an-card h3{margin:0 0 16px 0;font-size:16px}
-        .an-bar{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-        .an-bar-label{flex:1;font-size:13px}
-        .an-bar-value{font-weight:600;font-size:13px;color:#0EA5E9}
-        .an-bar-track{width:100%;height:8px;background:#F1F5F9;border-radius:4px;overflow:hidden}
-        .an-bar-fill{height:100%;background:linear-gradient(90deg, #0EA5E9, #10B981);transition:width 0.5s}
-        canvas{max-height: 250px}
-      </style>
+    const API = '';
 
-      <div class="an-header">
-        <h1>📈 التحليلات</h1>
-      </div>
+    window.Pages = window.Pages || {};
+    window.Pages.analytics = {
+        render: async (container) => {
+            container.innerHTML = `
+                <style>
+                    .an-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); margin-bottom: 20px; }
+                    .an-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; }
+                    .an-value { font-size: 28px; font-weight: 800; color: #0ea5e9; }
+                    .an-label { font-size: 12px; color: #64748b; margin-top: 4px; }
+                    .an-chart { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+                    .an-chart h3 { font-size: 15px; margin-bottom: 12px; color: #0f172a; }
+                    .an-list { padding: 8px 0; }
+                    .an-item { padding: 10px 12px; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+                    .an-item:last-child { border-bottom: none; }
+                    .an-badge { background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+                    @media (max-width: 600px) {
+                        .an-grid { grid-template-columns: repeat(2, 1fr); }
+                    }
+                </style>
 
-      <div id="an-content">
-        <div style="text-align:center;padding:60px">⏳ جاري التحميل...</div>
-      </div>
-    `;
+                <h1 style="font-size:20px;margin-bottom:8px">📊 التحليلات</h1>
+                <p style="color:#64748b;font-size:13px;margin-bottom:16px">نظرة عامة على أداء المنصة</p>
 
-    // Load Chart.js
-    if (!window.Chart) {
-      const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js';
-      document.head.appendChild(script);
-      await new Promise(r => script.onload = r);
-    }
-
-    await this.loadData();
-    this.render();
-  },
-
-  async loadData() {
-    try {
-      this.data = await App.api('/v1/admin/analytics/overview');
-    } catch (e) {
-      App.toast(`❌ ${e.message}`, 'error');
-      this.data = null;
-    }
-  },
-
-  render() {
-    const c = document.getElementById('an-content');
-    if (!this.data) {
-      c.innerHTML = '<div style="text-align:center;padding:60px">❌ فشل تحميل البيانات</div>';
-      return;
-    }
-
-    const { overview, daily, top_pharmacies } = this.data;
-
-    c.innerHTML = `
-      <div class="an-kpis">
-        <div class="an-kpi">
-          <div class="an-kpi-value">${overview.total_pharmacies || 0}</div>
-          <div class="an-kpi-label">🏥 الصيدليات</div>
-        </div>
-        <div class="an-kpi">
-          <div class="an-kpi-value" style="color:#10B981">${overview.active_pharmacies || 0}</div>
-          <div class="an-kpi-label">✅ النشطة</div>
-        </div>
-        <div class="an-kpi">
-          <div class="an-kpi-value" style="color:#3B82F6">${overview.connected_numbers || 0}</div>
-          <div class="an-kpi-label">📱 WhatsApp</div>
-        </div>
-        <div class="an-kpi">
-          <div class="an-kpi-value">${overview.total_users || 0}</div>
-          <div class="an-kpi-label">👥 المستخدمين</div>
-        </div>
-        <div class="an-kpi">
-          <div class="an-kpi-value">${overview.total_messages || 0}</div>
-          <div class="an-kpi-label">📨 إجمالي الرسائل</div>
-        </div>
-        <div class="an-kpi">
-          <div class="an-kpi-value" style="color:#F59E0B">${overview.messages_today || 0}</div>
-          <div class="an-kpi-label">📅 اليوم</div>
-        </div>
-      </div>
-
-      <div class="an-charts">
-        <div class="an-card">
-          <h3>📊 الرسائل (آخر 7 أيام)</h3>
-          <canvas id="an-daily-chart"></canvas>
-        </div>
-        <div class="an-card">
-          <h3>🏆 أفضل الصيدليات</h3>
-          ${top_pharmacies.map(p => {
-            const max = top_pharmacies[0]?.messages || 1;
-            const pct = (p.messages / max) * 100;
-            return `
-              <div style="margin-bottom:12px">
-                <div class="an-bar">
-                  <span class="an-bar-label">${App.escapeHtml(p.name)}</span>
-                  <span class="an-bar-value">${p.messages}</span>
+                <div class="an-grid" id="an-stats">
+                    <div class="an-card"><div class="an-value">—</div><div class="an-label">جاري التحميل...</div></div>
                 </div>
-                <div class="an-bar-track">
-                  <div class="an-bar-fill" style="width:${pct}%"></div>
+
+                <div class="an-chart">
+                    <h3>📈 الرسائل (آخر 7 أيام)</h3>
+                    <canvas id="an-chart" height="60"></canvas>
                 </div>
-              </div>
+
+                <div class="an-chart">
+                    <h3>🛠️ الأدوات الأكثر استخدامًا</h3>
+                    <div class="an-list" id="an-tools">
+                        <div style="text-align:center;color:#64748b;padding:20px">جاري التحميل...</div>
+                    </div>
+                </div>
+
+                <div class="an-chart">
+                    <h3>💬 آخر الجلسات</h3>
+                    <div class="an-list" id="an-sessions">
+                        <div style="text-align:center;color:#64748b;padding:20px">جاري التحميل...</div>
+                    </div>
+                </div>
             `;
-          }).join('')}
-        </div>
-      </div>
-    `;
 
-    // Render chart
-    setTimeout(() => {
-      const ctx = document.getElementById('an-daily-chart');
-      if (ctx && daily.length) {
-        new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: daily.map(d => d.date),
-            datasets: [{
-              label: 'الرسائل',
-              data: daily.map(d => d.count),
-              borderColor: '#0EA5E9',
-              backgroundColor: 'rgba(14, 165, 233, 0.1)',
-              fill: true,
-              tension: 0.4,
-            }],
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: { legend: { display: false } },
-            scales: {
-              y: { beginAtZero: true },
-            },
-          },
+            await loadStats();
+            await loadTimeseries();
+            await loadTools();
+            await loadSessions();
+        }
+    };
+
+    function getToken() {
+        return localStorage.getItem('h1ai_token') || '';
+    }
+
+    async function fetchAPI(url) {
+        const res = await fetch(API + url, {
+            headers: { 'Authorization': 'Bearer ' + getToken() },
         });
-      }
-    }, 100);
-  },
-};
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+    }
+
+    async function loadStats() {
+        try {
+            const d = await fetchAPI('/api/analytics/overview');
+            const el = document.getElementById('an-stats');
+            el.innerHTML = `
+                <div class="an-card"><div class="an-value">${d.total_sessions}</div><div class="an-label">إجمالي الجلسات</div></div>
+                <div class="an-card"><div class="an-value">${d.sessions_24h}</div><div class="an-label">جلسات اليوم</div></div>
+                <div class="an-card"><div class="an-value">${d.total_messages}</div><div class="an-label">إجمالي الرسائل</div></div>
+                <div class="an-card"><div class="an-value">${d.messages_24h}</div><div class="an-label">رسائل اليوم</div></div>
+                <div class="an-card"><div class="an-value">${d.total_drugs}</div><div class="an-label">الأدوية</div></div>
+                <div class="an-card"><div class="an-value">${d.total_orders}</div><div class="an-label">الطلبات</div></div>
+            `;
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    async function loadTimeseries() {
+        try {
+            const data = await fetchAPI('/api/analytics/messages/timeseries?days=7');
+            const canvas = document.getElementById('an-chart');
+            if (!canvas) return;
+
+            // Simple bar chart without external lib
+            const max = Math.max(...data.map(d => d.count), 1);
+            const bars = data.map(d => {
+                const h = (d.count / max) * 100;
+                const day = new Date(d.date).toLocaleDateString('ar-EG', { weekday: 'short' });
+                return `
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+                        <div style="font-size:10px;color:#64748b">${d.count}</div>
+                        <div style="width:100%;height:100px;background:#f1f5f9;border-radius:6px;display:flex;align-items:flex-end">
+                            <div style="width:100%;height:${h}%;background:linear-gradient(to top,#0ea5e9,#38bdf8);border-radius:6px"></div>
+                        </div>
+                        <div style="font-size:10px;color:#475569">${day}</div>
+                    </div>
+                `;
+            }).join('');
+
+            canvas.parentElement.innerHTML = `
+                <h3 style="font-size:15px;margin-bottom:12px;color:#0f172a">📈 الرسائل (آخر 7 أيام)</h3>
+                <div style="display:flex;gap:6px;align-items:flex-end;padding:12px 0">${bars}</div>
+            `;
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    async function loadTools() {
+        try {
+            const data = await fetchAPI('/api/analytics/intents/top?limit=10');
+            const el = document.getElementById('an-tools');
+            if (!data.length) {
+                el.innerHTML = '<div style="text-align:center;color:#64748b;padding:20px">مفيش بيانات لسه</div>';
+                return;
+            }
+            el.innerHTML = data.map(t => `
+                <div class="an-item">
+                    <span><strong>${t.tool}</strong></span>
+                    <span class="an-badge">${t.count}</span>
+                </div>
+            `).join('');
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    async function loadSessions() {
+        try {
+            const data = await fetchAPI('/api/analytics/sessions/recent?limit=10');
+            const el = document.getElementById('an-sessions');
+            if (!data.length) {
+                el.innerHTML = '<div style="text-align:center;color:#64748b;padding:20px">مفيش جلسات لسه</div>';
+                return;
+            }
+            el.innerHTML = data.map(s => `
+                <div class="an-item">
+                    <span>
+                        <strong>${s.channel}</strong> • ${s.user}
+                    </span>
+                    <span class="an-badge">${s.messages} رسالة</span>
+                </div>
+            `).join('');
+        } catch (e) {
+            console.error(e);
+        }
+    }
+})();
