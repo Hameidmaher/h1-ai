@@ -1,0 +1,66 @@
+▶ 1. Git status وحجم الـ repo
+?? docs/audit-20260920/
+
+count: 747
+size: 10.74 MiB
+in-pack: 0
+packs: 0
+size-pack: 0 bytes
+prune-packable: 0
+garbage: 0
+size-garbage: 0 bytes
+
+▶ 2. آخر 10 commits
+e79bda4 fix: add check_message_direction constraint
+9212368 feat: enhanced dashboard with KPIs + charts
+ae37b90 feat: activity log + sample data
+445effe docs: add privacy + terms links to landing footer
+a4d4ca1 feat: complete admin UI for new tables
+4ef43f8 feat: privacy policy + terms + database expansion
+4337812 chore: remove backups from git + add to gitignore
+f58f267 fix: restore essential files + add new features
+2388219 feat: self-service onboarding + WhatsApp routing fix
+bd0b78c feat: multi-pharmacy + customer interface
+
+▶ 3. الملفات غير المرفوعة (uncommitted)
+1
+
+▶ 4. Branches
+* main
+  remotes/origin/main
+
+▶ 5. حجم الـ repo (يفضل < 100MB)
+12M	.git
+
+▶ 6. ملفات كبيرة في git history
+b10dbbeaaef1c8138b6909680efabee98cb21769 5203201 backups/h1ai_20260920-030001.sql
+e951a698a9156e6a257ffe62126a37cc84f29f1c 3252958 backups/h1ai_20260919-065601.sql
+da105ea10be73a93213795cb2d3958f4b15dec13 3252958 backups/h1ai_20260919-065920.sql
+42e0105bb801f242877e7407e9f99f19d2f7d5e7 3252958 backups/pre-optimize-20260919-070845.sql
+3a5888e0e39f21290adc96b180b058adc7b84a67 883591 backups/pre-multitenant-20260920-040124.sql.gz
+f32daf1851d441051a61b16fe22c86fccd794075 883575 backups/h1ai_20260920-030001.sql.gz
+9a11979af00f474dcd8f2d1707be44042bb65c8e 529668 backups/pre-optimize-20260919-070845.sql.gz
+adf20e2b63b1ec8eec13d98d8bdc69a93b0fa863 529664 backups/h1ai_20260919-065920.sql.gz
+19aa956280ad205288dc943b0068e5fe50d6d2e2 529655 backups/h1ai_20260919-065601.sql.gz
+14f3ab2318b56130e965d4d73ebedbc412d7d8ba 315747 docs/screenshots/landing-page.png
+
+▶ 7. CI/CD configuration
+total 12
+drwxrwxr-x 2 h h 4096 Sep 19 06:47 .
+drwxrwxr-x 3 h h 4096 Sep 13 06:55 ..
+-rw-rw-r-- 1 h h 1813 Sep 19 06:49 ci.yml
+  ℹ️  مفيش GitLab CI
+
+▶ 8. Docker/Compose
+-rw-rw-r-- 1 h h 486 Sep 13 06:55 docker-compose.yml
+  ℹ️  مفيش Docker
+
+▶ 9. مفيش .gitignore entries مهمة
+  ✅ .env
+  ✅ *.log
+  ✅ node_modules
+  ✅ __pycache__
+  ⚠️  Missing: *.pyc
+  ✅ .venv
+
+▶ 10. Dependencies audit

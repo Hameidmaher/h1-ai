@@ -1,0 +1,10 @@
+▶ 1. الأعمدة اللي شكلها JSON/CSV (مخالفة 1NF)
+./02-schema-audit.sh: line 5: PGPASSWORD=h1ai_pass: command not found
+▶ 2. الأعمدة بدون NOT NULL وبدون DEFAULT (خطر NULL)
+./02-schema-audit.sh: line 21: PGPASSWORD=h1ai_pass: command not found
+▶ 3. الـ Primary Keys (تأكد كل جدول عنده PK)
+./02-schema-audit.sh: line 35: PGPASSWORD=h1ai_pass: command not found
+▶ 4. أعمدة مشتركة (created_at/updated_at) — تأكد وجودها
+./02-schema-audit.sh: line 52: PGPASSWORD=h1ai_pass: command not found
+▶ 5. نوع الـ PK (uuid vs serial) — تأكد من consistency
+./02-schema-audit.sh: line 67: PGPASSWORD=h1ai_pass: command not found

@@ -1,0 +1,11 @@
+▶ 1. Tables + Sizes + Row counts
+./run-audit.sh: line 5: PGPASSWORD=h1ai_pass: command not found
+▶ 2. Row counts لكل جدول
+./run-audit.sh: line 17: PGPASSWORD=h1ai_pass: command not found
+▶ 3. Sequences (لمنع overflow)
+./run-audit.sh: line 32: PGPASSWORD=h1ai_pass: command not found
+▶ 4. Extensions المثبتة
+./run-audit.sh: line 45: PGPASSWORD=h1ai_pass: command not found
+▶ 5. PostgreSQL version + settings
+./run-audit.sh: line 48: PGPASSWORD=h1ai_pass: command not found
+./run-audit.sh: line 49: PGPASSWORD=h1ai_pass: command not found

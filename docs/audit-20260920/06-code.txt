@@ -1,0 +1,53 @@
+▶ 1. فحص naming consistency للـ direction
+--- inbound:
+456
+--- outbound:
+417
+--- incoming (القديم):
+1202
+--- outgoing (القديم):
+459
+
+▶ 2. Secrets hardcoded (خطر أمني خطير!)
+
+▶ 3. SQL injection risks (string concat)
+./backend/maintenance/self_audit.py:216:            cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+./backend/maintenance/self_audit.py:234:            cursor.execute("SELECT COUNT(*) FROM products")
+./backend/.venv/lib/python3.13/site-packages/transformers/models/canine/modeling_canine.py:432:        mixed_query_layer = self.query(from_tensor)
+./backend/.venv/lib/python3.13/site-packages/PIL/SunImagePlugin.py:100:            self.palette = ImagePalette.raw("RGB;L", self.fp.read(palette_length))
+./backend/.venv/lib/python3.13/site-packages/PIL/XpmImagePlugin.py:101:            self.palette = ImagePalette.raw("RGB", b"".join(palette.values()))
+./backend/.venv/lib/python3.13/site-packages/PIL/PsdImagePlugin.py:98:                self.palette = ImagePalette.raw("RGB;L", data)
+./backend/.venv/lib/python3.13/site-packages/PIL/GifImagePlugin.py:121:                palette = ImagePalette.raw("RGB", p)
+./backend/.venv/lib/python3.13/site-packages/PIL/GifImagePlugin.py:296:                        palette = ImagePalette.raw("RGB", p)
+./backend/.venv/lib/python3.13/site-packages/PIL/TiffImagePlugin.py:1674:            self.palette = ImagePalette.raw("RGB;L", b"".join(palette))
+./backend/.venv/lib/python3.13/site-packages/PIL/ImImagePlugin.py:241:                    self.palette = ImagePalette.raw("RGB;L", palette)
+
+▶ 4. console.log / print في production code
+9864
+
+▶ 5. TODO / FIXME / HACK
+9325
+
+▶ 6. الملفات الأكبر (code smell)
+  902008 total
+  781839 total
+  759860 total
+  756623 total
+  746263 total
+  733214 total
+  653335 total
+  649313 total
+  617672 total
+  611924 total
+
+▶ 7. الملفات بدون tests
+  ⚠️  No test: ./backend/db/models/message.py
+  ⚠️  No test: ./backend/db/models/audit.py
+  ⚠️  No test: ./backend/db/models/__init__.py
+  ⚠️  No test: ./backend/db/models/report.py
+  ⚠️  No test: ./backend/db/models/team.py
+  ⚠️  No test: ./backend/db/models/product.py
+  ⚠️  No test: ./backend/db/models/assignment.py
+  ⚠️  No test: ./backend/db/models/session.py
+  ⚠️  No test: ./backend/db/models/user.py
+  ⚠️  No test: ./backend/db/models/prescription.py

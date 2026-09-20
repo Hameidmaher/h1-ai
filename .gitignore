@@ -183,3 +183,5 @@ tests/load/*.html
 *.bak.*
 main.py.bak.*
 backups/
+*.sql.gz
+*.pyc
