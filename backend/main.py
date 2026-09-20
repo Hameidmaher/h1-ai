@@ -47,6 +47,7 @@ from services.logging_service import setup_logging
 from services.metrics import metrics
 from services.chat_cache import chat_cache
 from services.settings_service import settings_service
+from services.pharmacy_service import pharmacy_service
 
 from api.whatsapp_routes import router as whatsapp_router
 from api.whatsapp_webhook import router as whatsapp_webhook_router
@@ -224,6 +225,30 @@ async def update_whatsapp_settings(
 
     result = settings_service.update_whatsapp(updates)
     return {"success": True, "whatsapp": result}
+
+
+
+# ═══════════════════════════════════════════════════════════
+# CUSTOMER INTERFACE (Public)
+# ═══════════════════════════════════════════════════════════
+_customer_static = _Path(__file__).parent / "customer" / "static"
+if _customer_static.exists():
+    app.mount("/customer/static", StaticFiles(directory=str(_customer_static)), name="customer_static")
+
+    @app.get("/")
+    async def _customer_landing():
+        """Landing page for customers."""
+        return FileResponse(str(_customer_static / "index.html"))
+
+    @app.get("/chat")
+    async def _customer_chat():
+        """Customer chat interface."""
+        return FileResponse(str(_customer_static / "chat.html"))
+
+    @app.get("/login")
+    async def _customer_login():
+        """Login page — redirect to admin login for now."""
+        return FileResponse(str(_customer_static / "login.html"))
 
 # ═══════════════════════════════════════════════════════════
 # AUTH ENDPOINTS
@@ -425,6 +450,79 @@ async def knowledge_advise(
     result = advisory_engine.analyze(req.query)
     return result.to_dict()
 
+
+
+
+# ═══════════════════════════════════════════════════════════
+# MULTI-PHARMACY MANAGEMENT
+# ═══════════════════════════════════════════════════════════
+@app.get("/v1/admin/pharmacies")
+async def list_pharmacies(user: User = Depends(require_admin)):
+    return {"pharmacies": pharmacy_service.list_pharmacies()}
+
+
+@app.get("/v1/admin/pharmacies/{pharmacy_id}")
+async def get_pharmacy(pharmacy_id: str, user: User = Depends(require_admin)):
+    p = pharmacy_service.get_pharmacy(pharmacy_id)
+    if not p:
+        raise HTTPException(status_code=404, detail="Pharmacy not found")
+    return p
+
+
+@app.post("/v1/admin/pharmacies")
+async def create_pharmacy(request: Request, user: User = Depends(require_admin)):
+    data = await request.json()
+    if not data.get("name"):
+        raise HTTPException(status_code=400, detail="Name required")
+    return pharmacy_service.create_pharmacy(data)
+
+
+@app.put("/v1/admin/pharmacies/{pharmacy_id}")
+async def update_pharmacy(pharmacy_id: str, request: Request, user: User = Depends(require_admin)):
+    data = await request.json()
+    result = pharmacy_service.update_pharmacy(pharmacy_id, data)
+    if not result:
+        raise HTTPException(status_code=404, detail="Pharmacy not found")
+    return result
+
+
+@app.delete("/v1/admin/pharmacies/{pharmacy_id}")
+async def delete_pharmacy(pharmacy_id: str, user: User = Depends(require_admin)):
+    pharmacy_service.delete_pharmacy(pharmacy_id)
+    return {"success": True}
+
+
+@app.get("/v1/admin/whatsapp")
+async def list_all_whatsapp(user: User = Depends(require_admin)):
+    return {"numbers": pharmacy_service.list_whatsapp_numbers()}
+
+
+@app.get("/v1/admin/pharmacies/{pharmacy_id}/whatsapp")
+async def list_pharmacy_whatsapp(pharmacy_id: str, user: User = Depends(require_admin)):
+    return {"numbers": pharmacy_service.list_whatsapp_numbers(pharmacy_id)}
+
+
+@app.post("/v1/admin/pharmacies/{pharmacy_id}/whatsapp")
+async def add_whatsapp(pharmacy_id: str, request: Request, user: User = Depends(require_admin)):
+    data = await request.json()
+    if not data.get("phone_number"):
+        raise HTTPException(status_code=400, detail="Phone required")
+    return pharmacy_service.add_whatsapp_number(pharmacy_id, data)
+
+
+@app.put("/v1/admin/whatsapp/{number_id}")
+async def update_whatsapp(number_id: str, request: Request, user: User = Depends(require_admin)):
+    data = await request.json()
+    result = pharmacy_service.update_whatsapp_number(number_id, data)
+    if not result:
+        raise HTTPException(status_code=404, detail="Number not found")
+    return result
+
+
+@app.delete("/v1/admin/whatsapp/{number_id}")
+async def delete_whatsapp(number_id: str, user: User = Depends(require_admin)):
+    pharmacy_service.delete_whatsapp_number(number_id)
+    return {"success": True}
 
 # ═══════════════════════════════════════════════════════════
 # CACHE MANAGEMENT

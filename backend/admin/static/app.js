@@ -189,6 +189,7 @@ const App = {
       synonyms: 'المرادفات',
       audit: 'سجل التعديلات',
       chat: 'محادثة تجريبية',
+      pharmacies: 'الصيدليات والأرقام',
       settings: 'الإعدادات',
     };
     document.getElementById('page-title').textContent = titles[page] || page;
@@ -205,6 +206,7 @@ const App = {
       case 'synonyms':    Pages.synonyms.render(content); break;
       case 'audit':       Pages.audit.render(content); break;
       case 'chat':        Pages.chat.render(content); break;
+      case 'pharmacies':  Pages.pharmacies.render(content); break;
       case 'settings':    Pages.settings.render(content); break;
       default: content.innerHTML = '<div class="empty-state">صفحة غير معروفة</div>';
     }
