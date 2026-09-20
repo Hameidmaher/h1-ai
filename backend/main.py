@@ -1302,6 +1302,145 @@ async def pharmacy_full_update(
     finally:
         db.close()
 
+
+
+# ═══════════════════════════════════════════════════════════
+# PRIVACY POLICY + TERMS
+# ═══════════════════════════════════════════════════════════
+@app.get("/privacy")
+async def privacy_policy():
+    """Privacy policy page."""
+    static_dir = _Path(__file__).parent / "public" / "static"
+    return FileResponse(str(static_dir / "privacy.html"))
+
+
+@app.get("/terms")
+async def terms_of_service():
+    """Terms of service page."""
+    static_dir = _Path(__file__).parent / "public" / "static"
+    return FileResponse(str(static_dir / "terms.html"))
+
+
+# ═══════════════════════════════════════════════════════════
+# DATABASE EXPANSION ENDPOINTS
+# ═══════════════════════════════════════════════════════════
+@app.get("/v1/admin/subscriptions")
+async def list_subscriptions(user: User = Depends(require_admin)):
+    """List all subscriptions."""
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    db = SessionLocal()
+    try:
+        result = db.execute(text("""
+            SELECT s.id::text, s.pharmacy_id::text, p.name_ar AS pharmacy_name,
+                   s.plan, s.status, s.price_monthly, s.currency,
+                   s.started_at, s.expires_at, s.auto_renew
+            FROM subscriptions s
+            LEFT JOIN pharmacies p ON p.id = s.pharmacy_id
+            ORDER BY s.created_at DESC
+        """))
+        return {"subscriptions": [dict(row._mapping) for row in result]}
+    finally:
+        db.close()
+
+
+@app.get("/v1/admin/notifications")
+async def list_notifications(
+    limit: int = 50,
+    user: User = Depends(require_admin),
+):
+    """List notifications."""
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    db = SessionLocal()
+    try:
+        result = db.execute(text("""
+            SELECT n.id::text, n.type, n.title, n.message, n.is_read,
+                   n.priority, n.created_at
+            FROM notifications n
+            WHERE n.user_id = :uid OR n.pharmacy_id IS NULL
+            ORDER BY n.created_at DESC
+            LIMIT :limit
+        """), {"uid": user.id, "limit": limit})
+        return {"notifications": [dict(row._mapping) for row in result]}
+    finally:
+        db.close()
+
+
+@app.get("/v1/admin/usage-stats")
+async def list_usage_stats(
+    days: int = 30,
+    user: User = Depends(require_admin),
+):
+    """Get usage statistics."""
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    db = SessionLocal()
+    try:
+        result = db.execute(text("""
+            SELECT date, 
+                   SUM(messages_sent) AS messages_sent,
+                   SUM(messages_received) AS messages_received,
+                   SUM(ai_responses) AS ai_responses,
+                   SUM(unique_customers) AS unique_customers
+            FROM usage_stats
+            WHERE date >= CURRENT_DATE - INTERVAL ':days days'
+            GROUP BY date
+            ORDER BY date DESC
+        """), {"days": days})
+        return {"stats": [dict(row._mapping) for row in result]}
+    finally:
+        db.close()
+
+
+@app.get("/v1/admin/feature-flags")
+async def list_feature_flags(user: User = Depends(require_admin)):
+    """List all feature flags."""
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    db = SessionLocal()
+    try:
+        result = db.execute(text("""
+            SELECT id::text, key, name, description, is_enabled,
+                   rollout_percentage, created_at
+            FROM feature_flags
+            ORDER BY key
+        """))
+        return {"flags": [dict(row._mapping) for row in result]}
+    finally:
+        db.close()
+
+
+@app.get("/v1/admin/alerts")
+async def list_alerts(
+    unresolved_only: bool = True,
+    user: User = Depends(require_admin),
+):
+    """List system alerts."""
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    db = SessionLocal()
+    try:
+        where = "WHERE a.is_resolved = FALSE" if unresolved_only else ""
+        result = db.execute(text(f"""
+            SELECT a.id::text, a.type, a.severity, a.title, a.message,
+                   a.is_resolved, a.created_at,
+                   p.name_ar AS pharmacy_name
+            FROM alerts a
+            LEFT JOIN pharmacies p ON p.id = a.pharmacy_id
+            {where}
+            ORDER BY a.created_at DESC
+            LIMIT 100
+        """))
+        return {"alerts": [dict(row._mapping) for row in result]}
+    finally:
+        db.close()
+
 # ═══════════════════════════════════════════════════════════
 # CACHE MANAGEMENT
 # ═══════════════════════════════════════════════════════════
