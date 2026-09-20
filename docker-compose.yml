@@ -1,26 +1,75 @@
-version: "3.9"
+version: '3.9'
 
 services:
-  backend:
+  # ═══════════════════════════════════════════════════════════
+  #  PostgreSQL + pgvector
+  # ═══════════════════════════════════════════════════════════
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: h1ai-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: h1ai
+      POSTGRES_PASSWORD: h1ai_pass
+      POSTGRES_DB: h1ai
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/migrations:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U h1ai"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ═══════════════════════════════════════════════════════════
+  #  Redis (Cache)
+  # ═══════════════════════════════════════════════════════════
+  redis:
+    image: redis:7-alpine
+    container_name: h1ai-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # ═══════════════════════════════════════════════════════════
+  #  H1-AI API
+  # ═══════════════════════════════════════════════════════════
+  api:
     build:
       context: ./backend
+      dockerfile: Dockerfile
+    container_name: h1ai-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://h1ai:h1ai_pass@postgres:5432/h1ai
+      REDIS_URL: redis://redis:6379/0
+      LLM_PROVIDER: groq
+      GROQ_API_KEY: ${GROQ_API_KEY:-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}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-change-me-in-production}
     ports:
       - "8000:8000"
-    environment:
-      - ENVIRONMENT=dev
-      - JWT_SECRET_KEY=dev_only_change_in_production
     volumes:
-      - ./data:/app/data:ro
-      - ./backend/chroma_db:/app/chroma_db
-    restart: unless-stopped
+      - ./backend:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --workers 2
 
-  ollama:
-    image: ollama/ollama:latest
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
+  # ═══════════════════════════════════════════════════════════
+  #  Cloudflare Tunnel — المشاركة العامة
+  # ═══════════════════════════════════════════════════════════
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: h1ai-tunnel
     restart: unless-stopped
+    depends_on:
+      - api
+    command: tunnel --url http://api:8000 --no-autoupdate
 
 volumes:
-  ollama_data:
+  postgres_data:
+  redis_data:
