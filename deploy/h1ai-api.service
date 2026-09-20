@@ -1,0 +1,19 @@
+[Unit]
+Description=H1-AI FastAPI Backend
+After=network.target postgresql.service docker.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=h
+WorkingDirectory=/home/h/h1-ai/backend
+Environment="PATH=/home/h/h1-ai/backend/.venv/bin:/usr/local/bin:/usr/bin:/bin"
+EnvironmentFile=/home/h/h1-ai/backend/.env
+ExecStart=/home/h/h1-ai/backend/.venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000 --workers 2
+Restart=always
+RestartSec=10
+StandardOutput=append:/home/h/h1ai/logs/h1ai-api.log
+StandardError=append:/home/h/h1ai/logs/h1ai-api.log
+
+[Install]
+WantedBy=multi-user.target
