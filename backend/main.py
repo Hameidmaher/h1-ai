@@ -59,6 +59,7 @@ from api.user_routes import router as user_router
 from api.audit_routes import router as audit_router
 from api.chat_routes import router as chat_router
 from api.analytics_routes import router as analytics_router
+from api.tenant_middleware import TenantMiddleware
 from api.chat_stream import router as chat_stream_router
 from api.whatsapp_chatbot import router as whatsapp_chatbot_router
 from admin.api.products_routes import router as admin_products_router
@@ -109,6 +110,9 @@ app = FastAPI(
     redoc_url="/redoc" if not settings.is_production else None,
     openapi_url="/openapi.json" if not settings.is_production else None,
 )
+
+app.add_middleware(TenantMiddleware)
+
 
 # ─── Middleware (order matters: last added = first executed) ───
 app.add_middleware(RateLimitHeadersMiddleware)
