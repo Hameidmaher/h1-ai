@@ -513,7 +513,11 @@ Pages.chat = {
               this.sessionId = data.session_id;
             } else if (data.type === 'chunk') {
               this.messages[agentIndex].text += data.text;
-              this.updateMessages();
+              // Batch render — only update every 100ms for performance
+              if (!this._lastRender || Date.now() - this._lastRender > 100) {
+                this.updateMessages();
+                this._lastRender = Date.now();
+              }
             } else if (data.type === 'done') {
               Object.assign(this.messages[agentIndex], {
                 handler: data.handler || 'agent',
@@ -614,6 +618,20 @@ Pages.chat = {
   updateMessages() {
     const container = document.getElementById('chat-messages');
     if (!container) return;
+    
+    // Performance: if streaming, only update the last agent message
+    const lastMsg = this.messages[this.messages.length - 1];
+    if (lastMsg && lastMsg.streaming && !this._forceFullRender) {
+      const lastEl = container.lastElementChild;
+      if (lastEl && lastEl.classList.contains('agent')) {
+        const contentDiv = lastEl.querySelector('.markdown-content');
+        if (contentDiv) {
+          contentDiv.innerHTML = this.renderMarkdown(lastMsg.text);
+          container.scrollTop = container.scrollHeight;
+          return;
+        }
+      }
+    }
 
     if (this.messages.length === 0) {
       container.innerHTML = '<div class="chat-message system">💡 ابدأ المحادثة</div>';
