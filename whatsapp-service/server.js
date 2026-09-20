@@ -62,6 +62,7 @@ async function createSession(phoneNumber, pharmacyId) {
         status: 'initializing',
         pharmacy_id: pharmacyId,
         phone_number: phoneNumber,
+        explicitDisconnect: false,  // ← منع إعادة الاتصال التلقائي
     };
 
     // ─── QR Code ───
@@ -81,6 +82,15 @@ async function createSession(phoneNumber, pharmacyId) {
         }
 
         if (connection === 'close') {
+            const session = sessions[phoneNumber];
+            
+            // Don't reconnect if explicitly disconnected
+            if (session && session.explicitDisconnect) {
+                console.log(`🔌 ${phoneNumber} explicitly disconnected — no reconnect`);
+                if (session) session.status = 'disconnected';
+                return;
+            }
+            
             const shouldReconnect = lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut;
             console.log(`❌ Connection closed for ${phoneNumber}, reconnect: ${shouldReconnect}`);
             
@@ -191,6 +201,23 @@ app.get('/health', (req, res) => {
     });
 });
 
+// Get single session status
+app.get('/sessions/:phone/status', (req, res) => {
+    const { phone } = req.params;
+    const session = sessions[phone];
+    
+    if (!session) {
+        return res.json({ phone_number: phone, status: 'not_found' });
+    }
+    
+    res.json({
+        phone_number: phone,
+        status: session.status,
+        pharmacy_id: session.pharmacy_id,
+        has_qr: !!session.qr,
+    });
+});
+
 // List all sessions
 app.get('/sessions', (req, res) => {
     const list = Object.entries(sessions).map(([num, s]) => ({
@@ -254,8 +281,8 @@ app.post('/sessions', async (req, res) => {
     }
 });
 
-// Stop session
-app.delete('/sessions/:phone', async (req, res) => {
+// Disconnect session (keep files, just logout)
+app.post('/sessions/:phone/disconnect', async (req, res) => {
     const { phone } = req.params;
     const session = sessions[phone];
 
@@ -264,11 +291,105 @@ app.delete('/sessions/:phone', async (req, res) => {
     }
 
     try {
-        await session.sock.logout();
+        console.log(`🔌 Disconnecting ${phone}...`);
+        
+        // Mark as explicit disconnect to prevent auto-reconnect
+        session.explicitDisconnect = true;
+        
+        if (session.sock) {
+            try {
+                await session.sock.logout();
+            } catch (e) {
+                console.log(`Logout warning: ${e.message}`);
+            }
+        }
+        
         delete sessions[phone];
-        res.json({ success: true });
+        
+        console.log(`✅ ${phone} disconnected (no reconnect)`);
+        res.json({ success: true, phone_number: phone, action: 'disconnected' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error(`❌ Disconnect error: ${error.message}`);
+        session.explicitDisconnect = true;
+        delete sessions[phone];
+        res.json({ success: true, phone_number: phone, action: 'disconnected', warning: error.message });
+    }
+});
+
+// Stop session (hard delete + remove files)
+app.delete('/sessions/:phone', async (req, res) => {
+    const { phone } = req.params;
+    const session = sessions[phone];
+
+    try {
+        console.log(`🗑️ Deleting ${phone} completely...`);
+        
+        // 1. Mark for no reconnect
+        if (session) {
+            session.explicitDisconnect = true;
+        }
+        
+        // 2. Logout and close socket
+        if (session && session.sock) {
+            try {
+                await session.sock.logout();
+            } catch (e) {
+                console.log(`Logout warning: ${e.message}`);
+            }
+            
+            try {
+                await session.sock.ws.close();
+            } catch (e) {}
+            
+            try {
+                session.sock.end(undefined);
+            } catch (e) {}
+        }
+        
+        // 3. Remove from memory
+        delete sessions[phone];
+        
+        // 4. Delete session files
+        const sessionPath = path.join(SESSIONS_DIR, `session-${phone}`);
+        if (fs.existsSync(sessionPath)) {
+            fs.rmSync(sessionPath, { recursive: true, force: true });
+            console.log(`🗑️ Deleted files: ${sessionPath}`);
+        }
+        
+        // 5. Also try variant folder names
+        const altPaths = [
+            path.join(SESSIONS_DIR, `session-${phone.replace('+', '')}`),
+            path.join(SESSIONS_DIR, phone),
+            path.join(SESSIONS_DIR, phone.replace('+', '')),
+        ];
+        
+        for (const p of altPaths) {
+            if (fs.existsSync(p)) {
+                fs.rmSync(p, { recursive: true, force: true });
+                console.log(`🗑️ Deleted alt: ${p}`);
+            }
+        }
+        
+        console.log(`✅ ${phone} deleted completely`);
+        res.json({ success: true, phone_number: phone, action: 'deleted' });
+    } catch (error) {
+        console.error(`❌ Delete error: ${error.message}`);
+        
+        // Force cleanup
+        delete sessions[phone];
+        try {
+            const paths = [
+                path.join(SESSIONS_DIR, `session-${phone}`),
+                path.join(SESSIONS_DIR, phone),
+            ];
+            for (const p of paths) {
+                if (fs.existsSync(p)) {
+                    fs.rmSync(p, { recursive: true, force: true });
+                }
+            }
+        } catch (e) {}
+        
+        res.json({ success: true, phone_number: phone, action: 'deleted', warning: error.message });
     }
 });
 

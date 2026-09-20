@@ -190,6 +190,8 @@ const App = {
       audit: 'سجل التعديلات',
       chat: 'محادثة تجريبية',
       pharmacies: 'الصيدليات والأرقام',
+      whatsapp_sessions: 'أرقام WhatsApp المتصلة',
+      live_feed: 'البث الحي للرسائل',
       settings: 'الإعدادات',
     };
     document.getElementById('page-title').textContent = titles[page] || page;
@@ -207,6 +209,8 @@ const App = {
       case 'audit':       Pages.audit.render(content); break;
       case 'chat':        Pages.chat.render(content); break;
       case 'pharmacies':  Pages.pharmacies.render(content); break;
+      case 'whatsapp_sessions': Pages.whatsapp_sessions.render(content); break;
+      case 'live_feed': Pages.live_feed.render(content); break;
       case 'settings':    Pages.settings.render(content); break;
       default: content.innerHTML = '<div class="empty-state">صفحة غير معروفة</div>';
     }

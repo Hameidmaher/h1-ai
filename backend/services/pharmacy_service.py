@@ -106,6 +106,7 @@ class PharmacyService:
                     SELECT w.id::text, w.pharmacy_id::text, p.name_ar AS pharmacy_name,
                            w.phone_number, w.display_name, w.mode,
                            w.is_active, w.is_primary, w.last_connected_at, w.created_at,
+                           w.status, w.disconnected_at,
                            (SELECT COUNT(*) FROM messages WHERE pharmacy_id = w.pharmacy_id) AS messages_count
                     FROM whatsapp_numbers w
                     LEFT JOIN pharmacies p ON p.id = w.pharmacy_id
@@ -118,6 +119,7 @@ class PharmacyService:
                     SELECT w.id::text, w.pharmacy_id::text, p.name_ar AS pharmacy_name,
                            w.phone_number, w.display_name, w.mode,
                            w.is_active, w.is_primary, w.last_connected_at, w.created_at,
+                           w.status, w.disconnected_at,
                            (SELECT COUNT(*) FROM messages WHERE pharmacy_id = w.pharmacy_id) AS messages_count
                     FROM whatsapp_numbers w
                     LEFT JOIN pharmacies p ON p.id = w.pharmacy_id
@@ -212,6 +214,58 @@ class PharmacyService:
             db.execute(text("DELETE FROM whatsapp_numbers WHERE id = :id"), {"id": nid})
             db.commit()
             return True
+        finally:
+            db.close()
+
+
+
+    def hard_delete(self, pharmacy_id: str) -> bool:
+        """Hard delete pharmacy and all related data (CASCADE)."""
+        db = SessionLocal()
+        try:
+            # Get WhatsApp numbers first for disconnection
+            numbers = db.execute(text("""
+                SELECT phone_number FROM whatsapp_numbers WHERE pharmacy_id = :pid
+            """), {"pid": pharmacy_id}).fetchall()
+            
+            # Delete pharmacy (CASCADE will handle related data)
+            result = db.execute(text("""
+                DELETE FROM pharmacies WHERE id = :pid
+            """), {"pid": pharmacy_id})
+            db.commit()
+            
+            return result.rowcount > 0
+        except Exception as e:
+            db.rollback()
+            logger.error("pharmacy.hard_delete_failed", error=str(e)[:200])
+            raise
+        finally:
+            db.close()
+    
+    def full_update(self, pharmacy_id: str, data: dict) -> Optional[dict]:
+        """Full update of pharmacy data."""
+        db = SessionLocal()
+        try:
+            allowed = ["name", "name_ar", "phone", "email", "address", "city", "subscription_plan"]
+            updates = {k: v for k, v in data.items() if k in allowed}
+            
+            if not updates:
+                return self.get_pharmacy(pharmacy_id)
+            
+            set_clause = ", ".join(f"{k} = :{k}" for k in updates.keys())
+            updates["pid"] = pharmacy_id
+            
+            db.execute(text(f"""
+                UPDATE pharmacies 
+                SET {set_clause}, updated_at = NOW()
+                WHERE id = :pid
+            """), updates)
+            db.commit()
+            
+            return self.get_pharmacy(pharmacy_id)
+        except Exception as e:
+            db.rollback()
+            raise
         finally:
             db.close()
 

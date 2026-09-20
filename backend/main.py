@@ -49,6 +49,7 @@ from services.chat_cache import chat_cache
 from services.settings_service import settings_service
 from services.pharmacy_service import pharmacy_service
 from services.whatsapp_bridge import whatsapp_bridge
+from services.live_feed import live_feed
 
 from api.whatsapp_routes import router as whatsapp_router
 from api.whatsapp_webhook import router as whatsapp_webhook_router
@@ -894,6 +895,24 @@ async def whatsapp_incoming(
         except Exception as e:
             logger.warning("whatsapp.save_message_failed", error=str(e)[:200])
     
+    # ═══ Broadcast to Live Feed ═══
+    try:
+        await live_feed.broadcast({
+            "type": "whatsapp_message",
+            "phone": pharmacy_phone,
+            "from": session_id.split(":")[-1] if ":" in session_id else session_id,
+            "session_id": session_id,
+            "message": message,
+            "response": response_text,
+            "handler": result.handler,
+            "confidence": result.response.confidence,
+            "needs_human": result.response.needs_human,
+            "action": result.response.action,
+            "pharmacy_id": pharmacy_id,
+        })
+    except Exception as e:
+        logger.warning("live_feed.broadcast_failed", error=str(e)[:200])
+    
     return {
         "success": True,
         "response": response_text,
@@ -904,6 +923,384 @@ async def whatsapp_incoming(
         "pharmacy_id": pharmacy_id,
         "session_id": session_id,
     }
+
+
+
+# ═══════════════════════════════════════════════════════════
+# WHATSAPP SESSION LIFECYCLE
+# ═══════════════════════════════════════════════════════════
+@app.post("/v1/admin/whatsapp-service/sessions/{phone}/disconnect")
+async def whatsapp_disconnect_session(
+    phone: str,
+    user: User = Depends(require_admin),
+):
+    """Disconnect WhatsApp session (keeps DB record as suspended)."""
+    import urllib.parse
+    phone = urllib.parse.unquote(phone)
+    
+    # Disconnect from WhatsApp service
+    result = await whatsapp_bridge.disconnect_session(phone)
+    
+    # Update DB
+    from sqlalchemy import text
+    from db import SessionLocal
+    db = SessionLocal()
+    try:
+        db.execute(text("""
+            UPDATE whatsapp_numbers
+            SET status = 'suspended', is_active = FALSE, disconnected_at = NOW(), updated_at = NOW()
+            WHERE phone_number = :phone
+        """), {"phone": phone})
+        db.commit()
+        logger.info("whatsapp.suspended", phone=phone)
+    finally:
+        db.close()
+    
+    return {"success": True, "action": "suspended", "phone": phone}
+
+
+@app.post("/v1/admin/whatsapp-service/sessions/{phone}/activate")
+async def whatsapp_activate_session(
+    phone: str,
+    user: User = Depends(require_admin),
+):
+    """Reactivate a suspended session (create new QR)."""
+    import urllib.parse
+    phone = urllib.parse.unquote(phone)
+    
+    from sqlalchemy import text
+    from db import SessionLocal
+    db = SessionLocal()
+    try:
+        # Get pharmacy_id
+        result = db.execute(text("""
+            SELECT pharmacy_id::text FROM whatsapp_numbers WHERE phone_number = :phone
+        """), {"phone": phone}).first()
+        
+        pharmacy_id = result[0] if result else None
+        
+        # Create new session
+        session_result = await whatsapp_bridge.create_session(phone, pharmacy_id)
+        
+        # Update DB
+        db.execute(text("""
+            UPDATE whatsapp_numbers
+            SET status = 'pending', is_active = TRUE, updated_at = NOW()
+            WHERE phone_number = :phone
+        """), {"phone": phone})
+        db.commit()
+        
+        logger.info("whatsapp.activated", phone=phone)
+        return {"success": True, "action": "activated", "phone": phone, "session": session_result}
+    finally:
+        db.close()
+
+
+@app.delete("/v1/admin/whatsapp-service/sessions/{phone}/delete-all")
+async def whatsapp_delete_completely(
+    phone: str,
+    user: User = Depends(require_admin),
+):
+    """Delete session completely: disconnect + remove files + delete DB record."""
+    import urllib.parse
+    phone = urllib.parse.unquote(phone)
+    
+    # 1. Delete from WhatsApp service
+    delete_result = await whatsapp_bridge.delete_session(phone)
+    
+    # 2. Delete from DB
+    from sqlalchemy import text
+    from db import SessionLocal
+    db = SessionLocal()
+    try:
+        db.execute(text("""
+            DELETE FROM whatsapp_numbers WHERE phone_number = :phone
+        """), {"phone": phone})
+        db.commit()
+        logger.info("whatsapp.deleted", phone=phone)
+    finally:
+        db.close()
+    
+    return {"success": True, "action": "deleted", "phone": phone}
+
+
+
+# ═══════════════════════════════════════════════════════════
+# LIVE FEED (SSE)
+# ═══════════════════════════════════════════════════════════
+@app.get("/v1/admin/live-feed")
+async def live_feed_stream(request: Request):
+    """Server-Sent Events stream for real-time messages.
+    
+    Streams all incoming WhatsApp messages to connected admin dashboards.
+    """
+    from fastapi.responses import StreamingResponse
+    
+    async def event_generator():
+        async for event in live_feed.subscribe():
+            if await request.is_disconnected():
+                break
+            yield event
+    
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        },
+    )
+
+
+@app.get("/v1/admin/live-feed/stats")
+async def live_feed_stats(user: User = Depends(require_admin)):
+    """Get live feed statistics."""
+    return live_feed.stats()
+
+
+@app.post("/v1/admin/live-feed/test")
+async def live_feed_test(user: User = Depends(require_admin)):
+    """Send a test event to live feed."""
+    await live_feed.broadcast({
+        "type": "test",
+        "message": "🔔 اختبار البث الحي",
+        "from": "system",
+    })
+    return {"success": True}
+
+
+# ═══════════════════════════════════════════════════════════
+# PHARMACY HARD DELETE
+# ═══════════════════════════════════════════════════════════
+@app.delete("/v1/admin/pharmacies/{pharmacy_id}/hard")
+async def hard_delete_pharmacy(
+    pharmacy_id: str,
+    user: User = Depends(require_admin),
+):
+    """Hard delete pharmacy + all related data (irreversible)."""
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    db = SessionLocal()
+    try:
+        # Delete related WhatsApp sessions first
+        numbers = db.execute(text("""
+            SELECT phone_number FROM whatsapp_numbers WHERE pharmacy_id = :pid
+        """), {"pid": pharmacy_id}).fetchall()
+        
+        for row in numbers:
+            phone = row[0]
+            try:
+                await whatsapp_bridge.delete_session(phone)
+            except Exception:
+                pass
+        
+        # Cascade delete (FK ON DELETE CASCADE handles related tables)
+        result = db.execute(text("""
+            DELETE FROM pharmacies WHERE id = :pid
+        """), {"pid": pharmacy_id})
+        db.commit()
+        
+        deleted = result.rowcount > 0
+        
+        if deleted:
+            logger.info("pharmacy.hard_deleted", pharmacy_id=pharmacy_id)
+            return {"success": True, "deleted": True, "pharmacy_id": pharmacy_id}
+        else:
+            raise HTTPException(status_code=404, detail="Pharmacy not found")
+    except HTTPException:
+        raise
+    except Exception as e:
+        db.rollback()
+        logger.error("pharmacy.hard_delete_failed", error=str(e)[:200])
+        raise HTTPException(status_code=500, detail=str(e)[:100])
+    finally:
+        db.close()
+
+
+
+
+# ═══════════════════════════════════════════════════════════
+# PHARMACY HARD DELETE
+# ═══════════════════════════════════════════════════════════
+@app.delete("/v1/admin/pharmacies/{pharmacy_id}/hard-delete")
+async def pharmacy_hard_delete(
+    pharmacy_id: str,
+    user: User = Depends(require_admin),
+):
+    """Hard delete pharmacy + all related data.
+    
+    This will:
+    - Disconnect all WhatsApp sessions
+    - Delete all related DB records (cascade)
+    - Cannot be undone
+    """
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    # 1. Get WhatsApp numbers before deletion
+    db = SessionLocal()
+    try:
+        numbers = db.execute(text("""
+            SELECT phone_number FROM whatsapp_numbers WHERE pharmacy_id = :pid
+        """), {"pid": pharmacy_id}).fetchall()
+    finally:
+        db.close()
+    
+    # 2. Disconnect all WhatsApp sessions
+    disconnected = 0
+    for row in numbers:
+        phone = row[0]
+        try:
+            result = await whatsapp_bridge.delete_session(phone)
+            if result.get("success"):
+                disconnected += 1
+        except Exception as e:
+            logger.warning("whatsapp.delete_failed", phone=phone, error=str(e)[:100])
+    
+    # 3. Delete pharmacy (CASCADE will delete related)
+    db = SessionLocal()
+    try:
+        result = db.execute(text("""
+            DELETE FROM pharmacies WHERE id = :pid
+        """), {"pid": pharmacy_id})
+        db.commit()
+        
+        deleted = result.rowcount > 0
+        logger.info(
+            "pharmacy.hard_deleted",
+            pharmacy_id=pharmacy_id,
+            sessions_disconnected=disconnected,
+        )
+        
+        return {
+            "success": True,
+            "pharmacy_id": pharmacy_id,
+            "deleted": deleted,
+            "sessions_disconnected": disconnected,
+        }
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e)[:200])
+    finally:
+        db.close()
+
+
+# ═══════════════════════════════════════════════════════════
+# PHARMACY SUSPEND (Soft delete)
+# ═══════════════════════════════════════════════════════════
+@app.post("/v1/admin/pharmacies/{pharmacy_id}/suspend")
+async def pharmacy_suspend(
+    pharmacy_id: str,
+    user: User = Depends(require_admin),
+):
+    """Suspend pharmacy — disable but keep data."""
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    db = SessionLocal()
+    try:
+        db.execute(text("""
+            UPDATE pharmacies 
+            SET is_active = FALSE, updated_at = NOW()
+            WHERE id = :pid
+        """), {"pid": pharmacy_id})
+        db.commit()
+        
+        logger.info("pharmacy.suspended", pharmacy_id=pharmacy_id)
+        return {"success": True, "action": "suspended", "pharmacy_id": pharmacy_id}
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e)[:200])
+    finally:
+        db.close()
+
+
+# ═══════════════════════════════════════════════════════════
+# PHARMACY ACTIVATE
+# ═══════════════════════════════════════════════════════════
+@app.post("/v1/admin/pharmacies/{pharmacy_id}/activate")
+async def pharmacy_activate(
+    pharmacy_id: str,
+    user: User = Depends(require_admin),
+):
+    """Reactivate suspended pharmacy."""
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    db = SessionLocal()
+    try:
+        db.execute(text("""
+            UPDATE pharmacies 
+            SET is_active = TRUE, updated_at = NOW()
+            WHERE id = :pid
+        """), {"pid": pharmacy_id})
+        db.commit()
+        
+        logger.info("pharmacy.activated", pharmacy_id=pharmacy_id)
+        return {"success": True, "action": "activated", "pharmacy_id": pharmacy_id}
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e)[:200])
+    finally:
+        db.close()
+
+
+# ═══════════════════════════════════════════════════════════
+# PHARMACY UPDATE (full edit)
+# ═══════════════════════════════════════════════════════════
+@app.put("/v1/admin/pharmacies/{pharmacy_id}/full-update")
+async def pharmacy_full_update(
+    pharmacy_id: str,
+    request: Request,
+    user: User = Depends(require_admin),
+):
+    """Full update of pharmacy data."""
+    from sqlalchemy import text
+    from db import SessionLocal
+    
+    data = await request.json()
+    
+    # Allowed fields
+    allowed = ["name", "name_ar", "phone", "email", "address", "city", "subscription_plan"]
+    updates = {k: v for k, v in data.items() if k in allowed}
+    
+    if not updates:
+        raise HTTPException(status_code=400, detail="No valid fields to update")
+    
+    db = SessionLocal()
+    try:
+        set_clause = ", ".join(f"{k} = :{k}" for k in updates.keys())
+        updates["pid"] = pharmacy_id
+        
+        result = db.execute(text(f"""
+            UPDATE pharmacies 
+            SET {set_clause}, updated_at = NOW()
+            WHERE id = :pid
+        """), updates)
+        db.commit()
+        
+        if result.rowcount == 0:
+            raise HTTPException(status_code=404, detail="Pharmacy not found")
+        
+        # Get updated pharmacy
+        ph = db.execute(text("""
+            SELECT id::text, name, name_ar, phone, email, address, city,
+                   subscription_plan, is_active, created_at, updated_at
+            FROM pharmacies WHERE id = :pid
+        """), {"pid": pharmacy_id}).first()
+        
+        logger.info("pharmacy.updated", pharmacy_id=pharmacy_id, fields=list(updates.keys()))
+        
+        return {"success": True, "pharmacy": dict(ph._mapping) if ph else None}
+    except HTTPException:
+        raise
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e)[:200])
+    finally:
+        db.close()
 
 # ═══════════════════════════════════════════════════════════
 # CACHE MANAGEMENT

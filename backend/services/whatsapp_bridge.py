@@ -68,6 +68,17 @@ class WhatsAppBridge:
         except Exception as e:
             return {"error": str(e)[:200]}
 
+
+    async def disconnect_session(self, phone_number: str) -> dict:
+        """Disconnect a session (keep files, logout only)."""
+        try:
+            async with httpx.AsyncClient(timeout=10) as client:
+                r = await client.post(f"{self.base_url}/sessions/{phone_number}/disconnect")
+                return r.json()
+        except Exception as e:
+            logger.error("whatsapp.disconnect_failed", error=str(e)[:200])
+            return {"error": str(e)[:200]}
+
     async def send_message(self, phone_number: str, to: str, message: str) -> dict:
         """Send a message through a session."""
         try:
