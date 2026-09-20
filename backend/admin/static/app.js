@@ -206,7 +206,7 @@ const App = {
     content.innerHTML = '<div class="empty-state"><span class="icon">⏳</span>جاري التحميل...</div>';
 
     switch (page) {
-      case 'dashboard':   Pages.dashboard.render(content); break;
+      case 'dashboard':   Pages.dashboard_enhanced.render(content); break;
       case 'products':    Pages.products.render(content); break;
       case 'drugs':       Pages.drugs.render(content); break;
       case 'conditions':  Pages.conditions.render(content); break;
