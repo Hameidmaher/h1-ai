@@ -1,0 +1,13 @@
+═══════════════════════════════════════════════════════════
+  FOREIGN KEYS WITHOUT INDEXES
+═══════════════════════════════════════════════════════════
+    table_name     |   column_name   |    status     
+-------------------+-----------------+---------------
+ alerts            | resolved_by     | MISSING INDEX
+ assignments       | pharmacy_id     | MISSING INDEX
+ chat_sessions     | pharmacy_id     | MISSING INDEX
+ invoices          | subscription_id | MISSING INDEX
+ sessions_enhanced | pharmacy_id     | MISSING INDEX
+ team_members      | pharmacy_id     | MISSING INDEX
+(6 rows)
+
