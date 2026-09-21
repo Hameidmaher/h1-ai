@@ -1,91 +1,51 @@
 # ═══════════════════════════════════════════════════════════
-# H1-AI .gitignore
+#  H1-AI .gitignore — Security First
 # ═══════════════════════════════════════════════════════════
 
-# ─── Python ───
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# Virtual Environments
-.venv/
-venv/
-ENV/
-env/
-backend/.venv/
-backend/venv/
-
-# Testing
-.pytest_cache/
-.coverage
-.coverage.*
-htmlcov/
-.tox/
-.hypothesis/
-
-# ─── Node ───
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-whatsapp-service/node_modules/
-
-# ─── Databases ───
-*.db
-*.sqlite
-*.sqlite3
-backend/h1ai.db
-backend/*.db-journal
-
-# ─── Environment & Secrets ───
+# ─── Secrets ───
 .env
 .env.*
 !.env.example
 *.key
 *.pem
-*.crt
-*.p12
-secrets/
-credentials/
+credentials.json
+credentials.yml
 
-# ─── WhatsApp Sessions (CRITICAL!) ───
-whatsapp-service/sessions/
-whatsapp-service/*.session
-whatsapp-service/auth_info_*
+# ─── WhatsApp Session (CRITICAL!) ───
+whatsapp-bridge/auth/
+whatsapp-bridge/.wwebjs_cache/
+whatsapp-bridge/sessions/
+whatsapp-bridge/*.session
+whatsapp-bridge/.wwebjs_auth/
 
-# ─── Logs ───
-logs/
-*.log
-backend/logs/
+# ─── Backups ───
+backups/
+*.sql
+*.sql.gz
+*.dump
+*.backup
+
+# ─── Python ───
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ─── Node ───
+node_modules/
 npm-debug.log*
-yarn-debug.log*
-
-# ─── Uploads ───
-uploads/*
-!uploads/.gitkeep
-
-# ─── Chroma & Vector DB ───
-chroma_db/
-backend/chroma_db/
-*.chroma
+yarn-error.log*
+.pnpm-store/
 
 # ─── IDE ───
 .vscode/
@@ -93,95 +53,26 @@ backend/chroma_db/
 *.swp
 *.swo
 *~
-.project
-.classpath
-.settings/
+*.bak
+*.backup.*
+*.backup
+
+# ─── Logs ───
+*.log
+logs/
 
 # ─── OS ───
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
-desktop.ini
-
-# ─── Flutter/Dart ───
-mobile/.dart_tool/
-mobile/.packages
-mobile/build/
-mobile/.flutter-plugins
-mobile/.flutter-plugins-dependencies
-mobile/pubspec.lock.bak
-
-# ─── Data (seed only) ───
-data/expanded/
-data/*.tmp
 
 # ─── Build artifacts ───
-*.tar
-*.tar.gz
-*.zip
-backend/dist/
-backend/build/
+mobile/build/
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+frontend/dist/
+frontend/build/
 
-# ─── Coverage & Reports ───
-coverage.xml
-*.coveragerc
-report.html
-
-# ─── Backup files ───
-*.bak
-*.backup
-*.old
-*~
-
-# ─── Temporary ───
-tmp/
-temp/
-*.tmp
-*.swp
-
-# ─── Keep these ───
-!uploads/.gitkeep
-!backend/logs/.gitkeep
-!.env.example
-!config.production.yaml
-backend/.env
-.env
-
-# ═══ WhatsApp Sessions (ALL locations) ═══
-sessions/
-sessions.*/
-sessions.backup.*/
-**/sessions/
-**/sessions.backup.*/
-**/creds.json
-**/pre-key-*.json
-**/app-state-sync-*.json
-**/session-*.json
-**/sender-key-*.json
-.git-credentials
-
-# Load test results
-tests/load/*.csv
-tests/load/*.html
-
-# Backup files
-*.bak
-*.bak.*
-*.save
-*.swp
-*.tmp
-*.bak*
-*.save
-*.swp
-
-# Backup files
-*.broken.*
-*.bak.*
-main.py.bak.*
-backups/
-*.sql.gz
-*.pyc
+# ─── Chrome/puppeteer ───
+.chromium/
+*.crx
