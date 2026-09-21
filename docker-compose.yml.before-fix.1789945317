@@ -1,0 +1,68 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: h1ai-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: h1ai
+      POSTGRES_PASSWORD: h1ai_pass
+      POSTGRES_DB: h1ai
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/migrations:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U h1ai"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: h1ai-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: h1ai-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://h1ai:h1ai_pass@postgres:5432/h1ai
+      REDIS_URL: redis://redis:6379/0
+      LLM_PROVIDER: groq
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./backend/static:/app/static:ro
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --workers 2
+
+  admin-ui:
+    image: nginx:alpine
+    container_name: h1ai-admin
+    restart: unless-stopped
+    depends_on:
+      - api
+    volumes:
+      - ./backend/admin/static:/usr/share/nginx/html:ro
+      - ./deploy/nginx-h1ai.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "8080:80"
+
+volumes:
+  postgres_data:
+  redis_data:

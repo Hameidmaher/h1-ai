@@ -6,10 +6,8 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, Field
 from typing import Optional
 import structlog
-from sqlalchemy import text
 
 from chatbot.core import get_core
-from db import SessionLocal
 
 logger = structlog.get_logger()
 router = APIRouter(prefix="/api/chat", tags=["chat"])
@@ -28,6 +26,7 @@ async def log_audit(
     user_agent: str = "",
 ) -> None:
     """تسجيل عملية في audit_logs (non-blocking)."""
+    from sqlalchemy import text
     try:
         s = SessionLocal()
         # ✅ تأكد من UUID صالح أو استبدله بقيمة آمنة
@@ -147,6 +146,8 @@ async def send_message(req: ChatMessageRequest):
 @router.get("/sessions/{session_id}/messages", response_model=SessionHistoryResponse)
 async def get_session_messages(session_id: str, limit: int = 50):
     """جيب تاريخ محادثة معينة."""
+    from db import SessionLocal
+    from sqlalchemy import text
 
     session = SessionLocal()
     try:
@@ -187,6 +188,8 @@ async def get_session_messages(session_id: str, limit: int = 50):
 @router.post("/feedback")
 async def submit_feedback(req: FeedbackRequest):
     """قيّم رد الشات بوت."""
+    from db import SessionLocal
+    from sqlalchemy import text
 
     session = SessionLocal()
     try:

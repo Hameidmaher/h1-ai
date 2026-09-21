@@ -7,7 +7,9 @@ import threading
 
 WEBHOOK_API_KEY = os.getenv("WEBHOOK_API_KEY", "")
 ADMIN_USER = os.getenv("ADMIN_USER", "admin")
-ADMIN_PASS = os.getenv("ADMIN_PASS", "admin123")
+ADMIN_PASS = os.getenv("ADMIN_PASS")
+if not ADMIN_PASS:
+    raise ValueError("ADMIN_PASS env var required")
 
 # ─── Shared token (login once for all users) ───
 _shared_token = None

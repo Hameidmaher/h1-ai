@@ -86,7 +86,8 @@ async def start_tunnel():
         return {"success": True, "message": "تم بدء النفق بنجاح"}
     except Exception as e:
         logger.error("tunnel.start_failed", error=str(e)[:200])
-        raise HTTPException(500, f"فشل بدء النفق: {str(e)[:100]}")
+        logger.error("tunnel.start_failed", error=str(e)[:200])
+        raise HTTPException(500, "فشل بدء النفق")
 
 @router.post("/stop")
 async def stop_tunnel():
@@ -102,7 +103,8 @@ async def stop_tunnel():
         return {"success": True, "message": "تم إيقاف النفق بنجاح"}
     except Exception as e:
         logger.error("tunnel.stop_failed", error=str(e)[:200])
-        raise HTTPException(500, f"فشل إيقاف النفق: {str(e)[:100]}")
+        logger.error("tunnel.stop_failed", error=str(e)[:200])
+        raise HTTPException(500, "فشل إيقاف النفق")
 
 @router.post("/restart")
 async def restart_tunnel():
@@ -119,4 +121,5 @@ async def restart_tunnel():
         return {"success": True, "message": "تم إعادة تشغيل النفق"}
     except Exception as e:
         logger.error("tunnel.restart_failed", error=str(e)[:200])
-        raise HTTPException(500, f"فشل إعادة التشغيل: {str(e)[:100]}")
+        logger.error("tunnel.restart_failed", error=str(e)[:200])
+        raise HTTPException(500, "فشل إعادة التشغيل")

@@ -2,7 +2,8 @@
 from __future__ import annotations
 import json
 import asyncio
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
+from middleware.rate_limit import limiter
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import Optional
@@ -23,7 +24,8 @@ class StreamRequest(BaseModel):
 
 
 @router.post("/stream")
-async def chat_stream(req: StreamRequest):
+@limiter.limit("20/minute")
+async def chat_stream(request: Request, req: StreamRequest):
     """Streaming response — يُرسل الردود تدريجياً."""
 
     async def event_generator():

@@ -1,3 +1,4 @@
+import os
 """Seed database from CSV."""
 import sys
 from pathlib import Path
@@ -24,7 +25,7 @@ def main():
             print("  👤 Creating users...")
             user_repo.create(
                 username="admin",
-                hashed_password=hash_password("admin123"),
+                hashed_password=hash_password(os.getenv("ADMIN_SEED_PASSWORD", "change-me-in-production")),
                 role="admin",
                 full_name="مدير النظام",
                 email="admin@h1-ai.com",

@@ -10,6 +10,11 @@ from llm.factory import create_llm
 from chatbot.tools.registry import get_registry, ToolResult
 from chatbot.memory.session import SessionManager
 from chatbot.prompts.system_ar import SYSTEM_PROMPT_AR, CONTEXT_HEADER
+try:
+    from chatbot.nlu.franco_arab import is_franco, normalize_franco
+except ImportError:
+    is_franco = lambda x: False
+    normalize_franco = lambda x: x
 
 logger = structlog.get_logger()
 
@@ -75,6 +80,12 @@ class ChatbotCore:
         customer_id: str | None = None,
     ) -> ChatResponse:
         start = time.monotonic()
+
+        # Franco-Arab normalization
+        if is_franco(message):
+            normalized = normalize_franco(message)
+            logger.info('chat.franco_detected', original=message[:50], normalized=normalized[:50])
+            message = normalized
 
         session = await self.sessions.get_or_create(
             channel=channel,

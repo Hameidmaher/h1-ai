@@ -84,7 +84,8 @@ async def incoming_message(
         )
     except Exception as e:
         logger.error("webhook.error", error=str(e), exc_info=True)
-        raise HTTPException(500, detail=str(e))
+        logger.error("api.unhandled", error=str(e)[:200], exc_info=True)
+        raise HTTPException(500, detail="حدث خطأ غير متوقع")
 
 
 @router.get("/stats")
