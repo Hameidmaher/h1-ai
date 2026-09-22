@@ -41,10 +41,6 @@ const App = {
       this.showLogin();
     }
   },
-
-
-  ,
-
   // ──────── Auth ────────
   async handleLogin(e) {
     e.preventDefault();
