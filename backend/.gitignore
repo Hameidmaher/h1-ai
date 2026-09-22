@@ -1,2 +1,11 @@
 ADMIN-CREDENTIALS.txt
 .env
+
+# Test artifacts
+tests/load/*.csv
+*.bak.*
+*.broken.*
+.git.backup-*
+h1ai.db
+whatsapp/sessions/
+whatsapp-service/*.bak.*
