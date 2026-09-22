@@ -9,3 +9,28 @@ tests/load/*.csv
 h1ai.db
 whatsapp/sessions/
 whatsapp-service/*.bak.*
+
+# Load test artifacts
+tests/load/*.csv
+tests/load/*.html
+locustfile*.py
+*.csv
+
+# Backups
+*.bak.*
+*.backup.*
+*.old
+
+# Local database
+h1ai.db
+*.sqlite
+*.sqlite3
+
+# Sessions
+whatsapp/sessions/
+session/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
