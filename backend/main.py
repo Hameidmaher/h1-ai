@@ -278,6 +278,20 @@ async def login(request: Request, req: LoginRequest):
     user_db = get_user_by_username(req.username)
     if not user_db or not verify_password(req.password, user_db.hashed_password):
         metrics.record_login(success=False)
+        try:
+            from api.chat_routes import log_audit
+            await log_audit(
+                user_id="00000000-0000-0000-0000-000000000000",
+                username=req.username[:50],
+                action="login_failed",
+                entity="user",
+                entity_id=req.username[:50],
+                details="Invalid credentials",
+            )
+        except Exception as _e:
+            import structlog
+            structlog.get_logger().warning("login_audit_failed", error=str(_e)[:150])
+        
         raise HTTPException(status_code=401, detail="بيانات دخول غلط")
     if not user_db.is_active:
         raise HTTPException(status_code=403, detail="الحساب معطّل")
