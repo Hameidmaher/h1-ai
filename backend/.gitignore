@@ -1,36 +1,75 @@
-ADMIN-CREDENTIALS.txt
-.env
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
 
-# Test artifacts
-tests/load/*.csv
-*.bak.*
-*.broken.*
-.git.backup-*
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
 h1ai.db
-whatsapp/sessions/
-whatsapp-service/*.bak.*
 
 # Load test artifacts
 tests/load/*.csv
 tests/load/*.html
+tests/load/*.json
 locustfile*.py
-*.csv
 
 # Backups
+*.bak
 *.bak.*
+*.backup
 *.backup.*
 *.old
+*.orig
 
-# Local database
-h1ai.db
-*.sqlite
-*.sqlite3
+# Broken files
+*.broken
+*.broken.*
 
 # Sessions
 whatsapp/sessions/
 session/
+sessions/
 
-# Python
-__pycache__/
-*.pyc
-.pytest_cache/
+# Logs
+logs/*.log
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# CI/CD artifacts
+.coverage
+coverage.xml
+.tox/
