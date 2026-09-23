@@ -102,3 +102,38 @@ h1ai.db
 backend/.env
 *.apk
 build/
+mobile-backup-*/
+
+# ═══ H1-AI Additional ═══
+# Flutter builds
+mobile/build/
+mobile/.dart_tool/
+mobile/.flutter-plugins*
+mobile/android/.gradle/
+mobile/ios/Pods/
+mobile/.env
+
+# Backups (قديمة)
+mobile-backup-*/
+.git.backup-*/
+
+# Android SDK
+android-sdk/
+.gradle/
+
+# Python cache
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# APKs (كبيرة)
+*.apk
+
+# Test results
+/tmp/*.txt
+
