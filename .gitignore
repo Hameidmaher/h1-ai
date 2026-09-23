@@ -137,3 +137,6 @@ __pycache__/
 # Test results
 /tmp/*.txt
 
+keystore/
+*.jks
+*.keystore
