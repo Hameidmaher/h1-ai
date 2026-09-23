@@ -7898,6 +7898,1486 @@
       "class": "antidote",
       "safe_pregnancy": false,
       "safe_children": false
+    },
+    "propofol": {
+      "name_ar": "بروبوفول",
+      "name_en": "Propofol",
+      "aliases": [
+        "diprivan"
+      ],
+      "class": "anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ketamine": {
+      "name_ar": "كيتامين",
+      "name_en": "Ketamine",
+      "aliases": [
+        "ketalar"
+      ],
+      "class": "anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "etomidate": {
+      "name_ar": "إيتوميدات",
+      "name_en": "Etomidate",
+      "aliases": [
+        "amidate"
+      ],
+      "class": "anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "midazolam_anes": {
+      "name_ar": "ميدازولام تخدير",
+      "name_en": "Midazolam Anes",
+      "aliases": [
+        "versed_anes"
+      ],
+      "class": "anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "fentanyl_anes": {
+      "name_ar": "فنتانيل تخدير",
+      "name_en": "Fentanyl Anes",
+      "aliases": [
+        "sublimaze"
+      ],
+      "class": "anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "morphine_anes": {
+      "name_ar": "مورفين تخدير",
+      "name_en": "Morphine Anes",
+      "aliases": [
+        "morphine_anes"
+      ],
+      "class": "anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "rocuronium": {
+      "name_ar": "روكورونيوم",
+      "name_en": "Rocuronium",
+      "aliases": [
+        "zemuron"
+      ],
+      "class": "muscle_relaxant",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vecuronium": {
+      "name_ar": "فيكورونيوم",
+      "name_en": "Vecuronium",
+      "aliases": [
+        "norcuron"
+      ],
+      "class": "muscle_relaxant",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "succinylcholine": {
+      "name_ar": "سكسينيل كولين",
+      "name_en": "Succinylcholine",
+      "aliases": [
+        "anectine"
+      ],
+      "class": "muscle_relaxant",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "cisatracurium": {
+      "name_ar": "سيس أتراكوريوم",
+      "name_en": "Cisatracurium",
+      "aliases": [
+        "nimbex"
+      ],
+      "class": "muscle_relaxant",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "atracurium": {
+      "name_ar": "أتراكوريوم",
+      "name_en": "Atracurium",
+      "aliases": [
+        "tracrium"
+      ],
+      "class": "muscle_relaxant",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "pancuronium": {
+      "name_ar": "بانكورونيوم",
+      "name_en": "Pancuronium",
+      "aliases": [
+        "pavulon"
+      ],
+      "class": "muscle_relaxant",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "neostigmine": {
+      "name_ar": "نيوستيجمين",
+      "name_en": "Neostigmine",
+      "aliases": [
+        "prostigmin"
+      ],
+      "class": "reversal",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sugammadex": {
+      "name_ar": "سوجاماديكس",
+      "name_en": "Sugammadex",
+      "aliases": [
+        "bridion"
+      ],
+      "class": "reversal",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "bupivacaine": {
+      "name_ar": "بوبيفاكايين",
+      "name_en": "Bupivacaine",
+      "aliases": [
+        "marcaine"
+      ],
+      "class": "local_anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "lidocaine": {
+      "name_ar": "ليدوكايين",
+      "name_en": "Lidocaine",
+      "aliases": [
+        "xylocaine"
+      ],
+      "class": "local_anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": true
+    },
+    "ropivacaine": {
+      "name_ar": "روبيفاكايين",
+      "name_en": "Ropivacaine",
+      "aliases": [
+        "naropin"
+      ],
+      "class": "local_anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "mepivacaine": {
+      "name_ar": "ميبيفاكايين",
+      "name_en": "Mepivacaine",
+      "aliases": [
+        "carbocaine"
+      ],
+      "class": "local_anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "prilocaine": {
+      "name_ar": "بريلوكايين",
+      "name_en": "Prilocaine",
+      "aliases": [
+        "citanest"
+      ],
+      "class": "local_anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "tetracaine": {
+      "name_ar": "تيتراكايين",
+      "name_en": "Tetracaine",
+      "aliases": [
+        "pontocaine"
+      ],
+      "class": "local_anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "nitrous_oxide": {
+      "name_ar": "أكسيد النيتروز",
+      "name_en": "Nitrous Oxide",
+      "aliases": [
+        "laughing_gas"
+      ],
+      "class": "anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sevoflurane": {
+      "name_ar": "سيفوفلورين",
+      "name_en": "Sevoflurane",
+      "aliases": [
+        "ultane"
+      ],
+      "class": "anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "desflurane": {
+      "name_ar": "ديسفلورين",
+      "name_en": "Desflurane",
+      "aliases": [
+        "suprane"
+      ],
+      "class": "anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "isoflurane": {
+      "name_ar": "أيزوفلورين",
+      "name_en": "Isoflurane",
+      "aliases": [
+        "forane"
+      ],
+      "class": "anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "halothane": {
+      "name_ar": "هالوثان",
+      "name_en": "Halothane",
+      "aliases": [
+        "fluothane"
+      ],
+      "class": "anesthetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "dexmedetomidine": {
+      "name_ar": "ديكسميديتوميدين",
+      "name_en": "Dexmedetomidine",
+      "aliases": [
+        "precedex"
+      ],
+      "class": "sedative",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "remifentanil": {
+      "name_ar": "ريميفنتانيل",
+      "name_en": "Remifentanil",
+      "aliases": [
+        "ultiva"
+      ],
+      "class": "opioid",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sufentanil": {
+      "name_ar": "سوفنتانيل",
+      "name_en": "Sufentanil",
+      "aliases": [
+        "sufenta"
+      ],
+      "class": "opioid",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "alfentanil": {
+      "name_ar": "ألفنتانيل",
+      "name_en": "Alfentanil",
+      "aliases": [
+        "alfenta"
+      ],
+      "class": "opioid",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "droperidol": {
+      "name_ar": "دروبيريدول",
+      "name_en": "Droperidol",
+      "aliases": [
+        "inapsine"
+      ],
+      "class": "antiemetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "epirubicin": {
+      "name_ar": "إبيروبيسين",
+      "name_en": "Epirubicin",
+      "aliases": [
+        "ellence"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "daunorubicin": {
+      "name_ar": "دونوروبيسين",
+      "name_en": "Daunorubicin",
+      "aliases": [
+        "cerubidine"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "idarubicin": {
+      "name_ar": "إيداروبيسين",
+      "name_en": "Idarubicin",
+      "aliases": [
+        "idamycin"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "mitoxantrone": {
+      "name_ar": "ميتوكسانترون",
+      "name_en": "Mitoxantrone",
+      "aliases": [
+        "novantrone"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "bleomycin": {
+      "name_ar": "بليومايسين",
+      "name_en": "Bleomycin",
+      "aliases": [
+        "blenoxane"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "oxaliplatin": {
+      "name_ar": "أوكساليبلاتين",
+      "name_en": "Oxaliplatin",
+      "aliases": [
+        "eloxatin"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ifosfamide": {
+      "name_ar": "إيفوسفاميد",
+      "name_en": "Ifosfamide",
+      "aliases": [
+        "ifex"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "melphalan": {
+      "name_ar": "ميلفالان",
+      "name_en": "Melphalan",
+      "aliases": [
+        "alkeran"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "chlorambucil": {
+      "name_ar": "كلورامبوسيل",
+      "name_en": "Chlorambucil",
+      "aliases": [
+        "leukeran"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "busulfan": {
+      "name_ar": "بوسلفان",
+      "name_en": "Busulfan",
+      "aliases": [
+        "myleran"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "carmustine": {
+      "name_ar": "كارموستين",
+      "name_en": "Carmustine",
+      "aliases": [
+        "bicnu"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "lomustine": {
+      "name_ar": "لوموستين",
+      "name_en": "Lomustine",
+      "aliases": [
+        "ceenu"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "temozolomide": {
+      "name_ar": "تيموزولوميد",
+      "name_en": "Temozolomide",
+      "aliases": [
+        "temodar"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "dacarbazine": {
+      "name_ar": "داكاربازين",
+      "name_en": "Dacarbazine",
+      "aliases": [
+        "dtic"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "procarbazine": {
+      "name_ar": "بروكاربازين",
+      "name_en": "Procarbazine",
+      "aliases": [
+        "matulane"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "methotrexate_hd": {
+      "name_ar": "ميثوتريكسات عالي",
+      "name_en": "Methotrexate HD",
+      "aliases": [
+        "mtx_hd"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "cytarabine": {
+      "name_ar": "سيتارابين",
+      "name_en": "Cytarabine",
+      "aliases": [
+        "cytosar"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "fludarabine": {
+      "name_ar": "فلودارابين",
+      "name_en": "Fludarabine",
+      "aliases": [
+        "fludara"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "cladribine": {
+      "name_ar": "كلادريبين",
+      "name_en": "Cladribine",
+      "aliases": [
+        "leustatin"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "pentostatin": {
+      "name_ar": "بينتواستاتين",
+      "name_en": "Pentostatin",
+      "aliases": [
+        "nipent"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "teniposide": {
+      "name_ar": "تينيبوسيد",
+      "name_en": "Teniposide",
+      "aliases": [
+        "vumon"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "topotecan": {
+      "name_ar": "توبوتيكان",
+      "name_en": "Topotecan",
+      "aliases": [
+        "hycamtin"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vinorelbine": {
+      "name_ar": "فينوريلبين",
+      "name_en": "Vinorelbine",
+      "aliases": [
+        "navelbine"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vinflunine": {
+      "name_ar": "فينفلونين",
+      "name_en": "Vinflunine",
+      "aliases": [
+        "javin"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "cabazitaxel": {
+      "name_ar": "كابازيتاكسيل",
+      "name_en": "Cabazitaxel",
+      "aliases": [
+        "jevtana"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ixabepilone": {
+      "name_ar": "إيكسابيبيلون",
+      "name_en": "Ixabepilone",
+      "aliases": [
+        "ixempra"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "eribulin": {
+      "name_ar": "إيريبولين",
+      "name_en": "Eribulin",
+      "aliases": [
+        "halaven"
+      ],
+      "class": "chemo",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "norepinephrine": {
+      "name_ar": "نورإبينفرين",
+      "name_en": "Norepinephrine",
+      "aliases": [
+        "levophed"
+      ],
+      "class": "vasopressor",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "epinephrine": {
+      "name_ar": "إبينفرين",
+      "name_en": "Epinephrine",
+      "aliases": [
+        "adrenaline"
+      ],
+      "class": "vasopressor",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "dopamine": {
+      "name_ar": "دوبامين",
+      "name_en": "Dopamine",
+      "aliases": [
+        "intropin"
+      ],
+      "class": "vasopressor",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "dobutamine": {
+      "name_ar": "دوبوتامين",
+      "name_en": "Dobutamine",
+      "aliases": [
+        "dobutrex"
+      ],
+      "class": "vasopressor",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vasopressin_icu": {
+      "name_ar": "فازوبريسين ICU",
+      "name_en": "Vasopressin ICU",
+      "aliases": [
+        "pitressin_icu"
+      ],
+      "class": "vasopressor",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "phenylephrine": {
+      "name_ar": "فينيل إفرين",
+      "name_en": "Phenylephrine",
+      "aliases": [
+        "neosynephrine"
+      ],
+      "class": "vasopressor",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "milrinone": {
+      "name_ar": "ميلرينون",
+      "name_en": "Milrinone",
+      "aliases": [
+        "primacor"
+      ],
+      "class": "inotrope",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "levosimendan": {
+      "name_ar": "ليفوسيمندان",
+      "name_en": "Levosimendan",
+      "aliases": [
+        "simdax"
+      ],
+      "class": "inotrope",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "nitroprusside": {
+      "name_ar": "نيتروبروسيد",
+      "name_en": "Nitroprusside",
+      "aliases": [
+        "nipride"
+      ],
+      "class": "vasodilator",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "nicardipine_icu": {
+      "name_ar": "نيكارديبين ICU",
+      "name_en": "Nicardipine ICU",
+      "aliases": [
+        "cardene_icu"
+      ],
+      "class": "vasodilator",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "labetalol_icu": {
+      "name_ar": "لابيتالول ICU",
+      "name_en": "Labetalol ICU",
+      "aliases": [
+        "trandate_icu"
+      ],
+      "class": "beta_blocker",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "esmolol_icu": {
+      "name_ar": "إسمولول ICU",
+      "name_en": "Esmolol ICU",
+      "aliases": [
+        "brevibloc_icu"
+      ],
+      "class": "beta_blocker",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "midodrine": {
+      "name_ar": "ميدودرين",
+      "name_en": "Midodrine",
+      "aliases": [
+        "proamatine"
+      ],
+      "class": "vasopressor",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "fludrocortisone_icu": {
+      "name_ar": "فلودروكورتيزون ICU",
+      "name_en": "Fludrocortisone ICU",
+      "aliases": [
+        "florinef_icu"
+      ],
+      "class": "corticosteroid",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "hydrocortisone_icu": {
+      "name_ar": "هيدروكورتيزون ICU",
+      "name_en": "Hydrocortisone ICU",
+      "aliases": [
+        "cortef_icu"
+      ],
+      "class": "corticosteroid",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "propylthiouracil_icu": {
+      "name_ar": "PTU ICU",
+      "name_en": "PTU ICU",
+      "aliases": [
+        "ptu_icu"
+      ],
+      "class": "antithyroid",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "insulin_regular_icu": {
+      "name_ar": "أنسولين عادي ICU",
+      "name_en": "Regular Insulin ICU",
+      "aliases": [
+        "humulin_r_icu"
+      ],
+      "class": "insulin_rapid",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "dextrose_50": {
+      "name_ar": "دكستروز 50%",
+      "name_en": "Dextrose 50%",
+      "aliases": [
+        "d50"
+      ],
+      "class": "antidote",
+      "safe_pregnancy": true,
+      "safe_children": true
+    },
+    "sodium_bicarbonate": {
+      "name_ar": "بيكربونات الصوديوم",
+      "name_en": "Sodium Bicarbonate",
+      "aliases": [
+        "bicarb"
+      ],
+      "class": "antidote",
+      "safe_pregnancy": true,
+      "safe_children": true
+    },
+    "calcium_gluconate": {
+      "name_ar": "جلوكونات الكالسيوم",
+      "name_en": "Calcium Gluconate",
+      "aliases": [
+        "cal_gluconate"
+      ],
+      "class": "antidote",
+      "safe_pregnancy": true,
+      "safe_children": true
+    },
+    "magnesium_sulfate": {
+      "name_ar": "كبريتات المغنيسيوم",
+      "name_en": "Magnesium Sulfate",
+      "aliases": [
+        "mgso4"
+      ],
+      "class": "antidote",
+      "safe_pregnancy": false,
+      "safe_children": true
+    },
+    "naloxone_icu": {
+      "name_ar": "نالوكسون ICU",
+      "name_en": "Naloxone ICU",
+      "aliases": [
+        "narcan_icu"
+      ],
+      "class": "antidote",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "flumazenil_icu": {
+      "name_ar": "فلومازينيل ICU",
+      "name_en": "Flumazenil ICU",
+      "aliases": [
+        "romazicon_icu"
+      ],
+      "class": "antidote",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "eculizumab": {
+      "name_ar": "إيكيوليزوماب",
+      "name_en": "Eculizumab",
+      "aliases": [
+        "soliris"
+      ],
+      "class": "biologic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ravulizumab": {
+      "name_ar": "رافوليزوماب",
+      "name_en": "Ravulizumab",
+      "aliases": [
+        "ultomiris"
+      ],
+      "class": "biologic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "emicizumab": {
+      "name_ar": "إيميسيزوماب",
+      "name_en": "Emicizumab",
+      "aliases": [
+        "hemlibra"
+      ],
+      "class": "biologic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "idursulfase": {
+      "name_ar": "إيدورسولفيز",
+      "name_en": "Idursulfase",
+      "aliases": [
+        "elaprase"
+      ],
+      "class": "enzyme",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "agalsidase": {
+      "name_ar": "أجالسيديز",
+      "name_en": "Agalsidase",
+      "aliases": [
+        "replagal"
+      ],
+      "class": "enzyme",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "alglucosidase": {
+      "name_ar": "ألجلوكوسيديز",
+      "name_en": "Alglucosidase",
+      "aliases": [
+        "myozyme"
+      ],
+      "class": "enzyme",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "laronidase": {
+      "name_ar": "لارونيديز",
+      "name_en": "Laronidase",
+      "aliases": [
+        "aldurazyme"
+      ],
+      "class": "enzyme",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "galsulfase": {
+      "name_ar": "جالسولفيز",
+      "name_en": "Galsulfase",
+      "aliases": [
+        "naglazyme"
+      ],
+      "class": "enzyme",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "elosulfase": {
+      "name_ar": "إيلوسولفيز",
+      "name_en": "Elosulfase",
+      "aliases": [
+        "vimizim"
+      ],
+      "class": "enzyme",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "vestronidase": {
+      "name_ar": "فيسترونيديز",
+      "name_en": "Vestronidase",
+      "aliases": [
+        "mepsevii"
+      ],
+      "class": "enzyme",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sapropterin": {
+      "name_ar": "سابروبتيرين",
+      "name_en": "Sapropterin",
+      "aliases": [
+        "kuvan"
+      ],
+      "class": "orphan",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "miglustat": {
+      "name_ar": "ميجلوستات",
+      "name_en": "Miglustat",
+      "aliases": [
+        "zavesca"
+      ],
+      "class": "orphan",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "eliglustat": {
+      "name_ar": "إليجلوستات",
+      "name_en": "Eliglustat",
+      "aliases": [
+        "cerdelga"
+      ],
+      "class": "orphan",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "nitisinone": {
+      "name_ar": "نيتيسينون",
+      "name_en": "Nitisinone",
+      "aliases": [
+        "orphadin"
+      ],
+      "class": "orphan",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "carglumic": {
+      "name_ar": "كارجلوميك",
+      "name_en": "Carglumic Acid",
+      "aliases": [
+        "carbaglu"
+      ],
+      "class": "orphan",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sodium_phenylbutyrate": {
+      "name_ar": "فينيل بوتيرات",
+      "name_en": "Phenylbutyrate",
+      "aliases": [
+        "buphenyl"
+      ],
+      "class": "orphan",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "betaine": {
+      "name_ar": "بيتين",
+      "name_en": "Betaine",
+      "aliases": [
+        "cystadane"
+      ],
+      "class": "orphan",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "cysteamine": {
+      "name_ar": "سيستيامين",
+      "name_en": "Cysteamine",
+      "aliases": [
+        "cystagon"
+      ],
+      "class": "orphan",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "trientine_2": {
+      "name_ar": "تريينتين 2",
+      "name_en": "Trientine 2",
+      "aliases": [
+        "syprine_2"
+      ],
+      "class": "chelation",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "zinc_acetate": {
+      "name_ar": "أسيتات الزنك",
+      "name_en": "Zinc Acetate",
+      "aliases": [
+        "galzin"
+      ],
+      "class": "chelation",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "penicillamine_2": {
+      "name_ar": "بنسيلامين 2",
+      "name_en": "Penicillamine 2",
+      "aliases": [
+        "cuprimine_2"
+      ],
+      "class": "chelation",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "deferiprone": {
+      "name_ar": "ديفيريبرون",
+      "name_en": "Deferiprone",
+      "aliases": [
+        "ferriprox"
+      ],
+      "class": "chelation",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "deferasirox_2": {
+      "name_ar": "ديفيراسيروكس 2",
+      "name_en": "Deferasirox 2",
+      "aliases": [
+        "exjade_2"
+      ],
+      "class": "chelation",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sodium_oxybate": {
+      "name_ar": "أوكسيبات الصوديوم",
+      "name_en": "Sodium Oxybate",
+      "aliases": [
+        "xyrem"
+      ],
+      "class": "orphan",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "pitolisant": {
+      "name_ar": "بيتوليسانت",
+      "name_en": "Pitolisant",
+      "aliases": [
+        "wakix"
+      ],
+      "class": "orphan",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "solriamfetol": {
+      "name_ar": "سولريامفيتول",
+      "name_en": "Solriamfetol",
+      "aliases": [
+        "sunosi"
+      ],
+      "class": "orphan",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "teduglutide": {
+      "name_ar": "تيدوجلوتيد",
+      "name_en": "Teduglutide",
+      "aliases": [
+        "gattex"
+      ],
+      "class": "orphan",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "asfotase": {
+      "name_ar": "أسفوتيز",
+      "name_en": "Asfotase Alfa",
+      "aliases": [
+        "strensiq"
+      ],
+      "class": "enzyme",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sebelipase": {
+      "name_ar": "سيبيلبيز",
+      "name_en": "Sebelipase",
+      "aliases": [
+        "kanuma"
+      ],
+      "class": "enzyme",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "cerliponase": {
+      "name_ar": "سيرليبونيز",
+      "name_en": "Cerliponase",
+      "aliases": [
+        "brineura"
+      ],
+      "class": "enzyme",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sevelamer": {
+      "name_ar": "سيفيلامير",
+      "name_en": "Sevelamer",
+      "aliases": [
+        "renagel"
+      ],
+      "class": "phosphate_binder",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "lanthanum": {
+      "name_ar": "لانثانم",
+      "name_en": "Lanthanum",
+      "aliases": [
+        "fosrenol"
+      ],
+      "class": "phosphate_binder",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "calcium_acetate": {
+      "name_ar": "أسيتات الكالسيوم",
+      "name_en": "Calcium Acetate",
+      "aliases": [
+        "phoslo"
+      ],
+      "class": "phosphate_binder",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "cinacalcet_2": {
+      "name_ar": "سيناكالسيت 2",
+      "name_en": "Cinacalcet 2",
+      "aliases": [
+        "sensipar_2"
+      ],
+      "class": "calcimimetic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "paricalcitol": {
+      "name_ar": "باريكالسيتول",
+      "name_en": "Paricalcitol",
+      "aliases": [
+        "zemplar"
+      ],
+      "class": "vitamin_d",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "doxercalciferol": {
+      "name_ar": "دوكسيركالسيفيرول",
+      "name_en": "Doxercalciferol",
+      "aliases": [
+        "hectorol"
+      ],
+      "class": "vitamin_d",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "epoetin": {
+      "name_ar": "إيبوتين",
+      "name_en": "Epoetin",
+      "aliases": [
+        "epogen"
+      ],
+      "class": "esa",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "darbepoetin": {
+      "name_ar": "داربيبويتين",
+      "name_en": "Darbepoetin",
+      "aliases": [
+        "aranesp"
+      ],
+      "class": "esa",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ferric_carboxymaltose": {
+      "name_ar": "حديد كربوكسي مالتوز",
+      "name_en": "Ferric Carboxymaltose",
+      "aliases": [
+        "ferinject"
+      ],
+      "class": "iron",
+      "safe_pregnancy": false,
+      "safe_children": true
+    },
+    "ferumoxytol": {
+      "name_ar": "فيروموكسيتول",
+      "name_en": "Ferumoxytol",
+      "aliases": [
+        "feraheme"
+      ],
+      "class": "iron",
+      "safe_pregnancy": false,
+      "safe_children": true
+    },
+    "ferric_gluconate": {
+      "name_ar": "حديد جلوكونات",
+      "name_en": "Ferric Gluconate",
+      "aliases": [
+        "ferrlecit"
+      ],
+      "class": "iron",
+      "safe_pregnancy": false,
+      "safe_children": true
+    },
+    "ferric_derisomaltose": {
+      "name_ar": "حديد ديريزومالتوز",
+      "name_en": "Ferric Derisomaltose",
+      "aliases": [
+        "monofer"
+      ],
+      "class": "iron",
+      "safe_pregnancy": false,
+      "safe_children": true
+    },
+    "tolvaptan": {
+      "name_ar": "تولفابتان",
+      "name_en": "Tolvaptan",
+      "aliases": [
+        "samsca"
+      ],
+      "class": "vasopressin_antag",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "conivaptan": {
+      "name_ar": "كونيفابتان",
+      "name_en": "Conivaptan",
+      "aliases": [
+        "vaprisol"
+      ],
+      "class": "vasopressin_antag",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "lamivudine": {
+      "name_ar": "لاميفودين",
+      "name_en": "Lamivudine",
+      "aliases": [
+        "epivir"
+      ],
+      "class": "antiviral",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "adefovir": {
+      "name_ar": "أديفوفير",
+      "name_en": "Adefovir",
+      "aliases": [
+        "hepsera"
+      ],
+      "class": "antiviral",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "telbivudine": {
+      "name_ar": "تيلبيفودين",
+      "name_en": "Telbivudine",
+      "aliases": [
+        "tyzeka"
+      ],
+      "class": "antiviral",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "daclatasvir": {
+      "name_ar": "داكلاتاسفير",
+      "name_en": "Daclatasvir",
+      "aliases": [
+        "daklinza"
+      ],
+      "class": "antiviral",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "sofosbuvir_2": {
+      "name_ar": "سوفوسبوفير 2",
+      "name_en": "Sofosbuvir 2",
+      "aliases": [
+        "sovaldi_2"
+      ],
+      "class": "antiviral",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ledipasvir": {
+      "name_ar": "ليدىباسفير",
+      "name_en": "Ledipasvir",
+      "aliases": [
+        "harvoni"
+      ],
+      "class": "antiviral",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "velpatasvir": {
+      "name_ar": "فيلباتاسفير",
+      "name_en": "Velpatasvir",
+      "aliases": [
+        "epclusa"
+      ],
+      "class": "antiviral",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "glecaprevir": {
+      "name_ar": "جليكابريفير",
+      "name_en": "Glecaprevir",
+      "aliases": [
+        "mavyret"
+      ],
+      "class": "antiviral",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "pibrentasvir": {
+      "name_ar": "بيبرنتاسفير",
+      "name_en": "Pibrentasvir",
+      "aliases": [
+        "mavyret_2"
+      ],
+      "class": "antiviral",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ursodiol": {
+      "name_ar": "أورسوديول",
+      "name_en": "Ursodiol",
+      "aliases": [
+        "actigall"
+      ],
+      "class": "gallstone",
+      "safe_pregnancy": false,
+      "safe_children": true
+    },
+    "lactulose_hepatic": {
+      "name_ar": "لاكتيولوز كبدي",
+      "name_en": "Lactulose Hepatic",
+      "aliases": [
+        "cephalac"
+      ],
+      "class": "hepatic",
+      "safe_pregnancy": true,
+      "safe_children": true
+    },
+    "rifaximin_hepatic": {
+      "name_ar": "ريفاكسيمين كبدي",
+      "name_en": "Rifaximin Hepatic",
+      "aliases": [
+        "xifaxan_hepatic"
+      ],
+      "class": "hepatic",
+      "safe_pregnancy": false,
+      "safe_children": true
+    },
+    "baricitinib": {
+      "name_ar": "باريستينيب",
+      "name_en": "Baricitinib",
+      "aliases": [
+        "olumiant"
+      ],
+      "class": "jak_inhibitor",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "upadacitinib": {
+      "name_ar": "أوباداسيتينيب",
+      "name_en": "Upadacitinib",
+      "aliases": [
+        "rinvoq"
+      ],
+      "class": "jak_inhibitor",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "filgotinib": {
+      "name_ar": "فيلجوتينيب",
+      "name_en": "Filgotinib",
+      "aliases": [
+        "jyseleca"
+      ],
+      "class": "jak_inhibitor",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "secukinumab": {
+      "name_ar": "سيكوكينوماب",
+      "name_en": "Secukinumab",
+      "aliases": [
+        "cosentyx"
+      ],
+      "class": "biologic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "ixekizumab": {
+      "name_ar": "إيكسيكيزوماب",
+      "name_en": "Ixekizumab",
+      "aliases": [
+        "taltz"
+      ],
+      "class": "biologic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "brodalumab": {
+      "name_ar": "برودالوماب",
+      "name_en": "Brodalumab",
+      "aliases": [
+        "siliq"
+      ],
+      "class": "biologic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "guselkumab": {
+      "name_ar": "جوسيلكوماب",
+      "name_en": "Guselkumab",
+      "aliases": [
+        "tremfya"
+      ],
+      "class": "biologic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "risankizumab": {
+      "name_ar": "ريسانكيزوماب",
+      "name_en": "Risankizumab",
+      "aliases": [
+        "skyrizi"
+      ],
+      "class": "biologic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "tildrakizumab": {
+      "name_ar": "تيلدراكيزوماب",
+      "name_en": "Tildrakizumab",
+      "aliases": [
+        "ilmya"
+      ],
+      "class": "biologic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "belimumab": {
+      "name_ar": "بيليموماب",
+      "name_en": "Belimumab",
+      "aliases": [
+        "benlysta"
+      ],
+      "class": "biologic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "canakinumab": {
+      "name_ar": "كاناكينوماب",
+      "name_en": "Canakinumab",
+      "aliases": [
+        "ilaris"
+      ],
+      "class": "biologic",
+      "safe_pregnancy": false,
+      "safe_children": false
+    },
+    "rilonacept": {
+      "name_ar": "ريلوناسيبت",
+      "name_en": "Rilonacept",
+      "aliases": [
+        "arcalyst"
+      ],
+      "class": "biologic",
+      "safe_pregnancy": false,
+      "safe_children": false
     }
   },
   "updated_at": "2026-09-16T12:03:04.911664"

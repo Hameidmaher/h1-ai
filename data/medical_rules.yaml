@@ -229,6 +229,193 @@ emergencies:
       - severe diarrhea
     message: 🚨 جفاف شديد! يحتاج سوائل وريدية فوراً!
     emergency_number: '123'
+  cardiac_arrest:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - سكتة قلبية
+      ar_eg:
+      - قلبي واقف
+      en:
+      - cardiac arrest
+    message: 🚨 سكتة قلبية حالة طارئة! اتصل بالإسعاف فوراً على 123
+  drug_overdose:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - جرعة زائدة
+      ar_eg:
+      - جرعة زيادة
+      en:
+      - drug overdose
+    message: 🚨 جرعة زائدة حالة طارئة! اتصل بالإسعاف فوراً على 123
+  anaphylaxis:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - حساسية مفرطة
+      ar_eg:
+      - حساسية شديدة
+      en:
+      - anaphylaxis
+    message: 🚨 حساسية مفرطة حالة طارئة! اتصل بالإسعاف فوراً على 123
+  severe_asthma:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - أزمة ربو
+      ar_eg:
+      - أزمة ربو
+      en:
+      - severe asthma
+    message: 🚨 أزمة ربو حادة حالة طارئة! اتصل بالإسعاف فوراً على 123
+  dka:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - حماض كيتوني
+      ar_eg:
+      - حماض سكري
+      en:
+      - DKA
+    message: 🚨 الحماض الكيتوني حالة طارئة! اتصل بالإسعاف فوراً على 123
+  hypoglycemia:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - نقص سكر
+      ar_eg:
+      - سكر واطي
+      en:
+      - hypoglycemia
+    message: 🚨 نقص سكر حاد حالة طارئة! اتصل بالإسعاف فوراً على 123
+  hypertensive_crisis:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - أزمة ضغط
+      ar_eg:
+      - ضغط عالي جداً
+      en:
+      - hypertensive crisis
+    message: 🚨 أزمة ضغط حالة طارئة! اتصل بالإسعاف فوراً على 123
+  head_injury:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - إصابة رأس
+      ar_eg:
+      - ضربة في راسي
+      en:
+      - head injury
+    message: 🚨 إصابة رأس حالة طارئة! اتصل بالإسعاف فوراً على 123
+  drowning:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - غرق
+      ar_eg:
+      - غرق
+      en:
+      - drowning
+    message: 🚨 غرق حالة طارئة! اتصل بالإسعاف فوراً على 123
+  electrocution:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - صعق كهربائي
+      ar_eg:
+      - كهرباء
+      en:
+      - electrocution
+    message: 🚨 صعق كهربائي حالة طارئة! اتصل بالإسعاف فوراً على 123
+  choking:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - اختناق
+      ar_eg:
+      - مخنوق
+      en:
+      - choking
+    message: 🚨 اختناق حالة طارئة! اتصل بالإسعاف فوراً على 123
+  meningitis:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - التهاب سحايا
+      ar_eg:
+      - التهاب سحايا
+      en:
+      - meningitis
+    message: 🚨 التهاب سحايا حالة طارئة! اتصل بالإسعاف فوراً على 123
+  sepsis:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - تسمم دم
+      ar_eg:
+      - تسمم دم
+      en:
+      - sepsis
+    message: 🚨 تسمم دم حالة طارئة! اتصل بالإسعاف فوراً على 123
+  pneumothorax:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - انخماص رئوي
+      ar_eg:
+      - انخماص رئوي
+      en:
+      - pneumothorax
+    message: 🚨 انخماص رئوي حالة طارئة! اتصل بالإسعاف فوراً على 123
+  pe_emergency:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - جلطة رئوية
+      ar_eg:
+      - جلطة رئوية
+      en:
+      - pulmonary embolism
+    message: 🚨 جلطة رئوية حالة طارئة! اتصل بالإسعاف فوراً على 123
+  aortic_dissection:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - تسلخ أبهر
+      ar_eg:
+      - تسلخ أبهر
+      en:
+      - aortic dissection
+    message: 🚨 تسلخ الأبهر حالة طارئة! اتصل بالإسعاف فوراً على 123
+  acute_appendicitis:
+    action: emergency_call
+    emergency_number: '123'
+    keywords:
+      ar:
+      - التهاب زائدة
+      ar_eg:
+      - التهاب زائدة
+      en:
+      - appendicitis
+    message: 🚨 التهاب الزائدة حالة طارئة! اتصل بالإسعاف فوراً على 123
 conditions:
   headache:
     display_name: صداع
@@ -1708,6 +1895,528 @@ conditions:
       - prostatitis
     warnings:
     - اتابع مع دكتور مسالك
+  rosacea:
+    display_name: الوردية
+    first_line:
+    - metronidazole_top
+    keywords:
+      ar:
+      - وردية
+      ar_eg:
+      - وردية
+      en:
+      - rosacea
+  vitiligo:
+    display_name: البهاق
+    first_line:
+    - tacrolimus_top
+    keywords:
+      ar:
+      - بهاق
+      ar_eg:
+      - بهاق
+      en:
+      - vitiligo
+  alopecia:
+    display_name: تساقط الشعر
+    first_line:
+    - minoxidil
+    - finasteride
+    keywords:
+      ar:
+      - تساقط شعر
+      ar_eg:
+      - شعري بيقع
+      en:
+      - alopecia
+  contact_dermatitis:
+    display_name: التهاب الجلد التلامسي
+    first_line:
+    - hydrocortisone
+    keywords:
+      ar:
+      - التهاب جلدي
+      ar_eg:
+      - التهاب جلدي
+      en:
+      - contact dermatitis
+  herpes:
+    display_name: الهربس
+    first_line:
+    - acyclovir
+    - valacyclovir
+    keywords:
+      ar:
+      - هربس
+      ar_eg:
+      - هربس
+      en:
+      - herpes
+  ibd:
+    display_name: التهاب الأمعاء
+    first_line:
+    - mesalazine
+    - sulfasalazine
+    keywords:
+      ar:
+      - التهاب أمعاء
+      ar_eg:
+      - التهاب أمعاء
+      en:
+      - IBD
+  crohn:
+    display_name: كرون
+    first_line:
+    - mesalazine
+    - adalimumab
+    keywords:
+      ar:
+      - كرون
+      ar_eg:
+      - كرون
+      en:
+      - crohn
+  ulcerative_colitis:
+    display_name: التهاب القولون التقرحي
+    first_line:
+    - mesalazine
+    - adalimumab
+    keywords:
+      ar:
+      - التهاب قولون
+      ar_eg:
+      - التهاب قولون
+      en:
+      - ulcerative colitis
+  tonsillitis:
+    display_name: التهاب اللوزتين
+    first_line:
+    - amoxicillin
+    - paracetamol
+    keywords:
+      ar:
+      - التهاب لوز
+      ar_eg:
+      - التهاب لوز
+      en:
+      - tonsillitis
+  otitis_externa:
+    display_name: التهاب الأذن الخارجية
+    first_line:
+    - ciprofloxacin_ear
+    keywords:
+      ar:
+      - التهاب أذن خارجية
+      ar_eg:
+      - التهاب ودن خارجية
+      en:
+      - otitis externa
+  heart_failure:
+    display_name: فشل القلب
+    first_line:
+    - furosemide
+    - bisoprolol
+    - lisinopril
+    keywords:
+      ar:
+      - فشل قلب
+      ar_eg:
+      - فشل قلب
+      en:
+      - heart failure
+  angina:
+    display_name: الذبحة الصدرية
+    first_line:
+    - nitroglycerin
+    - bisoprolol
+    keywords:
+      ar:
+      - ذبحة
+      ar_eg:
+      - ذبحة
+      en:
+      - angina
+  arrhythmia:
+    display_name: عدم انتظام ضربات القلب
+    first_line:
+    - amiodarone
+    - bisoprolol
+    keywords:
+      ar:
+      - عدم انتظام
+      ar_eg:
+      - عدم انتظام
+      en:
+      - arrhythmia
+  atrial_fibrillation:
+    display_name: الرجفان الأذيني
+    first_line:
+    - warfarin
+    - bisoprolol
+    keywords:
+      ar:
+      - رجفان أذيني
+      ar_eg:
+      - رجفان أذيني
+      en:
+      - atrial fibrillation
+  dvt:
+    display_name: التهاب الوريد العميق
+    first_line:
+    - rivaroxaban
+    - warfarin
+    keywords:
+      ar:
+      - جلطة وريدية
+      ar_eg:
+      - جلطة وريدية
+      en:
+      - DVT
+  pe:
+    display_name: الجلطة الرئوية
+    first_line:
+    - rivaroxaban
+    - warfarin
+    keywords:
+      ar:
+      - جلطة رئوية
+      ar_eg:
+      - جلطة رئوية
+      en:
+      - PE
+  hyperlipidemia:
+    display_name: ارتفاع الكوليسترول
+    first_line:
+    - atorvastatin
+    - rosuvastatin
+    keywords:
+      ar:
+      - كوليسترول
+      ar_eg:
+      - كوليسترول
+      en:
+      - hyperlipidemia
+  stroke_prevention:
+    display_name: الوقاية من السكتة
+    first_line:
+    - aspirin
+    - clopidogrel
+    keywords:
+      ar:
+      - وقاية سكتة
+      ar_eg:
+      - وقاية سكتة
+      en:
+      - stroke prevention
+  diabetes_type1:
+    display_name: سكري النوع 1
+    first_line:
+    - insulin_glargine
+    - insulin_lispro
+    keywords:
+      ar:
+      - سكري نوع 1
+      ar_eg:
+      - سكري نوع 1
+      en:
+      - diabetes type 1
+  obesity:
+    display_name: السمنة
+    first_line:
+    - orlistat
+    - liraglutide
+    keywords:
+      ar:
+      - سمنة
+      ar_eg:
+      - سمنة
+      en:
+      - obesity
+  panic:
+    display_name: نوبة الهلع
+    first_line:
+    - alprazolam
+    - sertraline
+    keywords:
+      ar:
+      - هلع
+      ar_eg:
+      - هلع
+      en:
+      - panic attack
+  rheumatoid:
+    display_name: الروماتويد
+    first_line:
+    - methotrexate
+    - hydroxychloroquine
+    keywords:
+      ar:
+      - روماتويد
+      ar_eg:
+      - روماتويد
+      en:
+      - rheumatoid
+  neck_pain:
+    display_name: ألم الرقبة
+    first_line:
+    - ibuprofen
+    - diclofenac
+    keywords:
+      ar:
+      - ألم رقبة
+      ar_eg:
+      - ألم رقبة
+      en:
+      - neck pain
+  fibromyalgia:
+    display_name: الفيبروميالجيا
+    first_line:
+    - pregabalin
+    - duloxetine
+    keywords:
+      ar:
+      - فيبروميالجيا
+      ar_eg:
+      - فيبروميالجيا
+      en:
+      - fibromyalgia
+  tendinitis:
+    display_name: التهاب الأوتار
+    first_line:
+    - ibuprofen
+    - diclofenac
+    keywords:
+      ar:
+      - التهاب أوتار
+      ar_eg:
+      - التهاب أوتار
+      en:
+      - tendinitis
+  bursitis:
+    display_name: التهاب الجراب
+    first_line:
+    - ibuprofen
+    - diclofenac
+    keywords:
+      ar:
+      - التهاب جراب
+      ar_eg:
+      - التهاب جراب
+      en:
+      - bursitis
+  pyelonephritis:
+    display_name: التهاب الحويضة
+    first_line:
+    - ciprofloxacin
+    - ceftriaxone
+    keywords:
+      ar:
+      - التهاب حويضة
+      ar_eg:
+      - التهاب حويضة
+      en:
+      - pyelonephritis
+  kidney_stones:
+    display_name: حصوات الكلى
+    first_line:
+    - tamsulosin
+    - ketorolac
+    keywords:
+      ar:
+      - حصوات كلى
+      ar_eg:
+      - حصوات كلى
+      en:
+      - kidney stones
+  ckd:
+    display_name: الفشل الكلوي المزمن
+    first_line:
+    - lisinopril
+    - epoetin
+    keywords:
+      ar:
+      - فشل كلوي
+      ar_eg:
+      - فشل كلوي
+      en:
+      - CKD
+  ed:
+    display_name: ضعف الانتصاب
+    first_line:
+    - sildenafil
+    - tadalafil
+    keywords:
+      ar:
+      - ضعف انتصاب
+      ar_eg:
+      - ضعف انتصاب
+      en:
+      - ED
+  contraception:
+    display_name: منع الحمل
+    first_line:
+    - oral_contraceptive
+    - levonorgestrel
+    keywords:
+      ar:
+      - منع حمل
+      ar_eg:
+      - منع حمل
+      en:
+      - contraception
+  infertility:
+    display_name: العقم
+    first_line:
+    - clomiphene
+    - letrozole
+    keywords:
+      ar:
+      - عقم
+      ar_eg:
+      - عقم
+      en:
+      - infertility
+  breastfeeding:
+    display_name: الرضاعة
+    first_line:
+    - domperidone
+    keywords:
+      ar:
+      - رضاعة
+      ar_eg:
+      - رضاعة
+      en:
+      - breastfeeding
+  menorrhagia:
+    display_name: غزارة الدورة
+    first_line:
+    - tranexamic
+    - ibuprofen
+    keywords:
+      ar:
+      - غزارة دورة
+      ar_eg:
+      - غزارة دورة
+      en:
+      - menorrhagia
+  teething:
+    display_name: التسنين
+    first_line:
+    - paracetamol
+    - ibuprofen
+    keywords:
+      ar:
+      - تسنين
+      ar_eg:
+      - تسنين
+      en:
+      - teething
+  infant_colic:
+    display_name: مغص الرضع
+    first_line:
+    - simethicone
+    keywords:
+      ar:
+      - مغص رضع
+      ar_eg:
+      - مغص رضع
+      en:
+      - infant colic
+  diaper_rash:
+    display_name: التهاب الحفاض
+    first_line:
+    - zinc_oxide
+    - hydrocortisone
+    keywords:
+      ar:
+      - التهاب حفاض
+      ar_eg:
+      - التهاب حفاض
+      en:
+      - diaper rash
+  fever_child:
+    display_name: حمى الأطفال
+    first_line:
+    - paracetamol
+    - ibuprofen
+    keywords:
+      ar:
+      - حمى أطفال
+      ar_eg:
+      - حمى أطفال
+      en:
+      - child fever
+  croup:
+    display_name: الخناق
+    first_line:
+    - dexamethasone
+    - salbutamol
+    keywords:
+      ar:
+      - خناق
+      ar_eg:
+      - خناق
+      en:
+      - croup
+  hand_foot_mouth:
+    display_name: اليد والقدم والفم
+    first_line:
+    - paracetamol
+    - ibuprofen
+    keywords:
+      ar:
+      - مرض اليد والقدم
+      ar_eg:
+      - مرض اليد والقدم
+      en:
+      - hand foot mouth
+  chickenpox:
+    display_name: الجديري المائي
+    first_line:
+    - acyclovir
+    - paracetamol
+    keywords:
+      ar:
+      - جديري
+      ar_eg:
+      - جديري
+      en:
+      - chickenpox
+  measles:
+    display_name: الحصبة
+    first_line:
+    - paracetamol
+    - vitamin_a
+    keywords:
+      ar:
+      - حصبة
+      ar_eg:
+      - حصبة
+      en:
+      - measles
+  mumps:
+    display_name: النكاف
+    first_line:
+    - paracetamol
+    - ibuprofen
+    keywords:
+      ar:
+      - نكاف
+      ar_eg:
+      - نكاف
+      en:
+      - mumps
+  rubella:
+    display_name: الحصبة الألمانية
+    first_line:
+    - paracetamol
+    keywords:
+      ar:
+      - حصبة ألمانية
+      ar_eg:
+      - حصبة ألمانية
+      en:
+      - rubella
 special_populations:
   pregnancy:
     warning: استشارة الطبيب إلزامية
