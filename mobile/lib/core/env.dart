@@ -3,16 +3,16 @@
 // ═══════════════════════════════════════════════════════════
 
 class Env {
-  // API Base URL — Tailscale
+  // API Base URL — Local Network IP
   static const String baseUrl = String.fromEnvironment(
     'API_BASE_URL',
-    defaultValue: 'https://h.tailc0256.ts.net',
+    defaultValue: 'http://192.168.1.17:8000',
   );
 
   // Backup URL
   static const String backupUrl = String.fromEnvironment(
     'API_BACKUP_URL',
-    defaultValue: 'http://100.94.32.49:8000',
+    defaultValue: 'http://192.168.1.19:8000',
   );
 
   // Endpoints
