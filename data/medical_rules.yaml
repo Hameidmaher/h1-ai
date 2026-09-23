@@ -526,8 +526,12 @@ conditions:
     keywords:
       ar:
       - إمساك
+      - صعوبة التبرز
+      - قلة التبرز
       ar_eg:
       - إمساك
+      - عندي إمساك
+      - مش قادر أتبرز
       en:
       - constipation
     first_line:
