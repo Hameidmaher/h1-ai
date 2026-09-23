@@ -10,7 +10,44 @@
       ],
       "class": "analgesic",
       "safe_pregnancy": true,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "500-1000mg كل 4-6 ساعات",
+        "child": "10-15mg/kg كل 4-6 ساعات",
+        "max_daily": "4000mg",
+        "route": "oral"
+      },
+      "indications": [
+        "صداع",
+        "ألم",
+        "حمى",
+        "ألم عضلي",
+        "ألم أسنان"
+      ],
+      "contraindications": [
+        "فشل كبدي شديد",
+        "حساسية للباراسيتامول"
+      ],
+      "side_effects": [
+        "نادراً: طفح جلدي",
+        "جرعة زائدة: تسمم كبدي"
+      ],
+      "pregnancy_category": "B",
+      "onset": "30-60 دقيقة",
+      "duration": "4-6 ساعات",
+      "brand_names": {
+        "eg": [
+          "بنادول",
+          "سيتامول"
+        ],
+        "sa": [
+          "adol",
+          "panadol"
+        ],
+        "ae": [
+          "panadol"
+        ]
+      }
     },
     "ibuprofen": {
       "name_ar": "إيبوبروفين",
@@ -21,7 +58,45 @@
       ],
       "class": "nsaid",
       "safe_pregnancy": false,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "200-400mg كل 4-6 ساعات",
+        "child": "5-10mg/kg كل 6-8 ساعات",
+        "max_daily": "1200mg",
+        "route": "oral"
+      },
+      "indications": [
+        "صداع",
+        "ألم",
+        "حمى",
+        "التهاب",
+        "ألم دورة"
+      ],
+      "contraindications": [
+        "قرحة معدة",
+        "فشل كلوي",
+        "حمل 3rd trimester"
+      ],
+      "side_effects": [
+        "حرقة معدة",
+        "غثيان",
+        "نزيف معدي"
+      ],
+      "pregnancy_category": "D",
+      "onset": "30 دقيقة",
+      "duration": "4-6 ساعات",
+      "brand_names": {
+        "eg": [
+          "بروفين",
+          "بروفينال"
+        ],
+        "sa": [
+          "brufen"
+        ],
+        "ae": [
+          "brufen"
+        ]
+      }
     },
     "aspirin": {
       "name_ar": "أسبرين",
@@ -31,7 +106,43 @@
       ],
       "class": "nsaid",
       "safe_pregnancy": false,
-      "safe_children": false
+      "safe_children": false,
+      "dosage": {
+        "adult": "75-325mg يومياً (قلبي)",
+        "analgesic": "325-650mg كل 4-6 ساعات",
+        "max_daily": "4000mg",
+        "route": "oral"
+      },
+      "indications": [
+        "وقاية قلبية",
+        "ألم",
+        "حمى",
+        "التهاب"
+      ],
+      "contraindications": [
+        "أطفال < 16 سنة",
+        "قرحة معدة",
+        "نزيف"
+      ],
+      "side_effects": [
+        "نزيف",
+        "حرقة معدة",
+        "طنين"
+      ],
+      "pregnancy_category": "D",
+      "onset": "30 دقيقة",
+      "duration": "4-6 ساعات",
+      "brand_names": {
+        "eg": [
+          "أسبرين"
+        ],
+        "sa": [
+          "aspirin"
+        ],
+        "ae": [
+          "aspirin"
+        ]
+      }
     },
     "omeprazole": {
       "name_ar": "أوميبرازول",
@@ -41,7 +152,41 @@
       ],
       "class": "ppi",
       "safe_pregnancy": true,
-      "safe_children": false
+      "safe_children": false,
+      "dosage": {
+        "adult": "20mg يومياً قبل الفطار",
+        "severe": "40mg يومياً",
+        "route": "oral"
+      },
+      "indications": [
+        "حموضة",
+        "قرحة معدة",
+        "GERD",
+        "ارتجاع"
+      ],
+      "contraindications": [
+        "حساسية PPI",
+        "هشاشة عظام"
+      ],
+      "side_effects": [
+        "صداع",
+        "إسهال",
+        "نقص B12 طويل المدى"
+      ],
+      "pregnancy_category": "C",
+      "onset": "1 ساعة",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "لوسيك"
+        ],
+        "sa": [
+          "losec"
+        ],
+        "ae": [
+          "losec"
+        ]
+      }
     },
     "cetirizine": {
       "name_ar": "سيتيريزين",
@@ -51,7 +196,40 @@
       ],
       "class": "antihistamine",
       "safe_pregnancy": true,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "10mg يومياً",
+        "route": "oral"
+      },
+      "indications": [
+        "حساسية",
+        "أرتيكاريا",
+        "رشح",
+        "هرش"
+      ],
+      "contraindications": [
+        "حساسية",
+        "فشل كلوي"
+      ],
+      "side_effects": [
+        "نعاس",
+        "جفاف فم",
+        "صداع"
+      ],
+      "pregnancy_category": "B",
+      "onset": "20-60 دقيقة",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "زيرتك"
+        ],
+        "sa": [
+          "zyrtec"
+        ],
+        "ae": [
+          "zyrtec"
+        ]
+      }
     },
     "diclofenac": {
       "name_ar": "ديكلوفيناك",
@@ -64,13 +242,43 @@
       ],
       "class": "nsaid",
       "indications": [
-        "pain",
-        "inflammation",
-        "arthritis"
+        "ألم",
+        "التهاب",
+        "خشونة",
+        "روماتيزم"
       ],
       "safe_pregnancy": false,
       "safe_children": false,
-      "notes": "مسكن مضاد للالتهاب - تجنب في الحمل"
+      "notes": "مسكن مضاد للالتهاب - تجنب في الحمل",
+      "dosage": {
+        "adult": "50mg مرتين يومياً",
+        "max": "150mg",
+        "route": "oral/topical"
+      },
+      "contraindications": [
+        "قرحة معدة",
+        "فشل كلوي",
+        "حمل 3rd"
+      ],
+      "side_effects": [
+        "حرقة معدة",
+        "غثيان",
+        "نزيف"
+      ],
+      "pregnancy_category": "D",
+      "onset": "30-60 دقيقة",
+      "duration": "6-8 ساعات",
+      "brand_names": {
+        "eg": [
+          "فولتارين"
+        ],
+        "sa": [
+          "voltaren"
+        ],
+        "ae": [
+          "voltaren"
+        ]
+      }
     },
     "naproxen": {
       "name_ar": "نابروكسين",
@@ -81,12 +289,40 @@
       ],
       "class": "nsaid",
       "indications": [
-        "pain",
-        "inflammation",
-        "arthritis"
+        "ألم",
+        "التهاب",
+        "ألم دورة",
+        "صداع نصفي"
       ],
       "safe_pregnancy": false,
-      "safe_children": false
+      "safe_children": false,
+      "dosage": {
+        "adult": "250-500mg مرتين يومياً",
+        "route": "oral"
+      },
+      "contraindications": [
+        "قرحة معدة",
+        "فشل كلوي"
+      ],
+      "side_effects": [
+        "حرقة معدة",
+        "غثيان",
+        "دوخة"
+      ],
+      "pregnancy_category": "D",
+      "onset": "1 ساعة",
+      "duration": "8-12 ساعة",
+      "brand_names": {
+        "eg": [
+          "نابروكسين"
+        ],
+        "sa": [
+          "naprosyn"
+        ],
+        "ae": [
+          "naprosyn"
+        ]
+      }
     },
     "celecoxib": {
       "name_ar": "سيليكوكسيب",
@@ -113,13 +349,43 @@
       ],
       "class": "opioid",
       "indications": [
-        "severe_pain",
-        "chronic_pain"
+        "ألم متوسط",
+        "ألم شديد"
       ],
       "safe_pregnancy": false,
       "safe_children": false,
       "controlled": true,
-      "notes": "مسكن أفيوني - يحتاج وصفة"
+      "notes": "مسكن أفيوني - يحتاج وصفة",
+      "dosage": {
+        "adult": "50-100mg كل 4-6 ساعات",
+        "max_daily": "400mg",
+        "route": "oral"
+      },
+      "contraindications": [
+        "صرع",
+        "اكتئاب",
+        "حمل"
+      ],
+      "side_effects": [
+        "غثيان",
+        "دوخة",
+        "نعاس",
+        "إمساك"
+      ],
+      "pregnancy_category": "C",
+      "onset": "30 دقيقة",
+      "duration": "4-6 ساعات",
+      "brand_names": {
+        "eg": [
+          "ترامال"
+        ],
+        "sa": [
+          "tramal"
+        ],
+        "ae": [
+          "tramal"
+        ]
+      }
     },
     "morphine": {
       "name_ar": "مورفين",
@@ -146,12 +412,40 @@
       ],
       "class": "macrolide",
       "indications": [
-        "respiratory_infection",
-        "skin_infection",
-        "uti"
+        "التهاب رئوي",
+        "التهاب حلق",
+        "التهاب جيوب"
       ],
       "safe_pregnancy": true,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "500mg يومياً × 3 أيام",
+        "child": "10mg/kg يومياً × 3 أيام",
+        "route": "oral"
+      },
+      "contraindications": [
+        "حساسية ماكروليد",
+        "تطويل QT"
+      ],
+      "side_effects": [
+        "إسهال",
+        "غثيان",
+        "ألم بطن"
+      ],
+      "pregnancy_category": "B",
+      "onset": "2-3 ساعات",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "زيثروماكس"
+        ],
+        "sa": [
+          "zithromax"
+        ],
+        "ae": [
+          "zithromax"
+        ]
+      }
     },
     "clarithromycin": {
       "name_ar": "كلاريثرومايسين",
@@ -272,12 +566,40 @@
       ],
       "class": "penicillin",
       "indications": [
-        "respiratory_infection",
-        "uti",
-        "skin_infection"
+        "التهاب جيوب",
+        "التهاب رئوي",
+        "خراج أسنان"
       ],
       "safe_pregnancy": true,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "625mg كل 8 ساعات",
+        "child": "45mg/kg/day مقسمة",
+        "route": "oral"
+      },
+      "contraindications": [
+        "حساسية بنسلين",
+        "تاريخ يرقان"
+      ],
+      "side_effects": [
+        "إسهال",
+        "غثيان",
+        "فطريات"
+      ],
+      "pregnancy_category": "B",
+      "onset": "1 ساعة",
+      "duration": "8 ساعات",
+      "brand_names": {
+        "eg": [
+          "أوجمنتين"
+        ],
+        "sa": [
+          "augmentin"
+        ],
+        "ae": [
+          "augmentin"
+        ]
+      }
     },
     "doxycycline_acne": {
       "name_ar": "دوكسيسايكلين للحبوب",
@@ -601,11 +923,39 @@
       ],
       "class": "ccb",
       "indications": [
-        "hypertension",
-        "angina"
+        "ارتفاع ضغط",
+        "ذبحة صدرية"
       ],
       "safe_pregnancy": false,
-      "safe_children": false
+      "safe_children": false,
+      "dosage": {
+        "adult": "5-10mg يومياً",
+        "elderly": "2.5mg بداية",
+        "route": "oral"
+      },
+      "contraindications": [
+        "حساسية",
+        "هبوط ضغط شديد"
+      ],
+      "side_effects": [
+        "تورم كعب",
+        "صداع",
+        "دوخة"
+      ],
+      "pregnancy_category": "C",
+      "onset": "6-12 ساعة",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "نورفاسك"
+        ],
+        "sa": [
+          "norvasc"
+        ],
+        "ae": [
+          "norvasc"
+        ]
+      }
     },
     "lisinopril": {
       "name_ar": "ليزينوبريل",
@@ -633,11 +983,39 @@
       ],
       "class": "arb",
       "indications": [
-        "hypertension",
-        "diabetic_nephropathy"
+        "ارتفاع ضغط",
+        "اعتلال كلوي سكري"
       ],
       "safe_pregnancy": false,
-      "safe_children": false
+      "safe_children": false,
+      "dosage": {
+        "adult": "50mg يومياً",
+        "max": "100mg",
+        "route": "oral"
+      },
+      "contraindications": [
+        "حمل",
+        "فرط بوتاسيوم"
+      ],
+      "side_effects": [
+        "دوخة",
+        "فرط بوتاسيوم",
+        "صداع"
+      ],
+      "pregnancy_category": "D",
+      "onset": "6 ساعات",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "كوزار"
+        ],
+        "sa": [
+          "cozaar"
+        ],
+        "ae": [
+          "cozaar"
+        ]
+      }
     },
     "valsartan": {
       "name_ar": "فالسارتان",
@@ -679,12 +1057,42 @@
       ],
       "class": "beta_blocker",
       "indications": [
-        "hypertension",
-        "heart_failure",
-        "migraine_prevention"
+        "ارتفاع ضغط",
+        "ذبحة",
+        "فشل قلب",
+        "عدم انتظام"
       ],
       "safe_pregnancy": false,
-      "safe_children": false
+      "safe_children": false,
+      "dosage": {
+        "adult": "25-100mg مرتين يومياً",
+        "route": "oral"
+      },
+      "contraindications": [
+        "ربو",
+        "بطء قلب",
+        "حمل"
+      ],
+      "side_effects": [
+        "تعب",
+        "دوخة",
+        "برودة أطراف"
+      ],
+      "pregnancy_category": "C",
+      "onset": "1 ساعة",
+      "duration": "12-24 ساعة",
+      "brand_names": {
+        "eg": [
+          "لوبريسور",
+          "بلوك"
+        ],
+        "sa": [
+          "lopressor"
+        ],
+        "ae": [
+          "lopressor"
+        ]
+      }
     },
     "atorvastatin": {
       "name_ar": "أتورفاستاتين",
@@ -695,12 +1103,39 @@
       ],
       "class": "statin",
       "indications": [
-        "hyperlipidemia",
-        "cholesterol",
-        "cvd_prevention"
+        "ارتفاع كوليسترول",
+        "وقاية قلبية"
       ],
       "safe_pregnancy": false,
-      "safe_children": false
+      "safe_children": false,
+      "dosage": {
+        "adult": "10-80mg يومياً مساءً",
+        "route": "oral"
+      },
+      "contraindications": [
+        "حمل",
+        "فشل كبدي",
+        "ألم عضلي"
+      ],
+      "side_effects": [
+        "ألم عضلي",
+        "ارتفاع إنزيمات كبد",
+        "إسهال"
+      ],
+      "pregnancy_category": "X",
+      "onset": "2 أسابيع",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "ليبيتور"
+        ],
+        "sa": [
+          "lipitor"
+        ],
+        "ae": [
+          "lipitor"
+        ]
+      }
     },
     "rosuvastatin": {
       "name_ar": "روسوفاستاتين",
@@ -726,12 +1161,38 @@
       ],
       "class": "antiplatelet",
       "indications": [
-        "prevent_clots",
-        "post_mi",
-        "stroke_prevention"
+        "وقاية قلبية",
+        "بعد دعامة"
       ],
       "safe_pregnancy": false,
-      "safe_children": false
+      "safe_children": false,
+      "dosage": {
+        "adult": "75mg يومياً",
+        "loading": "300-600mg",
+        "route": "oral"
+      },
+      "contraindications": [
+        "نزيف نشط"
+      ],
+      "side_effects": [
+        "نزيف",
+        "كدمات",
+        "إسهال"
+      ],
+      "pregnancy_category": "B",
+      "onset": "2 ساعات",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "بلافيكس"
+        ],
+        "sa": [
+          "plavix"
+        ],
+        "ae": [
+          "plavix"
+        ]
+      }
     },
     "warfarin": {
       "name_ar": "وارفارين",
@@ -742,14 +1203,43 @@
       ],
       "class": "anticoagulant",
       "indications": [
-        "prevent_clots",
-        "dvt",
-        "atrial_fibrillation"
+        "وقاية جلطات",
+        "رجفان أذيني",
+        "جلطة وريدية"
       ],
       "safe_pregnancy": false,
       "safe_children": false,
       "narrow_therapeutic_index": true,
-      "notes": "يحتاج مراقبة INR - تفاعلات دوائية كثيرة"
+      "notes": "يحتاج مراقبة INR - تفاعلات دوائية كثيرة",
+      "dosage": {
+        "adult": "2-10mg يومياً حسب INR",
+        "monitoring": "INR كل 2-4 أسابيع",
+        "route": "oral"
+      },
+      "contraindications": [
+        "نزيف نشط",
+        "حمل",
+        "جرعة قريبة"
+      ],
+      "side_effects": [
+        "نزيف",
+        "كدمات",
+        "نقص وزن"
+      ],
+      "pregnancy_category": "X",
+      "onset": "24-72 ساعة",
+      "duration": "2-5 أيام",
+      "brand_names": {
+        "eg": [
+          "ماريفان"
+        ],
+        "sa": [
+          "marevan"
+        ],
+        "ae": [
+          "marevan"
+        ]
+      }
     },
     "furosemide": {
       "name_ar": "فوروسيميد",
@@ -760,12 +1250,40 @@
       ],
       "class": "loop_diuretic",
       "indications": [
-        "edema",
-        "hypertension",
-        "heart_failure"
+        "وذمة",
+        "فشل قلب",
+        "ارتفاع ضغط"
       ],
       "safe_pregnancy": false,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "20-40mg يومياً صباحاً",
+        "max": "600mg",
+        "route": "oral/IV"
+      },
+      "contraindications": [
+        "انقطاع بول",
+        "نقص بوتاسيوم"
+      ],
+      "side_effects": [
+        "نقص بوتاسيوم",
+        "جفاف",
+        "دوخة"
+      ],
+      "pregnancy_category": "C",
+      "onset": "30-60 دقيقة",
+      "duration": "6-8 ساعات",
+      "brand_names": {
+        "eg": [
+          "لازيكس"
+        ],
+        "sa": [
+          "lasix"
+        ],
+        "ae": [
+          "lasix"
+        ]
+      }
     },
     "metformin": {
       "name_ar": "ميتفورمين",
@@ -776,12 +1294,43 @@
       ],
       "class": "biguanide",
       "indications": [
-        "diabetes_type2",
-        "pcos"
+        "سكري النوع 2",
+        "تكيس مبايض",
+        "ما قبل السكري"
       ],
       "safe_pregnancy": false,
       "safe_children": false,
-      "notes": "قد يسبب مشاكل معوية في البداية"
+      "notes": "قد يسبب مشاكل معوية في البداية",
+      "dosage": {
+        "adult": "500mg مرتين يومياً مع الأكل",
+        "titration": "زيادة تدريجية لـ 2000mg/day",
+        "max_daily": "2550mg",
+        "route": "oral"
+      },
+      "contraindications": [
+        "فشل كلوي",
+        "حماض لبني",
+        "قصور كبدي"
+      ],
+      "side_effects": [
+        "إسهال",
+        "غثيان",
+        "طعم معدني"
+      ],
+      "pregnancy_category": "B",
+      "onset": "أسبوع",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "جلوكوفاج"
+        ],
+        "sa": [
+          "glucophage"
+        ],
+        "ae": [
+          "glucophage"
+        ]
+      }
     },
     "glimepiride": {
       "name_ar": "جليمبيريد",
@@ -836,11 +1385,39 @@
       ],
       "class": "saba",
       "indications": [
-        "asthma",
-        "copd"
+        "ربو",
+        "COPD",
+        "ضيق نفس"
       ],
       "safe_pregnancy": true,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "100-200mcg عند الحاجة",
+        "prevention": "100-200mcg قبل الرياضة",
+        "route": "inhaled"
+      },
+      "contraindications": [
+        "حساسية"
+      ],
+      "side_effects": [
+        "رجفة",
+        "خفقان",
+        "صداع"
+      ],
+      "pregnancy_category": "C",
+      "onset": "5 دقائق",
+      "duration": "4-6 ساعات",
+      "brand_names": {
+        "eg": [
+          "فنتولين"
+        ],
+        "sa": [
+          "ventolin"
+        ],
+        "ae": [
+          "ventolin"
+        ]
+      }
     },
     "montelukast": {
       "name_ar": "مونتيلوكاست",
@@ -851,11 +1428,40 @@
       ],
       "class": "ltra",
       "indications": [
-        "asthma",
-        "allergic_rhinitis"
+        "ربو",
+        "حساسية أنف",
+        "وقاية من الربو"
       ],
       "safe_pregnancy": true,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "10mg مساءً",
+        "child_6_14": "5mg",
+        "child_2_5": "4mg",
+        "route": "oral"
+      },
+      "contraindications": [
+        "حساسية"
+      ],
+      "side_effects": [
+        "صداع",
+        "ألم بطن",
+        "تغيرات مزاجية"
+      ],
+      "pregnancy_category": "B",
+      "onset": "24 ساعة",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "سينجولير"
+        ],
+        "sa": [
+          "singulair"
+        ],
+        "ae": [
+          "singulair"
+        ]
+      }
     },
     "budesonide": {
       "name_ar": "بوديسونيد",
@@ -881,11 +1487,38 @@
       ],
       "class": "antihistamine",
       "indications": [
-        "allergy",
-        "rhinitis"
+        "حساسية",
+        "رشح",
+        "هرش"
       ],
       "safe_pregnancy": true,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "10mg يومياً",
+        "route": "oral"
+      },
+      "contraindications": [
+        "حساسية"
+      ],
+      "side_effects": [
+        "صداع",
+        "جفاف فم",
+        "إرهاق"
+      ],
+      "pregnancy_category": "B",
+      "onset": "1-3 ساعات",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "كلاريتين"
+        ],
+        "sa": [
+          "claritine"
+        ],
+        "ae": [
+          "claritine"
+        ]
+      }
     },
     "fexofenadine": {
       "name_ar": "فيكسوفينادين",
@@ -1674,12 +2307,42 @@
       ],
       "class": "ssri",
       "indications": [
-        "depression",
-        "anxiety",
-        "ocd"
+        "اكتئاب",
+        "قلق",
+        "OCD",
+        "PTSD"
       ],
       "safe_pregnancy": false,
-      "safe_children": false
+      "safe_children": false,
+      "dosage": {
+        "adult": "50mg يومياً",
+        "max": "200mg",
+        "route": "oral"
+      },
+      "contraindications": [
+        "MAOI",
+        "حساسية"
+      ],
+      "side_effects": [
+        "غثيان",
+        "إسهال",
+        "أرق",
+        "دوار"
+      ],
+      "pregnancy_category": "C",
+      "onset": "2-4 أسابيع",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "زولوفت"
+        ],
+        "sa": [
+          "zoloft"
+        ],
+        "ae": [
+          "zoloft"
+        ]
+      }
     },
     "fluoxetine": {
       "name_ar": "فلوكستين",
@@ -1689,11 +2352,42 @@
       ],
       "class": "ssri",
       "indications": [
-        "depression",
-        "ocd"
+        "اكتئاب",
+        "OCD",
+        "شره",
+        "قلق"
       ],
       "safe_pregnancy": false,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "20mg صباحاً",
+        "max": "80mg",
+        "route": "oral"
+      },
+      "contraindications": [
+        "MAOI",
+        "ثيوريدازين"
+      ],
+      "side_effects": [
+        "أرق",
+        "قلق",
+        "غثيان",
+        "جفاف فم"
+      ],
+      "pregnancy_category": "C",
+      "onset": "2-4 أسابيع",
+      "duration": "أيام",
+      "brand_names": {
+        "eg": [
+          "بروزاك"
+        ],
+        "sa": [
+          "prozac"
+        ],
+        "ae": [
+          "prozac"
+        ]
+      }
     },
     "paroxetine": {
       "name_ar": "باروكستين",
@@ -1813,12 +2507,41 @@
       ],
       "class": "benzodiazepine",
       "indications": [
-        "anxiety",
-        "muscle_spasm"
+        "قلق",
+        "تشنجات",
+        "ارتجاج عضلي"
       ],
       "safe_pregnancy": false,
       "safe_children": true,
-      "controlled": true
+      "controlled": true,
+      "dosage": {
+        "adult": "2-10mg 2-4 مرات يومياً",
+        "route": "oral/IV"
+      },
+      "contraindications": [
+        "حمل",
+        "زرق",
+        "إدمان"
+      ],
+      "side_effects": [
+        "نعاس",
+        "ضعف عضلي",
+        "اعتماد"
+      ],
+      "pregnancy_category": "D",
+      "onset": "30-60 دقيقة",
+      "duration": "12-24 ساعة",
+      "brand_names": {
+        "eg": [
+          "فاليوم"
+        ],
+        "sa": [
+          "valium"
+        ],
+        "ae": [
+          "valium"
+        ]
+      }
     },
     "alprazolam": {
       "name_ar": "ألبرازولام",
@@ -1828,11 +2551,41 @@
       ],
       "class": "benzodiazepine",
       "indications": [
-        "anxiety"
+        "قلق",
+        "نوبة هلع"
       ],
       "safe_pregnancy": false,
       "safe_children": false,
-      "controlled": true
+      "controlled": true,
+      "dosage": {
+        "adult": "0.25-0.5mg 3 مرات يومياً",
+        "max": "4mg",
+        "route": "oral"
+      },
+      "contraindications": [
+        "حمل",
+        "زرق",
+        "إدمان"
+      ],
+      "side_effects": [
+        "نعاس",
+        "دوخة",
+        "اعتماد"
+      ],
+      "pregnancy_category": "D",
+      "onset": "1 ساعة",
+      "duration": "6-12 ساعة",
+      "brand_names": {
+        "eg": [
+          "زاناكس"
+        ],
+        "sa": [
+          "xanax"
+        ],
+        "ae": [
+          "xanax"
+        ]
+      }
     },
     "zolpidem": {
       "name_ar": "زولبيديم",
@@ -1996,10 +2749,40 @@
       ],
       "class": "thyroid_hormone",
       "indications": [
-        "hypothyroidism"
+        "قصور غدة درقية",
+        "تضخم غدة"
       ],
       "safe_pregnancy": true,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "1.6mcg/kg يومياً",
+        "elderly": "12.5-25mcg بداية",
+        "route": "oral",
+        "timing": "على معدة فاضية 30 دقيقة قبل الفطار"
+      },
+      "contraindications": [
+        "فرط نشاط غدة",
+        "احتشاء قلبي حاد"
+      ],
+      "side_effects": [
+        "خفقان",
+        "أرق",
+        "فقدان وزن"
+      ],
+      "pregnancy_category": "A",
+      "onset": "3-5 أيام",
+      "duration": "7 أيام",
+      "brand_names": {
+        "eg": [
+          "إلتروكسين"
+        ],
+        "sa": [
+          "eltroxin"
+        ],
+        "ae": [
+          "eltroxin"
+        ]
+      }
     },
     "methimazole": {
       "name_ar": "ميثيمازول",
@@ -2045,11 +2828,40 @@
       "aliases": [],
       "class": "corticosteroid",
       "indications": [
-        "inflammation",
-        "asthma"
+        "التهاب",
+        "حساسية",
+        "ربو",
+        "روماتيزم"
       ],
       "safe_pregnancy": false,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "5-60mg يومياً",
+        "route": "oral"
+      },
+      "contraindications": [
+        "عدوى فطرية",
+        "حمل"
+      ],
+      "side_effects": [
+        "زيادة وزن",
+        "ارتفاع سكر",
+        "هشاشة"
+      ],
+      "pregnancy_category": "C",
+      "onset": "1-2 ساعة",
+      "duration": "18-36 ساعة",
+      "brand_names": {
+        "eg": [
+          "سولوبريد"
+        ],
+        "sa": [
+          "solu_medrol"
+        ],
+        "ae": [
+          "solu_medrol"
+        ]
+      }
     },
     "dexamethasone": {
       "name_ar": "ديكساميثازون",
@@ -2057,11 +2869,38 @@
       "aliases": [],
       "class": "corticosteroid",
       "indications": [
-        "inflammation",
-        "covid19"
+        "التهاب شديد",
+        "حساسية",
+        "ورم دماغي"
       ],
       "safe_pregnancy": true,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "0.5-10mg يومياً",
+        "route": "oral/IV/IM"
+      },
+      "contraindications": [
+        "عدوى فطرية"
+      ],
+      "side_effects": [
+        "زيادة سكر",
+        "زيادة وزن",
+        "أرق"
+      ],
+      "pregnancy_category": "C",
+      "onset": "1 ساعة",
+      "duration": "36-72 ساعة",
+      "brand_names": {
+        "eg": [
+          "ديكساميثازون"
+        ],
+        "sa": [
+          "decadron"
+        ],
+        "ae": [
+          "decadron"
+        ]
+      }
     },
     "hydrocortisone_systemic": {
       "name_ar": "هيدروكورتيزون فموي",
@@ -2238,10 +3077,37 @@
       ],
       "class": "xanthine_oxidase",
       "indications": [
-        "gout"
+        "نقرس",
+        "فرط حمض يوريك"
       ],
       "safe_pregnancy": true,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "100-300mg يومياً بعد الأكل",
+        "route": "oral"
+      },
+      "contraindications": [
+        "هجمة نقرس حادة"
+      ],
+      "side_effects": [
+        "طفح جلدي",
+        "غثيان",
+        "نقص كريات دم"
+      ],
+      "pregnancy_category": "C",
+      "onset": "1-2 أسبوع",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "زيلوريك"
+        ],
+        "sa": [
+          "zyloric"
+        ],
+        "ae": [
+          "zyloric"
+        ]
+      }
     },
     "febuxostat": {
       "name_ar": "فيبوكسوستات",
@@ -2262,10 +3128,40 @@
       "aliases": [],
       "class": "anti_gout",
       "indications": [
-        "gout"
+        "نقرس حاد",
+        "وقاية نقرس",
+        "حمى متوسطية"
       ],
       "safe_pregnancy": false,
-      "safe_children": false
+      "safe_children": false,
+      "dosage": {
+        "adult": "0.5-1mg كل 1-2 ساعة (هجمة)",
+        "prevention": "0.5-1mg يومياً",
+        "route": "oral"
+      },
+      "contraindications": [
+        "فشل كلوي/كبدي",
+        "حمل"
+      ],
+      "side_effects": [
+        "إسهال",
+        "غثيان",
+        "ألم بطن"
+      ],
+      "pregnancy_category": "C",
+      "onset": "12-24 ساعة",
+      "duration": "24-48 ساعة",
+      "brand_names": {
+        "eg": [
+          "كولشيسين"
+        ],
+        "sa": [
+          "colcrys"
+        ],
+        "ae": [
+          "colcrys"
+        ]
+      }
     },
     "methotrexate": {
       "name_ar": "ميثوتريكسات",
@@ -2290,12 +3186,39 @@
       ],
       "class": "dmard",
       "indications": [
-        "ra",
-        "lupus",
-        "malaria"
+        "روماتويد",
+        "ذئبة",
+        "ملاريا"
       ],
       "safe_pregnancy": true,
-      "safe_children": true
+      "safe_children": true,
+      "dosage": {
+        "adult": "200-400mg يومياً",
+        "route": "oral"
+      },
+      "contraindications": [
+        "اعتلال شبكية",
+        "حساسية"
+      ],
+      "side_effects": [
+        "غثيان",
+        "طفح",
+        "اعتلال شبكية"
+      ],
+      "pregnancy_category": "B",
+      "onset": "أسابيع",
+      "duration": "أيام",
+      "brand_names": {
+        "eg": [
+          "بلاجونيل"
+        ],
+        "sa": [
+          "plaquenil"
+        ],
+        "ae": [
+          "plaquenil"
+        ]
+      }
     },
     "azathioprine": {
       "name_ar": "أزاثيوبرين",
@@ -2479,10 +3402,41 @@
       "aliases": [],
       "class": "penicillin",
       "indications": [
-        "infection"
+        "التهاب حلق",
+        "التهاب أذن",
+        "التهاب رئوي",
+        "UTI"
       ],
       "safe_pregnancy": false,
-      "safe_children": false
+      "safe_children": false,
+      "dosage": {
+        "adult": "500mg كل 8 ساعات",
+        "child": "25-45mg/kg/day مقسمة",
+        "max_daily": "3000mg",
+        "route": "oral"
+      },
+      "contraindications": [
+        "حساسية بنسلين"
+      ],
+      "side_effects": [
+        "إسهال",
+        "غثيان",
+        "طفح جلدي"
+      ],
+      "pregnancy_category": "B",
+      "onset": "1 ساعة",
+      "duration": "8 ساعات",
+      "brand_names": {
+        "eg": [
+          "أموكسيل"
+        ],
+        "sa": [
+          "amoxil"
+        ],
+        "ae": [
+          "amoxil"
+        ]
+      }
     },
     "nitrofurantoin": {
       "name_ar": "نيتروفورانتوين",
@@ -2645,11 +3599,38 @@
       "aliases": [],
       "class": "insulin",
       "indications": [
-        "diabetes_type1",
-        "diabetes_type2"
+        "سكري نوع 1",
+        "سكري نوع 2"
       ],
       "safe_pregnancy": false,
-      "safe_children": false
+      "safe_children": false,
+      "dosage": {
+        "adult": "0.2-1 units/kg يومياً",
+        "timing": "نفس الوقت كل يوم",
+        "route": "SC"
+      },
+      "contraindications": [
+        "نقص سكر"
+      ],
+      "side_effects": [
+        "نقص سكر",
+        "تورم موضعي",
+        "زيادة وزن"
+      ],
+      "pregnancy_category": "B",
+      "onset": "1-2 ساعة",
+      "duration": "24 ساعة",
+      "brand_names": {
+        "eg": [
+          "لانتوس"
+        ],
+        "sa": [
+          "lantus"
+        ],
+        "ae": [
+          "lantus"
+        ]
+      }
     },
     "insulin_aspart": {
       "name_ar": "إنسولين أسبارت",
