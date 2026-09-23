@@ -2,7 +2,7 @@
 #  H1-AI Comprehensive .gitignore
 # ═══════════════════════════════════════════════════════
 
-# ─── Secrets & Environment ───
+# ─── Secrets ───
 .env
 .env.*
 !.env.example
@@ -10,8 +10,6 @@
 *.pem
 *.p12
 secrets/
-secret*.txt
-credentials*.txt
 ADMIN-CREDENTIALS.txt
 config.production.yaml
 
@@ -26,8 +24,6 @@ postgres_data/
 whatsapp/sessions/
 whatsapp-service/sessions/
 whatsapp-service/auth_info/
-whatsapp-service/*.json.session
-whatsapp-bridge/sessions/
 auth_info_*/
 session*.json
 
@@ -40,71 +36,47 @@ backups/
 *.before-fix.*
 *.broken.*
 *.old
-*.orig
 *_backup_*
 
 # ─── Logs ───
 logs/
 *.log
 *.log.*
-*.out
 
 # ─── Python ───
 __pycache__/
 *.py[cod]
-*.so
-.Python
-build/
-dist/
-*.egg-info/
 .venv/
 venv/
 .pytest_cache/
 .coverage
 htmlcov/
-.tox/
 .mypy_cache/
 .ruff_cache/
 
-# ─── Node.js ───
+# ─── Node ───
 node_modules/
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
 
 # ─── Test artifacts ───
 tests/load/*.csv
-tests/load/*_failures.csv
-tests/load/*_exceptions.csv
-tests/load/*_stats.csv
 tests/load/results_*
-.coverage
 coverage.xml
 
-# ─── OS ───
+# ─── OS/IDE ───
 .DS_Store
 Thumbs.db
-
-# ─── IDE ───
 .vscode/
 .idea/
 *.swp
-*.swo
 *~
 
 # ─── Mobile ───
 mobile/build/
 mobile/.dart_tool/
-mobile/.flutter-plugins
-mobile/*.iml
-
-# ─── Docker ───
-docker-compose.override.yml
 
 # ─── Temporary ───
 tmp/
 temp/
 *.tmp
-*.cache
-.npm/
