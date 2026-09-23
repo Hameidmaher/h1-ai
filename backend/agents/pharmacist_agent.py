@@ -257,6 +257,32 @@ SYSTEM_PROMPT = (
 )
 
 
+
+
+# ═══════════════════════════════════════════════════════════
+# EMOTIONAL SUPPORT — ردود عاطفية
+# ═══════════════════════════════════════════════════════════
+
+EMOTIONAL_KEYWORDS = {
+    "زهقان": "معلش، حسّ إنك مش لوحدك. 💙 خد نفس عميق، وحاول تتكلم مع حد قريب منك. أنا هنا لو عاوز تحكي.",
+    "تعبان": "ربنا يعينك، تعبك ده محتاج راحة. لو التعب مستمر، يفضل تروح لدكتور.",
+    "زعلان": "معلش، كلنا بنعدي بأوقات صعبة. 💙 خد وقتك، وافتكر إن كل حاجة بتعدي.",
+    "مكتئب": "أنا آسف إنك حاسس كده. 💙 الاكتئاب مرض حقيقي وليه علاج. يفضل تتكلم مع طبيب نفسي متخصص.",
+    "خايف": "طبيعي تخاف، بس متقلقش. لو الخوف مستمر، يفضل تتكلم مع حد متخصص.",
+    "قلقان": "القلق حاجة طبيعية، بس لو بيأثر على حياتك، يفضل تروح لدكتور نفسي.",
+    "وحيد": "مش لوحدك أبداً. 💙 حاول تتواصل مع أصحابك أو عيلتك، أو اتصل بخط دعم نفسي.",
+    "محتار": "الحيرة طبيعية. خد وقتك وفكر بهدوء. لو محتاج مساعدة، أنا هنا.",
+    "مش عارف": "مفيش مشكلة، ممكن نساعدك. قولّي بالظبط إيه اللي محتاجه.",
+}
+
+def check_emotional(message: str) -> str | None:
+    """يفحص لو الرسالة عاطفية ويرجع رد مناسب"""
+    for keyword, response in EMOTIONAL_KEYWORDS.items():
+        if keyword in message:
+            return response
+    return None
+
+
 class AgentState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
 
@@ -337,6 +363,17 @@ class PharmacistAgent:
                 text=safety_response,
                 action="answer",
                 confidence=1.0,
+                needs_human=False,
+            )
+        
+        # ★★ Emotional Support ★★
+        emotional = check_emotional(safe_message)
+        if emotional:
+            logger.info("pharmacist_agent.emotional", message=safe_message[:50])
+            return AgentResponse(
+                text=emotional,
+                action="answer",
+                confidence=0.9,
                 needs_human=False,
             )
         
