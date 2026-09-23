@@ -10,6 +10,7 @@ from agents.guardrails import check_tool_calls_allowed, make_refusal_message
 from models.schemas import AgentResponse
 from llm.factory import create_llm
 import structlog
+from core.text_utils import normalize_message, should_use_normalized
 
 logger = structlog.get_logger()
 
@@ -325,6 +326,14 @@ class PharmacistAgent:
         safe_message = str(message) if message else ""
         if not safe_message.strip():
             safe_message = "مرحبا"
+        
+        # ★★ Fuzzy Matching ★★
+        normalized = normalize_message(safe_message)
+        if should_use_normalized(safe_message, normalized):
+            logger.info("pharmacist_agent.fuzzy",
+                       original=safe_message[:50],
+                       normalized=normalized[:50])
+            safe_message = normalized
         
         # ★★ Out-of-Scope Detection (Fallback ذكي) ★★
         scope = detect_out_of_scope(safe_message)
