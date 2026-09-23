@@ -935,6 +935,779 @@ conditions:
     first_line:
     - hydrocortisone_cream
     - moisturizer
+  sneezing:
+    display_name: عطس
+    first_line:
+    - cetirizine
+    - loratadine
+    keywords:
+      ar:
+      - عطس
+      - عطاس
+      ar_eg:
+      - عطس
+      en:
+      - sneezing
+  vomiting:
+    display_name: قيء
+    first_line:
+    - metoclopramide
+    - ondansetron
+    keywords:
+      ar:
+      - قيء
+      - ترجيع
+      ar_eg:
+      - ترجيع
+      - قيء
+      en:
+      - vomiting
+    warnings:
+    - إذا استمر أكثر من 24 ساعة، استشر الطبيب
+  abdominal_pain:
+    display_name: ألم في البطن
+    first_line:
+    - hyoscine
+    - mebeverine
+    keywords:
+      ar:
+      - ألم في البطن
+      - مغص
+      ar_eg:
+      - وجع في بطني
+      en:
+      - abdominal pain
+    warnings:
+    - إذا كان الألم شديد ومستمر، استشر الطبيب
+  fatigue:
+    display_name: إرهاق
+    first_line:
+    - vitamin_b12
+    - iron_sulfate
+    keywords:
+      ar:
+      - إرهاق
+      - تعب
+      ar_eg:
+      - تعبان
+      - مرهق
+      en:
+      - fatigue
+    warnings:
+    - اعمل تحليل دم لو استمر
+  dizziness:
+    display_name: دوخة
+    first_line:
+    - betahistine
+    - dimenhydrinate
+    keywords:
+      ar:
+      - دوخة
+      - دوار
+      ar_eg:
+      - دوخة
+      - دايخ
+      en:
+      - dizziness
+    warnings:
+    - إذا صاحبها إغماء، استشر الطبيب
+  joint_pain:
+    display_name: ألم في المفاصل
+    first_line:
+    - ibuprofen
+    - diclofenac
+    keywords:
+      ar:
+      - ألم في المفاصل
+      ar_eg:
+      - وجع في المفاصل
+      en:
+      - joint pain
+    warnings:
+    - إذا صاحبها تورم واحمرار، استشر الطبيب
+  eye_redness:
+    display_name: احمرار العين
+    first_line:
+    - sodium_hyaluronate
+    keywords:
+      ar:
+      - احمرار العين
+      ar_eg:
+      - عينيا حمراء
+      en:
+      - eye redness
+    warnings:
+    - إذا صاحبه ألم شديد، استشر الطبيب
+  common_cold:
+    display_name: برد
+    first_line:
+    - paracetamol
+    - cetirizine
+    keywords:
+      ar:
+      - برد
+      - زكام
+      ar_eg:
+      - برد
+      - زكام
+      en:
+      - common cold
+  allergic_rhinitis:
+    display_name: حساسية الأنف
+    first_line:
+    - cetirizine
+    - mometasone_nasal
+    keywords:
+      ar:
+      - حساسية الأنف
+      ar_eg:
+      - حساسية في أنفي
+      en:
+      - allergic rhinitis
+    warnings:
+    - تجنب المسببات
+  pharyngitis:
+    display_name: التهاب البلعوم
+    first_line:
+    - paracetamol
+    - amoxicillin
+    keywords:
+      ar:
+      - التهاب البلعوم
+      ar_eg:
+      - التهاب في زوري
+      en:
+      - pharyngitis
+  bronchitis:
+    display_name: التهاب الشعب الهوائية
+    first_line:
+    - salbutamol
+    - ambroxol
+    keywords:
+      ar:
+      - التهاب الشعب
+      ar_eg:
+      - التهاب في شعبي
+      en:
+      - bronchitis
+    warnings:
+    - إذا صاحبه ضيق نفس، استشر الطبيب
+  pneumonia:
+    display_name: التهاب رئوي
+    first_line:
+    - amoxicillin_clavulanate
+    - azithromycin
+    keywords:
+      ar:
+      - التهاب رئوي
+      ar_eg:
+      - التهاب في رئتي
+      en:
+      - pneumonia
+    warnings:
+    - لازم تروح لدكتور فوراً
+  asthma_attack:
+    display_name: نوبة ربو
+    first_line:
+    - salbutamol
+    - budesonide
+    keywords:
+      ar:
+      - نوبة ربو
+      ar_eg:
+      - نوبة ربو
+      en:
+      - asthma attack
+    warnings:
+    - استخدم البخاخ فوراً، وإذا ما تحسنتش اتصل بالإسعاف
+  otitis_media:
+    display_name: التهاب الأذن الوسطى
+    first_line:
+    - amoxicillin
+    - paracetamol
+    keywords:
+      ar:
+      - التهاب الأذن الوسطى
+      ar_eg:
+      - التهاب في ودنيا
+      en:
+      - otitis media
+    warnings:
+    - إذا صاحبه حمى عالية، استشر الطبيب
+  conjunctivitis:
+    display_name: التهاب الملتحمة
+    first_line:
+    - tobramycin_eye
+    - sodium_hyaluronate
+    keywords:
+      ar:
+      - التهاب الملتحمة
+      ar_eg:
+      - التهاب في عيني
+      en:
+      - conjunctivitis
+    warnings:
+    - إذا صاحبه ضعف نظر، استشر الطبيب
+  urticaria:
+    display_name: أرتيكاريا
+    first_line:
+    - cetirizine
+    - loratadine
+    keywords:
+      ar:
+      - أرتيكاريا
+      - هرش
+      ar_eg:
+      - هرش في جسمي
+      en:
+      - urticaria
+    warnings:
+    - إذا صاحبتها صعوبة تنفس، اتصل بالإسعاف
+  psoriasis:
+    display_name: صدفية
+    first_line:
+    - calcipotriol
+    - betamethasone
+    keywords:
+      ar:
+      - صدفية
+      ar_eg:
+      - صدفية
+      en:
+      - psoriasis
+    warnings:
+    - استشر طبيب جلدية
+  hypertension:
+    display_name: ارتفاع ضغط الدم
+    first_line:
+    - amlodipine
+    - lisinopril
+    keywords:
+      ar:
+      - ارتفاع ضغط الدم
+      - ضغط عالي
+      ar_eg:
+      - ضغطي عالي
+      en:
+      - hypertension
+    warnings:
+    - قلل الملح والدهون، واتابع مع الدكتور
+  diabetes_type2:
+    display_name: سكري النوع الثاني
+    first_line:
+    - metformin
+    - gliclazide
+    keywords:
+      ar:
+      - سكري
+      - مرض السكر
+      ar_eg:
+      - سكري
+      - عندي سكر
+      en:
+      - diabetes type 2
+    warnings:
+    - اتابع السكر بانتظام
+  high_cholesterol:
+    display_name: ارتفاع الكوليسترول
+    first_line:
+    - atorvastatin
+    - rosuvastatin
+    keywords:
+      ar:
+      - ارتفاع الكوليسترول
+      ar_eg:
+      - الكوليسترول عالي
+      en:
+      - high cholesterol
+    warnings:
+    - قلل الدهون الحيوانية
+  hypothyroidism:
+    display_name: قصور الغدة الدرقية
+    first_line:
+    - levothyroxine
+    keywords:
+      ar:
+      - قصور الغدة الدرقية
+      ar_eg:
+      - الغدة الدرقية خاملة
+      en:
+      - hypothyroidism
+    warnings:
+    - خد الدوا على معدة فاضية
+  hyperthyroidism:
+    display_name: فرط نشاط الغدة الدرقية
+    first_line:
+    - carbimazole
+    - methimazole
+    keywords:
+      ar:
+      - فرط نشاط الغدة
+      ar_eg:
+      - الغدة الدرقية نشطة
+      en:
+      - hyperthyroidism
+    warnings:
+    - اتابع مع دكتور غدد
+  gout:
+    display_name: النقرس
+    first_line:
+    - colchicine
+    - allopurinol
+    keywords:
+      ar:
+      - النقرس
+      ar_eg:
+      - النقرس
+      en:
+      - gout
+    warnings:
+    - تجنب اللحوم الحمراء والكحول
+  osteoarthritis:
+    display_name: خشونة المفاصل
+    first_line:
+    - paracetamol
+    - diclofenac
+    keywords:
+      ar:
+      - خشونة المفاصل
+      ar_eg:
+      - خشونة في المفاصل
+      en:
+      - osteoarthritis
+    warnings:
+    - خفف الوزن واتحرك
+  rheumatoid_arthritis:
+    display_name: الروماتويد
+    first_line:
+    - methotrexate
+    - hydroxychloroquine
+    keywords:
+      ar:
+      - الروماتويد
+      ar_eg:
+      - الروماتويد
+      en:
+      - rheumatoid arthritis
+    warnings:
+    - متابعة مع دكتور روماتيزم
+  osteoporosis:
+    display_name: هشاشة العظام
+    first_line:
+    - calcium_d3
+    - alendronate
+    keywords:
+      ar:
+      - هشاشة العظام
+      ar_eg:
+      - هشاشة العظام
+      en:
+      - osteoporosis
+    warnings:
+    - خد كالسيوم وفيتامين د
+  anemia:
+    display_name: فقر الدم
+    first_line:
+    - iron_sulfate
+    - folic_acid
+    keywords:
+      ar:
+      - فقر الدم
+      - أنيميا
+      ar_eg:
+      - أنيميا
+      - فقر دم
+      en:
+      - anemia
+    warnings:
+    - خد الحديد مع فيتامين سي
+  ibs:
+    display_name: القولون العصبي
+    first_line:
+    - mebeverine
+    - hyoscine
+    keywords:
+      ar:
+      - القولون العصبي
+      ar_eg:
+      - القولون العصبي
+      en:
+      - irritable bowel
+    warnings:
+    - تجنب التوتر والأكل الحار
+  gerd:
+    display_name: الارتجاع المعدي
+    first_line:
+    - omeprazole
+    - pantoprazole
+    keywords:
+      ar:
+      - الارتجاع
+      - الحموضة
+      ar_eg:
+      - الارتجاع
+      - الحموضة
+      en:
+      - GERD
+      - acid reflux
+    warnings:
+    - متناولش قبل النوم
+  peptic_ulcer:
+    display_name: قرحة المعدة
+    first_line:
+    - omeprazole
+    - pantoprazole
+    keywords:
+      ar:
+      - قرحة المعدة
+      ar_eg:
+      - قرحة في معدتي
+      en:
+      - peptic ulcer
+    warnings:
+    - اتجنب المسكنات القوية
+  chronic_kidney:
+    display_name: الفشل الكلوي المزمن
+    first_line:
+    - lisinopril
+    keywords:
+      ar:
+      - فشل كلوي
+      ar_eg:
+      - كليتي تعبانة
+      en:
+      - chronic kidney disease
+    warnings:
+    - اتابع مع دكتور كلى
+  copd:
+    display_name: الانسداد الرئوي المزمن
+    first_line:
+    - tiotropium
+    - salbutamol
+    keywords:
+      ar:
+      - الانسداد الرئوي
+      ar_eg:
+      - انسداد في رئتي
+      en:
+      - COPD
+    warnings:
+    - ابعد عن التدخين
+  depression:
+    display_name: اكتئاب
+    first_line:
+    - sertraline
+    - fluoxetine
+    keywords:
+      ar:
+      - اكتئاب
+      ar_eg:
+      - مكتئب
+      - زهقان
+      en:
+      - depression
+    warnings:
+    - استشر طبيب نفسي
+  panic_attack:
+    display_name: نوبة هلع
+    first_line:
+    - alprazolam
+    - sertraline
+    keywords:
+      ar:
+      - نوبة هلع
+      ar_eg:
+      - نوبة هلع
+      en:
+      - panic attack
+    warnings:
+    - اتنفس بعمق واتصل بطبيب
+  ocd:
+    display_name: الوسواس القهري
+    first_line:
+    - fluoxetine
+    - sertraline
+    keywords:
+      ar:
+      - الوسواس القهري
+      ar_eg:
+      - وسواس
+      en:
+      - OCD
+    warnings:
+    - استشر طبيب نفسي
+  ptsd:
+    display_name: اضطراب ما بعد الصدمة
+    first_line:
+    - sertraline
+    - paroxetine
+    keywords:
+      ar:
+      - ما بعد الصدمة
+      ar_eg:
+      - صدمة نفسية
+      en:
+      - PTSD
+    warnings:
+    - استشر طبيب نفسي
+  bipolar:
+    display_name: اضطراب ثنائي القطب
+    first_line:
+    - lithium
+    - valproate
+    keywords:
+      ar:
+      - ثنائي القطب
+      ar_eg:
+      - ثنائي القطب
+      en:
+      - bipolar
+    warnings:
+    - متابعة منتظمة مع طبيب
+  schizophrenia:
+    display_name: فصام
+    first_line:
+    - olanzapine
+    - risperidone
+    keywords:
+      ar:
+      - فصام
+      ar_eg:
+      - فصام
+      en:
+      - schizophrenia
+    warnings:
+    - متابعة مع طبيب نفسي
+  adhd:
+    display_name: فرط الحركة وتشتت الانتباه
+    first_line:
+    - methylphenidate
+    - atomoxetine
+    keywords:
+      ar:
+      - فرط الحركة
+      ar_eg:
+      - فرط الحركة
+      en:
+      - ADHD
+    warnings:
+    - متابعة مع طبيب نفسي أطفال
+  eating_disorder:
+    display_name: اضطراب الأكل
+    first_line:
+    - fluoxetine
+    keywords:
+      ar:
+      - اضطراب الأكل
+      ar_eg:
+      - مشكلة في الأكل
+      en:
+      - eating disorder
+    warnings:
+    - استشر طبيب نفسي متخصص
+  alcohol_withdrawal:
+    display_name: انسحاب الكحول
+    first_line:
+    - diazepam
+    - thiamine
+    keywords:
+      ar:
+      - انسحاب الكحول
+      ar_eg:
+      - انسحاب من الكحول
+      en:
+      - alcohol withdrawal
+    warnings:
+    - لازم رعاية طبية
+  dysmenorrhea:
+    display_name: ألم الدورة
+    first_line:
+    - ibuprofen
+    - mefenamic
+    keywords:
+      ar:
+      - ألم الدورة
+      - مغص الدورة
+      ar_eg:
+      - مغص الدورة
+      en:
+      - dysmenorrhea
+    warnings:
+    - كمادة دافئة تساعد
+  pms:
+    display_name: متلازمة ما قبل الدورة
+    first_line:
+    - ibuprofen
+    - vitamin_b6
+    keywords:
+      ar:
+      - ما قبل الدورة
+      ar_eg:
+      - قبل الدورة
+      en:
+      - PMS
+  vaginal_candidiasis:
+    display_name: عدوى فطرية مهبلية
+    first_line:
+    - fluconazole
+    - clotrimazole
+    keywords:
+      ar:
+      - عدوى فطرية مهبلية
+      ar_eg:
+      - فطريات مهبلية
+      en:
+      - vaginal candidiasis
+    warnings:
+    - استخدم العلاج كامل
+  pcos:
+    display_name: تكيس المبايض
+    first_line:
+    - metformin
+    - oral_contraceptive
+    keywords:
+      ar:
+      - تكيس المبايض
+      ar_eg:
+      - تكيس المبايض
+      en:
+      - PCOS
+    warnings:
+    - اعملي تحليل هرمونات
+  endometriosis:
+    display_name: بطانة الرحم المهاجرة
+    first_line:
+    - ibuprofen
+    - oral_contraceptive
+    keywords:
+      ar:
+      - بطانة الرحم
+      ar_eg:
+      - بطانة الرحم
+      en:
+      - endometriosis
+    warnings:
+    - استشر طبيب نساء
+  menopause:
+    display_name: سن الأمل
+    first_line:
+    - estradiol
+    - calcium_d3
+    keywords:
+      ar:
+      - سن الأمل
+      ar_eg:
+      - سن الأمل
+      en:
+      - menopause
+  pregnancy_nausea:
+    display_name: غثيان الحمل
+    first_line:
+    - vitamin_b6
+    - doxylamine
+    keywords:
+      ar:
+      - غثيان الحمل
+      ar_eg:
+      - غثيان الحمل
+      en:
+      - pregnancy nausea
+    warnings:
+    - كلي وجبات صغيرة متكررة
+  breastfeeding_support:
+    display_name: دعم الرضاعة
+    first_line:
+    - domperidone
+    keywords:
+      ar:
+      - دعم الرضاعة
+      ar_eg:
+      - زيادة اللبن
+      en:
+      - breastfeeding
+    warnings:
+    - استشر طبيب نساء
+  postpartum_depression:
+    display_name: اكتئاب ما بعد الولادة
+    first_line:
+    - sertraline
+    keywords:
+      ar:
+      - اكتئاب ما بعد الولادة
+      ar_eg:
+      - اكتئاب بعد الولادة
+      en:
+      - postpartum depression
+    warnings:
+    - استشيري طبيب نفسي
+  bph:
+    display_name: تضخم البروستاتا
+    first_line:
+    - tamsulosin
+    - finasteride
+    keywords:
+      ar:
+      - تضخم البروستاتا
+      ar_eg:
+      - تضخم البروستاتا
+      en:
+      - BPH
+    warnings:
+    - اتابع مع دكتور مسالك
+  erectile_dysfunction:
+    display_name: ضعف الانتصاب
+    first_line:
+    - sildenafil
+    - tadalafil
+    keywords:
+      ar:
+      - ضعف الانتصاب
+      ar_eg:
+      - ضعف الانتصاب
+      en:
+      - erectile dysfunction
+    warnings:
+    - استشر طبيب
+  premature_ejaculation:
+    display_name: القذف المبكر
+    first_line:
+    - dapoxetine
+    keywords:
+      ar:
+      - القذف المبكر
+      ar_eg:
+      - القذف المبكر
+      en:
+      - premature ejaculation
+    warnings:
+    - استشر طبيب
+  male_infertility:
+    display_name: العقم عند الرجال
+    first_line:
+    - clomiphene
+    keywords:
+      ar:
+      - العقم
+      ar_eg:
+      - العقم
+      en:
+      - male infertility
+    warnings:
+    - اعمل تحليل سائل منوي
+  prostatitis:
+    display_name: التهاب البروستاتا
+    first_line:
+    - ciprofloxacin
+    - ibuprofen
+    keywords:
+      ar:
+      - التهاب البروستاتا
+      ar_eg:
+      - التهاب البروستاتا
+      en:
+      - prostatitis
+    warnings:
+    - اتابع مع دكتور مسالك
 special_populations:
   pregnancy:
     warning: استشارة الطبيب إلزامية
