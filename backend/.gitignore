@@ -1,75 +1,110 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-dist/
-*.egg-info/
-.pytest_cache/
-.coverage
-htmlcov/
+# ═══════════════════════════════════════════════════════
+#  H1-AI Comprehensive .gitignore
+# ═══════════════════════════════════════════════════════
 
-# Virtual environments
-.venv/
-venv/
-env/
-ENV/
-
-# Environment & secrets
+# ─── Secrets & Environment ───
 .env
 .env.*
 !.env.example
 *.key
 *.pem
+*.p12
 secrets/
+secret*.txt
+credentials*.txt
+ADMIN-CREDENTIALS.txt
+config.production.yaml
 
-# Databases
+# ─── Databases ───
 *.db
 *.sqlite
 *.sqlite3
 h1ai.db
+postgres_data/
 
-# Load test artifacts
-tests/load/*.csv
-tests/load/*.html
-tests/load/*.json
-locustfile*.py
+# ─── WhatsApp Sessions ───
+whatsapp/sessions/
+whatsapp-service/sessions/
+whatsapp-service/auth_info/
+whatsapp-service/*.json.session
+whatsapp-bridge/sessions/
+auth_info_*/
+session*.json
 
-# Backups
+# ─── Backups ───
+backups/
 *.bak
 *.bak.*
 *.backup
 *.backup.*
+*.before-fix.*
+*.broken.*
 *.old
 *.orig
+*_backup_*
 
-# Broken files
-*.broken
-*.broken.*
-
-# Sessions
-whatsapp/sessions/
-session/
-sessions/
-
-# Logs
-logs/*.log
+# ─── Logs ───
+logs/
 *.log
+*.log.*
+*.out
 
-# IDE
+# ─── Python ───
+__pycache__/
+*.py[cod]
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# ─── Node.js ───
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ─── Test artifacts ───
+tests/load/*.csv
+tests/load/*_failures.csv
+tests/load/*_exceptions.csv
+tests/load/*_stats.csv
+tests/load/results_*
+.coverage
+coverage.xml
+
+# ─── OS ───
+.DS_Store
+Thumbs.db
+
+# ─── IDE ───
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS
-.DS_Store
-Thumbs.db
+# ─── Mobile ───
+mobile/build/
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/*.iml
 
-# CI/CD artifacts
-.coverage
-coverage.xml
-.tox/
+# ─── Docker ───
+docker-compose.override.yml
+
+# ─── Temporary ───
+tmp/
+temp/
+*.tmp
+*.cache
+.npm/
