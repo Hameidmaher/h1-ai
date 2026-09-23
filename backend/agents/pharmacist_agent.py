@@ -142,6 +142,108 @@ class SimpleCache:
 _simple_cache = SimpleCache()
 
 
+
+
+# ═══════════════════════════════════════════════════════════
+# OUT-OF-SCOPE DETECTOR — Fallback ذكي
+# ═══════════════════════════════════════════════════════════
+
+# كلمات مفتاحية للنطاقات خارج التخصص
+OUT_OF_SCOPE_KEYWORDS = {
+    "طبخ": [
+        "طبخ", "أطبخ", "اطبخ", "طبيخ", "وصفة", "كشري", "محشي",
+        "مكرونة", "بامية", "ملوخية", "فتة", "شاورما", "بيتزا",
+        "حلويات", "كيكة", "مقادير", "مكونات الطبق",
+        "recipe", "cook", "bake",
+    ],
+    "سياسة": [
+        "رئيس", "حكومة", "انتخابات", "وزير", "برلمان",
+        "مرشح", "سياسي", "دولة", "سفير",
+        "president", "election", "government",
+    ],
+    "ترفيه": [
+        "فيلم", "مسلسل", "أغنية", "مغني", "ممثل", "ممثلة",
+        "سينما", "نتفليكس", "يوتيوب", "دراما",
+        "movie", "series", "song", "actor",
+    ],
+    "رياضة": [
+        "ماتش", "مباراة", "كورة", "فريق", "لاعب", "دوري",
+        "الأهلي", "الزمالك", "ريال", "برشلونة",
+        "football", "match", "player",
+    ],
+    "برمجة_عام": [
+        "بايثون", "جافا", "كود", "برمجة", "html", "css",
+        "جافاسكريبت", "sql", "react", "node",
+        "python", "javascript", "programming", "code",
+    ],
+    "دين": [
+        "فتوى", "حلال", "حرام", "صلاة", "زكاة", "حج",
+        "عمرة", "قرآن", "تفسير", "حديث",
+        "religion", "prayer",
+    ],
+    "أخبار": [
+        "خبر", "أخبار", "حدث", "كارثة", "زلزال",
+        "حرب", "انفجار", "news",
+    ],
+    "تعليم_عام": [
+        "مدرسة", "جامعة", "امتحان", "دراسة", "بحث",
+        "رياضيات", "فيزياء", "كيمياء", "أحياء",
+        "school", "university", "math", "physics",
+    ],
+}
+
+# كلمات طبية/صحية — لو موجودة، نسامح الكلمات التانية
+MEDICAL_OVERRIDE = [
+    "دوا", "دواء", "أدوية", "حبوب", "حقنة", "شراب", "مرهم",
+    "قطرة", "لبوس", "وصفة", "روشتة", "جرعة",
+    "ألم", "وجع", "صداع", "حرارة", "سخونة", "كحة", "برد",
+    "إسهال", "إمساك", "قيء", "غثيان", "دوخة", "دوار",
+    "ضغط", "سكر", "قلب", "كبد", "كلى", "معدة", "قولون",
+    "حساسية", "حامل", "مرضع", "طفل", "رضيع", "سن",
+    "علاج", "مرض", "عرض", "أعراض", "تشخيص",
+    "medicine", "drug", "symptom", "treatment", "dose",
+    "medication", "pill", "pain", "fever", "cough",
+]
+
+
+def detect_out_of_scope(message: str) -> str | None:
+    """
+    يكتشف إذا كانت الرسالة خارج التخصص.
+    يرجّع اسم النطاق أو None لو الرسالة طبية.
+    """
+    if not message:
+        return None
+    
+    msg_lower = message.lower()
+    
+    # ★ أول حاجة: لو فيه كلمة طبية → مش خارج النطاق
+    for kw in MEDICAL_OVERRIDE:
+        if kw in msg_lower:
+            return None
+    
+    # ★ تاني حاجة: نفحص النطاقات الخارجية
+    for scope, keywords in OUT_OF_SCOPE_KEYWORDS.items():
+        for kw in keywords:
+            if kw in msg_lower:
+                return scope.replace("_", " ")
+    
+    return None
+
+
+def make_scope_response(scope: str) -> str:
+    """رد مهني وودود للأسئلة خارج النطاق"""
+    return (
+        f"أنا مساعد صيدلي متخصص في **الأدوية والصحة** فقط. 💊\n\n"
+        f"للأسف، **{scope}** خارج نطاق تخصصي، ومش هقدر أساعدك فيه.\n\n"
+        "**لكن أنا هنا لو احتجت:**\n"
+        "- استشارة عن دواء أو جرعة\n"
+        "- فحص تفاعلات دوائية\n"
+        "- اقتراح علاج لأعراض معينة\n"
+        "- بدائل من المخزون\n\n"
+        "قولّي، فيه حاجة صحية أقدر أساعدك فيها؟"
+    )
+
+
 SYSTEM_PROMPT = (
     "أنت مساعد ذكي للصيادلة في H1-AI.\n\n"
     "مهامك:\n"
@@ -223,6 +325,50 @@ class PharmacistAgent:
         safe_message = str(message) if message else ""
         if not safe_message.strip():
             safe_message = "مرحبا"
+        
+        # ★★ Out-of-Scope Detection (Fallback ذكي) ★★
+        scope = detect_out_of_scope(safe_message)
+        if scope:
+            logger.info("pharmacist_agent.out_of_scope",
+                       scope=scope, message=safe_message[:50])
+            # ★ نستخدم LLM مباشرة لتوليد الرد
+            try:
+                from langchain_core.messages import SystemMessage as _SM
+                scope_prompt = (
+                    "أنت مساعد صيدلي في H1-AI. مهمتك الوحيدة: "
+                    "الرد على الاستفسارات الطبية والصحية والدوائية.\n\n"
+                    "المستخدم سأل سؤال خارج تخصصك الطبي.\n"
+                    "رد عليه بلطف ومهنية، وضّح إن السؤال خارج نطاق تخصصك "
+                    "الطبي، واقترح عليه يسأل عن أي شيء يتعلق بالصحة أو الأدوية.\n\n"
+                    "اجعل الرد قصير (2-3 جمل) وودود ومهني. "
+                    "لا تكرر السؤال ولا تذكر اسم النطاق بشكل سلبي."
+                )
+                resp = self.llm.invoke([
+                    _SM(content=scope_prompt),
+                    HumanMessage(content=safe_message),
+                ])
+                text = self._extract_text(resp)
+                if text and len(text) >= 10:
+                    response = AgentResponse(
+                        text=text,
+                        action="answer",  # ★ نستخدم "answer" بدل "redirect"
+                        confidence=0.9,
+                        needs_human=False,
+                    )
+                    _simple_cache.set(safe_message, response)
+                    return response
+            except Exception as e:
+                logger.warning("pharmacist_agent.scope_llm_error", 
+                              error=str(e)[:100])
+            
+            # ★ fallback: الرد الثابت
+            response = AgentResponse(
+                text=make_scope_response(scope),
+                action="answer",  # ★ "answer"
+                confidence=0.9,
+                needs_human=False,
+            )
+            return response
         
         # ═══ محاولة 1: graph.invoke مع tools ═══
         try:
