@@ -39,3 +39,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+# Environment
+flutter_dotenv: ^5.1.0

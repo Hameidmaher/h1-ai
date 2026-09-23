@@ -189,6 +189,16 @@
 <script src="/admin/static/pages/dashboard-enhanced.js"></script>
   <script src="/admin/static/pages/tunnel.js"></script>
   <script>App.init();</script>
+<script>
+// Register Service Worker
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/admin/static/sw.js")
+      .then(reg => console.log("✅ SW registered:", reg.scope))
+      .catch(err => console.error("❌ SW failed:", err));
+  });
+}
+</script>
 </body>
 </html>
 <!-- (في <head>) -->
