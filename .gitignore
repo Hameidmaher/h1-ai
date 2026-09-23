@@ -100,3 +100,5 @@ archived-projects/
 h1ai.db
 *.sqlite
 backend/.env
+*.apk
+build/
