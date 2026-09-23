@@ -2,6 +2,7 @@
 Chat API Routes — REST endpoints للشات بوت
 """
 from __future__ import annotations
+from core.rate_limiter import rate_limiter, response_cache
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, Field
 from typing import Optional
