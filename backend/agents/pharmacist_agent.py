@@ -6,6 +6,7 @@ from langchain_core.messages import (
     BaseMessage, SystemMessage, AIMessage, HumanMessage,
 )
 from agents.tools import PHARMACIST_TOOLS, PHARMACIST_ALLOWED_TOOL_NAMES
+from agents.safety_guardrails import check_safety
 from agents.guardrails import check_tool_calls_allowed, make_refusal_message
 from models.schemas import AgentResponse
 from llm.factory import create_llm
@@ -326,6 +327,18 @@ class PharmacistAgent:
         safe_message = str(message) if message else ""
         if not safe_message.strip():
             safe_message = "مرحبا"
+        
+        # ★★ Safety Check (قبل أي حاجة) ★★
+        is_safe, safety_response = check_safety(safe_message)
+        if not is_safe and safety_response:
+            logger.warning("pharmacist_agent.safety_blocked",
+                          message=safe_message[:50])
+            return AgentResponse(
+                text=safety_response,
+                action="answer",
+                confidence=1.0,
+                needs_human=False,
+            )
         
         # ★★ Fuzzy Matching ★★
         normalized = normalize_message(safe_message)
