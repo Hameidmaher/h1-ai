@@ -423,10 +423,14 @@ conditions:
       ar:
       - صداع
       - ألم في الرأس
+      - صداع نصفي
       ar_eg:
       - وجع في راسي
+      - صداع
+      - راسي بتوجعني
       en:
       - headache
+      - migraine
     first_line:
     - paracetamol
     - ibuprofen
@@ -437,10 +441,14 @@ conditions:
     keywords:
       ar:
       - ألم في المعدة
+      - مغص
+      - وجع بطن
       ar_eg:
       - وجع في معدتي
+      - بطني بتوجعني
       en:
       - stomach pain
+      - abdominal pain
     first_line:
     - omeprazole
     - antacid
@@ -450,10 +458,14 @@ conditions:
       ar:
       - حرارة
       - حمى
+      - سخونة
       ar_eg:
       - سخونة
+      - حرارة
+      - جسمي سخن
       en:
       - fever
+      - pyrexia
     first_line:
     - paracetamol
     - ibuprofen
@@ -1371,12 +1383,17 @@ conditions:
     - lisinopril
     keywords:
       ar:
+      - ضغط
       - ارتفاع ضغط الدم
+      - ضغط الدم
       - ضغط عالي
       ar_eg:
-      - ضغطي عالي
+      - ضغط
+      - الضغط عالي
+      - عندي ضغط
       en:
       - hypertension
+      - high blood pressure
     warnings:
     - قلل الملح والدهون، واتابع مع الدكتور
   diabetes_type2:
@@ -2417,6 +2434,31 @@ conditions:
       - حصبة ألمانية
       en:
       - rubella
+  diabetes:
+    display_name: السكري
+    first_line:
+    - metformin
+    - gliclazide
+    - insulin_glargine
+    keywords:
+      ar:
+      - سكري
+      - سكر
+      - مرض السكر
+      - ارتفاع السكر
+      - داء السكري
+      ar_eg:
+      - سكر
+      - عندي سكر
+      - السكر عالي
+      - سكري مرتفع
+      - سكرر
+      - سكررر
+      - سكرررر
+      en:
+      - diabetes
+      - blood sugar
+      - hyperglycemia
 special_populations:
   pregnancy:
     warning: استشارة الطبيب إلزامية

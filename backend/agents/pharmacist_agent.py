@@ -283,6 +283,9 @@ def check_emotional(message: str) -> str | None:
     return None
 
 
+MAX_HISTORY = 3  # آخر 3 رسائل فقط
+
+
 class AgentState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
 
@@ -431,8 +434,17 @@ class PharmacistAgent:
         
         # ═══ محاولة 1: graph.invoke مع tools ═══
         try:
+            # ★ تحديد آخر 3 رسائل فقط
+            recent_history = []
+            try:
+                # نحاول نقرأ الـ history من الـ session
+                from chatbot.memory.session import get_session_history
+                recent_history = get_session_history(max_messages=MAX_HISTORY)
+            except Exception:
+                recent_history = []
+            
             result = self.graph.invoke(
-                {"messages": [HumanMessage(content=safe_message)]},
+                {"messages": recent_history + [HumanMessage(content=safe_message)]},
             )
             last = result["messages"][-1]
             text = self._extract_text(last)
