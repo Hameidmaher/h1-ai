@@ -1,8 +1,0 @@
-Method,Name,Error,Occurrences,First Seen,Last Seen
-GET,[Products] List,"ConnectionRefusedError(111, 'Connection refused')",117,2026-09-18T09:07:37Z,2026-09-18T09:08:05Z
-GET,[Health] GET /health,"ConnectionRefusedError(111, 'Connection refused')",258,2026-09-18T09:07:36Z,2026-09-18T09:08:05Z
-POST,[Auth] Register,"ConnectionRefusedError(111, 'Connection refused')",10,2026-09-18T09:07:36Z,2026-09-18T09:07:40Z
-POST,[Knowledge] Advise,"ConnectionRefusedError(111, 'Connection refused')",43,2026-09-18T09:07:36Z,2026-09-18T09:08:05Z
-POST,[Webhook] Incoming,"ConnectionRefusedError(111, 'Connection refused')",20,2026-09-18T09:07:38Z,2026-09-18T09:08:05Z
-POST,[Knowledge] Search,"ConnectionRefusedError(111, 'Connection refused')",53,2026-09-18T09:07:36Z,2026-09-18T09:08:04Z
-POST,[Chat] POST /v1/chat,CatchResponseError('Status 0'),25,2026-09-18T09:07:36Z,2026-09-18T09:08:04Z

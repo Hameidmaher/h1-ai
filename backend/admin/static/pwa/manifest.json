@@ -1,0 +1,64 @@
+{
+  "name": "H1-AI Admin — لوحة التحكم",
+  "short_name": "H1-AI Admin",
+  "description": "لوحة تحكم منصة H1-AI لإدارة الصيدليات",
+  "start_url": "/admin",
+  "scope": "/admin/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0EA5E9",
+  "theme_color": "#0EA5E9",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": [
+    "business",
+    "productivity",
+    "medical"
+  ],
+  "icons": [
+    {
+      "src": "/admin/static/pwa/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/admin/static/pwa/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "المنتجات",
+      "url": "/admin#products",
+      "icons": [
+        {
+          "src": "/admin/static/pwa/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "التحليلات",
+      "url": "/admin#analytics",
+      "icons": [
+        {
+          "src": "/admin/static/pwa/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "الإعدادات",
+      "url": "/admin#settings",
+      "icons": [
+        {
+          "src": "/admin/static/pwa/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

@@ -19,9 +19,6 @@ except ImportError:
 
 logger = structlog.get_logger()
 
-# ملاحظة: الملف ده بيستخدم security.circuit_breaker (async)
-# الملف chatbot/circuit_breaker.py القديم مش مستخدم (deprecated)
-
 FAQ_KEYWORDS = [
     "مواعيد", "بتفتحوا", "بتقفلوا", "فاتحين",
     "توصيل", "دليفري", "توصلوا", "بتوصلوا", "بيت", "شحن",
@@ -48,44 +45,10 @@ class ChatResponse:
 
 
 class ChatbotCore:
-    """أعلام المراجعة البشرية."""
-    HITL_KEYWORDS = [
-        "جرعة", "dosage", "مضاد حيوي", "antibiotic",
-        "حامل", "pregnant", "حمل",
-        "طفل", "رضيع", "baby",
-        "ضغط", "pressure",
-        "سكر", "diabetes",
-    ]
-
-    def _should_flag_for_review(self, message: str, response: str) -> tuple[bool, str]:
-        """هل محتاج مراجعة الصيدلي؟"""
-        msg_lower = message.lower()
-        resp_lower = response.lower()
-
-        for kw in self.HITL_KEYWORDS:
-            if kw in msg_lower:
-                return True, f"keyword:{kw}"
-
-        if "مضاد حيوي" in resp_lower or "antibiotic" in resp_lower:
-            return True, "antibiotic_mentioned"
-
-        return False, ""
-
-    MAX_TOOL_ITERATIONS = 4
-    MAX_CONTEXT_MESSAGES = 8   # آخر 8 رسائل فقط (4 user + 4 assistant)
-    MAX_TOKENS_ESTIMATE = 8000 # حد أقصى تقريبي للسياق
-
-    def _truncate_context(self, msgs: list) -> list:
-        """اقتطع السياق للحد الأقصى."""
-        if len(msgs) <= self.MAX_CONTEXT_MESSAGES:
-            return msgs
-        # احتفظ بالأول والأخير من السياق
-        head = msgs[:2]  # أول رسالتين مهمين للسياق الأولي
-        tail = msgs[-(self.MAX_CONTEXT_MESSAGES - 2):]
-        return head + tail
+    MAX_TOOL_ITERATIONS = 3
 
     def __init__(self):
-        self.llm = create_llm(temperature=0.2)  # ردود أكثر ثباتًا
+        self.llm = create_llm(temperature=0.4)
         self.registry = get_registry()
         self.sessions = SessionManager()
         self.tools_schema = self.registry.openai_schemas()
@@ -172,7 +135,6 @@ class ChatbotCore:
         # ═══════════════════════════════════════════════════
         #  FAQ Fast-path
         # ═══════════════════════════════════════════════════
-        # FAQ path — يعمل بدون LLM
         if self._should_presearch(message):
             preknowledge = await self._presearch_knowledge(message)
 
@@ -226,10 +188,8 @@ class ChatbotCore:
         #  Normal LLM flow
         # ═══════════════════════════════════════════════════
         context_msgs = await self.sessions.get_context(session["id"])
-        # ✂️ Context window truncation
-        context_msgs = self._truncate_context(context_msgs)
 
-        system = SYSTEM_PROMPT_AR + "\n\n**مهم جدًا:** بعد استخدام أي أداة، لازم ترد للمستخدم في نص عربي واضح. لا تكرر استخدام الأدوات أكثر من مرتين لنفس السؤال."
+        system = SYSTEM_PROMPT_AR
         if session["pharmacy_id"]:
             system += "\n" + CONTEXT_HEADER.format(
                 pharmacy_name=session["pharmacy_id"],
@@ -241,13 +201,6 @@ class ChatbotCore:
         messages = [{"role": "system", "content": system}]
         messages.extend(context_msgs[:-1] if len(context_msgs) > 1 else context_msgs)
         messages.append({"role": "user", "content": message})
-
-        # ⚠️ تقدير حجم السياق
-        estimated_tokens = sum(len(m.get("content", "")) for m in messages) // 4
-        if estimated_tokens > self.MAX_TOKENS_ESTIMATE:
-            logger.warning("chat.context_too_large",
-                          estimated=estimated_tokens,
-                          limit=self.MAX_TOKENS_ESTIMATE)
 
         try:
             response = await llm_breaker.call(
@@ -298,39 +251,6 @@ class ChatbotCore:
             latency_ms=latency,
             is_error=response.get("is_error", False),
         )
-
-        # ═══ Human-in-the-Loop flagging ═══
-        should_flag, reason = self._should_flag_for_review(
-            message=message,
-            response=response["text"],
-        )
-        if should_flag:
-            logger.warning("chatbot.hitl_flagged", reason=reason)
-            try:
-                from db import SessionLocal
-                from sqlalchemy import text
-                db = SessionLocal()
-                try:
-                    db.execute(
-                        text("""
-                            INSERT INTO audit_logs
-                                (action, entity, entity_id, username, details)
-                            VALUES
-                                (:action, :entity, :entity_id, :username, :details)
-                        """),
-                        {
-                            "action": "hitl_review_needed",
-                            "entity": "chatbot_session",
-                            "entity_id": session["id"],
-                            "username": "system",
-                            "details": f"reason={reason}",
-                        },
-                    )
-                    db.commit()
-                finally:
-                    db.close()
-            except Exception as e:
-                logger.warning("chatbot.hitl_log_failed", error=str(e)[:100])
 
         return ChatResponse(
             text=response["text"],
@@ -393,34 +313,13 @@ class ChatbotCore:
                     tool_call_id=tool_id,
                 ))
 
-        # ═══ FINAL FALLBACK — محاولة أخيرة بدون tools ═══
-        try:
-            # استدعاء بدون tools لضمان رد نصي
-            final_llm = create_llm(temperature=0.2)  # بدون tools
-            final_response = await final_llm.ainvoke(lc_messages)
-            final_text = final_response.content if isinstance(final_response.content, str) else str(final_response.content)
-            usage = getattr(final_response, "usage_metadata", {}) or {}
-            total_in += usage.get("input_tokens", 0)
-            total_out += usage.get("output_tokens", 0)
-
-            logger.info("chatbot.final_fallback_success")
-
-            return {
-                "text": final_text,
-                "tool_calls": tool_calls_made,
-                "tokens_in": total_in,
-                "tokens_out": total_out,
-                "is_error": False,
-            }
-        except Exception as e:
-            logger.error("chatbot.final_fallback_failed", error=str(e)[:200])
-            return {
-                "text": "معلش، احتاج شوية وقت. ممكن تعيد السؤال؟",
-                "tool_calls": tool_calls_made,
-                "tokens_in": total_in,
-                "tokens_out": total_out,
-                "is_error": False,
-            }
+        return {
+            "text": "معلش، احتاج شوية وقت. ممكن تعيد السؤال؟",
+            "tool_calls": tool_calls_made,
+            "tokens_in": total_in,
+            "tokens_out": total_out,
+            "is_error": False,
+        }
 
     def _to_langchain(self, messages):
         from langchain_core.messages import HumanMessage, SystemMessage, AIMessage

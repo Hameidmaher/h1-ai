@@ -180,6 +180,7 @@
 <script src="/admin/static/pages/whatsapp-sessions.js"></script>
 <script src="/admin/static/pages/live-feed.js"></script>
 <script src="/admin/static/pages/chat.js"></script>
+<script>App.init();</script>
 <script src="/admin/static/pages/subscriptions.js"></script>
 <script src="/admin/static/pages/feature-flags.js"></script>
 <script src="/admin/static/pages/alerts.js"></script>
@@ -188,6 +189,5 @@
 <script src="/admin/static/pages/activity-log.js"></script>
 <script src="/admin/static/pages/dashboard-enhanced.js"></script>
   <script src="/admin/static/pages/tunnel.js"></script>
-  <script>App.init();</script>
 </body>
 </html>

@@ -40,6 +40,9 @@ const App = {
     } else {
       this.showLogin();
     }
+
+    // Login page enhancements (Phase 2)
+    this.initLoginEnhancements();
   },
   // ──────── Auth ────────
   async handleLogin(e) {
@@ -47,7 +50,33 @@ const App = {
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value;
     const errEl = document.getElementById('login-error');
+    const attemptsEl = document.getElementById('login-attempts');
+    const btn = document.getElementById('login-btn');
+    const btnText = btn.querySelector('.btn-text');
+    const btnSpinner = btn.querySelector('.btn-spinner');
+    const rememberMe = document.getElementById('remember-me')?.checked;
+
+    // Reset messages
     errEl.textContent = '';
+    attemptsEl.textContent = '';
+    attemptsEl.classList.remove('warning');
+
+    // Client-side validation
+    if (username.length < 3) {
+      errEl.textContent = '⚠️ اسم المستخدم قصير جدًا';
+      document.getElementById('username').focus();
+      return;
+    }
+    if (password.length < 6) {
+      errEl.textContent = '⚠️ كلمة المرور قصيرة جدًا';
+      document.getElementById('password').focus();
+      return;
+    }
+
+    // Loading state
+    btn.disabled = true;
+    btnText.style.display = 'none';
+    btnSpinner.style.display = 'inline-block';
 
     try {
       const res = await fetch('/v1/auth/login', {
@@ -56,26 +85,119 @@ const App = {
         body: JSON.stringify({ username, password }),
       });
 
+      if (res.status === 401 || res.status === 403) {
+        errEl.textContent = '❌ اسم المستخدم أو كلمة المرور غير صحيحة';
+        document.getElementById('password').value = '';
+        document.getElementById('password').focus();
+        this.trackLoginAttempt();
+        return;
+      }
+
+      if (res.status === 429) {
+        errEl.textContent = '⏸️ محاولات كثيرة — انتظر دقيقة ثم حاول مرة أخرى';
+        this.trackLoginAttempt();
+        return;
+      }
+
       if (!res.ok) {
-        errEl.textContent = 'بيانات الدخول غير صحيحة';
+        errEl.textContent = `❌ خطأ غير متوقع (${res.status})`;
         return;
       }
 
       const data = await res.json();
-      if (data.user.role !== 'admin') {
-        errEl.textContent = 'هذا الحساب ليس مديراً';
+
+      if (!data.user || data.user.role !== 'admin') {
+        errEl.textContent = '🚫 هذا الحساب ليس مديرًا';
+        this.trackLoginAttempt();
         return;
       }
 
+      // Success
       this.state.token = data.access_token;
       this.state.user = data.user;
       localStorage.setItem('h1ai_admin_token', data.access_token);
       localStorage.setItem('h1ai_admin_user', JSON.stringify(data.user));
 
+      // Remember me
+      if (rememberMe) {
+        localStorage.setItem('h1ai_remember_username', username);
+      } else {
+        localStorage.removeItem('h1ai_remember_username');
+      }
+
+      // Reset attempts counter
+      localStorage.removeItem('h1ai_login_attempts');
+
       this.showApp();
+
     } catch (err) {
-      errEl.textContent = 'فشل الاتصال بالخادم';
+      console.error('Login error:', err);
+      errEl.textContent = '🌐 فشل الاتصال بالخادم — تأكد من الإنترنت';
+    } finally {
+      btn.disabled = false;
+      btnText.style.display = 'inline';
+      btnSpinner.style.display = 'none';
     }
+  },
+
+  // Track failed attempts
+  trackLoginAttempt() {
+    const attempts = parseInt(localStorage.getItem('h1ai_login_attempts') || '0') + 1;
+    localStorage.setItem('h1ai_login_attempts', attempts);
+
+    if (attempts >= 3) {
+      const attemptsEl = document.getElementById('login-attempts');
+      attemptsEl.textContent = `⚠️ ${attempts} محاولات فاشلة — قد يتم حظر IP مؤقتًا`;
+      attemptsEl.classList.add('warning');
+    }
+  },
+
+  // Toggle password visibility
+  togglePassword() {
+    const pwd = document.getElementById('password');
+    const btn = document.getElementById('toggle-password');
+    if (!pwd || !btn) return;
+    if (pwd.type === 'password') {
+      pwd.type = 'text';
+      btn.textContent = '🙈';
+    } else {
+      pwd.type = 'password';
+      btn.textContent = '👁️';
+    }
+    pwd.focus();
+  },
+
+  // Init login page enhancements
+  initLoginEnhancements() {
+    // Auto-focus
+    setTimeout(() => {
+      const usernameInput = document.getElementById('username');
+      const rememberedUser = localStorage.getItem('h1ai_remember_username');
+      if (rememberedUser && usernameInput) {
+        usernameInput.value = rememberedUser;
+        document.getElementById('remember-me').checked = true;
+        document.getElementById('password').focus();
+      } else if (usernameInput) {
+        usernameInput.focus();
+      }
+    }, 100);
+
+    // Password toggle
+    const toggleBtn = document.getElementById('toggle-password');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => this.togglePassword());
+    }
+
+    // Reset error on typing
+    ['username', 'password'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', () => {
+          const errEl = document.getElementById('login-error');
+          if (errEl) errEl.textContent = '';
+        });
+      }
+    });
   },
 
   handleLogout() {

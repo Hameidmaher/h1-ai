@@ -48,29 +48,6 @@ class ChatResponse:
 
 
 class ChatbotCore:
-    """أعلام المراجعة البشرية."""
-    HITL_KEYWORDS = [
-        "جرعة", "dosage", "مضاد حيوي", "antibiotic",
-        "حامل", "pregnant", "حمل",
-        "طفل", "رضيع", "baby",
-        "ضغط", "pressure",
-        "سكر", "diabetes",
-    ]
-
-    def _should_flag_for_review(self, message: str, response: str) -> tuple[bool, str]:
-        """هل محتاج مراجعة الصيدلي؟"""
-        msg_lower = message.lower()
-        resp_lower = response.lower()
-
-        for kw in self.HITL_KEYWORDS:
-            if kw in msg_lower:
-                return True, f"keyword:{kw}"
-
-        if "مضاد حيوي" in resp_lower or "antibiotic" in resp_lower:
-            return True, "antibiotic_mentioned"
-
-        return False, ""
-
     MAX_TOOL_ITERATIONS = 4
     MAX_CONTEXT_MESSAGES = 8   # آخر 8 رسائل فقط (4 user + 4 assistant)
     MAX_TOKENS_ESTIMATE = 8000 # حد أقصى تقريبي للسياق
@@ -85,7 +62,7 @@ class ChatbotCore:
         return head + tail
 
     def __init__(self):
-        self.llm = create_llm(temperature=0.2)  # ردود أكثر ثباتًا
+        self.llm = create_llm(temperature=0.4)
         self.registry = get_registry()
         self.sessions = SessionManager()
         self.tools_schema = self.registry.openai_schemas()
@@ -229,7 +206,7 @@ class ChatbotCore:
         # ✂️ Context window truncation
         context_msgs = self._truncate_context(context_msgs)
 
-        system = SYSTEM_PROMPT_AR + "\n\n**مهم جدًا:** بعد استخدام أي أداة، لازم ترد للمستخدم في نص عربي واضح. لا تكرر استخدام الأدوات أكثر من مرتين لنفس السؤال."
+        system = SYSTEM_PROMPT_AR
         if session["pharmacy_id"]:
             system += "\n" + CONTEXT_HEADER.format(
                 pharmacy_name=session["pharmacy_id"],
@@ -299,39 +276,6 @@ class ChatbotCore:
             is_error=response.get("is_error", False),
         )
 
-        # ═══ Human-in-the-Loop flagging ═══
-        should_flag, reason = self._should_flag_for_review(
-            message=message,
-            response=response["text"],
-        )
-        if should_flag:
-            logger.warning("chatbot.hitl_flagged", reason=reason)
-            try:
-                from db import SessionLocal
-                from sqlalchemy import text
-                db = SessionLocal()
-                try:
-                    db.execute(
-                        text("""
-                            INSERT INTO audit_logs
-                                (action, entity, entity_id, username, details)
-                            VALUES
-                                (:action, :entity, :entity_id, :username, :details)
-                        """),
-                        {
-                            "action": "hitl_review_needed",
-                            "entity": "chatbot_session",
-                            "entity_id": session["id"],
-                            "username": "system",
-                            "details": f"reason={reason}",
-                        },
-                    )
-                    db.commit()
-                finally:
-                    db.close()
-            except Exception as e:
-                logger.warning("chatbot.hitl_log_failed", error=str(e)[:100])
-
         return ChatResponse(
             text=response["text"],
             session_id=session["id"],
@@ -393,17 +337,29 @@ class ChatbotCore:
                     tool_call_id=tool_id,
                 ))
 
-        # ═══ FINAL FALLBACK — محاولة أخيرة بدون tools ═══
+        # ═══ FINAL CALL — بدون tools، إجباري يرد نص ═══
         try:
-            # استدعاء بدون tools لضمان رد نصي
-            final_llm = create_llm(temperature=0.2)  # بدون tools
-            final_response = await final_llm.ainvoke(lc_messages)
+            # احذف tool binding مؤقتًا لضمان رد نصي
+            from langchain_core.messages import AIMessage as _AIMsg
+            final_prompt = "بناءً على كل المعلومات السابقة، قدّم الإجابة النهائية للمستخدم في نص عربي واضح. لا تستخدم أي أدوات."
+            lc_messages.append(_AIMsg(content=""))
+            lc_messages.append({
+                "role": "user",
+                "content": final_prompt,
+            } if not hasattr(lc_messages[-1], "content") else _AIMsg(content=final_prompt))
+
+            # استدعاء بدون tool calling
+            llm_no_tools = self.llm
+            if hasattr(self.llm, "kwargs") and "tools" in getattr(self.llm, "kwargs", {}):
+                llm_no_tools = create_llm(temperature=0.4)
+
+            final_response = await llm_no_tools.ainvoke(lc_messages)
             final_text = final_response.content if isinstance(final_response.content, str) else str(final_response.content)
             usage = getattr(final_response, "usage_metadata", {}) or {}
             total_in += usage.get("input_tokens", 0)
             total_out += usage.get("output_tokens", 0)
 
-            logger.info("chatbot.final_fallback_success")
+            logger.info("chatbot.final_call_success")
 
             return {
                 "text": final_text,
@@ -413,7 +369,7 @@ class ChatbotCore:
                 "is_error": False,
             }
         except Exception as e:
-            logger.error("chatbot.final_fallback_failed", error=str(e)[:200])
+            logger.error("chatbot.final_call_failed", error=str(e)[:200])
             return {
                 "text": "معلش، احتاج شوية وقت. ممكن تعيد السؤال؟",
                 "tool_calls": tool_calls_made,
