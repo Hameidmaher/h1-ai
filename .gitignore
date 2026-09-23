@@ -83,3 +83,19 @@ whatsapp-bridge/
 whatsapp-service/node_modules/
 whatsapp-service/sessions/
 whatsapp-service/auth_info/
+
+# Backup files
+*.bak
+*.bak.*
+*.backup
+*.backup.*
+*.broken.*
+pwa_backup_*/
+_backup_*/
+whatsapp_backup_*/
+archived-projects/
+
+# Database files
+*.db
+h1ai.db
+*.sqlite
