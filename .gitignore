@@ -76,3 +76,10 @@ frontend/build/
 # ─── Chrome/puppeteer ───
 .chromium/
 *.crx
+
+# whatsapp packages (large node_modules)
+whatsapp/
+whatsapp-bridge/
+whatsapp-service/node_modules/
+whatsapp-service/sessions/
+whatsapp-service/auth_info/
