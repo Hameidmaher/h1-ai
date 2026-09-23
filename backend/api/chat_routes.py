@@ -226,3 +226,14 @@ async def health():
         }
     except Exception as e:
         return {"status": "error", "detail": str(e)[:200]}
+
+
+@router.post("/cache/clear")
+async def clear_cache():
+    """مسح الـ Response Cache"""
+    try:
+        from agents.pharmacist_agent import _simple_cache
+        _simple_cache.clear()
+        return {"success": True, "message": "Cache cleared"}
+    except Exception as e:
+        return {"success": False, "error": str(e)}

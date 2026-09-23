@@ -219,23 +219,98 @@ class PharmacistAgent:
             logger.info("pharmacist_agent.cache_hit", message=message[:40])
             return cached
         
+        # ★ ضمان string
+        safe_message = str(message) if message else ""
+        if not safe_message.strip():
+            safe_message = "مرحبا"
+        
+        # ═══ محاولة 1: graph.invoke مع tools ═══
         try:
             result = self.graph.invoke(
-                {"messages": [HumanMessage(content=message)]},
+                {"messages": [HumanMessage(content=safe_message)]},
             )
             last = result["messages"][-1]
-            text = last.content if isinstance(last.content, str) else str(last.content)
-            needs_human = should_need_human(text, message)
-            response = AgentResponse(
-                text=text, action="answer",
-                confidence=0.9, needs_human=needs_human,
-            )
-            # ★ Cache save
-            _simple_cache.set(message, response)
-            return response
+            text = self._extract_text(last)
+            
+            if text and len(text) >= 5:
+                needs_human = should_need_human(text, safe_message)
+                response = AgentResponse(
+                    text=text, action="answer",
+                    confidence=0.9, needs_human=needs_human,
+                )
+                if len(text) >= 100:
+                    _simple_cache.set(safe_message, response)
+                return response
+            else:
+                logger.warning("pharmacist_agent.empty_response")
         except Exception as e:
-            logger.error("pharmacist_agent.error", error=str(e))
-            return AgentResponse(
-                text="حدث خطأ مؤقت. حاول تاني.",
-                action="answer", confidence=0.0,
+            logger.error("pharmacist_agent.error", 
+                        error=str(e)[:200],
+                        message=safe_message[:50])
+        
+        # ═══ محاولة 2: LLM بدون tools (fallback) ═══
+        try:
+            logger.info("pharmacist_agent.fallback_no_tools", 
+                       message=safe_message[:50])
+            fallback_prompt = (
+                SYSTEM_PROMPT + 
+                "\n\nملاحظة: أجب بشكل مباشر ومختصر. "
+                "لا تستخدم أدوات. إذا السؤال غير واضح، "
+                "اسأل للتوضيح بشكل مهني."
             )
+            from langchain_core.messages import SystemMessage as _SM
+            resp = self.llm.invoke([
+                _SM(content=fallback_prompt),
+                HumanMessage(content=safe_message),
+            ])
+            text = self._extract_text(resp)
+            if text and len(text) >= 5:
+                response = AgentResponse(
+                    text=text, action="answer",
+                    confidence=0.7, needs_human=False,
+                )
+                if len(text) >= 100:
+                    _simple_cache.set(safe_message, response)
+                return response
+        except Exception as e2:
+            logger.error("pharmacist_agent.fallback_error", 
+                        error=str(e2)[:200])
+        
+        # ═══ محاولة 3: رد افتراضي ═══
+        return AgentResponse(
+            text=(
+                "عذراً، مش قادر أفهم استفسارك بشكل كامل. "
+                "ممكن توضح أكتر؟ مثلاً:\n"
+                "• بتشتكي من إيه بالظبط؟\n"
+                "• من امتى؟\n"
+                "• فيه أعراض تانية؟"
+            ),
+            action="ask",
+            confidence=0.3,
+            needs_human=False,
+        )
+    
+    def _extract_text(self, msg) -> str:
+        """يستخرج نص من أي message"""
+        if msg is None:
+            return ""
+        c = getattr(msg, "content", None)
+        if c is None:
+            return ""
+        if isinstance(c, str):
+            return c.strip()
+        if isinstance(c, list):
+            parts = []
+            for item in c:
+                if isinstance(item, str):
+                    if item.strip():
+                        parts.append(item)
+                elif isinstance(item, dict):
+                    text = item.get("text") or item.get("content") or ""
+                    if text:
+                        parts.append(str(text))
+            return " ".join(parts).strip()
+        if isinstance(c, dict):
+            text = c.get("text") or c.get("content") or ""
+            return str(text).strip()
+        return str(c).strip()
