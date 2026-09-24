@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     # ═══ App ═══
     app_name: str = "H1-AI"
     app_tagline: str = "Assistant Pharmacy"
-    environment: Literal["dev", "staging", "prod", "test"] = "dev"
+    environment: Literal["development", "staging", "production", "test"] = "dev"
     api_v1_prefix: str = "/v1"
     debug: bool = False
 
@@ -72,11 +72,11 @@ class Settings(BaseSettings):
 
     @property
     def is_production(self) -> bool:
-        return self.environment == "prod"
+        return self.environment == "production"
 
     @property
     def is_development(self) -> bool:
-        return self.environment in ("dev", "test")
+        return self.environment in ("development", "test")
 
 
 @lru_cache
