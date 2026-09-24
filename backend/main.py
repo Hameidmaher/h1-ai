@@ -83,6 +83,10 @@ from routers.cache import router as cache_router
 from routers.system import router as system_router
 from routers.admin.settings import router as admin_settings_router
 from routers.admin.api_keys import router as admin_api_keys_router
+from routers.admin.subscriptions import router as admin_subscriptions_router
+from routers.admin.alerts import router as admin_alerts_router
+from routers.admin.feature_flags import router as admin_feature_flags_router
+from routers.admin.notifications import router as admin_notifications_router
 
 setup_logging()
 logger = structlog.get_logger()
@@ -168,6 +172,10 @@ app.include_router(cache_router)
 app.include_router(system_router)
 app.include_router(admin_settings_router)
 app.include_router(admin_api_keys_router)
+app.include_router(admin_subscriptions_router)
+app.include_router(admin_alerts_router)
+app.include_router(admin_feature_flags_router)
+app.include_router(admin_notifications_router)
 
 @app.exception_handler(RateLimitExceeded)
 async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
@@ -1118,178 +1126,6 @@ async def pharmacy_full_update(
 # ═══════════════════════════════════════════════════════════
 # DATABASE EXPANSION ENDPOINTS
 # ═══════════════════════════════════════════════════════════
-@app.get("/v1/admin/subscriptions")
-async def list_subscriptions(user: User = Depends(require_admin)):
-    """List all subscriptions."""
-    from sqlalchemy import text
-    from db import SessionLocal
-    
-    db = SessionLocal()
-    try:
-        result = db.execute(text("""
-            SELECT s.id::text, s.pharmacy_id::text, p.name_ar AS pharmacy_name,
-                   s.plan, s.status, s.price_monthly, s.currency,
-                   s.started_at, s.expires_at, s.auto_renew
-            FROM subscriptions s
-            LEFT JOIN pharmacies p ON p.id = s.pharmacy_id
-            ORDER BY s.created_at DESC
-        """))
-        return {"subscriptions": [dict(row._mapping) for row in result]}
-    finally:
-        db.close()
-
-
-@app.get("/v1/admin/notifications")
-async def list_notifications(
-    limit: int = 50,
-    user: User = Depends(require_admin),
-):
-    """List notifications."""
-    from sqlalchemy import text
-    from db import SessionLocal
-    
-    db = SessionLocal()
-    try:
-        result = db.execute(text("""
-            SELECT n.id::text, n.type, n.title, n.message, n.is_read,
-                   n.priority, n.created_at
-            FROM notifications n
-            WHERE n.user_id = :uid OR n.pharmacy_id IS NULL
-            ORDER BY n.created_at DESC
-            LIMIT :limit
-        """), {"uid": user.id, "limit": limit})
-        return {"notifications": [dict(row._mapping) for row in result]}
-    finally:
-        db.close()
-
-
-@app.get("/v1/admin/usage-stats")
-async def list_usage_stats(
-    days: int = 30,
-    user: User = Depends(require_admin),
-):
-    """Get usage statistics."""
-    from sqlalchemy import text
-    from db import SessionLocal
-    
-    db = SessionLocal()
-    try:
-        result = db.execute(text("""
-            SELECT date, 
-                   SUM(messages_sent) AS messages_sent,
-                   SUM(messages_received) AS messages_received,
-                   SUM(ai_responses) AS ai_responses,
-                   SUM(unique_customers) AS unique_customers
-            FROM usage_stats
-            WHERE date >= CURRENT_DATE - INTERVAL ':days days'
-            GROUP BY date
-            ORDER BY date DESC
-        """), {"days": days})
-        return {"stats": [dict(row._mapping) for row in result]}
-    finally:
-        db.close()
-
-
-@app.get("/v1/admin/feature-flags")
-async def list_feature_flags(user: User = Depends(require_admin)):
-    """List all feature flags."""
-    from sqlalchemy import text
-    from db import SessionLocal
-    
-    db = SessionLocal()
-    try:
-        result = db.execute(text("""
-            SELECT id::text, key, name, description, is_enabled,
-                   rollout_percentage, created_at
-            FROM feature_flags
-            ORDER BY key
-        """))
-        return {"flags": [dict(row._mapping) for row in result]}
-    finally:
-        db.close()
-
-
-@app.get("/v1/admin/alerts")
-async def list_alerts(
-    unresolved_only: bool = True,
-    user: User = Depends(require_admin),
-):
-    """List system alerts."""
-    from sqlalchemy import text
-    from db import SessionLocal
-    
-    db = SessionLocal()
-    try:
-        where = "WHERE a.is_resolved = FALSE" if unresolved_only else ""
-        result = db.execute(text(f"""
-            SELECT a.id::text, a.type, a.severity, a.title, a.message,
-                   a.is_resolved, a.created_at,
-                   p.name_ar AS pharmacy_name
-            FROM alerts a
-            LEFT JOIN pharmacies p ON p.id = a.pharmacy_id
-            {where}
-            ORDER BY a.created_at DESC
-            LIMIT 100
-        """))
-        return {"alerts": [dict(row._mapping) for row in result]}
-    finally:
-        db.close()
-
-
-
-# ═══════════════════════════════════════════════════════════
-# SUBSCRIPTIONS CRUD
-# ═══════════════════════════════════════════════════════════
-@app.post("/v1/admin/subscriptions")
-async def create_subscription(request: Request, user: User = Depends(require_admin)):
-    from sqlalchemy import text
-    from db import SessionLocal
-    from uuid import uuid4
-    
-    data = await request.json()
-    db = SessionLocal()
-    try:
-        sid = str(uuid4())
-        db.execute(text("""
-            INSERT INTO subscriptions (id, pharmacy_id, plan, status, price_monthly, expires_at)
-            VALUES (:id, :pid, :plan, 'active', :price, NOW() + INTERVAL '1 year')
-        """), {
-            "id": sid,
-            "pid": data.get("pharmacy_id"),
-            "plan": data.get("plan", "basic"),
-            "price": data.get("price_monthly", 0),
-        })
-        db.commit()
-        return {"success": True, "id": sid}
-    finally:
-        db.close()
-
-
-@app.put("/v1/admin/subscriptions/{sub_id}")
-async def update_subscription(sub_id: str, request: Request, user: User = Depends(require_admin)):
-    from sqlalchemy import text
-    from db import SessionLocal
-    
-    data = await request.json()
-    allowed = ["plan", "status", "price_monthly", "auto_renew", "expires_at"]
-    updates = {k: v for k, v in data.items() if k in allowed}
-    
-    if not updates:
-        return {"success": True}
-    
-    db = SessionLocal()
-    try:
-        set_clause = ", ".join(f"{k} = :{k}" for k in updates.keys())
-        updates["sid"] = sub_id
-        db.execute(text(f"""
-            UPDATE subscriptions SET {set_clause}, updated_at = NOW() WHERE id = :sid
-        """), updates)
-        db.commit()
-        return {"success": True}
-    finally:
-        db.close()
-
-
 # ═══════════════════════════════════════════════════════════
 # FEATURE FLAGS CRUD
 # ═══════════════════════════════════════════════════════════
