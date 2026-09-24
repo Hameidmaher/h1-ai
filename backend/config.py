@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     # ═══ App ═══
     app_name: str = "H1-AI"
     app_tagline: str = "Assistant Pharmacy"
-    environment: Literal["development", "staging", "production", "test"] = "dev"
+    environment: Literal["development", "staging", "production", "test"] = "development"
     api_v1_prefix: str = "/v1"
     debug: bool = False
 
