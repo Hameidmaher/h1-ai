@@ -12,7 +12,7 @@ async def test_search_drug_by_trade_name_arabic():
     )
     assert r.success is True
     assert r.data["count"] >= 1
-    names = [d["trade_name"] for d in r.data["drugs"]]
+    names = [d.get("name_ar") or d.get("name_en", "") for d in r.data["drugs"]]
     assert any("بنادول" in n for n in names)
 
 

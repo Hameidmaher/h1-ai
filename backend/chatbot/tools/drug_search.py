@@ -35,6 +35,13 @@ async def search_drug_handler(query: str, limit: int = 5) -> ToolResult:
     ابحث عن دواء بالاسم (عربي/إنجليزي/علمي).
     يستخدم: trigram similarity + ILIKE + تطبيع عربي
     """
+    # ═══ حماية: بحث فاضي ═══
+    if not query or not query.strip():
+        return ToolResult.ok(
+            data={"drugs": [], "count": 0, "query": query},
+            message="الرجاء إدخال اسم دواء للبحث",
+        )
+
     from db import SessionLocal
 
     session = SessionLocal()
