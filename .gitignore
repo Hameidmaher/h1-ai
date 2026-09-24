@@ -146,3 +146,7 @@ keystore/
 # Config with secrets
 config/config.yaml
 config/*.local.yaml
+
+# Config with secrets
+config/config.yaml
+config/*.local.yaml
