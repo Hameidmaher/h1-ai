@@ -48,7 +48,7 @@ database:
   port: 5432
   name: "h1ai"
   user: "h1ai"
-  password: "h1ai_pass"
+  password: "${DB_PASSWORD}"
 
 search:
   fuzzy_matching: true
@@ -65,7 +65,7 @@ whatsapp:
   enabled: false
   mode: "cloud_api"
   phone_number_id: ""
-  access_token: ""
+  access_token: "${WHATSAPP_ACCESS_TOKEN}"
 
 admin_dashboard:
   enabled: false

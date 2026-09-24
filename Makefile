@@ -1,16 +1,16 @@
-.PHONY: help setup backend-install mobile-install ollama-setup seed-data \
-        backend-run mobile-run backend-test backend-test-cov eval \
+.PHONY: help setup backend-install mobile-install ollama-setup seed-data 
+        \ backend-run mobile-run backend-test backend-test-cov eval \ 
         v4-test v4-bench v4-demo health lint clean
-
-PYTHON := python3
-BACKEND := backend
-MOBILE := mobile
-
-help:
-	@echo "🏥 H1-AI — Assistant Pharmacy v4.0"
-	@echo "  make setup           - Install Backend + Mobile"
-	@echo "  make ollama-setup    - Start Ollama + model"
-	@echo "  make seed-data       - Initialize knowledge base"
+cd ~/h1-ai PYTHON := python3 BACKEND := backend MOBILE := mobile find . 
+-type d -name "__pycache__" -not -path "./node_modules/*" -exec rm -rf 
+{} + 2>/dev/null help: find . -type d -name ".pytest_cache" -not -path 
+"./node_modules/*" -exec rm -rf {} + 2>/dev/null @echo "🏥 H1-AI — 
+Assistant Pharmacy v4.0" find . -type d -name ".ruff_cache" -not -path 
+"./node_modules/*" -exec rm -rf {} + 2>/dev/null @echo " make setup - 
+Install Backend + Mobile" find . -type d -name ".mypy_cache" -not -path 
+"./node_modules/*" -exec rm -rf {} + 2>/dev/null @echo " make 
+ollama-setup - Start Ollama + model" echo "تم" @echo " make seed-data - 
+Initialize knowledge base"
 	@echo "  make backend-run     - Run FastAPI"
 	@echo "  make mobile-run      - Run Flutter"
 	@echo "  make backend-test    - Run tests"

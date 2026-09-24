@@ -142,3 +142,7 @@ keystore/
 *.keystore
 keystore/
 .git.backup-*
+
+# Config with secrets
+config/config.yaml
+config/*.local.yaml
