@@ -8,28 +8,30 @@ import 'core/theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Load .env
   try {
     await dotenv.load(fileName: ".env");
   } catch (e) {
     debugPrint('⚠️ .env not found: $e');
   }
-  
-  // System UI (status bar)
+
+  // Status bar
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
-  
-  // Orientation (portrait only for mobile)
+
+  // Portrait only
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  
+
   runApp(const ProviderScope(child: H1AiApp()));
 }
 
@@ -39,7 +41,7 @@ class H1AiApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
-    
+
     return MaterialApp.router(
       title: 'H1-AI — مساعد الصيدلية',
       debugShowCheckedModeBanner: false,
@@ -58,7 +60,6 @@ class H1AiApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       builder: (context, child) {
-        // RTL support
         return Directionality(
           textDirection: TextDirection.rtl,
           child: child ?? const SizedBox.shrink(),

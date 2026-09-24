@@ -141,3 +141,4 @@ keystore/
 *.jks
 *.keystore
 keystore/
+.git.backup-*

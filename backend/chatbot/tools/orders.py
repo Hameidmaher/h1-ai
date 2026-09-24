@@ -145,6 +145,27 @@ async def create_order_handler(
 
         session.commit()
 
+        # 10. إرسال رسالة تأكيد مع أزرار (إذا في رقم WhatsApp)
+        send_result = None
+        if customer_phone:
+            try:
+                from services.order_flow import order_flow
+                send_result = await order_flow.send_order_confirmation(
+                    phone=customer_phone,
+                    customer_name="عميل",
+                    order_number=order_no,
+                    items=[{
+                        "name": drug.trade_name,
+                        "quantity": quantity,
+                        "price": float(drug.selling_price),
+                    }],
+                    total=line_total,
+                    address="استلام من الفرع",
+                )
+                logger.info("order.buttons_sent", order_no=order_no, result=send_result)
+            except Exception as send_err:
+                logger.warning("order.buttons_failed", error=str(send_err)[:200])
+
         return ToolResult.ok(
             data={
                 "created": True,
@@ -154,6 +175,7 @@ async def create_order_handler(
                 "quantity": quantity,
                 "unit_price": float(drug.selling_price),
                 "total": line_total,
+                "buttons_sent": bool(send_result and send_result.get("success")),
             },
             message=f"✅ أوردر {order_no} — {drug.trade_name} × {quantity} = {line_total} جنيه",
         )

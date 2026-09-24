@@ -130,34 +130,11 @@ async function createSession(phoneNumber, pharmacyId) {
             if (!msg.message) continue;
 
             const from = msg.key.remoteJid;
+            const text = msg.message.conversation 
+                || msg.message.extendedTextMessage?.text 
+                || '';
 
-            // استخراج النص أو button reply
-            let text = '';
-            let isButtonReply = false;
-            let buttonId = '';
-
-            if (msg.message.buttonsResponseMessage) {
-                text = msg.message.buttonsResponseMessage.selectedDisplayText || '';
-                buttonId = msg.message.buttonsResponseMessage.selectedButtonId || '';
-                isButtonReply = true;
-            } else if (msg.message.templateButtonReplyMessage) {
-                text = msg.message.templateButtonReplyMessage.selectedDisplayText || '';
-                buttonId = msg.message.templateButtonReplyMessage.selectedId || '';
-                isButtonReply = true;
-            } else if (msg.message.listResponseMessage) {
-                const single = msg.message.listResponseMessage.singleSelectReply;
-                if (single) {
-                    buttonId = single.selectedRowId || '';
-                    text = msg.message.listResponseMessage.title || '';
-                    isButtonReply = true;
-                }
-            } else {
-                text = msg.message.conversation
-                    || msg.message.extendedTextMessage?.text
-                    || '';
-            }
-
-            if (!text && !buttonId) continue;
+            if (!text) continue;
 
             console.log(`\n📩 [${phoneNumber}] From ${from}: ${text.substring(0, 50)}`);
 
@@ -169,9 +146,6 @@ async function createSession(phoneNumber, pharmacyId) {
                         message: text,
                         session_id: `${phoneNumber}:${from}`,
                         pharmacy_phone: phoneNumber,
-                        pharmacy_id: sessions[phoneNumber]?.pharmacy_id || null,
-                        button_id: buttonId || null,
-                        is_button_reply: isButtonReply,
                     },
                     {
                         headers: {
@@ -187,7 +161,7 @@ async function createSession(phoneNumber, pharmacyId) {
 
                 // Send reply
                 await sock.sendMessage(from, { text: reply });
-                console.log(`📤 [${phoneNumber}] Replied: ${reply.substring(0, 100)}`);
+                console.log(`📤 [${phoneNumber}] Replied`);
 
                 if (isEmergency) {
                     console.log(`🚨 [${phoneNumber}] EMERGENCY handled`);
@@ -433,71 +407,6 @@ app.post('/send', async (req, res) => {
         await session.sock.sendMessage(jid, { text: message });
         res.json({ success: true });
     } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-
-// ═══════════════════════════════════════════════════════════
-//  Send Buttons — Interactive Message
-// ═══════════════════════════════════════════════════════════
-app.post('/send-buttons', async (req, res) => {
-    const { phone_number, to, text, buttons, footer } = req.body;
-
-    const session = sessions[phone_number];
-    if (!session || session.status !== 'connected') {
-        return res.status(503).json({ error: 'Session not connected' });
-    }
-
-    if (!buttons || buttons.length === 0) {
-        return res.status(400).json({ error: 'buttons required' });
-    }
-
-    try {
-        const jid = to.includes('@') ? to : `${to}@s.whatsapp.net`;
-
-        // صيغة حديثة
-        const interactiveButtons = buttons.slice(0, 3).map((btn) => ({
-            name: 'quick_reply',
-            buttonParamsJson: JSON.stringify({
-                display_text: btn.title,
-                id: btn.id,
-            }),
-        }));
-
-        let result;
-        try {
-            result = await session.sock.sendMessage(jid, {
-                text: text,
-                footer: footer || '',
-                interactiveButtons: interactiveButtons,
-            });
-            console.log(`✅ Buttons sent to ${to}`);
-        } catch (e1) {
-            console.log(`⚠️ Modern failed: ${e1.message}, trying legacy...`);
-            try {
-                result = await session.sock.sendMessage(jid, {
-                    text: text,
-                    footer: footer || '',
-                    buttons: buttons.slice(0, 3).map((btn) => ({
-                        buttonId: btn.id,
-                        buttonText: { displayText: btn.title },
-                        type: 1,
-                    })),
-                    headerType: 1,
-                });
-                console.log(`✅ Legacy buttons sent to ${to}`);
-            } catch (e2) {
-                // Fallback: نص عادي
-                const numbered = text + '\n\n' + buttons.map((b,i) => `${i+1}. ${b.title}`).join('\n');
-                result = await session.sock.sendMessage(jid, { text: numbered });
-                console.log(`✅ Sent as text to ${to}`);
-            }
-        }
-
-        res.json({ success: true, message_id: result?.key?.id });
-    } catch (error) {
-        console.error(`❌ Send buttons error: ${error.message}`);
         res.status(500).json({ error: error.message });
     }
 });

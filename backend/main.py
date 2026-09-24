@@ -562,6 +562,32 @@ async def delete_whatsapp(number_id: str, user: User = Depends(require_admin)):
 # ═══════════════════════════════════════════════════════════
 # WHATSAPP SERVICE BRIDGE
 # ═══════════════════════════════════════════════════════════
+@app.put("/v1/admin/whatsapp/{phone}/connect")
+async def whatsapp_mark_connected(phone: str, data: dict = None):
+    """يُستدعى من Node.js عند اتصال WhatsApp."""
+    try:
+        from db import SessionLocal
+        from sqlalchemy import text
+        s = SessionLocal()
+        try:
+            # سجل الاتصال (اختياري — يعتمد على وجود جدول whatsapp_numbers)
+            try:
+                s.execute(text("""
+                    INSERT INTO whatsapp_numbers (phone_number, status, connected_at)
+                    VALUES (:p, 'connected', now())
+                    ON CONFLICT (phone_number) DO UPDATE 
+                    SET status = 'connected', connected_at = now()
+                """), {"p": phone})
+                s.commit()
+            except Exception:
+                s.rollback()
+            return {"success": True, "phone": phone, "status": "connected"}
+        finally:
+            s.close()
+    except Exception as e:
+        return {"success": False, "error": str(e)[:200]}
+
+
 @app.get("/v1/admin/whatsapp-service/health")
 async def whatsapp_service_health(user: User = Depends(require_admin)):
     """Check WhatsApp service health."""
@@ -910,7 +936,7 @@ async def whatsapp_incoming(
                         (id, pharmacy_id, from_phone, content, direction, 
                          processed, chatbot_response, handler, received_at, created_at, updated_at)
                     VALUES 
-                        (:id, :pid, :from_phone, :content, 'incoming',
+                        (:id, :pid, :from_phone, :content, 'inbound',
                          TRUE, :response, :handler, NOW(), NOW(), NOW())
                 """), {
                     "id": str(uuid4()),

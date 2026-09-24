@@ -87,3 +87,76 @@ def get_settings() -> Settings:
 settings = get_settings()
 
 # Webhook security (add to Settings class)
+
+
+# ═══════════════════════════════════════════════════════════
+# YAML Config Loader
+# ═══════════════════════════════════════════════════════════
+import yaml
+from pathlib import Path as _Path
+
+
+class YamlConfig:
+    """يقرأ config.yaml من مجلد config/ في جذر المشروع."""
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            cls._instance._load()
+        return cls._instance
+
+    def _load(self):
+        possible_paths = [
+            _Path(__file__).parent.parent / "config" / "config.yaml",
+            _Path("/app/config/config.yaml"),
+            _Path("config/config.yaml"),
+        ]
+        config_path = None
+        for p in possible_paths:
+            if p.exists():
+                config_path = p
+                break
+
+        if not config_path:
+            raise FileNotFoundError("config/config.yaml not found")
+
+        with open(config_path, 'r', encoding='utf-8') as f:
+            self.data = yaml.safe_load(f)
+
+        self.path = config_path
+
+    @property
+    def system_prompt(self) -> str:
+        return self.data['ai']['system_prompt']
+
+    @property
+    def model(self) -> str:
+        return self.data['ai']['model']
+
+    @property
+    def temperature(self) -> float:
+        return self.data['ai']['temperature']
+
+    @property
+    def max_tokens(self) -> int:
+        return self.data['ai']['max_tokens']
+
+    @property
+    def provider(self) -> str:
+        return self.data['ai']['provider']
+
+    @property
+    def disclaimer_ar(self) -> str:
+        return self.data['disclaimer']['ar']
+
+    @property
+    def disclaimer_en(self) -> str:
+        return self.data['disclaimer']['en']
+
+    @property
+    def search_config(self) -> dict:
+        return self.data['search']
+
+
+yaml_config = YamlConfig()
