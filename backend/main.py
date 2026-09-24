@@ -79,6 +79,7 @@ from db.repositories import UserRepository
 from routers.auth import router as auth_router
 from routers.chat import router as chat_router_v2
 from routers.knowledge import router as knowledge_router
+from routers.cache import router as cache_router
 
 setup_logging()
 logger = structlog.get_logger()
@@ -160,6 +161,7 @@ app.include_router(whatsapp_chatbot_router)
 app.include_router(auth_router)
 app.include_router(chat_router_v2)
 app.include_router(knowledge_router)
+app.include_router(cache_router)
 
 @app.exception_handler(RateLimitExceeded)
 async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
@@ -1558,53 +1560,6 @@ async def analytics_overview(user: User = Depends(require_admin)):
 # ═══════════════════════════════════════════════════════════
 # CACHE MANAGEMENT
 # ═══════════════════════════════════════════════════════════
-@app.get("/v1/cache/stats")
-async def cache_stats(user: User = Depends(require_admin)):
-    """Get chat cache statistics."""
-    return chat_cache.stats()
-
-
-@app.post("/v1/cache/clear")
-async def cache_clear(user: User = Depends(require_admin)):
-    """Clear chat cache."""
-    chat_cache.clear()
-    return {"success": True, "message": "Cache cleared"}
-
-
-@app.post("/v1/cache/save")
-
-
-# ═══════════════════════════════════════════════════════════
-#  PWA Routes
-# ═══════════════════════════════════════════════════════════
-@app.get("/manifest.json")
-async def manifest():
-    """PWA manifest."""
-    from fastapi.responses import FileResponse
-    manifest_path = Path(__file__).parent / "admin" / "static" / "manifest.json"
-    if manifest_path.exists():
-        return FileResponse(str(manifest_path), media_type="application/manifest+json")
-    return {"error": "manifest not found"}
-
-
-@app.get("/sw.js")
-async def service_worker():
-    """Service Worker."""
-    from fastapi.responses import FileResponse
-    sw_path = Path(__file__).parent / "admin" / "static" / "sw.js"
-    if sw_path.exists():
-        return FileResponse(
-            str(sw_path),
-            media_type="application/javascript",
-            headers={"Service-Worker-Allowed": "/"}
-        )
-    return {"error": "sw not found"}
-
-async def cache_save(user: User = Depends(require_admin)):
-    """Save cache to disk."""
-    chat_cache.save_to_disk()
-    return {"success": True}
-
 # ═══════════════════════════════════════════════════════════
 #  Static files for chat UI
 # ═══════════════════════════════════════════════════════════
