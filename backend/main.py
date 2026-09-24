@@ -76,6 +76,7 @@ from admin.api.import_routes import router as admin_import_router
 # DB imports for register endpoint
 from db import SessionLocal
 from db.repositories import UserRepository
+from routers.auth import router as auth_router
 
 setup_logging()
 logger = structlog.get_logger()
@@ -154,22 +155,13 @@ app.include_router(tunnel_router)
 app.include_router(analytics_router)
 app.include_router(chat_stream_router)
 app.include_router(whatsapp_chatbot_router)
-
+app.include_router(auth_router)
 
 @app.exception_handler(RateLimitExceeded)
 async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
     return JSONResponse(
         status_code=429,
         content={"detail": "طلبات كثيرة جدًا. حاول بعد دقيقة."},
-    )
-
-
-def _make_token_response(user_db: UserInDB) -> Token:
-    return Token(
-        access_token=create_access_token(user_db.id, user_db.username, user_db.role),
-        refresh_token=create_refresh_token(user_db.id, user_db.username, user_db.role),
-        expires_in=settings.jwt_access_token_expire_minutes * 60,
-        user=User(**user_db.model_dump(exclude={"hashed_password"})),
     )
 
 
@@ -272,79 +264,6 @@ if _customer_static.exists():
 # ═══════════════════════════════════════════════════════════
 # AUTH ENDPOINTS
 # ═══════════════════════════════════════════════════════════
-@app.post("/v1/auth/login", response_model=Token)
-@limiter.limit(settings.rate_limit_auth)
-async def login(request: Request, req: LoginRequest):
-    user_db = get_user_by_username(req.username)
-    if not user_db or not verify_password(req.password, user_db.hashed_password):
-        metrics.record_login(success=False)
-        try:
-            from api.chat_routes import log_audit
-            await log_audit(
-                user_id="00000000-0000-0000-0000-000000000000",
-                username=req.username[:50],
-                action="login_failed",
-                entity="user",
-                entity_id=req.username[:50],
-                details="Invalid credentials",
-            )
-        except Exception as _e:
-            import structlog
-            structlog.get_logger().warning("login_audit_failed", error=str(_e)[:150])
-        
-        raise HTTPException(status_code=401, detail="بيانات دخول غلط")
-    if not user_db.is_active:
-        raise HTTPException(status_code=403, detail="الحساب معطّل")
-    metrics.record_login(success=True)
-    return _make_token_response(user_db)
-
-
-@app.post("/v1/auth/register", response_model=Token)
-@limiter.limit(settings.rate_limit_auth)
-async def register(request: Request, req: RegisterRequest):
-    """Register new user — FIXED: uses DB instead of broken proxy."""
-    db = SessionLocal()
-    try:
-        repo = UserRepository(db)
-        if repo.get_by_username(req.username):
-            raise HTTPException(status_code=400, detail="اسم المستخدم موجود")
-
-        new_user = repo.create(
-            username=req.username,
-            hashed_password=hash_password(req.password),
-            role="customer",
-            full_name=req.full_name or "",
-        )
-
-        user_db = UserInDB(
-            id=new_user.id,
-            username=new_user.username,
-            role=new_user.role,
-            full_name=new_user.full_name or "",
-            is_active=new_user.is_active,
-            hashed_password=new_user.hashed_password,
-        )
-        return _make_token_response(user_db)
-    finally:
-        db.close()
-
-
-@app.post("/v1/auth/refresh", response_model=Token)
-async def refresh_token(req: RefreshRequest):
-    payload = decode_token(req.refresh_token)
-    if not payload or payload.type != "refresh":
-        raise HTTPException(status_code=401, detail="Invalid refresh token")
-    user_db = get_user_by_id(payload.sub)
-    if not user_db or not user_db.is_active:
-        raise HTTPException(status_code=401, detail="User not found or inactive")
-    return _make_token_response(user_db)
-
-
-@app.get("/v1/auth/me", response_model=User)
-async def me(user: User = Depends(get_current_user)):
-    return user
-
-
 # ═══════════════════════════════════════════════════════════
 # CHAT & KNOWLEDGE
 # ═══════════════════════════════════════════════════════════
