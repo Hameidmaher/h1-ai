@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 
 from llm.factory import create_llm
 from security import input_guard, output_guard, llm_breaker, CircuitOpenError
-from chatbot.tools.registry import get_registry, ToolResult
+from chatbot.tools.registry import get_registry
 from chatbot.memory.session import SessionManager
 from chatbot.prompts.system_ar import SYSTEM_PROMPT_AR, CONTEXT_HEADER
 try:

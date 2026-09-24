@@ -1,8 +1,6 @@
 """Analytics API — إحصائيات للـ dashboard."""
 from fastapi import APIRouter
-from datetime import datetime, timedelta
 from sqlalchemy import text
-from typing import Optional
 
 router = APIRouter(prefix="/api/analytics", tags=["analytics"])
 

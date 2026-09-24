@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from auth.dependencies import require_admin
 from auth.models import User
 from admin.schemas.product_schema import (
-    ProductCreate, ProductUpdate, ProductResponse,
+    ProductCreate, ProductUpdate,
 )
 from admin.schemas.common_schema import (
     BulkDeleteRequest, SuccessResponse, PaginatedResponse, StatsResponse,

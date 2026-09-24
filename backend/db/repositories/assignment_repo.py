@@ -2,7 +2,6 @@
 from typing import Optional
 from datetime import datetime
 from sqlalchemy.orm import Session
-from sqlalchemy import func
 from db.models.assignment import Assignment
 
 

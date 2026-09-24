@@ -1,5 +1,4 @@
 """Off-topic Guardrail — منع المواضيع خارج الصيدلية."""
-import re
 
 OFF_TOPIC_KEYWORDS = [
     # ألعاب

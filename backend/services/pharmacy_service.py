@@ -161,7 +161,7 @@ class PharmacyService:
             })
             db.commit()
             return self._get_number(nid)
-        except Exception as e:
+        except Exception:
             db.rollback()
             raise
         finally:
@@ -263,7 +263,7 @@ class PharmacyService:
             db.commit()
             
             return self.get_pharmacy(pharmacy_id)
-        except Exception as e:
+        except Exception:
             db.rollback()
             raise
         finally:

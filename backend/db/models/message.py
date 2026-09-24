@@ -1,5 +1,5 @@
 """Message — WhatsApp message received/sent."""
-from sqlalchemy import Column, String, Boolean, Text, DateTime, JSON, Index, ForeignKey
+from sqlalchemy import Column, String, Boolean, Text, DateTime, JSON, Index
 from sqlalchemy.sql import func
 from db.base import Base
 

@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import httpx
 import structlog
-from typing import Optional
 
 logger = structlog.get_logger()
 

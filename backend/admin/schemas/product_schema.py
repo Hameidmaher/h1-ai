@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field, field_validator
 from typing import Optional
-from datetime import date, datetime
+from datetime import datetime
 
 
 class ProductCreate(BaseModel):

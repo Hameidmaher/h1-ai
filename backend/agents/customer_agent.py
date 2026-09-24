@@ -7,7 +7,6 @@ from langchain_core.messages import (
 )
 from agents.tools import CUSTOMER_TOOLS, CUSTOMER_ALLOWED_TOOL_NAMES
 from agents.guardrails import check_tool_calls_allowed, make_refusal_message
-from knowledge.engine import advisory_engine
 from models.schemas import AgentResponse
 from llm.factory import create_llm
 import structlog

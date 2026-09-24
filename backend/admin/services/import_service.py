@@ -1,6 +1,5 @@
 """Import Service — CSV, JSON, Excel."""
 from __future__ import annotations
-from typing import Any
 import structlog
 from admin.services.crud_service import crud_service
 

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from auth.dependencies import require_admin
 from auth.models import User
-from admin.schemas.synonym_schema import SynonymCreate, DialectCreate
+from admin.schemas.synonym_schema import SynonymCreate
 from admin.services.crud_service import crud_service
 from admin.services.audit_service import audit_service
 from admin.services.backup_service import backup_service

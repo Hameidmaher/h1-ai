@@ -1,6 +1,5 @@
 """Order Flow — إدارة دورة حياة الطلب عبر WhatsApp."""
 import structlog
-from datetime import datetime
 from services.whatsapp_sender import whatsapp_sender
 
 logger = structlog.get_logger()

@@ -9,7 +9,6 @@ from db import SessionLocal
 from db.repositories import (
     UserRepository,
     ProductRepository,
-    AuditRepository,
 )
 from auth.jwt_handler import hash_password
 

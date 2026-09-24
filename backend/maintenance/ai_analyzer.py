@@ -4,7 +4,6 @@ Uses Ollama (local) by default, or Groq/OpenAI for better quality.
 """
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Optional
 import json
 import re
 import structlog

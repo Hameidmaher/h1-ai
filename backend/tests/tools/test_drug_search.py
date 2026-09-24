@@ -1,6 +1,6 @@
 """Tests for drug_search tool."""
 import pytest
-from chatbot.tools.registry import get_registry, ToolResult
+from chatbot.tools.registry import get_registry
 
 
 @pytest.mark.asyncio

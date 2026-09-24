@@ -80,7 +80,7 @@ async def find_alternatives_handler(
                     "active": active_ingredient,
                     "alternatives": [],
                 },
-                message=f"مفيش بدائل متوفرة",
+                message="مفيش بدائل متوفرة",
             )
 
         results = [

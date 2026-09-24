@@ -31,7 +31,7 @@ from auth.jwt_handler import (
 )
 from auth.dependencies import (
     get_current_user, get_user_by_username, get_user_by_id,
-    _users_db, seed_users,
+    seed_users,
     require_admin,
 )
 from knowledge.engine import advisory_engine
@@ -655,7 +655,6 @@ async def whatsapp_service_send(
 # PUBLIC SELF-SERVICE ONBOARDING
 # ═══════════════════════════════════════════════════════════
 import secrets
-from datetime import datetime
 
 _public_static = _Path(__file__).parent / "public" / "static"
 if _public_static.exists():
@@ -1668,7 +1667,6 @@ async def create_api_key(request: Request, user: User = Depends(require_admin)):
     from sqlalchemy import text
     from db import SessionLocal
     from uuid import uuid4
-    import secrets
     import hashlib
     
     data = await request.json()

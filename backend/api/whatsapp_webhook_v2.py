@@ -9,7 +9,7 @@ from whatsapp.pipeline import whatsapp_pipeline
 from db import SessionLocal
 from db.repositories import (
     MessageRepository, ReportRepository,
-    AssignmentRepository, TeamRepository,
+    TeamRepository,
 )
 
 logger = structlog.get_logger()

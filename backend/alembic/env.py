@@ -9,7 +9,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from db.base import Base
-from db.models import User, Product, Prescription, AuditLog, ChatSession
 from db.session import DATABASE_URL
 
 config = context.config

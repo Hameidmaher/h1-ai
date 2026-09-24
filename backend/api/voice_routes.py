@@ -2,7 +2,6 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
 import os
-import tempfile
 import httpx
 import structlog
 

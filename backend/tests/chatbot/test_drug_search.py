@@ -1,6 +1,5 @@
 """Tests for drug search."""
 import pytest
-import asyncio
 
 
 @pytest.mark.asyncio

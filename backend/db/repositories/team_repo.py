@@ -1,7 +1,6 @@
 """TeamMember Repository."""
 from typing import Optional
 from sqlalchemy.orm import Session
-from sqlalchemy import select, and_, or_
 from db.models.team import TeamMember
 
 

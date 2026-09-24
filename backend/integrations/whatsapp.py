@@ -1,6 +1,5 @@
 from __future__ import annotations
 import urllib.parse
-from typing import Optional
 import structlog
 from config_loader import prod_config
 

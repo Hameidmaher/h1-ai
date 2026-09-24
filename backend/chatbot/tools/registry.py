@@ -3,7 +3,7 @@ Tool Registry — سجل أدوات الشات بوت
 كل tool عبارة عن function + metadata
 """
 from __future__ import annotations
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any, Callable, Awaitable
 import structlog
 

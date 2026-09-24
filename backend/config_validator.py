@@ -22,7 +22,7 @@ def validate_production_config() -> list[str]:
             raise ConfigError("JWT_SECRET_KEY must be at least 32 chars")
         warnings.append("JWT_SECRET_KEY is short")
 
-    cors = prod_config.get("backend.cors_origins", ["*"])
+    cors = prod_config.get("backend.cors_origins", [])
     if is_prod and "*" in cors:
         raise ConfigError("CORS wildcard not allowed in production")
 
