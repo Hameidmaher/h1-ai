@@ -64,7 +64,8 @@ class ProductionConfig:
 
     @property
     def is_production(self) -> bool:
-        return os.getenv("ENVIRONMENT", "dev") == "production"
+        env = os.getenv("ENVIRONMENT", "development")
+        return env in ("production", "prod")  # قبول prod للتوافق
 
 
 prod_config = ProductionConfig()
