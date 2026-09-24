@@ -80,6 +80,9 @@ from routers.auth import router as auth_router
 from routers.chat import router as chat_router_v2
 from routers.knowledge import router as knowledge_router
 from routers.cache import router as cache_router
+from routers.system import router as system_router
+from routers.admin.settings import router as admin_settings_router
+from routers.admin.api_keys import router as admin_api_keys_router
 
 setup_logging()
 logger = structlog.get_logger()
@@ -162,6 +165,9 @@ app.include_router(auth_router)
 app.include_router(chat_router_v2)
 app.include_router(knowledge_router)
 app.include_router(cache_router)
+app.include_router(system_router)
+app.include_router(admin_settings_router)
+app.include_router(admin_api_keys_router)
 
 @app.exception_handler(RateLimitExceeded)
 async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
@@ -193,58 +199,6 @@ if _admin_static.exists():
 # ═══════════════════════════════════════════════════════════
 # SETTINGS MANAGEMENT
 # ═══════════════════════════════════════════════════════════
-@app.get("/v1/admin/settings")
-async def get_settings(user: User = Depends(require_admin)):
-    """Get all settings."""
-    return {
-        "whatsapp": settings_service.get_whatsapp(),
-        "app": settings_service.load().get("app", {}),
-        "features": settings_service.load().get("features", {}),
-    }
-
-
-@app.get("/v1/admin/settings/whatsapp")
-async def get_whatsapp_settings(user: User = Depends(require_admin)):
-    """Get WhatsApp settings."""
-    return settings_service.get_whatsapp()
-
-
-@app.put("/v1/admin/settings/whatsapp")
-async def update_whatsapp_settings(
-    request: Request,
-    user: User = Depends(require_admin),
-):
-    """Update WhatsApp settings."""
-    try:
-        updates = await request.json()
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid JSON")
-
-    # Validate
-    if "phone" in updates:
-        phone = str(updates["phone"]).strip()
-        if phone and not (phone.startswith("+") or phone.isdigit()):
-            raise HTTPException(
-                status_code=400,
-                detail="Phone must start with + or be digits",
-            )
-        updates["phone"] = phone
-
-    if "mode" in updates:
-        if updates["mode"] not in ("link", "qr", "api"):
-            raise HTTPException(
-                status_code=400,
-                detail="Mode must be link, qr, or api",
-            )
-
-    if "enabled" in updates:
-        updates["enabled"] = bool(updates["enabled"])
-
-    result = settings_service.update_whatsapp(updates)
-    return {"success": True, "whatsapp": result}
-
-
-
 # ═══════════════════════════════════════════════════════════
 # CUSTOMER INTERFACE (Public)
 # ═══════════════════════════════════════════════════════════
@@ -1161,20 +1115,6 @@ async def pharmacy_full_update(
 # ═══════════════════════════════════════════════════════════
 # PRIVACY POLICY + TERMS
 # ═══════════════════════════════════════════════════════════
-@app.get("/privacy")
-async def privacy_policy():
-    """Privacy policy page."""
-    static_dir = _Path(__file__).parent / "public" / "static"
-    return FileResponse(str(static_dir / "privacy.html"))
-
-
-@app.get("/terms")
-async def terms_of_service():
-    """Terms of service page."""
-    static_dir = _Path(__file__).parent / "public" / "static"
-    return FileResponse(str(static_dir / "terms.html"))
-
-
 # ═══════════════════════════════════════════════════════════
 # DATABASE EXPANSION ENDPOINTS
 # ═══════════════════════════════════════════════════════════
@@ -1429,134 +1369,6 @@ async def create_alert(request: Request, user: User = Depends(require_admin)):
 # ═══════════════════════════════════════════════════════════
 # API KEYS CRUD
 # ═══════════════════════════════════════════════════════════
-@app.get("/v1/admin/api-keys")
-async def list_api_keys(user: User = Depends(require_admin)):
-    from sqlalchemy import text
-    from db import SessionLocal
-    
-    db = SessionLocal()
-    try:
-        result = db.execute(text("""
-            SELECT a.id::text, a.name, a.key_prefix, a.scopes, a.is_active,
-                   a.last_used_at, a.created_at, a.expires_at,
-                   p.name_ar AS pharmacy_name
-            FROM api_keys a
-            LEFT JOIN pharmacies p ON p.id = a.pharmacy_id
-            ORDER BY a.created_at DESC
-        """))
-        return {"keys": [dict(row._mapping) for row in result]}
-    finally:
-        db.close()
-
-
-@app.post("/v1/admin/api-keys")
-async def create_api_key(request: Request, user: User = Depends(require_admin)):
-    from sqlalchemy import text
-    from db import SessionLocal
-    from uuid import uuid4
-    import hashlib
-    
-    data = await request.json()
-    
-    # Generate key
-    raw_key = "h1ai_" + secrets.token_urlsafe(32)
-    key_hash = hashlib.sha256(raw_key.encode()).hexdigest()
-    key_prefix = raw_key[:12]
-    
-    db = SessionLocal()
-    try:
-        kid = str(uuid4())
-        db.execute(text("""
-            INSERT INTO api_keys (id, pharmacy_id, name, key_hash, key_prefix, scopes)
-            VALUES (:id, :pid, :name, :hash, :prefix, :scopes)
-        """), {
-            "id": kid,
-            "pid": data.get("pharmacy_id"),
-            "name": data.get("name", "API Key"),
-            "hash": key_hash,
-            "prefix": key_prefix,
-            "scopes": '["read", "write"]',
-        })
-        db.commit()
-        
-        # Return the raw key ONLY ONCE
-        return {
-            "success": True,
-            "id": kid,
-            "key": raw_key,
-            "prefix": key_prefix,
-            "warning": "Save this key now — it won\'t be shown again",
-        }
-    finally:
-        db.close()
-
-
-@app.delete("/v1/admin/api-keys/{key_id}")
-async def delete_api_key(key_id: str, user: User = Depends(require_admin)):
-    from sqlalchemy import text
-    from db import SessionLocal
-    
-    db = SessionLocal()
-    try:
-        db.execute(text("DELETE FROM api_keys WHERE id = :id"), {"id": key_id})
-        db.commit()
-        return {"success": True}
-    finally:
-        db.close()
-
-
-# ═══════════════════════════════════════════════════════════
-# ANALYTICS ENDPOINTS
-# ═══════════════════════════════════════════════════════════
-@app.get("/v1/admin/analytics/overview")
-async def analytics_overview(user: User = Depends(require_admin)):
-    """Get analytics overview."""
-    from sqlalchemy import text
-    from db import SessionLocal
-    
-    db = SessionLocal()
-    try:
-        # Overall stats
-        result = db.execute(text("""
-            SELECT 
-                (SELECT COUNT(*) FROM pharmacies WHERE is_active = TRUE) AS active_pharmacies,
-                (SELECT COUNT(*) FROM pharmacies) AS total_pharmacies,
-                (SELECT COUNT(*) FROM whatsapp_numbers WHERE status = 'connected') AS connected_numbers,
-                (SELECT COUNT(*) FROM users) AS total_users,
-                (SELECT COUNT(*) FROM messages) AS total_messages,
-                (SELECT COUNT(*) FROM messages WHERE received_at >= CURRENT_DATE) AS messages_today
-        """))
-        overview = dict(result.first()._mapping)
-        
-        # Messages by day (last 7 days)
-        result = db.execute(text("""
-            SELECT DATE(received_at) AS date, COUNT(*) AS count
-            FROM messages
-            WHERE received_at >= CURRENT_DATE - INTERVAL '7 days'
-            GROUP BY DATE(received_at)
-            ORDER BY date
-        """))
-        daily = [dict(r._mapping) for r in result]
-        
-        # Top pharmacies by messages
-        result = db.execute(text("""
-            SELECT p.name_ar AS name, COUNT(m.id) AS messages
-            FROM pharmacies p
-            LEFT JOIN messages m ON m.pharmacy_id = p.id
-            GROUP BY p.id, p.name_ar
-            ORDER BY messages DESC
-            LIMIT 5
-        """))
-        top_pharmacies = [dict(r._mapping) for r in result]
-        
-        return {
-            "overview": overview,
-            "daily": daily,
-            "top_pharmacies": top_pharmacies,
-        }
-    finally:
-        db.close()
-
 # ═══════════════════════════════════════════════════════════
 # CACHE MANAGEMENT
 # ═══════════════════════════════════════════════════════════
