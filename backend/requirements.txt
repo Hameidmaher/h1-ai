@@ -45,5 +45,6 @@ structlog>=24.4.0
 sentry-sdk[fastapi]>=2.17.0
 
 # ─── Security pins (transitive deps) ───
-httpx2>=2.12.0,<3.0.0
-httpcore2>=2.12.0,<3.0.0
+
+# ─── Database Drivers ───
+psycopg2-binary>=2.9.9
