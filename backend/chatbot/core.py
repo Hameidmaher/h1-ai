@@ -14,8 +14,11 @@ from chatbot.prompts.system_ar import SYSTEM_PROMPT_AR, CONTEXT_HEADER
 try:
     from chatbot.nlu.franco_arab import is_franco, normalize_franco
 except ImportError:
-    is_franco = lambda x: False
-    normalize_franco = lambda x: x
+    def is_franco(x):
+        return False
+
+    def normalize_franco(x):
+        return x
 
 logger = structlog.get_logger()
 

@@ -13,7 +13,6 @@ Uses classifier_v2 for better accuracy.
 """
 from __future__ import annotations
 from dataclasses import dataclass
-from datetime import datetime
 from uuid import uuid4
 from typing import Optional
 import structlog

@@ -64,7 +64,6 @@ def should_need_human(text: str, original_message: str = "") -> bool:
     # ═══ 6. Default: مش محتاج
     return False
     
-    text_lower = text.lower()
     
     # ═══ 1. ردود غير طبية (greetings, thanks) → مش محتاج
     non_medical = [

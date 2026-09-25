@@ -70,7 +70,6 @@ class Orchestrator:
                 "دكتور حميد", "د. عبد الحميد", "عبد الحميد",
                 "أكلم موظف", "عايز أتكلم مع حد", "عايز بني آدم",
             ]
-            msg_lower = message.lower()
             if any(kw in message for kw in doctor_keywords):
                 logger.info("orchestrator.human_handoff_request", msg=message[:50])
                 return OrchestratorResponse(

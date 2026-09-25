@@ -24,7 +24,7 @@ class TeamRepository:
     def list_all(self, active_only: bool = True) -> list[TeamMember]:
         q = self.db.query(TeamMember)
         if active_only:
-            q = q.filter(TeamMember.is_active == True)
+            q = q.filter(TeamMember.is_active)
         return q.all()
 
     def find_available(
@@ -36,7 +36,7 @@ class TeamRepository:
     ) -> list[TeamMember]:
         """Find available team members matching criteria."""
         q = self.db.query(TeamMember).filter(
-            TeamMember.is_active == True,
+            TeamMember.is_active,
             TeamMember.is_available == True,
         )
         
@@ -121,9 +121,9 @@ class TeamRepository:
 
     def stats(self) -> dict:
         total = self.count()
-        active = self.db.query(TeamMember).filter(TeamMember.is_active == True).count()
+        active = self.db.query(TeamMember).filter(TeamMember.is_active).count()
         available = self.db.query(TeamMember).filter(
-            TeamMember.is_active == True,
+            TeamMember.is_active,
             TeamMember.is_available == True,
         ).count()
         total_load = self.db.query(TeamMember).with_entities(

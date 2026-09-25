@@ -20,17 +20,12 @@ import structlog
 from config import settings
 from config_loader import prod_config
 from models.schemas import (
-    ChatRequest, ChatResponse, LoginRequest, RegisterRequest,
-    RefreshRequest, Token, User, KnowledgeSearchRequest,
-    KnowledgeAdviseRequest,
+    User,
 )
-from auth.models import UserInDB
 from auth.jwt_handler import (
-    verify_password, hash_password, create_access_token,
-    create_refresh_token, decode_token,
+    hash_password,
 )
 from auth.dependencies import (
-    get_current_user, get_user_by_username, get_user_by_id,
     seed_users,
     require_admin,
 )
@@ -45,9 +40,6 @@ from api.health_routes import router as health_router
 from config_validator import validate_and_report
 from session.session_store import session_store
 from services.logging_service import setup_logging
-from services.metrics import metrics
-from services.chat_cache import chat_cache
-from services.settings_service import settings_service
 from services.pharmacy_service import pharmacy_service
 from services.whatsapp_bridge import whatsapp_bridge
 from services.live_feed import live_feed
@@ -75,7 +67,6 @@ from admin.api.import_routes import router as admin_import_router
 
 # DB imports for register endpoint
 from db import SessionLocal
-from db.repositories import UserRepository
 from routers.auth import router as auth_router
 from routers.chat import router as chat_router_v2
 from routers.knowledge import router as knowledge_router
@@ -444,7 +435,6 @@ async def whatsapp_service_send(
 # ═══════════════════════════════════════════════════════════
 # PUBLIC SELF-SERVICE ONBOARDING
 # ═══════════════════════════════════════════════════════════
-import secrets
 
 _public_static = _Path(__file__).parent / "public" / "static"
 if _public_static.exists():
@@ -483,9 +473,6 @@ async def public_register(request: Request):
     username = email.split("@")[0]
     
     from sqlalchemy import text
-    from db import SessionLocal
-    from auth.jwt_handler import hash_password
-    from uuid import uuid4
     
     db = SessionLocal()
     try:
@@ -670,7 +657,6 @@ async def whatsapp_incoming(
     
     # Find pharmacy by phone
     from sqlalchemy import text
-    from db import SessionLocal
     
     user_role = "customer"
     pharmacy_id = None
@@ -789,7 +775,6 @@ async def whatsapp_disconnect_session(
     
     # Update DB
     from sqlalchemy import text
-    from db import SessionLocal
     db = SessionLocal()
     try:
         db.execute(text("""
@@ -815,7 +800,6 @@ async def whatsapp_activate_session(
     phone = urllib.parse.unquote(phone)
     
     from sqlalchemy import text
-    from db import SessionLocal
     db = SessionLocal()
     try:
         # Get pharmacy_id
@@ -856,7 +840,6 @@ async def whatsapp_delete_completely(
     
     # 2. Delete from DB
     from sqlalchemy import text
-    from db import SessionLocal
     db = SessionLocal()
     try:
         db.execute(text("""
@@ -926,7 +909,6 @@ async def hard_delete_pharmacy(
 ):
     """Hard delete pharmacy + all related data (irreversible)."""
     from sqlalchemy import text
-    from db import SessionLocal
     
     db = SessionLocal()
     try:
@@ -983,7 +965,6 @@ async def pharmacy_hard_delete(
     - Cannot be undone
     """
     from sqlalchemy import text
-    from db import SessionLocal
     
     # 1. Get WhatsApp numbers before deletion
     db = SessionLocal()
@@ -1043,7 +1024,6 @@ async def pharmacy_suspend(
 ):
     """Suspend pharmacy — disable but keep data."""
     from sqlalchemy import text
-    from db import SessionLocal
     
     db = SessionLocal()
     try:
@@ -1073,7 +1053,6 @@ async def pharmacy_activate(
 ):
     """Reactivate suspended pharmacy."""
     from sqlalchemy import text
-    from db import SessionLocal
     
     db = SessionLocal()
     try:
@@ -1104,7 +1083,6 @@ async def pharmacy_full_update(
 ):
     """Full update of pharmacy data."""
     from sqlalchemy import text
-    from db import SessionLocal
     
     data = await request.json()
     
@@ -1173,7 +1151,6 @@ async def pharmacy_full_update(
 @app.put("/v1/admin/feature-flags/{flag_key}")
 async def update_feature_flag(flag_key: str, request: Request, user: User = Depends(require_admin)):
     from sqlalchemy import text
-    from db import SessionLocal
     
     data = await request.json()
     db = SessionLocal()
@@ -1201,7 +1178,6 @@ async def update_feature_flag(flag_key: str, request: Request, user: User = Depe
 @app.post("/v1/admin/alerts/{alert_id}/resolve")
 async def resolve_alert(alert_id: str, user: User = Depends(require_admin)):
     from sqlalchemy import text
-    from db import SessionLocal
     
     db = SessionLocal()
     try:
@@ -1219,8 +1195,6 @@ async def resolve_alert(alert_id: str, user: User = Depends(require_admin)):
 @app.post("/v1/admin/alerts")
 async def create_alert(request: Request, user: User = Depends(require_admin)):
     from sqlalchemy import text
-    from db import SessionLocal
-    from uuid import uuid4
     
     data = await request.json()
     db = SessionLocal()

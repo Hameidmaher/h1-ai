@@ -43,7 +43,7 @@ class MessageRepository:
 
     def list_unprocessed(self, limit: int = 50) -> list[Message]:
         return self.db.query(Message).filter(
-            Message.processed == False,
+            not Message.processed,
             Message.direction == "inbound",
         ).order_by(Message.received_at.asc()).limit(limit).all()
 
