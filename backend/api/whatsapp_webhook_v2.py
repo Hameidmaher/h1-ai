@@ -1,7 +1,7 @@
 """WhatsApp Webhook v2 — full pipeline + admin endpoints."""
 from fastapi import APIRouter, HTTPException, Query, Header, Depends, status
-from pydantic import BaseModel
-from typing import Optional
+from pydantic import BaseModel, Field
+from typing import Optional, List
 import structlog
 from config import settings
 

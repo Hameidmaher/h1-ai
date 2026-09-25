@@ -1,5 +1,5 @@
-import os
 """Seed database from CSV."""
+import os
 import sys
 from pathlib import Path
 

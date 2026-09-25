@@ -3,6 +3,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field, field_validator
 from functools import lru_cache
 from typing import Literal
+import yaml
+from pathlib import Path as _Path
 
 
 class Settings(BaseSettings):
@@ -92,10 +94,6 @@ settings = get_settings()
 # ═══════════════════════════════════════════════════════════
 # YAML Config Loader
 # ═══════════════════════════════════════════════════════════
-import yaml
-from pathlib import Path as _Path
-
-
 class YamlConfig:
     """يقرأ config.yaml من مجلد config/ في جذر المشروع."""
     _instance = None

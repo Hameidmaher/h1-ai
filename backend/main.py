@@ -1,4 +1,3 @@
-from pathlib import Path
 """H1-AI — Main FastAPI App (hardened).
 
 Fixes:
@@ -6,6 +5,7 @@ Fixes:
 - CORS validation in production
 - docs disabled in production
 """
+from pathlib import Path
 from contextlib import asynccontextmanager
 from pathlib import Path as _Path
 

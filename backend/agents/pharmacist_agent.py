@@ -1,4 +1,6 @@
 from typing import Annotated, TypedDict
+import threading
+import time
 from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
 from langgraph.graph.message import add_messages
@@ -110,8 +112,6 @@ def should_need_human(text: str, original_message: str = "") -> bool:
 # ═══════════════════════════════════════════════════════════
 # SIMPLE SYNC CACHE
 # ═══════════════════════════════════════════════════════════
-import threading
-import time
 
 class SimpleCache:
     """Cache بسيط بيعمل في sync mode"""
