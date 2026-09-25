@@ -308,26 +308,252 @@
 
   // ═══ Flags ═══
   async function renderFlags(content) {
-    content.innerHTML = `
-      <div class="table-container">
-        <div class="table-header">
-          <h2>🎛️ Feature Flags</h2>
+    try {
+      const data = await api('/v1/super/flags');
+      state.flags = data.flags;
+
+      content.innerHTML = `
+        <div class="table-container">
+          <div class="table-header">
+            <h2>🎛️ Feature Flags (${data.flags.length})</h2>
+            <div class="table-actions">
+              <button class="btn btn-primary" onclick="Super.openFlagModal()">➕ إضافة Flag</button>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Key</th>
+                <th>الاسم</th>
+                <th>الوصف</th>
+                <th>الحالة</th>
+                <th>Rollout %</th>
+                <th>إجراءات</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${data.flags.map(f => `
+                <tr>
+                  <td><code>${esc(f.key)}</code></td>
+                  <td><strong>${esc(f.name)}</strong></td>
+                  <td>${esc(f.description || '—')}</td>
+                  <td>
+                    <label class="toggle">
+                      <input type="checkbox" ${f.is_enabled ? 'checked' : ''}
+                             onchange="Super.toggleFlag('${f.key}', this.checked)">
+                      <span>${f.is_enabled ? '✅ مفعّل' : '❌ معطّل'}</span>
+                    </label>
+                  </td>
+                  <td>${f.rollout_percentage}%</td>
+                  <td>
+                    <button class="btn btn-ghost btn-sm" onclick="Super.editFlag('${f.key}')">✏️</button>
+                    <button class="btn btn-danger btn-sm" onclick="Super.deleteFlag('${f.key}')">🗑️</button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
         </div>
-        <div class="loading">قريباً...</div>
+      `;
+    } catch (e) {
+      content.innerHTML = `<div class="loading" style="color:#ef4444">❌ ${esc(e.message)}</div>`;
+    }
+  }
+
+  async function toggleFlag(key, enabled) {
+    try {
+      await api(`/v1/super/flags/${key}`, {
+        method: 'PUT',
+        body: JSON.stringify({ is_enabled: enabled }),
+      });
+      toast(`✅ ${key}: ${enabled ? 'مفعّل' : 'معطّل'}`, 'success');
+      navigate('flags');
+    } catch (e) {
+      toast('❌ ' + e.message, 'error');
+    }
+  }
+
+  function openFlagModal(flagKey = null) {
+    const f = flagKey ? state.flags.find(x => x.key === flagKey) : null;
+    const title = f ? '✏️ تعديل Flag' : '➕ إضافة Flag';
+
+    const body = `
+      ${!f ? `
+        <div class="form-group">
+          <label>Key</label>
+          <input id="flag-key" placeholder="مثال: new_feature" required>
+        </div>
+      ` : ''}
+      <div class="form-group">
+        <label>الاسم</label>
+        <input id="flag-name" value="${esc(f?.name || '')}" required>
+      </div>
+      <div class="form-group">
+        <label>الوصف</label>
+        <textarea id="flag-desc" rows="3">${esc(f?.description || '')}</textarea>
+      </div>
+      <div class="form-group">
+        <label>Rollout %</label>
+        <input id="flag-rollout" type="number" min="0" max="100" value="${f?.rollout_percentage || 0}">
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="flag-enabled" ${f?.is_enabled ? 'checked' : ''}>
+          مفعّل
+        </label>
       </div>
     `;
+
+    const footer = `
+      <button class="btn btn-ghost" onclick="Super.closeModal()">إلغاء</button>
+      <button class="btn btn-primary" onclick="Super.saveFlag('${flagKey || ''}')">حفظ</button>
+    `;
+
+    openModal(title, body, footer);
+  }
+
+  async function saveFlag(flagKey) {
+    const data = {
+      name: document.getElementById('flag-name').value.trim(),
+      description: document.getElementById('flag-desc').value.trim(),
+      rollout_percentage: parseInt(document.getElementById('flag-rollout').value) || 0,
+      is_enabled: document.getElementById('flag-enabled').checked,
+    };
+
+    try {
+      if (flagKey) {
+        await api(`/v1/super/flags/${flagKey}`, {
+          method: 'PUT',
+          body: JSON.stringify(data),
+        });
+        toast('✅ تم التحديث', 'success');
+      } else {
+        data.key = document.getElementById('flag-key').value.trim();
+        if (!data.key) {
+          toast('Key مطلوب', 'error');
+          return;
+        }
+        await api('/v1/super/flags', {
+          method: 'POST',
+          body: JSON.stringify(data),
+        });
+        toast('✅ تمت الإضافة', 'success');
+      }
+      closeModal();
+      navigate('flags');
+    } catch (e) {
+      toast('❌ ' + e.message, 'error');
+    }
+  }
+
+  async function deleteFlag(key) {
+    if (!confirm('حذف الـ flag؟')) return;
+    try {
+      await api(`/v1/super/flags/${key}`, { method: 'DELETE' });
+      toast('✅ تم الحذف', 'success');
+      navigate('flags');
+    } catch (e) {
+      toast('❌ ' + e.message, 'error');
+    }
   }
 
   // ═══ Logs ═══
   async function renderLogs(content) {
-    content.innerHTML = `
-      <div class="table-container">
-        <div class="table-header">
-          <h2>📜 السجلات</h2>
+    try {
+      const data = await api('/v1/super/logs?limit=100');
+
+      content.innerHTML = `
+        <div class="table-container">
+          <div class="table-header">
+            <h2>📜 السجلات (${data.total})</h2>
+            <div class="table-actions">
+              <input type="text" id="log-filter-username" placeholder="🔍 اسم المستخدم..."
+                     style="padding:0.4rem 0.8rem;border-radius:8px;border:1px solid #d1d5db"
+                     onkeypress="if(event.key==='Enter') Super.filterLogs()">
+              <button class="btn btn-primary" onclick="Super.filterLogs()">بحث</button>
+              <button class="btn btn-ghost" onclick="Super.navigate('logs')">مسح</button>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>المستخدم</th>
+                <th>الحدث</th>
+                <th>Entity</th>
+                <th>التفاصيل</th>
+                <th>IP</th>
+                <th>التاريخ</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${data.logs.map(l => `
+                <tr>
+                  <td>#${l.id}</td>
+                  <td>${esc(l.username)}</td>
+                  <td><span class="badge">${esc(l.action)}</span></td>
+                  <td>${esc(l.entity)}${l.entity_id ? ':' + esc(l.entity_id.slice(0, 8)) : ''}</td>
+                  <td>${esc((l.details || '').slice(0, 50))}</td>
+                  <td><code>${esc(l.ip_address)}</code></td>
+                  <td>${fmtDate(l.created_at)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
         </div>
-        <div class="loading">قريباً...</div>
-      </div>
-    `;
+      `;
+    } catch (e) {
+      content.innerHTML = `<div class="loading" style="color:#ef4444">❌ ${esc(e.message)}</div>`;
+    }
+  }
+
+  function filterLogs() {
+    const username = document.getElementById('log-filter-username')?.value.trim() || '';
+    const params = new URLSearchParams();
+    if (username) params.set('username', username);
+
+    const content = document.getElementById('page-content');
+    content.innerHTML = '<div class="loading">⏳ جاري التحميل...</div>';
+
+    api('/v1/super/logs?' + params.toString())
+      .then(data => {
+        content.innerHTML = `
+          <div class="table-container">
+            <div class="table-header">
+              <h2>📜 السجلات (${data.total})</h2>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>المستخدم</th>
+                  <th>الحدث</th>
+                  <th>Entity</th>
+                  <th>التفاصيل</th>
+                  <th>IP</th>
+                  <th>التاريخ</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${data.logs.map(l => `
+                  <tr>
+                    <td>#${l.id}</td>
+                    <td>${esc(l.username)}</td>
+                    <td><span class="badge">${esc(l.action)}</span></td>
+                    <td>${esc(l.entity)}</td>
+                    <td>${esc((l.details || '').slice(0, 50))}</td>
+                    <td><code>${esc(l.ip_address)}</code></td>
+                    <td>${fmtDate(l.created_at)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      })
+      .catch(e => {
+        content.innerHTML = `<div class="loading" style="color:#ef4444">❌ ${esc(e.message)}</div>`;
+      });
   }
 
   // ═══ Settings ═══
@@ -335,11 +561,55 @@
     content.innerHTML = `
       <div class="table-container">
         <div class="table-header">
-          <h2>⚙️ الإعدادات</h2>
+          <h2>⚙️ إعدادات المنصة</h2>
         </div>
-        <div class="loading">قريباً...</div>
+        <div style="padding:1.5rem">
+          <div class="form-group">
+            <label>اسم المنصة</label>
+            <input id="set-name" value="H1-AI" placeholder="H1-AI">
+          </div>
+          <div class="form-group">
+            <label>الوصف</label>
+            <textarea id="set-desc" rows="3" placeholder="Assistant Pharmacy">منصة إدارة الصيدليات الذكية</textarea>
+          </div>
+          <div class="form-group">
+            <label>البريد الإلكتروني للدعم</label>
+            <input id="set-email" type="email" placeholder="support@h1-ai.com">
+          </div>
+          <div class="form-group">
+            <label>الهاتف</label>
+            <input id="set-phone" placeholder="+20...">
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="checkbox" id="set-registration" checked>
+              السماح بالتسجيل الجديد
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="checkbox" id="set-maintenance">
+              وضع الصيانة (إيقاف مؤقت للمنصة)
+            </label>
+          </div>
+          <button class="btn btn-primary" onclick="Super.saveSettings()">💾 حفظ الإعدادات</button>
+        </div>
       </div>
     `;
+  }
+
+  async function saveSettings() {
+    const data = {
+      name: document.getElementById('set-name').value.trim(),
+      description: document.getElementById('set-desc').value.trim(),
+      email: document.getElementById('set-email').value.trim(),
+      phone: document.getElementById('set-phone').value.trim(),
+      registration_enabled: document.getElementById('set-registration').checked,
+      maintenance_mode: document.getElementById('set-maintenance').checked,
+    };
+
+    localStorage.setItem('h1ai_super_settings', JSON.stringify(data));
+    toast('✅ تم الحفظ (محلياً)', 'success');
   }
 
   // ═══ Pharmacy Modal ═══
@@ -641,6 +911,13 @@
     saveUser,
     editUser: openUserModal,
     deleteUser,
+    openFlagModal,
+    saveFlag,
+    editFlag: openFlagModal,
+    deleteFlag,
+    toggleFlag,
+    filterLogs,
+    saveSettings,
     closeModal,
   };
 

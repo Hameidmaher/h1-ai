@@ -2,7 +2,7 @@
 from uuid import uuid4
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from pydantic import BaseModel, Field
 from sqlalchemy import text
 
@@ -395,5 +395,156 @@ async def list_subscriptions(
         result = db.execute(text(q), params)
         subs = [dict(r._mapping) for r in result]
         return {"subscriptions": subs, "count": len(subs)}
+    finally:
+        db.close()
+
+
+# ═══════════════════════════════════════════════════════════
+#  FEATURE FLAGS
+# ═══════════════════════════════════════════════════════════
+@router.get("/flags")
+async def list_flags(user: User = Depends(require_super_admin)):
+    """List all feature flags."""
+    db = SessionLocal()
+    try:
+        result = db.execute(text("""
+            SELECT id::text, key, name, description, is_enabled,
+                   rollout_percentage, allowed_pharmacies, created_at, updated_at
+            FROM feature_flags
+            ORDER BY key
+        """))
+        return {"flags": [dict(r._mapping) for r in result]}
+    finally:
+        db.close()
+
+
+@router.put("/flags/{flag_key}")
+async def update_flag(
+    flag_key: str,
+    request: Request,
+    user: User = Depends(require_super_admin),
+):
+    """Update feature flag."""
+    data = await request.json()
+    db = SessionLocal()
+    try:
+        updates = {}
+        if "is_enabled" in data:
+            updates["is_enabled"] = bool(data["is_enabled"])
+        if "rollout_percentage" in data:
+            updates["rollout_percentage"] = int(data["rollout_percentage"])
+        if "name" in data:
+            updates["name"] = data["name"]
+        if "description" in data:
+            updates["description"] = data["description"]
+
+        if not updates:
+            return {"success": True}
+
+        set_clause = ", ".join(f"{k} = :{k}" for k in updates.keys())
+        updates["key"] = flag_key
+
+        db.execute(text(f"""
+            UPDATE feature_flags SET {set_clause}, updated_at = NOW()
+            WHERE key = :key
+        """), updates)
+        db.commit()
+        return {"success": True}
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(500, str(e)[:200])
+    finally:
+        db.close()
+
+
+@router.post("/flags")
+async def create_flag(
+    request: Request,
+    user: User = Depends(require_super_admin),
+):
+    """Create a new feature flag."""
+    data = await request.json()
+    db = SessionLocal()
+    try:
+        db.execute(text("""
+            INSERT INTO feature_flags (key, name, description, is_enabled, rollout_percentage)
+            VALUES (:key, :name, :description, :enabled, :rollout)
+        """), {
+            "key": data["key"],
+            "name": data.get("name", data["key"]),
+            "description": data.get("description", ""),
+            "enabled": bool(data.get("is_enabled", False)),
+            "rollout": int(data.get("rollout_percentage", 0)),
+        })
+        db.commit()
+        return {"success": True}
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(500, str(e)[:200])
+    finally:
+        db.close()
+
+
+@router.delete("/flags/{flag_key}")
+async def delete_flag(
+    flag_key: str,
+    user: User = Depends(require_super_admin),
+):
+    """Delete feature flag."""
+    db = SessionLocal()
+    try:
+        db.execute(text("DELETE FROM feature_flags WHERE key = :key"), {"key": flag_key})
+        db.commit()
+        return {"success": True}
+    finally:
+        db.close()
+
+
+# ═══════════════════════════════════════════════════════════
+#  AUDIT LOGS
+# ═══════════════════════════════════════════════════════════
+@router.get("/logs")
+async def list_logs(
+    action: Optional[str] = None,
+    username: Optional[str] = None,
+    limit: int = Query(100, ge=1, le=500),
+    offset: int = Query(0, ge=0),
+    user: User = Depends(require_super_admin),
+):
+    """List audit logs."""
+    db = SessionLocal()
+    try:
+        q = """
+            SELECT id, user_id, username, action, entity, entity_id,
+                   details, ip_address, user_agent, pharmacy_id, created_at
+            FROM audit_logs WHERE 1=1
+        """
+        params = {}
+        if action:
+            q += " AND action = :action"
+            params["action"] = action
+        if username:
+            q += " AND username ILIKE :username"
+            params["username"] = f"%{username}%"
+        q += " ORDER BY created_at DESC LIMIT :limit OFFSET :offset"
+        params["limit"] = limit
+        params["offset"] = offset
+
+        result = db.execute(text(q), params)
+        logs = [dict(r._mapping) for r in result]
+
+        # count
+        count_q = "SELECT COUNT(*) FROM audit_logs WHERE 1=1"
+        count_params = {}
+        if action:
+            count_q += " AND action = :action"
+            count_params["action"] = action
+        if username:
+            count_q += " AND username ILIKE :username"
+            count_params["username"] = f"%{username}%"
+
+        total = db.execute(text(count_q), count_params).scalar() or 0
+
+        return {"logs": logs, "count": len(logs), "total": total}
     finally:
         db.close()
