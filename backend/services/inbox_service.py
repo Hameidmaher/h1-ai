@@ -123,4 +123,30 @@ class InboxService:
             db.close()
 
 
+
+
+    def create_or_update_from_message(
+        self,
+        phone: str,
+        content: str,
+        direction: str = "inbound",
+        contact_name: str = "",
+        classification: str = "",
+        priority: str = "normal",
+    ) -> dict:
+        """إنشاء/تحديث محادثة من رسالة جديدة (يُستدعى من pipeline)."""
+        db = SessionLocal()
+        try:
+            repo = ConversationRepository(db)
+            conv = repo.get_or_create(phone, name=contact_name)
+            repo.update_last_message(
+                conv.id, content, direction,
+                classification=classification or None,
+                priority=priority or None,
+            )
+            return conv.to_dict()
+        finally:
+            db.close()
+
+
 inbox_service = InboxService()
