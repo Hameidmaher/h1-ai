@@ -25,9 +25,10 @@ class AgentResponse(BaseModel):
 class User(BaseModel):
     id: str
     username: str
-    role: Literal["customer", "pharmacist", "admin"]
+    role: Literal["customer", "pharmacist", "admin", "super_admin"]
     full_name: str = ""
     is_active: bool = True
+    pharmacy_id: Optional[str] = None  # ← NULL = Super Admin
 
 
 class LoginRequest(BaseModel):
