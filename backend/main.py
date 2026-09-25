@@ -89,6 +89,7 @@ from routers.admin.feature_flags import router as admin_feature_flags_router
 from routers.admin.notifications import router as admin_notifications_router
 from routers.admin.inbox import router as admin_inbox_router
 from routers.super_admin import router as super_admin_router
+from routers.pharmacy_admin import router as pharmacy_admin_router
 
 setup_logging()
 logger = structlog.get_logger()
@@ -180,6 +181,7 @@ app.include_router(admin_feature_flags_router)
 app.include_router(admin_notifications_router)
 app.include_router(admin_inbox_router)
 app.include_router(super_admin_router)
+app.include_router(pharmacy_admin_router)
 
 @app.exception_handler(RateLimitExceeded)
 async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
@@ -204,6 +206,12 @@ if _admin_static.exists():
     @app.get("/admin/dashboard")
     async def _admin_dashboard():
         return FileResponse(str(_admin_static / "index.html"))
+
+    @app.get("/pharmacy")
+    @app.get("/pharmacy/")
+    async def _pharmacy_admin_index():
+        """Pharmacy Admin panel — per-tenant management."""
+        return FileResponse(str(_admin_static / "pharmacy.html"))
 
     ALLOWED_SUPER_IPS = {
         "127.0.0.1", "::1",
