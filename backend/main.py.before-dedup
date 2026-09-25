@@ -1146,6 +1146,76 @@ async def pharmacy_full_update(
 # DATABASE EXPANSION ENDPOINTS
 # ═══════════════════════════════════════════════════════════
 # ═══════════════════════════════════════════════════════════
+# FEATURE FLAGS CRUD
+# ═══════════════════════════════════════════════════════════
+@app.put("/v1/admin/feature-flags/{flag_key}")
+async def update_feature_flag(flag_key: str, request: Request, user: User = Depends(require_admin)):
+    from sqlalchemy import text
+    
+    data = await request.json()
+    db = SessionLocal()
+    try:
+        db.execute(text("""
+            UPDATE feature_flags 
+            SET is_enabled = COALESCE(:enabled, is_enabled),
+                rollout_percentage = COALESCE(:rollout, rollout_percentage),
+                updated_at = NOW()
+            WHERE key = :key
+        """), {
+            "key": flag_key,
+            "enabled": data.get("is_enabled"),
+            "rollout": data.get("rollout_percentage"),
+        })
+        db.commit()
+        return {"success": True, "key": flag_key}
+    finally:
+        db.close()
+
+
+# ═══════════════════════════════════════════════════════════
+# ALERTS CRUD
+# ═══════════════════════════════════════════════════════════
+@app.post("/v1/admin/alerts/{alert_id}/resolve")
+async def resolve_alert(alert_id: str, user: User = Depends(require_admin)):
+    from sqlalchemy import text
+    
+    db = SessionLocal()
+    try:
+        db.execute(text("""
+            UPDATE alerts 
+            SET is_resolved = TRUE, resolved_at = NOW(), resolved_by = :uid
+            WHERE id = :id
+        """), {"id": alert_id, "uid": user.id})
+        db.commit()
+        return {"success": True}
+    finally:
+        db.close()
+
+
+@app.post("/v1/admin/alerts")
+async def create_alert(request: Request, user: User = Depends(require_admin)):
+    from sqlalchemy import text
+    
+    data = await request.json()
+    db = SessionLocal()
+    try:
+        aid = str(uuid4())
+        db.execute(text("""
+            INSERT INTO alerts (id, pharmacy_id, type, severity, title, message)
+            VALUES (:id, :pid, :type, :sev, :title, :msg)
+        """), {
+            "id": aid,
+            "pid": data.get("pharmacy_id"),
+            "type": data.get("type", "info"),
+            "sev": data.get("severity", "info"),
+            "title": data.get("title", ""),
+            "msg": data.get("message", ""),
+        })
+        db.commit()
+        return {"success": True, "id": aid}
+    finally:
+        db.close()
+
 
 # ═══════════════════════════════════════════════════════════
 # API KEYS CRUD
