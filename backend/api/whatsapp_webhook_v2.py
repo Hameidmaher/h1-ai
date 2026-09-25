@@ -201,8 +201,7 @@ async def list_assignments(limit: int = Query(50, ge=1, le=500)):
 # TEAM CRUD
 # ═══════════════════════════════════════════════════════
 
-from pydantic import BaseModel, Field
-from typing import Optional, List
+
 
 
 class TeamMemberCreate(BaseModel):
