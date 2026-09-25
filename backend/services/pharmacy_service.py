@@ -224,7 +224,7 @@ class PharmacyService:
         db = SessionLocal()
         try:
             # Get WhatsApp numbers first for disconnection
-            numbers = db.execute(text("""
+            db.execute(text("""
                 SELECT phone_number FROM whatsapp_numbers WHERE pharmacy_id = :pid
             """), {"pid": pharmacy_id}).fetchall()
             

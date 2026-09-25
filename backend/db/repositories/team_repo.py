@@ -37,7 +37,7 @@ class TeamRepository:
         """Find available team members matching criteria."""
         q = self.db.query(TeamMember).filter(
             TeamMember.is_active,
-            TeamMember.is_available == True,
+            TeamMember.is_available,
         )
         
         if role:
@@ -124,7 +124,7 @@ class TeamRepository:
         active = self.db.query(TeamMember).filter(TeamMember.is_active).count()
         available = self.db.query(TeamMember).filter(
             TeamMember.is_active,
-            TeamMember.is_available == True,
+            TeamMember.is_available,
         ).count()
         total_load = self.db.query(TeamMember).with_entities(
             __import__('sqlalchemy').func.sum(TeamMember.current_load)

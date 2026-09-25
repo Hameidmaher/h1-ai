@@ -205,7 +205,7 @@ class WhatsAppPipeline:
                 )
             
             # Save report to DB
-            report_db = report_repo.create(
+            report_repo.create(
                 id=report.id,
                 message_id=message_id,
                 type=report.type,
@@ -260,7 +260,7 @@ class WhatsAppPipeline:
             
             # ─── Step 7: Create assignment ───
             assignment_id = str(uuid4())
-            assignment = asgn_repo.create(
+            asgn_repo.create(
                 id=assignment_id,
                 report_id=report.id,
                 team_member_id=distribution.member_id,

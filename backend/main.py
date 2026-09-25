@@ -771,7 +771,7 @@ async def whatsapp_disconnect_session(
     phone = urllib.parse.unquote(phone)
     
     # Disconnect from WhatsApp service
-    result = await whatsapp_bridge.disconnect_session(phone)
+    await whatsapp_bridge.disconnect_session(phone)
     
     # Update DB
     from sqlalchemy import text
@@ -836,7 +836,7 @@ async def whatsapp_delete_completely(
     phone = urllib.parse.unquote(phone)
     
     # 1. Delete from WhatsApp service
-    delete_result = await whatsapp_bridge.delete_session(phone)
+    await whatsapp_bridge.delete_session(phone)
     
     # 2. Delete from DB
     from sqlalchemy import text
