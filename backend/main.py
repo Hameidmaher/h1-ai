@@ -88,6 +88,7 @@ from routers.admin.alerts import router as admin_alerts_router
 from routers.admin.feature_flags import router as admin_feature_flags_router
 from routers.admin.notifications import router as admin_notifications_router
 from routers.admin.inbox import router as admin_inbox_router
+from routers.super_admin import router as super_admin_router
 
 setup_logging()
 logger = structlog.get_logger()
@@ -178,6 +179,7 @@ app.include_router(admin_alerts_router)
 app.include_router(admin_feature_flags_router)
 app.include_router(admin_notifications_router)
 app.include_router(admin_inbox_router)
+app.include_router(super_admin_router)
 
 @app.exception_handler(RateLimitExceeded)
 async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
