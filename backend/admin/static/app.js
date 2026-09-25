@@ -326,6 +326,7 @@ const App = {
       case 'synonyms':    Pages.synonyms.render(content); break;
       case 'audit':       Pages.audit.render(content); break;
       case 'chat':        Pages.chat.render(content); break;
+      case 'inbox':       Pages.inbox.render(content); break;
       case 'pharmacies':  Pages.pharmacies.render(content); break;
       case 'whatsapp_sessions': Pages.whatsapp_sessions.render(content); break;
       case 'live_feed': Pages.live_feed.render(content); break;

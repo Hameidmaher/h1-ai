@@ -18,6 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/admin/static/css/design-system.css?v=1">
 <link rel="stylesheet" href="/admin/static/css/dashboard-improved.css?v=1">
+<link rel="stylesheet" href="/admin/static/css/inbox.css?v=1">
 </head>
 <body>
 <!-- Mobile Menu -->
@@ -105,6 +106,9 @@
       <a href="#chat" class="nav-item" data-page="chat">
         <span class="icon">💬</span> Chat تجريبي
       </a>
+      <a href="#inbox" class="nav-item" data-page="inbox">
+        <span class="icon">📬</span> صندوق الوارد
+      </a>
       <a href="#pharmacies" class="nav-item" data-page="pharmacies">
         <span class="icon">🏥</span> الصيدليات
       </a>
@@ -153,7 +157,18 @@
         <span id="user-name">admin</span>
       </div>
     </header>
-    <div id="content" class="content"></div>
+    <div id="page-inbox" class="page" style="display:none">
+  <div class="inbox-container">
+    <aside class="inbox-sidebar">
+      <div id="inbox-stats" class="inbox-stats"></div>
+      <div id="conv-list"></div>
+    </aside>
+    <main class="inbox-main" id="conv-main">
+      <div class="empty">اختر محادثة</div>
+    </main>
+  </div>
+</div>
+<div id="content" class="content"></div>
   </main>
 </div>
 
@@ -204,6 +219,7 @@ if ("serviceWorker" in navigator) {
   });
 }
 </script>
+<script src="/admin/static/pages/inbox.js"></script>
 </body>
 </html>
 <!-- (في <head>) -->
