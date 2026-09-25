@@ -117,3 +117,5 @@ android-sdk/
 
 # ─── Test results ───
 /tmp/*.txt
+main.py.*
+*.before-*
