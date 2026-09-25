@@ -100,8 +100,8 @@ async def get_current_user(
 
 
 async def require_pharmacist(user: User = Depends(get_current_user)) -> User:
-    """Require pharmacist or admin role."""
-    if user.role not in ("pharmacist", "admin"):
+    """Require pharmacist, admin, or super_admin role."""
+    if user.role not in ("pharmacist", "admin", "super_admin"):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="هذه العملية متاحة للصيادلة فقط",
@@ -110,11 +110,36 @@ async def require_pharmacist(user: User = Depends(get_current_user)) -> User:
 
 
 async def require_admin(user: User = Depends(get_current_user)) -> User:
-    """Require admin role."""
-    if user.role != "admin":
+    """Require admin or super_admin role."""
+    if user.role not in ("admin", "super_admin"):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="هذه العملية متاحة للمدير فقط",
+        )
+    return user
+
+
+async def require_super_admin(user: User = Depends(get_current_user)) -> User:
+    """Require super_admin role (platform-level access)."""
+    if user.role != "super_admin":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="هذه العملية متاحة للمدير العام فقط",
+        )
+    return user
+
+
+async def require_pharmacy_access(user: User = Depends(get_current_user)) -> User:
+    """Require a user belonging to a specific pharmacy (not super_admin)."""
+    if user.role == "super_admin":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Super Admin مش عنده صيدلية محددة",
+        )
+    if not user.pharmacy_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="المستخدم مش مربوط بصيدلية",
         )
     return user
 
