@@ -150,3 +150,13 @@ config/*.local.yaml
 # Config with secrets
 config/config.yaml
 config/*.local.yaml
+
+# ═══ Additional ═══
+*.bak
+*.bak.*
+*_backup_*
+_backup_*
+node_modules/
+backend/h1ai.db
+*.db
+*.db-journal
