@@ -27,6 +27,7 @@ def _get_user_from_db(user_id: str) -> Optional[UserInDB]:
             full_name=db_user.full_name or "",
             is_active=db_user.is_active,
             hashed_password=db_user.hashed_password,
+            pharmacy_id=db_user.pharmacy_id,
         )
     except Exception as e:
         logger.error("auth.db_error", error=str(e)[:200], user_id=user_id)
@@ -50,6 +51,7 @@ def _get_user_by_username(username: str) -> Optional[UserInDB]:
             full_name=db_user.full_name or "",
             is_active=db_user.is_active,
             hashed_password=db_user.hashed_password,
+            pharmacy_id=db_user.pharmacy_id,
         )
     except Exception as e:
         logger.error("auth.db_error", error=str(e)[:200], username=username)

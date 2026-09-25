@@ -23,8 +23,14 @@ router = APIRouter(prefix="/v1/auth", tags=["auth"])
 
 def _make_token_response(user_db: UserInDB) -> Token:
     return Token(
-        access_token=create_access_token(user_db.id, user_db.username, user_db.role),
-        refresh_token=create_refresh_token(user_db.id, user_db.username, user_db.role),
+        access_token=create_access_token(
+            user_db.id, user_db.username, user_db.role,
+            pharmacy_id=user_db.pharmacy_id,
+        ),
+        refresh_token=create_refresh_token(
+            user_db.id, user_db.username, user_db.role,
+            pharmacy_id=user_db.pharmacy_id,
+        ),
         expires_in=settings.jwt_access_token_expire_minutes * 60,
         user=User(**user_db.model_dump(exclude={"hashed_password"})),
     )

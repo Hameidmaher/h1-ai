@@ -19,8 +19,6 @@
 <link rel="stylesheet" href="/admin/static/css/design-system.css?v=1">
 <link rel="stylesheet" href="/admin/static/css/dashboard-improved.css?v=1">
 <link rel="stylesheet" href="/admin/static/css/inbox.css?v=1">
-<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init();</script>
 </head>
 <body>
 <!-- Mobile Menu -->
@@ -209,6 +207,7 @@
 <script src="/admin/static/pages/analytics.js"></script>
 <script src="/admin/static/pages/activity-log.js"></script>
 <script src="/admin/static/pages/dashboard-enhanced.js"></script>
+<script src="/admin/static/pages/inbox.js"></script>
   <script src="/admin/static/pages/tunnel.js"></script>
   <script>App.init();</script>
 <script>
@@ -221,7 +220,53 @@ if ("serviceWorker" in navigator) {
   });
 }
 </script>
-<script src="/admin/static/pages/inbox.js"></script>
+
+<!-- Debug Panel -->
+<div id="debug-panel" style="display:none;position:fixed;bottom:0;left:0;right:0;height:250px;background:#000;color:#0f0;font-family:monospace;font-size:11px;padding:10px;overflow:auto;z-index:99999;direction:ltr">
+  <button onclick="document.getElementById('debug-panel').style.display='none'" style="background:#f00;color:#fff;border:none;padding:5px 10px;cursor:pointer;margin-right:5px">Close</button>
+  <button onclick="document.getElementById('debug-content').innerHTML=''" style="background:#333;color:#fff;border:none;padding:5px 10px;cursor:pointer">Clear</button>
+  <pre id="debug-content" style="margin-top:10px;white-space:pre-wrap"></pre>
+</div>
+<button onclick="document.getElementById('debug-panel').style.display='block'" style="position:fixed;bottom:20px;right:20px;width:50px;height:50px;border-radius:50%;background:#000;color:#0f0;border:none;font-size:20px;z-index:99998;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.5)">🐞</button>
+<script>
+(function(){
+  var log = document.getElementById('debug-content');
+  if (!log) return;
+  var origLog = console.log;
+  var origErr = console.error;
+  var origFetch = window.fetch;
+  
+  function addLog(type, args) {
+    var msg = Array.from(args).map(function(a){
+      try { return typeof a === 'object' ? JSON.stringify(a).slice(0,200) : String(a); } catch(e) { return String(a); }
+    }).join(' ');
+    log.innerHTML += '[' + new Date().toLocaleTimeString() + '] [' + type + '] ' + msg + '\n';
+    log.scrollTop = log.scrollHeight;
+  }
+  
+  console.log = function() { addLog('LOG', arguments); origLog.apply(console, arguments); };
+  console.error = function() { addLog('ERR', arguments); origErr.apply(console, arguments); };
+  
+  window.fetch = function() {
+    var url = arguments[0];
+    addLog('FETCH', [url]);
+    return origFetch.apply(this, arguments).then(function(r){
+      addLog('RESP', [r.status + ' ' + url]);
+      return r;
+    }).catch(function(e){
+      addLog('FETCH-ERR', [url + ' — ' + e.message]);
+      throw e;
+    });
+  };
+  
+  window.addEventListener('error', function(e){
+    addLog('ERR', [e.message + ' @ ' + e.filename + ':' + e.lineno]);
+  });
+  
+  addLog('LOG', ['Debug panel ready']);
+})();
+</script>
+
 </body>
 </html>
 <!-- (في <head>) -->

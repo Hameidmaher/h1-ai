@@ -1,9 +1,9 @@
 """Auth models — Pydantic schemas."""
 from pydantic import BaseModel, Field
-from typing import Literal
+from typing import Literal, Optional
 
 
-Role = Literal["customer", "pharmacist", "admin"]
+Role = Literal["customer", "pharmacist", "admin", "super_admin"]
 
 
 class User(BaseModel):
@@ -13,6 +13,7 @@ class User(BaseModel):
     role: Role
     full_name: str = ""
     is_active: bool = True
+    pharmacy_id: Optional[str] = None  # ← NULL = Super Admin
 
 
 class UserInDB(User):
@@ -25,6 +26,7 @@ class TokenPayload(BaseModel):
     sub: str          # user_id
     username: str
     role: str
+    pharmacy_id: Optional[str] = None  # ← جديد
     exp: int
     iat: int | None = None
     type: Literal["access", "refresh"] = "access"

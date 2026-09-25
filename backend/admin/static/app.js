@@ -29,7 +29,9 @@ const App = {
         this.navigate(page);
         // Auto-close mobile menu
         if (window.innerWidth <= 768) {
-          this.toggleMobileMenu();
+          if (window.App && typeof window.App.toggleMobileMenu === 'function') {
+            window.App.toggleMobileMenu();
+          }
         }
       });
     });
@@ -326,7 +328,7 @@ const App = {
       case 'synonyms':    Pages.synonyms.render(content); break;
       case 'audit':       Pages.audit.render(content); break;
       case 'chat':        Pages.chat.render(content); break;
-      case 'inbox':       Pages.inbox.render(content); break;
+      case 'inbox':       Pages.inbox.render(); break;
       case 'pharmacies':  Pages.pharmacies.render(content); break;
       case 'whatsapp_sessions': Pages.whatsapp_sessions.render(content); break;
       case 'live_feed': Pages.live_feed.render(content); break;

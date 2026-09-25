@@ -27,6 +27,9 @@ class User(Base):
     hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     is_verified: Mapped[bool] = mapped_column(Boolean, default=False)
+    pharmacy_id: Mapped[str | None] = mapped_column(
+        String(36), nullable=True, index=True,
+    )
 
     def to_dict(self) -> dict:
         return {
@@ -38,4 +41,5 @@ class User(Base):
             "role": self.role,
             "is_active": self.is_active,
             "is_verified": self.is_verified,
+            "pharmacy_id": self.pharmacy_id,
         }

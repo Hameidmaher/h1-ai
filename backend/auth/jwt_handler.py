@@ -67,13 +67,19 @@ def _encode_token(payload: dict) -> str:
     )
 
 
-def create_access_token(user_id: str, username: str, role: str) -> str:
+def create_access_token(
+    user_id: str,
+    username: str,
+    role: str,
+    pharmacy_id: str | None = None,
+) -> str:
     now = datetime.now(timezone.utc)
     expire = now + timedelta(minutes=settings.jwt_access_token_expire_minutes)
     payload = {
         "sub": str(user_id),
         "username": username,
         "role": role,
+        "pharmacy_id": pharmacy_id,
         "iat": int(now.timestamp()),
         "exp": int(expire.timestamp()),
         "type": "access",
@@ -81,13 +87,19 @@ def create_access_token(user_id: str, username: str, role: str) -> str:
     return _encode_token(payload)
 
 
-def create_refresh_token(user_id: str, username: str, role: str) -> str:
+def create_refresh_token(
+    user_id: str,
+    username: str,
+    role: str,
+    pharmacy_id: str | None = None,
+) -> str:
     now = datetime.now(timezone.utc)
     expire = now + timedelta(days=settings.jwt_refresh_token_expire_days)
     payload = {
         "sub": str(user_id),
         "username": username,
         "role": role,
+        "pharmacy_id": pharmacy_id,
         "iat": int(now.timestamp()),
         "exp": int(expire.timestamp()),
         "type": "refresh",

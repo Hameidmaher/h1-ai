@@ -82,6 +82,7 @@
   //  Render
   // ═══════════════════════════════════════════════════════════
   function renderLayout(content) {
+    console.log('🏗️ [renderLayout] content:', content);
     content.innerHTML =
       '<div class="inbox-container">' +
         '<aside class="inbox-sidebar">' +
@@ -95,13 +96,21 @@
   }
 
   function renderConversations() {
+    console.log('🎨 [renderConversations] بدء الرسم...');
     const el = document.getElementById('conv-list');
-    if (!el) return;
+    console.log('🎨 [renderConversations] conv-list:', el);
+    if (!el) {
+      console.error('❌ [renderConversations] conv-list مش موجود!');
+      return;
+    }
 
     if (conversations.length === 0) {
+      console.log('🎨 [renderConversations] مفيش محادثات');
       el.innerHTML = '<div class="empty">لا يوجد محادثات</div>';
       return;
     }
+
+    console.log('🎨 [renderConversations] برسم', conversations.length, 'محادثة');
 
     el.innerHTML = conversations.map(c => {
       const isActive = c.id === activeConvId;
@@ -208,20 +217,38 @@
 
   async function loadData() {
     try {
+      console.log('🔄 [loadData] بدء التحميل...');
       const convs = await fetchConversations();
+      console.log('📦 [loadData] conversations:', convs.length, JSON.stringify(convs));
       const stats = await fetchStats();
+      console.log('📊 [loadData] stats:', JSON.stringify(stats));
       conversations = convs;
       renderConversations();
       renderStats(stats);
+      console.log('✅ [loadData] اكتمل');
     } catch (e) {
+      console.error('❌ [loadData] فشل:', e.message);
       console.error('load failed', e);
       const el = document.getElementById('conv-list');
       if (el) el.innerHTML = '<div class="error">فشل التحميل: ' + e.message + '</div>';
     }
   }
 
-  async function render(content) {
+  async function render() {
+    // احصل على #content بنفسك
+    const content = document.getElementById('content');
+    if (!content) {
+      console.error('❌ [render] #content مش موجود!');
+      return;
+    }
+    console.log('🚀 [render] بدء render inbox — content:', content);
     renderLayout(content);
+    console.log('🚀 [render] بعد renderLayout — length:', content.innerHTML.length);
+    
+    // انتظر حتى يتم الرندر في DOM
+    await new Promise(resolve => setTimeout(resolve, 50));
+    
+    console.log('🚀 [render] بعد الانتظار، conv-list:', document.getElementById('conv-list'));
     await loadData();
 
     // Auto refresh every 15s while page is visible
@@ -236,7 +263,8 @@
     }, 15000);
   }
 
-  // Export as Pages.inbox
-  window.Pages = window.Pages || {};
-  window.Pages.inbox = { render };
+  // ═══ Export as Pages.inbox ═══
+  // Pages معرّف في app.js كـ const — نستخدمه مباشرة
+  Pages.inbox = { render };
+  console.log('✅ [inbox.js] Pages.inbox registered');
 })();

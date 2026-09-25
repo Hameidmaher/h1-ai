@@ -34,10 +34,13 @@ class UserRepository:
         skip: int = 0,
         limit: int = 100,
         role: Optional[str] = None,
+        pharmacy_id: Optional[str] = None,
     ) -> List[User]:
         stmt = select(User).offset(skip).limit(limit)
         if role:
             stmt = stmt.where(User.role == role)
+        if pharmacy_id is not None:
+            stmt = stmt.where(User.pharmacy_id == pharmacy_id)
         return list(self.db.execute(stmt).scalars().all())
 
     def create(
@@ -48,6 +51,7 @@ class UserRepository:
         full_name: str = "",
         email: Optional[str] = None,
         phone: Optional[str] = None,
+        pharmacy_id: Optional[str] = None,
     ) -> User:
         user = User(
             id=str(uuid4()),
@@ -57,6 +61,7 @@ class UserRepository:
             full_name=full_name,
             email=email,
             phone=phone,
+            pharmacy_id=pharmacy_id,
         )
         self.db.add(user)
         self.db.commit()
