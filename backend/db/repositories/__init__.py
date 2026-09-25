@@ -8,6 +8,7 @@ from db.repositories.team_repo import TeamRepository
 from db.repositories.message_repo import MessageRepository
 from db.repositories.report_repo import ReportRepository
 from db.repositories.assignment_repo import AssignmentRepository
+from db.repositories.conversation_repo import ConversationRepository
 
 
 __all__ = [
@@ -18,4 +19,5 @@ __all__ = [
     "MessageRepository",
     "ReportRepository",
     "AssignmentRepository",
+    "ConversationRepository",
 ]

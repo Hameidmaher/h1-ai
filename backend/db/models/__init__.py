@@ -10,6 +10,7 @@ from db.models.team import TeamMember
 from db.models.message import Message
 from db.models.report import Report
 from db.models.assignment import Assignment
+from db.models.conversation import Conversation
 
 
 __all__ = [
@@ -22,4 +23,5 @@ __all__ = [
     "Message",
     "Report",
     "Assignment",
+    "Conversation",
 ]
