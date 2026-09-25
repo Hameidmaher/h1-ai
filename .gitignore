@@ -8,6 +8,9 @@
 !.env.example
 *.key
 *.pem
+*.jks
+*.keystore
+keystore/
 credentials.json
 credentials.yml
 
@@ -17,6 +20,10 @@ whatsapp-bridge/.wwebjs_cache/
 whatsapp-bridge/sessions/
 whatsapp-bridge/*.session
 whatsapp-bridge/.wwebjs_auth/
+whatsapp/sessions/
+whatsapp-service/sessions/
+whatsapp-service/auth_info/
+sessions/
 
 # ─── Backups ───
 backups/
@@ -24,6 +31,16 @@ backups/
 *.sql.gz
 *.dump
 *.backup
+*.bak
+*.bak.*
+*.broken.*
+*_backup_*
+_backup_*
+pwa_backup_*/
+whatsapp_backup_*/
+archived-projects/
+mobile-backup-*/
+.git.backup-*
 
 # ─── Python ───
 __pycache__/
@@ -53,9 +70,6 @@ yarn-error.log*
 *.swp
 *.swo
 *~
-*.bak
-*.backup.*
-*.backup
 
 # ─── Logs ───
 *.log
@@ -65,11 +79,20 @@ logs/
 .DS_Store
 Thumbs.db
 
-# ─── Build artifacts ───
+# ─── Mobile (Flutter) ───
 mobile/build/
 mobile/.dart_tool/
 mobile/.flutter-plugins
 mobile/.flutter-plugins-dependencies
+mobile/android/.gradle/
+mobile/ios/Pods/
+mobile/.env
+mobile-backup-*/
+*.apk
+*.symbols
+*.map.json
+
+# ─── Frontend ───
 frontend/dist/
 frontend/build/
 
@@ -77,86 +100,20 @@ frontend/build/
 .chromium/
 *.crx
 
-# whatsapp packages (large node_modules)
-whatsapp/
-whatsapp-bridge/
-whatsapp-service/node_modules/
-whatsapp-service/sessions/
-whatsapp-service/auth_info/
-
-# Backup files
-*.bak
-*.bak.*
-*.backup
-*.backup.*
-*.broken.*
-pwa_backup_*/
-_backup_*/
-whatsapp_backup_*/
-archived-projects/
-
-# Database files
+# ─── Database ───
 *.db
+*.db-journal
 h1ai.db
 *.sqlite
-backend/.env
-*.apk
-build/
-mobile-backup-*/
+*.sqlite3
 
-# ═══ H1-AI Additional ═══
-# Flutter builds
-mobile/build/
-mobile/.dart_tool/
-mobile/.flutter-plugins*
-mobile/android/.gradle/
-mobile/ios/Pods/
-mobile/.env
+# ─── Config with secrets ───
+config/config.yaml
+config/*.local.yaml
 
-# Backups (قديمة)
-mobile-backup-*/
-.git.backup-*/
-
-# Android SDK
+# ─── Android SDK ───
 android-sdk/
 .gradle/
 
-# Python cache
-.venv/
-venv/
-env/
-__pycache__/
-*.pyc
-
-# Logs
-*.log
-
-# APKs (كبيرة)
-*.apk
-
-# Test results
+# ─── Test results ───
 /tmp/*.txt
-
-keystore/
-*.jks
-*.keystore
-keystore/
-.git.backup-*
-
-# Config with secrets
-config/config.yaml
-config/*.local.yaml
-
-# Config with secrets
-config/config.yaml
-config/*.local.yaml
-
-# ═══ Additional ═══
-*.bak
-*.bak.*
-*_backup_*
-_backup_*
-node_modules/
-backend/h1ai.db
-*.db
-*.db-journal
