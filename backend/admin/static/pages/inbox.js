@@ -11,7 +11,8 @@
   let refreshTimer = null;
 
   function getToken() {
-    return localStorage.getItem('token') || '';
+    // نفس اسم token المستخدم في app.js
+    return localStorage.getItem('h1ai_admin_token') || '';
   }
 
   function headers() {
