@@ -205,6 +205,35 @@ if _admin_static.exists():
     async def _admin_dashboard():
         return FileResponse(str(_admin_static / "index.html"))
 
+    ALLOWED_SUPER_IPS = {
+        "127.0.0.1", "::1",
+        "192.168.1.17", "192.168.1.24",
+        "100.94.32.49",
+    }
+
+    @app.get("/super")
+    @app.get("/super/")
+    async def _super_admin_index(request: Request):
+        """Super Admin panel — restricted by IP."""
+        client_ip = request.client.host if request.client else None
+        if client_ip not in ALLOWED_SUPER_IPS:
+            logger.warning("super.access_denied", ip=client_ip)
+            raise HTTPException(404, "Not Found")
+        return FileResponse(str(_admin_static / "super.html"))
+
+    @app.get("/api/super/config")
+    async def _super_config(request: Request):
+        """Super Admin config — restricted by IP."""
+        client_ip = request.client.host if request.client else None
+        if client_ip not in ALLOWED_SUPER_IPS:
+            raise HTTPException(404, "Not Found")
+
+        # بيانات ثابتة للدخول التلقائي
+        return {
+            "auto_login": True,
+            "username": "abdelhameidmaher",
+        }
+
 
 
 

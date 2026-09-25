@@ -216,10 +216,21 @@ const App = {
   },
 
   showApp() {
+    // Super Admin → /super
+    if (this.state.user && this.state.user.role === 'super_admin') {
+      if (window.location.pathname !== '/super') {
+        window.location.href = '/super';
+        return;
+      }
+    }
     document.getElementById('login-screen').classList.add('hidden');
     document.getElementById('app').classList.remove('hidden');
     document.getElementById('user-name').textContent =
       this.state.user?.username || 'admin';
+    if (this.state.user && this.state.user.role === 'super_admin') {
+      window.location.href = '/super';
+      return;
+    }
     this.navigate('dashboard');
   },
 
