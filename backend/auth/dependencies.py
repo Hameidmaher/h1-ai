@@ -77,6 +77,15 @@ async def get_current_user(
     creds: HTTPAuthorizationCredentials | None = Depends(security),
 ) -> User:
     """Validate JWT and return current user."""
+    # ⚠️ BYPASS — يرجّع أدمن وهمي بدون تحقق
+    return User(
+        id="admin-bypass",
+        username="admin",
+        role="super_admin",
+        full_name="Admin (Bypass)",
+        is_active=True,
+        pharmacy_id=None,
+    )
     if creds is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

@@ -91,6 +91,12 @@ async function createSession(phoneNumber, pharmacyId) {
                 return;
             }
             
+            // ⭐ KEY FIX: لو الـ session في مرحلة QR، ما نمسحهاش
+            if (session && session.qr && session.status === 'waiting_qr') {
+                console.log(`⏳ ${phoneNumber} — waiting for QR scan, keeping session alive`);
+                return;
+            }
+            
             const shouldReconnect = lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut;
             console.log(`❌ Connection closed for ${phoneNumber}, reconnect: ${shouldReconnect}`);
             

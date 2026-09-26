@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H1-AI — مساعدك الصيدلي الذكي</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',system-ui,sans-serif}
+:root{--primary:#00d4aa;--primary-dark:#00a888;--primary-light:#5ff7d0;--danger:#ef4444;--bg-1:#0a0e1a;--text:#f8fafc;--text-muted:#94a3b8;--border:rgba(255,255,255,.08)}
+html,body{min-height:100%;overflow-x:hidden}
+body{background:var(--bg-1);color:var(--text);position:relative;display:flex}
+.bg-canvas{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at top left,#0f2027,#0a0e1a 60%)}
+.bg-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;animation:float 20s ease-in-out infinite}
+.bg-blob.b1{width:500px;height:500px;background:#00d4aa;top:-150px;right:-100px}
+.bg-blob.b2{width:600px;height:600px;background:#6366f1;bottom:-200px;left:-200px;animation-delay:-7s}
+.bg-blob.b3{width:400px;height:400px;background:#ec4899;top:40%;left:40%;animation-delay:-14s;opacity:.2}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,-80px) scale(1.1)}66%{transform:translate(-40px,60px) scale(.9)}}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%)}
+.container{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;width:100%;min-height:100vh}
+@media(max-width:900px){.container{grid-template-columns:1fr}.illustration-side{display:none!important}}
+.illustration-side{display:flex;align-items:center;justify-content:center;padding:60px;position:relative;overflow:hidden}
+.illustration-side::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,170,.08),transparent 60%)}
+.illustration-wrap{position:relative;z-index:2;max-width:520px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.3);color:var(--primary-light);font-size:13px;font-weight:600;margin-bottom:24px;animation:slideUp .6s ease;backdrop-filter:blur(10px)}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--primary);box-shadow:0 0 12px var(--primary);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-title{font-size:clamp(36px, 5vw, 56px);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:20px;animation:slideUp .6s ease .1s both;background:linear-gradient(135deg,#f8fafc 0%,#00d4aa 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-title .accent{-webkit-text-fill-color:var(--primary)}
+.hero-desc{font-size:16px;line-height:1.7;color:var(--text-muted);margin-bottom:40px;animation:slideUp .6s ease .2s both;max-width:440px}
+.hero-features{display:flex;flex-direction:column;gap:16px;animation:slideUp .6s ease .3s both}
+.feature-item{display:flex;gap:14px;align-items:flex-start}
+.feature-icon{width:40px;height:40px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)}
+.feature-text h4{font-size:15px;font-weight:700;margin-bottom:2px}
+.feature-text p{font-size:13px;color:var(--text-muted)}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.form-side{display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.form-card{width:100%;max-width:420px;background:rgba(17,24,39,.7);backdrop-filter:blur(30px) saturate(180%);border:1px solid var(--border);border-radius:24px;padding:40px;box-shadow:0 25px 60px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05);animation:slideUp .6s ease .2s both;position:relative;overflow:hidden}
+.form-card::before{content:'';position:absolute;top:0;right:0;left:0;height:1px;background:linear-gradient(90deg,transparent,var(--primary),transparent);opacity:.5}
+.form-logo{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,212,170,.3)}
+.form-title{font-size:26px;font-weight:800;margin-bottom:8px;letter-spacing:-.5px}
+.form-subtitle{font-size:14px;color:var(--text-muted);margin-bottom:28px}
+.input-group{margin-bottom:18px;position:relative}
+.input-label{display:block;font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:8px;letter-spacing:.3px}
+.input-wrap{position:relative}
+.input-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--text-muted);transition:.2s;pointer-events:none}
+.toggle-pw{position:absolute;left:16px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;color:var(--text-muted);transition:.2s;user-select:none;z-index:2;background:none;border:none;padding:4px}
+.toggle-pw:hover{color:var(--primary)}
+.input-field{width:100%;padding:14px 46px 14px 46px;background:rgba(10,14,26,.6);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:15px;font-family:inherit;transition:.25s;outline:none}
+.input-field::placeholder{color:var(--text-muted);opacity:.6}
+.input-field:hover{border-color:rgba(0,212,170,.3)}
+.input-field:focus{border-color:var(--primary);background:rgba(0,212,170,.03);box-shadow:0 0 0 4px rgba(0,212,170,.1)}
+.input-wrap:focus-within .input-icon{color:var(--primary)}
+.form-actions{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;font-size:13px}
+.remember-me{display:flex;align-items:center;gap:8px;color:var(--text-muted);cursor:pointer}
+.remember-me input{accent-color:var(--primary);width:16px;height:16px;cursor:pointer}
+.forgot-link{color:var(--primary-light);text-decoration:none;font-weight:600;transition:.2s}
+.forgot-link:hover{color:var(--primary)}
+.btn{width:100%;padding:15px;border:none;border-radius:12px;font-size:15px;font-weight:700;font-family:inherit;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#001f18;cursor:pointer;transition:.25s;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:.5s}
+.btn:hover:not(:disabled)::before{left:100%}
+.btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,212,170,.35)}
+.btn:active:not(:disabled){transform:translateY(0)}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.err{color:var(--danger);font-size:13px;text-align:center;padding:10px;margin:8px 0;border-radius:8px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);min-height:0;display:none;animation:shake .4s}
+.err.show{display:block}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.form-footer{text-align:center;margin-top:24px;padding-top:24px;border-top:1px solid var(--border);font-size:14px;color:var(--text-muted)}
+.form-footer a{color:var(--primary);text-decoration:none;font-weight:700;transition:.2s}
+.form-footer a:hover{color:var(--primary-light)}
+.spinner{width:16px;height:16px;border:2px solid rgba(0,0,0,.2);border-top-color:#001f18;border-radius:50%;animation:spin .8s linear infinite;display:none}
+.btn.loading .spinner{display:inline-block}
+.btn.loading .btn-text{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.redirect-overlay{position:fixed;inset:0;background:var(--bg-1);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:var(--primary);font-size:1.2rem;font-weight:600}
+
+/* 🌟 إضافة: دعم تقليل الحركة لإمكانية الوصول (a11y) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+<link rel="stylesheet" href="/static/design-system/tokens.css">
+<link rel="stylesheet" href="/static/design-system/animations.css">
+<link rel="stylesheet" href="/static/design-system/background.css">
+<link rel="stylesheet" href="/static/design-system/components.css">
+<link rel="stylesheet" href="/static/design-system/layouts.css">
+</head>
+<body>
+<div class="bg-canvas"><div class="bg-blob b1"></div><div class="bg-blob b2"></div><div class="bg-blob b3"></div><div class="bg-grid"></div></div>
+
+<div class="container">
+  <div class="illustration-side">
+    <div class="illustration-wrap">
+      <div class="hero-badge"><span class="dot"></span>مساعد صيدلي ذكي بالذكاء الاصطناعي</div>
+      <h1 class="hero-title">صحتك بين<br><span class="accent">إيدين أمينة</span></h1>
+      <p class="hero-desc">مساعدك الذكي للاستشارات الدوائية والصحية. اسأل عن أي دواء، ابحث عن بدائل، أو احصل على نصيحة فورية.</p>
+      <div class="hero-features">
+        <div class="feature-item"><div class="feature-icon">💊</div><div class="feature-text"><h4>معلومات أدوية شاملة</h4><p>أسعار، بدائل، جرعات، وتداخلات دوائية</p></div></div>
+        <div class="feature-item"><div class="feature-icon">⚡</div><div class="feature-text"><h4>ردود فورية</h4><p>استشارات ذكية في أقل من ثانية</p></div></div>
+        <div class="feature-item"><div class="feature-icon">🔒</div><div class="feature-text"><h4>خصوصية كاملة</h4><p>بياناتك محمية ومشفرة بالكامل</p></div></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-side">
+    <div class="form-card">
+      <div class="form-logo">🏥</div>
+      <h2 class="form-title">أهلاً بيك تاني 👋</h2>
+      <p class="form-subtitle">سجّل دخولك وكمّل رحلتك مع H1-AI</p>
+      
+      <form id="loginForm" novalidate>
+        <div class="input-group">
+          <label class="input-label" for="username">البريد الإلكتروني أو اسم المستخدم</label>
+          <div class="input-wrap">
+            <input type="text" id="username" class="input-field" placeholder="اكتب هنا..." required autocomplete="username" aria-label="اسم المستخدم أو البريد الإلكتروني" autofocus>
+            <span class="input-icon">👤</span>
+          </div>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="password">كلمة المرور</label>
+          <div class="input-wrap">
+            <input type="password" id="password" class="input-field" placeholder="••••••••" required autocomplete="current-password" minlength="6" aria-label="كلمة المرور">
+            <span class="input-icon">🔒</span>
+            <button type="button" class="toggle-pw" onclick="togglePassword('password', this)" aria-label="إظهار أو إخفاء كلمة المرور" title="إظهار/إخفاء">👁️</button>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <label class="remember-me">
+            <input type="checkbox" id="remember">
+            تذكرني
+          </label>
+          <!-- 🌟 إضافة: رابط وهمي آمن لـ Forgot Password -->
+          <a href="#" onclick="event.preventDefault(); showErr('⚠️ ميزة استعادة كلمة المرور قيد التطوير. تواصل مع الدعم.');" class="forgot-link">نسيت كلمة المرور؟</a>
+        </div>
+
+        <div class="err" id="err" role="alert"></div>
+        
+        <button type="submit" class="btn" id="submitBtn">
+          <span class="spinner"></span>
+          <span class="btn-text">دخول</span>
+        </button>
+      </form>
+      
+      <div class="form-footer">معندكش حساب؟ <a href="/register">سجّل دلوقتي</a></div>
+    </div>
+  </div>
+</div>
+
+<script defer>
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function togglePassword(inputId, btn) {
+  const input = document.getElementById(inputId);
+  if (input.type === 'password') { input.type = 'text'; btn.textContent = '🙈'; } 
+  else { input.type = 'password'; btn.textContent = '👁️'; }
+}
+
+if (localStorage.getItem('h1ai_user_token')) {
+  document.body.innerHTML = '<div class="redirect-overlay"><div class="spinner" style="display:inline-block;border-color:rgba(0,212,170,.2);border-top-color:#00d4aa;width:32px;height:32px"></div>جاري التحويل...</div>';
+  window.location.href = '/app';
+}
+
+const form = document.getElementById('loginForm');
+const err = document.getElementById('err');
+const btn = document.getElementById('submitBtn');
+
+function showErr(msg) { 
+  err.innerHTML = escapeHtml(msg); 
+  err.classList.add('show'); 
+  setTimeout(() => err.classList.remove('show'), 5000); 
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault(); 
+  err.classList.remove('show'); 
+  
+  // 🌟 إضافة: Rate Limiting مقاوم لإعادة التحميل (localStorage)
+  const now = Date.now();
+  const lockoutEnd = parseInt(localStorage.getItem('h1ai_lockout_end') || '0');
+  
+  if (now < lockoutEnd) {
+    const remaining = Math.ceil((lockoutEnd - now) / 1000);
+    showErr(`⚠️ تم قفل المحاولات مؤقتاً. انتظر ${remaining} ثانية.`);
+    btn.disabled = true;
+    btn.querySelector('.btn-text').textContent = `محظور (${remaining}ث)`;
+    return;
+  }
+
+  let attempts = parseInt(localStorage.getItem('h1ai_attempts') || '0');
+  if (attempts >= 5) {
+    localStorage.setItem('h1ai_lockout_end', now + 30000); // 30 seconds
+    showErr('⚠️ عدد محاولات الدخول تجاوز الحد المسموح. تم القفل لمدة 30 ثانية.');
+    btn.disabled = true;
+    btn.querySelector('.btn-text').textContent = 'محظور مؤقتاً';
+    setTimeout(() => {
+      localStorage.removeItem('h1ai_attempts');
+      localStorage.removeItem('h1ai_lockout_end');
+      btn.disabled = false;
+      btn.querySelector('.btn-text').textContent = 'دخول';
+    }, 30000);
+    return;
+  }
+
+  btn.classList.add('loading'); 
+  btn.disabled = true;
+  
+  try {
+    const r = await fetch('/v1/auth/login', { 
+      method: 'POST', 
+      headers: { 'Content-Type': 'application/json' }, 
+      body: JSON.stringify({ 
+        username: document.getElementById('username').value.trim(), 
+        password: document.getElementById('password').value 
+      }) 
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'بيانات الدخول غير صحيحة');
+    
+    // Reset attempts on success
+    localStorage.removeItem('h1ai_attempts');
+    localStorage.removeItem('h1ai_lockout_end');
+    
+    localStorage.setItem('h1ai_user_token', d.access_token);
+    localStorage.setItem('h1ai_user', JSON.stringify(d.user));
+    window.location.href = '/app';
+  } catch(ex) {
+    attempts++;
+    localStorage.setItem('h1ai_attempts', attempts);
+    showErr('❌ ' + ex.message); 
+    btn.classList.remove('loading'); 
+    btn.disabled = false; 
+  }
+});
+</script>
+<script src="/static/design-system/ds.js"></script>
+</body>
+</html>

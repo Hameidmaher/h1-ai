@@ -1225,3 +1225,196 @@ document.addEventListener('DOMContentLoaded', () => {
     if (b) b.style.display = 'none';
   });
 });
+
+/* ═══ Admin Chat ═══ */
+CC.adminChatOpen = false;
+
+CC.toggleAdminChat = function() {
+  const panel = document.getElementById('cc-chat-panel');
+  if (!panel) return;
+  CC.adminChatOpen = !CC.adminChatOpen;
+  panel.classList.toggle('open', CC.adminChatOpen);
+  if (CC.adminChatOpen) {
+    setTimeout(() => document.getElementById('cc-chat-input')?.focus(), 300);
+  }
+};
+
+CC.addAdminMessage = function(role, text) {
+  const container = document.getElementById('cc-chat-messages');
+  if (!container) return;
+  document.querySelector('.cc-chat-welcome')?.remove();
+  const el = document.createElement('div');
+  el.className = `cc-chat-msg ${role}`;
+  el.innerHTML = `
+    <div class="cc-chat-msg-avatar">${role === 'user' ? '👑' : '🤖'}</div>
+    <div class="cc-chat-msg-content">${(text || '').replace(/</g, '&lt;')}</div>
+  `;
+  container.appendChild(el);
+  container.scrollTop = container.scrollHeight;
+};
+
+CC.addAdminTyping = function() {
+  const container = document.getElementById('cc-chat-messages');
+  const el = document.createElement('div');
+  el.id = 'cc-chat-typing';
+  el.className = 'cc-chat-msg bot';
+  el.innerHTML = `
+    <div class="cc-chat-msg-avatar">🤖</div>
+    <div class="cc-chat-msg-content">
+      <div class="cc-chat-typing"><span></span><span></span><span></span></div>
+    </div>
+  `;
+  container.appendChild(el);
+  container.scrollTop = container.scrollHeight;
+};
+
+CC.removeAdminTyping = function() {
+  document.getElementById('cc-chat-typing')?.remove();
+};
+
+CC.sendAdminSuggestion = function(text) {
+  const input = document.getElementById('cc-chat-input');
+  if (!input) return;
+  input.value = text;
+  CC.sendAdminMessage(new Event('submit'));
+};
+
+CC.sendAdminMessage = async function(e) {
+  if (e) e.preventDefault();
+  const input = document.getElementById('cc-chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const token = localStorage.getItem('h1ai_admin_token') || localStorage.getItem('h1ai_user_token');
+
+  input.value = '';
+  CC.addAdminMessage('user', msg);
+  CC.addAdminTyping();
+
+  try {
+    const r = await fetch('/v1/admin/chat/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token || ''}`
+      },
+      body: JSON.stringify({ message: msg })
+    });
+    CC.removeAdminTyping();
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'فشل');
+    CC.addAdminMessage('bot', d.reply || '—');
+  } catch(ex) {
+    CC.removeAdminTyping();
+    CC.addAdminMessage('bot', '❌ ' + ex.message);
+  }
+};
+
+/* ═══════════════════════════════════════════════════════════════
+   Admin Chat — FAB + Drawer
+   ═══════════════════════════════════════════════════════════════ */
+
+CC.adminChatOpen = false;
+
+CC.toggleAdminChat = function() {
+  const drawer = document.getElementById('cc-chat-drawer');
+  if (!drawer) return;
+  CC.adminChatOpen = !CC.adminChatOpen;
+  drawer.classList.toggle('open', CC.adminChatOpen);
+  if (CC.adminChatOpen) {
+    setTimeout(() => document.getElementById('cc-chat-input-field')?.focus(), 350);
+  }
+};
+
+CC.addAdminMsg = function(role, text) {
+  const body = document.getElementById('cc-chat-body');
+  if (!body) return;
+  document.getElementById('cc-chat-intro')?.remove();
+  const el = document.createElement('div');
+  el.className = `cc-msg ${role}`;
+  const avatar = role === 'user' ? '👑' : '🤖';
+
+  // تنسيق بسيط للنص
+  let formatted = (text || '').replace(/</g, '&lt;');
+  formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  formatted = formatted.replace(/```([^`]+)```/g, '<code>$1</code>');
+
+  el.innerHTML = `
+    <div class="cc-msg-avatar">${avatar}</div>
+    <div class="cc-msg-content">${formatted}</div>
+  `;
+  body.appendChild(el);
+  body.scrollTop = body.scrollHeight;
+};
+
+CC.addAdminTyping = function() {
+  const body = document.getElementById('cc-chat-body');
+  if (!body) return;
+  const el = document.createElement('div');
+  el.id = 'cc-admin-typing';
+  el.className = 'cc-msg bot';
+  el.innerHTML = `
+    <div class="cc-msg-avatar">🤖</div>
+    <div class="cc-msg-content">
+      <div class="cc-typing"><span></span><span></span><span></span></div>
+    </div>
+  `;
+  body.appendChild(el);
+  body.scrollTop = body.scrollHeight;
+};
+
+CC.removeAdminTyping = function() {
+  document.getElementById('cc-admin-typing')?.remove();
+};
+
+CC.sendAdminQuick = function(text) {
+  const input = document.getElementById('cc-chat-input-field');
+  if (!input) return;
+  input.value = text;
+  CC.sendAdminMessage(new Event('submit'));
+};
+
+CC.sendAdminMessage = async function(e) {
+  if (e) e.preventDefault();
+  const input = document.getElementById('cc-chat-input-field');
+  const btn = document.getElementById('cc-chat-submit');
+  if (!input) return;
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  // جلب التوكن (admin أو user)
+  const token = localStorage.getItem('h1ai_admin_token') || localStorage.getItem('h1ai_user_token') || '';
+
+  input.value = '';
+  if (btn) btn.disabled = true;
+
+  CC.addAdminMsg('user', msg);
+  CC.addAdminTyping();
+
+  try {
+    const r = await fetch('/v1/chat/admin/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({ message: msg }),
+    });
+    CC.removeAdminTyping();
+
+    if (r.status === 401 || r.status === 403) {
+      CC.addAdminMsg('bot', '⚠️ محتاج تسجل دخول كـ Super Admin');
+      return;
+    }
+
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || `HTTP ${r.status}`);
+    CC.addAdminMsg('bot', d.reply || '—');
+  } catch(ex) {
+    CC.removeAdminTyping();
+    CC.addAdminMsg('bot', '❌ ' + ex.message);
+  }
+
+  if (btn) btn.disabled = false;
+  input.focus();
+};

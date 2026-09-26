@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ربط WhatsApp — H1-AI</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/design-system/tokens.css">
+<link rel="stylesheet" href="/static/design-system/animations.css">
+<link rel="stylesheet" href="/static/design-system/background.css">
+<link rel="stylesheet" href="/static/design-system/components.css">
+<style>
+body{background:var(--h1-bg);color:var(--h1-text);min-height:100vh;position:relative}
+.container{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.card{background:rgba(17,24,39,.7);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:48px;max-width:560px;width:100%;box-shadow:0 25px 60px rgba(0,0,0,.4);position:relative;overflow:hidden;animation:slideUp .6s ease}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#25D366,transparent);opacity:.5}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.logo{width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 24px;box-shadow:0 10px 30px rgba(37,211,102,.3)}
+h1{font-size:28px;font-weight:800;text-align:center;margin-bottom:8px}
+.subtitle{text-align:center;color:#94a3b8;font-size:14px;margin-bottom:32px}
+.status-badge{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;margin:0 auto 24px;width:fit-content}
+.status-badge.waiting{background:rgba(251,191,36,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.3)}
+.status-badge.connected{background:rgba(74,222,128,.15);color:#4ade80;border:1px solid rgba(74,222,128,.3)}
+.status-badge.error{background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.3)}
+.status-dot{width:8px;height:8px;border-radius:50%;animation:pulse 2s infinite}
+.status-badge.waiting .status-dot{background:#fbbf24;box-shadow:0 0 12px #fbbf24}
+.status-badge.connected .status-dot{background:#4ade80;box-shadow:0 0 12px #4ade80}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.qr-wrap{background:#fff;padding:20px;border-radius:20px;width:280px;height:280px;margin:0 auto 24px;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 10px 40px rgba(0,0,0,.3)}
+.qr-wrap img{width:100%;height:100%;object-fit:contain;display:block}
+.qr-loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:20px}
+.spinner{width:40px;height:40px;border:4px solid #e5e7eb;border-top-color:#25D366;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.steps{background:rgba(10,14,26,.6);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px;margin-top:24px}
+.steps h3{font-size:16px;margin-bottom:16px}
+.step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.step:last-child{margin-bottom:0}
+.step-num{width:28px;height:28px;border-radius:50%;background:rgba(37,211,102,.15);color:#25D366;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.step-text{font-size:14px;color:#cbd5e1;line-height:1.6;padding-top:4px}
+.actions{display:flex;gap:12px;margin-top:24px}
+.btn{flex:1;padding:14px 20px;border:none;border-radius:12px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,211,102,.35)}
+.btn-secondary{background:rgba(255,255,255,.05);color:#f8fafc;border:1px solid rgba(255,255,255,.1)}
+.btn-secondary:hover{background:rgba(255,255,255,.08)}
+.success-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;display:none;align-items:center;justify-content:center;flex-direction:column;gap:24px}
+.success-overlay.show{display:flex}
+.success-icon{font-size:80px}
+.success-text{color:#fff;font-size:24px;font-weight:700}
+</style>
+</head>
+<body>
+<div class="bg-canvas"><div class="bg-blob b1"></div><div class="bg-blob b2"></div><div class="bg-blob b3"></div><div class="bg-grid"></div></div>
+<div class="container">
+  <div class="card">
+    <div class="logo">📱</div>
+    <h1>ربط رقم WhatsApp</h1>
+    <p class="subtitle">اربط رقم صيدليتك عشان البوت يرد على عملائك</p>
+    <div class="status-badge waiting" id="statusBadge">
+      <span class="status-dot"></span>
+      <span id="statusText">جاري تجهيز الـ QR...</span>
+    </div>
+    <div class="qr-wrap">
+      <div class="qr-loader" id="qrLoader"><div class="spinner"></div></div>
+      <img id="qrImage" src="" alt="QR" style="display:none">
+    </div>
+    <div class="steps">
+      <h3>📋 خطوات الربط</h3>
+      <div class="step"><div class="step-num">1</div><div class="step-text">افتح واتساب على موبايل الصيدلية</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">القائمة (⋮) → الأجهزة المرتبطة</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">"ربط جهاز" وامسح الكود</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">✅ البوت هيرد على عملائك تلقائياً</div></div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-secondary" onclick="reloadQR()">🔄 تحديث</button>
+      <button class="btn btn-primary" onclick="window.location.href='/pharmacy/dashboard'">تخطي ←</button>
+    </div>
+  </div>
+</div>
+<div class="success-overlay" id="successOverlay">
+  <div class="success-icon">✅</div>
+  <div class="success-text">تم الربط بنجاح!</div>
+</div>
+<script>
+const TOKEN = localStorage.getItem('h1ai_user_token');
+const USER = JSON.parse(localStorage.getItem('h1ai_user') || 'null');
+if (!TOKEN || !USER) window.location.href = '/login';
+
+const PHONE = USER?.phone || USER?.whatsapp || localStorage.getItem('h1ai_pending_phone');
+const PHARMACY_ID = USER?.pharmacy_id || 'default';
+let pollTimer = null, lastQR = '';
+
+async function fetchQR() {
+  if (!PHONE) return;
+  try {
+    const r = await fetch(`/api/whatsapp/sessions/${encodeURIComponent(PHONE)}/qr`);
+    const d = await r.json();
+    const badge = document.getElementById('statusBadge');
+    const text = document.getElementById('statusText');
+    const img = document.getElementById('qrImage');
+    const loader = document.getElementById('qrLoader');
+
+    if (d.status === 'connected') {
+      badge.className = 'status-badge connected';
+      text.textContent = 'متصل ✅';
+      document.getElementById('successOverlay').classList.add('show');
+      setTimeout(() => window.location.href = '/pharmacy/dashboard', 2000);
+      return;
+    }
+    if (d.qr_image) {
+      badge.className = 'status-badge waiting';
+      text.textContent = '📱 امسح الكود';
+      if (d.qr_image !== lastQR) {
+        lastQR = d.qr_image;
+        img.src = d.qr_image;
+        img.style.display = 'block';
+        loader.style.display = 'none';
+      }
+    }
+  } catch(e) { console.error(e); }
+}
+
+async function createSession() {
+  if (!PHONE) return;
+  try {
+    await fetch('/api/whatsapp/sessions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone_number: PHONE, pharmacy_id: PHARMACY_ID }),
+    });
+  } catch(e) { console.error(e); }
+}
+
+async function reloadQR() {
+  lastQR = '';
+  await createSession();
+  setTimeout(fetchQR, 2000);
+}
+
+async function start() {
+  await createSession();
+  await fetchQR();
+  pollTimer = setInterval(fetchQR, 3000);
+}
+start();
+</script>
+</body>
+</html>

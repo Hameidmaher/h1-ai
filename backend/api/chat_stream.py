@@ -1,5 +1,4 @@
 """Streaming Chat API — SSE"""
-from __future__ import annotations
 import json
 import asyncio
 from fastapi import APIRouter, Request
@@ -70,3 +69,6 @@ async def chat_stream(request: Request, req: StreamRequest):
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
+
+# Force rebuild for FastAPI OpenAPI (fix: PydanticUserError on ForwardRef)
+StreamRequest.model_rebuild()

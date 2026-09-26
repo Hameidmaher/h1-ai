@@ -119,3 +119,54 @@ android-sdk/
 /tmp/*.txt
 main.py.*
 *.before-*
+
+# ═══ Backups والملفات المؤقتة (إضافة جديدة) ═══
+*.backup_*
+*.backup
+*.bak
+backup_*/
+backups/*.sql
+backups/*.tar.gz
+
+# ═══ Logs ═══
+*.log
+logs/
+backend/logs/*.log
+whatsapp-service/*.log
+
+# ═══ WhatsApp Sessions (أمان) ═══
+.wwebjs_cache/
+whatsapp-service/sessions/
+whatsapp-service/auth_info/
+whatsapp-service/service.log
+
+# ═══ Cache ═══
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ═══ Node ═══
+node_modules/
+package-lock.json.bak
+
+# ═══ Audit reports (مؤقتة) ═══
+audit_report/
+project_audit/
+full_audit/
+deep_audit/
+05_python.txt
+06_api.txt
+07_docker.txt
+08_logs.txt
+09_errors.txt
+10_security.txt
+11_cleanup.txt
+12_resources.txt
+13_errors.txt
+12_size.txt
+
+# ═══ Test sessions ═══
+test_*.txt
+*.test

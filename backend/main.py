@@ -80,6 +80,10 @@ from api.cc_data_routes import router as cc_data_router
 from api.cc_users_routes import router as cc_users_router
 from api.cc_settings_routes import router as cc_settings_router
 from api.cc_search_routes import router as cc_search_router
+from api.user_chat_routes import router as user_chat_router
+from api.whatsapp_auth_routes import router as whatsapp_auth_router
+from api.admin_chat_routes import router as admin_chat_router
+from api.multi_role_chat_routes import router as multi_role_chat_router
 
 
 setup_logging()
@@ -169,7 +173,6 @@ app.include_router(admin_api_keys_router)
 app.include_router(admin_subscriptions_router)
 app.include_router(admin_alerts_router)
 app.include_router(admin_pharmacies_router)
-app.include_router(admin_wa_numbers_router)
 app.include_router(admin_wa_service_router)
 app.include_router(admin_live_feed_router)
 app.include_router(whatsapp_public_router)
@@ -185,6 +188,10 @@ app.include_router(cc_data_router)
 app.include_router(cc_users_router)
 app.include_router(cc_settings_router)
 app.include_router(cc_search_router)
+app.include_router(user_chat_router)
+app.include_router(whatsapp_auth_router)
+app.include_router(admin_chat_router)
+app.include_router(multi_role_chat_router)
 
 
 @app.exception_handler(RateLimitExceeded)
@@ -300,11 +307,7 @@ if _customer_static.exists():
         """Customer chat interface."""
         return FileResponse(str(_customer_static / "chat.html"))
 
-    @app.get("/login")
-    async def _customer_login():
-        """Login page — redirect to admin login for now."""
-        return FileResponse(str(_customer_static / "login.html"))
-
+    
 # ═══════════════════════════════════════════════════════════
 # AUTH ENDPOINTS
 # ═══════════════════════════════════════════════════════════
@@ -376,4 +379,102 @@ async def _admin_control_center():
     p = _Path(__file__).parent / "admin" / "static" / "control_center.html"
     return FileResponse(str(p))
 
+# ═══════════════════════════════════════════════════════════════════
+# 🏥 User Portal Routes (Login + Register + App)
+# ═══════════════════════════════════════════════════════════════════
+from pathlib import Path as _P2
+
+_PORTAL = _P2(__file__).parent / "customer" / "portal"
+
+@app.get("/login")
+async def _portal_login():
+    from fastapi.responses import FileResponse
+    return FileResponse(str(_PORTAL / "login.html"))
+
+@app.get("/register")
+async def _portal_register():
+    from fastapi.responses import FileResponse
+    return FileResponse(str(_PORTAL / "register.html"))
+
+@app.get("/app")
+@app.get("/app/")
+async def _portal_app():
+    from fastapi.responses import FileResponse
+    return FileResponse(str(_PORTAL / "app.html"))
+
+@app.get("/")
+async def _portal_root():
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(url="/login")
+
+
+
+# ═══════════════════════════════════════════════════════════════════
+# 🎨 Design System — Static Files
+# ═══════════════════════════════════════════════════════════════════
+from pathlib import Path as _DS_Path
+from fastapi.staticfiles import StaticFiles as _DS_Static
+
+_DS_DIR = _DS_Path(__file__).parent / "static" / "design-system"
+if _DS_DIR.exists():
+    app.mount("/static/design-system", _DS_Static(directory=str(_DS_DIR)), name="design_system")
+    print(f"✅ Design System mounted: {_DS_DIR}")
+else:
+    print(f"⚠️ Design System dir not found: {_DS_DIR}")
+
+# ═══════════════════════════════════════════════════════════════════
+# 📱 WhatsApp Proxy + Pharmacy Pages
+# ═══════════════════════════════════════════════════════════════════
+import httpx as _wa_httpx
+from pathlib import Path as _WA_Path
+
+_WA_URL = "http://localhost:3001"
+_WA_PHARM = _WA_Path(__file__).parent / "customer" / "pharmacy"
+
+
+@app.api_route("/api/whatsapp/{path:path}", methods=["GET", "POST", "DELETE", "PUT"])
+async def _wa_proxy(path: str, request: Request):
+    try:
+        url = f"{_WA_URL}/{path}"
+        async with _wa_httpx.AsyncClient(timeout=30) as client:
+            body = None
+            if request.method in ("POST", "PUT", "PATCH"):
+                try:
+                    body = await request.json()
+                except Exception:
+                    body = None
+            r = await client.request(request.method, url, json=body)
+            try:
+                return JSONResponse(content=r.json(), status_code=r.status_code)
+            except Exception:
+                return JSONResponse(content={"raw": r.text}, status_code=r.status_code)
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=500)
+
+
+@app.get("/pharmacy/whatsapp")
+async def _pharm_whatsapp():
+    from fastapi.responses import FileResponse
+    p = _WA_PHARM / "whatsapp.html"
+    if p.exists():
+        return FileResponse(str(p))
+    return JSONResponse({"error": "not found"}, status_code=404)
+
+
+@app.get("/pharmacy/dashboard")
+async def _pharm_dashboard():
+    from fastapi.responses import FileResponse
+    p = _WA_PHARM / "dashboard.html"
+    if p.exists():
+        return FileResponse(str(p))
+    return JSONResponse({"error": "coming soon", "redirect": "/pharmacy/whatsapp"}, status_code=404)
+
+@app.get("/pharmacy/dashboard")
+async def _pharmacy_dashboard():
+    from fastapi.responses import FileResponse
+    from pathlib import Path
+    p = Path(__file__).parent / "customer" / "pharmacy" / "dashboard.html"
+    if p.exists():
+        return FileResponse(str(p))
+    return JSONResponse({"error": "not found"}, status_code=404)
 

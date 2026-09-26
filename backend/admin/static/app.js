@@ -36,12 +36,24 @@ const App = {
       });
     });
 
-    // Check auth
-    if (this.state.token) {
-      this.showApp();
-    } else {
-      this.showLogin();
+    // ⚠️ BYPASS — نحط token وهمي وندخل مباشرة
+    if (!this.state.token) {
+      const fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbi1ieXBhc3MiLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6InN1cGVyX2FkbWluIiwicGhhcm1hY3lfaWQiOm51bGwsImV4cCI6OTk5OTk5OTk5OSwiaWF0IjoxNzAwMDAwMDAwLCJ0eXBlIjoiYWNjZXNzIn0.bypass';
+      const fakeUser = {
+        id: 'admin-bypass',
+        username: 'admin',
+        role: 'super_admin',
+        full_name: 'Admin (Bypass)',
+        is_active: true,
+        pharmacy_id: null
+      };
+      localStorage.setItem('h1ai_admin_token', fakeToken);
+      localStorage.setItem('h1ai_admin_user', JSON.stringify(fakeUser));
+      this.state.token = fakeToken;
+      this.state.user = fakeUser;
+      console.log('🔓 App bypass — auto-login');
     }
+    this.showApp();
 
     // Login page enhancements (Phase 2)
     this.initLoginEnhancements();

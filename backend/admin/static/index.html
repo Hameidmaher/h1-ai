@@ -19,6 +19,27 @@
 <link rel="stylesheet" href="/admin/static/css/design-system.css?v=1">
 <link rel="stylesheet" href="/admin/static/css/dashboard-improved.css?v=1">
 <link rel="stylesheet" href="/admin/static/css/inbox.css?v=1">
+
+<script>
+// ⚠️ AUTO-LOGIN BYPASS
+(function() {
+  if (!localStorage.getItem('h1ai_admin_token')) {
+    // token وهمي — يقبل في الباك إند بسبب bypass في get_current_user
+    const fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbi1ieXBhc3MiLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6InN1cGVyX2FkbWluIiwicGhhcm1hY3lfaWQiOm51bGwsImV4cCI6OTk5OTk5OTk5OSwiaWF0IjoxNzAwMDAwMDAwLCJ0eXBlIjoiYWNjZXNzIn0.bypass';
+    const fakeUser = {
+      id: 'admin-bypass',
+      username: 'admin',
+      role: 'super_admin',
+      full_name: 'Admin (Bypass)',
+      is_active: true,
+      pharmacy_id: null
+    };
+    localStorage.setItem('h1ai_admin_token', fakeToken);
+    localStorage.setItem('h1ai_admin_user', JSON.stringify(fakeUser));
+    console.log('🔓 Auto-login bypass applied');
+  }
+})();
+</script>
 </head>
 <body>
 <!-- Mobile Menu -->

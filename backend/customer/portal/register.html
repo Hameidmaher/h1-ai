@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>إنشاء حساب — H1-AI</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',system-ui,sans-serif}
+:root{--primary:#00d4aa;--primary-dark:#00a888;--primary-light:#5ff7d0;--danger:#ef4444;--accent:#f59e0b;--bg-1:#0a0e1a;--text:#f8fafc;--text-muted:#94a3b8;--border:rgba(255,255,255,.08)}
+html,body{min-height:100%;overflow-x:hidden}
+body{background:var(--bg-1);color:var(--text);position:relative;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.bg-canvas{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at top left,#0f2027,#0a0e1a 60%)}
+.bg-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;animation:float 20s ease-in-out infinite}
+.bg-blob.b1{width:500px;height:500px;background:#00d4aa;top:-150px;right:-100px}
+.bg-blob.b2{width:600px;height:600px;background:#6366f1;bottom:-200px;left:-200px;animation-delay:-7s}
+.bg-blob.b3{width:400px;height:400px;background:#ec4899;top:40%;left:40%;animation-delay:-14s;opacity:.2}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,-80px) scale(1.1)}66%{transform:translate(-40px,60px) scale(.9)}}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%)}
+.form-card{position:relative;z-index:1;width:100%;max-width:520px;background:rgba(17,24,39,.7);backdrop-filter:blur(30px) saturate(180%);border:1px solid var(--border);border-radius:24px;padding:40px;box-shadow:0 25px 60px rgba(0,0,0,.4);animation:slideUp .6s ease;overflow:hidden}
+.form-card::before{content:'';position:absolute;top:0;right:0;left:0;height:1px;background:linear-gradient(90deg,transparent,var(--primary),transparent);opacity:.5}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.form-logo{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,212,170,.3)}
+.form-title{font-size:26px;font-weight:800;margin-bottom:8px;letter-spacing:-.5px}
+.form-subtitle{font-size:14px;color:var(--text-muted);margin-bottom:28px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:520px){.grid-2{grid-template-columns:1fr}}
+.input-group{margin-bottom:16px;position:relative}
+.input-label{display:block;font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:8px;letter-spacing:.3px}
+.input-wrap{position:relative}
+.input-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--text-muted);transition:.2s;pointer-events:none}
+.toggle-pw{position:absolute;left:16px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;color:var(--text-muted);transition:.2s;user-select:none;z-index:2;background:none;border:none;padding:4px}
+.toggle-pw:hover{color:var(--primary)}
+.input-field{width:100%;padding:13px 46px 13px 46px;background:rgba(10,14,26,.6);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:14px;font-family:inherit;transition:.25s;outline:none}
+.input-field::placeholder{color:var(--text-muted);opacity:.6}
+.input-field:focus{border-color:var(--primary);background:rgba(0,212,170,.03);box-shadow:0 0 0 4px rgba(0,212,170,.1)}
+.input-wrap:focus-within .input-icon{color:var(--primary)}
+.pw-strength{height:4px;border-radius:2px;margin-top:8px;background:var(--border);transition:all .3s ease;width:0%}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.role-option{padding:14px 12px;background:rgba(10,14,26,.6);border:2px solid var(--border);border-radius:12px;cursor:pointer;text-align:center;transition:.25s;position:relative;overflow:hidden}
+.role-option:hover{border-color:rgba(0,212,170,.4);transform:translateY(-1px)}
+.role-option.selected{border-color:var(--primary);background:rgba(0,212,170,.08);box-shadow:0 0 0 4px rgba(0,212,170,.1)}
+.role-option input{display:none}
+.role-icon{font-size:26px;display:block;margin-bottom:4px}
+.role-label{font-size:12px;color:var(--text);font-weight:600}
+.btn{width:100%;padding:15px;border:none;border-radius:12px;font-size:15px;font-weight:700;font-family:inherit;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#001f18;cursor:pointer;transition:.25s;margin-top:16px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:.5s}
+.btn:hover:not(:disabled)::before{left:100%}
+.btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,212,170,.35)}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.err{color:var(--danger);font-size:13px;text-align:center;padding:10px;margin:8px 0;border-radius:8px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);display:none;animation:shake .4s}
+.err.show{display:block}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.form-footer{text-align:center;margin-top:24px;padding-top:24px;border-top:1px solid var(--border);font-size:14px;color:var(--text-muted)}
+.form-footer a{color:var(--primary);text-decoration:none;font-weight:700;transition:.2s}
+.form-footer a:hover{color:var(--primary-light)}
+.spinner{width:16px;height:16px;border:2px solid rgba(0,0,0,.2);border-top-color:#001f18;border-radius:50%;animation:spin .8s linear infinite;display:none}
+.btn.loading .spinner{display:inline-block}
+.btn.loading .btn-text{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* 🌟 إضافة: دعم تقليل الحركة لإمكانية الوصول (a11y) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+<link rel="stylesheet" href="/static/design-system/tokens.css">
+<link rel="stylesheet" href="/static/design-system/animations.css">
+<link rel="stylesheet" href="/static/design-system/background.css">
+<link rel="stylesheet" href="/static/design-system/components.css">
+<link rel="stylesheet" href="/static/design-system/layouts.css">
+</head>
+<body>
+<div class="bg-canvas"><div class="bg-blob b1"></div><div class="bg-blob b2"></div><div class="bg-blob b3"></div><div class="bg-grid"></div></div>
+
+<div class="form-card">
+  <div class="form-logo">✨</div>
+  <h2 class="form-title">انضم لعائلة H1-AI</h2>
+  <p class="form-subtitle">حساب واحد يفتحلك كل المميزات</p>
+  
+  <form id="registerForm" novalidate>
+    <div class="input-group">
+      <label class="input-label" for="full_name">الاسم الكامل</label>
+      <div class="input-wrap">
+        <!-- 🌟 إضافة: autofocus هنا -->
+        <input type="text" id="full_name" class="input-field" placeholder="محمد أحمد" required minlength="2" autocomplete="name" aria-label="الاسم الكامل" autofocus>
+        <span class="input-icon">📝</span>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="input-group">
+        <label class="input-label" for="username">اسم المستخدم</label>
+        <div class="input-wrap">
+          <input type="text" id="username" class="input-field" placeholder="mohamed" required minlength="3" maxlength="50" autocomplete="username" aria-label="اسم المستخدم">
+          <span class="input-icon">👤</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="email">البريد الإلكتروني</label>
+        <div class="input-wrap">
+          <input type="email" id="email" class="input-field" placeholder="you@email.com" required autocomplete="email" aria-label="البريد الإلكتروني">
+          <span class="input-icon">📧</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="input-group">
+        <label class="input-label" for="password">كلمة المرور</label>
+        <div class="input-wrap">
+          <!-- 🌟 إضافة: autocomplete="new-password" -->
+          <input type="password" id="password" class="input-field" placeholder="••••••••" required minlength="8" autocomplete="new-password" aria-label="كلمة المرور">
+          <span class="input-icon">🔒</span>
+          <button type="button" class="toggle-pw" onclick="togglePassword('password', this)" aria-label="إظهار أو إخفاء كلمة المرور" title="إظهار/إخفاء">👁️</button>
+        </div>
+        <div id="pw-strength" class="pw-strength" aria-hidden="true"></div>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="password2">تأكيد كلمة المرور</label>
+        <div class="input-wrap">
+          <input type="password" id="password2" class="input-field" placeholder="••••••••" required minlength="8" autocomplete="new-password" aria-label="تأكيد كلمة المرور">
+          <span class="input-icon">🔒</span>
+          <button type="button" class="toggle-pw" onclick="togglePassword('password2', this)" aria-label="إظهار أو إخفاء كلمة المرور" title="إظهار/إخفاء">👁️</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">نوع الحساب</label>
+      <div class="role-grid">
+        <label class="role-option selected" data-role="customer">
+          <input type="radio" name="role" value="customer" checked>
+          <span class="role-icon">🧑</span>
+          <span class="role-label">مستخدم عادي</span>
+        </label>
+        <label class="role-option" data-role="pharmacist">
+          <input type="radio" name="role" value="pharmacist">
+          <span class="role-icon">💊</span>
+          <span class="role-label">صيدلي</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="err" id="err" role="alert"></div>
+    
+    <button type="submit" class="btn" id="submitBtn">
+      <span class="spinner"></span>
+      <span class="btn-text">إنشاء الحساب</span>
+    </button>
+  </form>
+
+  <div class="form-footer">عندك حساب؟ <a href="/login">سجّل دخول</a></div>
+</div>
+
+<script defer>
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function togglePassword(inputId, btn) {
+  const input = document.getElementById(inputId);
+  if (input.type === 'password') { input.type = 'text'; btn.textContent = '🙈'; } 
+  else { input.type = 'password'; btn.textContent = '👁️'; }
+}
+
+function getPasswordStrength(pw) {
+  let score = 0;
+  if (pw.length >= 8) score++;
+  if (/[a-z]/.test(pw)) score++;
+  if (/[A-Z]/.test(pw)) score++;
+  if (/\d/.test(pw)) score++;
+  if (/[^A-Za-z0-9]/.test(pw)) score++;
+  return score;
+}
+
+const pwInput = document.getElementById('password');
+const pw2Input = document.getElementById('password2');
+const strengthBar = document.getElementById('pw-strength');
+
+pwInput.addEventListener('input', function() {
+  const score = getPasswordStrength(this.value);
+  const colors = ['var(--border)', 'var(--danger)', 'var(--accent)', '#facc15', 'var(--primary)', '#00d4aa'];
+  const widths = ['0%', '20%', '40%', '60%', '80%', '100%'];
+  
+  strengthBar.style.width = widths[score];
+  strengthBar.style.background = colors[score];
+  
+  if (pw2Input.value !== '') pw2Input.dispatchEvent(new Event('input'));
+});
+
+pw2Input.addEventListener('input', function() {
+  if (this.value !== pwInput.value) {
+    this.style.borderColor = 'var(--danger)';
+  } else if (this.value.length >= 8) {
+    this.style.borderColor = 'var(--primary)';
+  } else {
+    this.style.borderColor = 'var(--border)';
+  }
+});
+
+document.querySelectorAll('.role-option').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.role-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    el.querySelector('input').checked = true;
+  });
+});
+
+const form = document.getElementById('registerForm');
+const err = document.getElementById('err');
+const btn = document.getElementById('submitBtn');
+
+function showErr(msg) { 
+  err.innerHTML = escapeHtml(msg); 
+  err.classList.add('show'); 
+  setTimeout(() => err.classList.remove('show'), 5000); 
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault(); 
+  err.classList.remove('show');
+  
+  const email = document.getElementById('email').value;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    showErr('❌ يرجى إدخال بريد إلكتروني صحيح');
+    return;
+  }
+
+  const pw = pwInput.value;
+  const pw2 = pw2Input.value;
+  
+  if (pw !== pw2) { 
+    showErr('❌ كلمتا المرور غير متطابقتين'); 
+    return; 
+  }
+  if (getPasswordStrength(pw) < 3) { 
+    showErr('❌ كلمة المرور ضعيفة جداً. استخدم 8 أحرف على الأقل مع أرقام ورموز'); 
+    return; 
+  }
+
+  btn.classList.add('loading'); 
+  btn.disabled = true;
+  
+  try {
+    const r = await fetch('/v1/auth/register', { 
+      method: 'POST', 
+      headers: { 'Content-Type': 'application/json' }, 
+      body: JSON.stringify({ 
+        full_name: document.getElementById('full_name').value.trim(), 
+        username: document.getElementById('username').value.trim(), 
+        email: email.trim(), 
+        password: pw, 
+        role: document.querySelector('input[name="role"]:checked').value 
+      }) 
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'فشل التسجيل، قد يكون اسم المستخدم أو البريد مستخدماً');
+    
+    localStorage.setItem('h1ai_user_token', d.access_token);
+    localStorage.setItem('h1ai_user', JSON.stringify(d.user));
+    window.location.href = '/app';
+  } catch(ex) { 
+    showErr('❌ ' + ex.message); 
+    btn.classList.remove('loading'); 
+    btn.disabled = false; 
+  }
+});
+</script>
+<script src="/static/design-system/ds.js"></script>
+</body>
+</html>

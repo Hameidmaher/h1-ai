@@ -554,5 +554,81 @@
 <div class="cc-toast-container" id="cc-toasts"></div>
 
 <script src="/admin/static/cc/cc.js"></script>
+
+<!-- ═══ Admin Chat Sidebar ═══ -->
+<button class="cc-chat-toggle" id="cc-chat-toggle" onclick="CC.toggleAdminChat()">💬</button>
+
+<aside class="cc-chat-panel" id="cc-chat-panel">
+  <div class="cc-chat-header">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="font-size:24px">🤖</span>
+      <div>
+        <div style="font-weight:700">مساعد الإدارة</div>
+        <div style="font-size:11px;color:#4ade80">● متصل</div>
+      </div>
+    </div>
+    <button class="cc-icon-btn" onclick="CC.toggleAdminChat()">✕</button>
+  </div>
+  <div class="cc-chat-messages" id="cc-chat-messages">
+    <div class="cc-chat-welcome">
+      <div style="font-size:48px;margin-bottom:12px">👑</div>
+      <h4 style="font-size:16px;margin-bottom:6px">أهلاً بك يا مدير</h4>
+      <p style="font-size:13px;color:#94a3b8;line-height:1.6">اسألني عن أي حاجة في المنصة</p>
+      <div class="cc-chat-suggestions">
+        <div class="cc-chat-suggestion" onclick="CC.sendAdminSuggestion('اعرض الإحصائيات')">📊 الإحصائيات</div>
+        <div class="cc-chat-suggestion" onclick="CC.sendAdminSuggestion('قائمة الصيدليات')">🏪 الصيدليات</div>
+        <div class="cc-chat-suggestion" onclick="CC.sendAdminSuggestion('حالة الخدمات')">🛠️ الخدمات</div>
+        <div class="cc-chat-suggestion" onclick="CC.sendAdminSuggestion('جلسات واتساب')">📱 واتساب</div>
+        <div class="cc-chat-suggestion" onclick="CC.sendAdminSuggestion('آخر الطلبات')">🕐 آخر الطلبات</div>
+        <div class="cc-chat-suggestion" onclick="CC.sendAdminSuggestion('مساعدة')">❓ مساعدة</div>
+      </div>
+    </div>
+  </div>
+  <form class="cc-chat-input" onsubmit="CC.sendAdminMessage(event)">
+    <input type="text" id="cc-chat-input" placeholder="اكتب سؤالك..." autocomplete="off">
+    <button type="submit">إرسال</button>
+  </form>
+</aside>
+
+
+<!-- ═══ Admin Chat ═══ -->
+<button class="cc-chat-fab" id="cc-chat-fab" onclick="CC.toggleAdminChat()" title="شات الإدارة">🤖</button>
+
+<aside class="cc-chat-drawer" id="cc-chat-drawer">
+  <div class="cc-chat-head">
+    <div class="cc-chat-head-info">
+      <div class="cc-chat-avatar">👑</div>
+      <div>
+        <div class="cc-chat-name">مساعد الإدارة</div>
+        <div class="cc-chat-status"><span class="cc-chat-dot"></span> متصل</div>
+      </div>
+    </div>
+    <button class="cc-chat-close" onclick="CC.toggleAdminChat()" aria-label="إغلاق">✕</button>
+  </div>
+
+  <div class="cc-chat-body" id="cc-chat-body">
+    <div class="cc-chat-intro" id="cc-chat-intro">
+      <div class="cc-chat-intro-icon">🤖</div>
+      <div class="cc-chat-intro-title">أهلاً يا مدير 👑</div>
+      <div class="cc-chat-intro-text">اسألني عن أي حاجة في المنصة</div>
+      <div class="cc-chat-chips">
+        <button class="cc-chip" onclick="CC.sendAdminQuick('اعرض الإحصائيات')">📊 الإحصائيات</button>
+        <button class="cc-chip" onclick="CC.sendAdminQuick('قائمة الصيدليات')">🏪 الصيدليات</button>
+        <button class="cc-chip" onclick="CC.sendAdminQuick('حالة الخدمات')">🛠️ الخدمات</button>
+        <button class="cc-chip" onclick="CC.sendAdminQuick('جلسات واتساب')">📱 واتساب</button>
+        <button class="cc-chip" onclick="CC.sendAdminQuick('آخر الطلبات')">🕐 آخر الطلبات</button>
+        <button class="cc-chip" onclick="CC.sendAdminQuick('restart whatsapp')">🔄 restart</button>
+        <button class="cc-chip" onclick="CC.sendAdminQuick('صحة النظام')">❤️ صحة النظام</button>
+        <button class="cc-chip" onclick="CC.sendAdminQuick('مساعدة')">❓ مساعدة</button>
+      </div>
+    </div>
+  </div>
+
+  <form class="cc-chat-form" onsubmit="CC.sendAdminMessage(event)">
+    <input type="text" id="cc-chat-input-field" placeholder="اكتب سؤالك..." autocomplete="off">
+    <button type="submit" id="cc-chat-submit">↵</button>
+  </form>
+</aside>
+
 </body>
 </html>

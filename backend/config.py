@@ -40,8 +40,8 @@ class Settings(BaseSettings):
     chroma_persist_dir: str = "./chroma_db"
 
     # ═══ Rate Limiting ═══
-    rate_limit_chat: str = "30/minute"
-    rate_limit_auth: str = "30/minute"
+    rate_limit_chat: str = "600/minute"
+    rate_limit_auth: str = "200/minute"
 
     # ═══ CORS ═══
     cors_origins: list[str] = [

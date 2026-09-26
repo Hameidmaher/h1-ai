@@ -23,7 +23,7 @@ import structlog
 logger = structlog.get_logger()
 
 # ─── الموديلات الافتراضية ──────────────────────────────────────
-GROQ_DEFAULT_MODEL = "openai/gpt-oss-20b"
+GROQ_DEFAULT_MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
 OLLAMA_DEFAULT_MODEL = "qwen2.5:7b"
 OLLAMA_DEFAULT_URL = "http://localhost:11434"
 
