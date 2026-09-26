@@ -73,6 +73,14 @@ from routers.admin.notifications import router as admin_notifications_router
 from routers.admin.inbox import router as admin_inbox_router
 from routers.super_admin import router as super_admin_router
 from routers.pharmacy_admin import router as pharmacy_admin_router
+from api.monitoring_routes import router as monitoring_router
+from api.monitoring_routes import record_request
+from api.control_routes import router as control_router
+from api.cc_data_routes import router as cc_data_router
+from api.cc_users_routes import router as cc_users_router
+from api.cc_settings_routes import router as cc_settings_router
+from api.cc_search_routes import router as cc_search_router
+
 
 setup_logging()
 logger = structlog.get_logger()
@@ -171,6 +179,13 @@ app.include_router(admin_notifications_router)
 app.include_router(admin_inbox_router)
 app.include_router(super_admin_router)
 app.include_router(pharmacy_admin_router)
+app.include_router(monitoring_router)
+app.include_router(control_router)
+app.include_router(cc_data_router)
+app.include_router(cc_users_router)
+app.include_router(cc_settings_router)
+app.include_router(cc_search_router)
+
 
 @app.exception_handler(RateLimitExceeded)
 async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
@@ -186,6 +201,37 @@ async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
 _admin_static = _Path(__file__).parent / "admin" / "static"
 if _admin_static.exists():
     app.mount("/admin/static", StaticFiles(directory=str(_admin_static)), name="admin_static")
+
+
+# ═══════════════════════════════════════════════════════════════
+# 📊 Middleware لتسجيل كل طلب في Monitoring
+# ═══════════════════════════════════════════════════════════════
+@app.middleware("http")
+async def _monitoring_middleware(request: Request, call_next):
+    """يسجّل كل طلب HTTP في الـ monitoring metrics."""
+    import time
+    start = time.time()
+    try:
+        response = await call_next(request)
+        duration = (time.time() - start) * 1000  # ms
+        # نتجاهل الـ monitoring نفسه (عشان مانعملش loop)
+        if not request.url.path.startswith("/v1/monitoring"):
+            record_request(
+                method=request.method,
+                path=request.url.path,
+                status=response.status_code,
+                duration_ms=duration,
+            )
+        return response
+    except Exception as e:
+        duration = (time.time() - start) * 1000
+        record_request(
+            method=request.method,
+            path=request.url.path,
+            status=500,
+            duration_ms=duration,
+        )
+        raise
 
     @app.get("/admin")
     @app.get("/admin/")
@@ -308,3 +354,26 @@ if _chat_static_dir.exists():
         StaticFiles(directory=str(_chat_static_dir)),
         name="chat-static",
     )
+
+@app.get("/admin/monitor")
+async def _admin_monitor():
+    """Live monitoring dashboard."""
+    from fastapi.responses import FileResponse
+    from pathlib import Path
+    p = Path(__file__).parent / "admin" / "static" / "monitor.html"
+    return FileResponse(str(p))
+
+# ═══════════════════════════════════════════════════════════════
+# 🎛️ Control Center Routes
+# ═══════════════════════════════════════════════════════════════
+from pathlib import Path as _Path
+
+@app.get("/admin/control")
+@app.get("/admin/control/")
+async def _admin_control_center():
+    """Control Center — Ultra Flexible Dashboard."""
+    from fastapi.responses import FileResponse
+    p = _Path(__file__).parent / "admin" / "static" / "control_center.html"
+    return FileResponse(str(p))
+
+

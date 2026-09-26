@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark" data-density="comfortable">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H1-AI Control Center</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="/admin/static/cc/cc.css">
+</head>
+<body>
+
+<!-- ═══ TOP BAR ═══ -->
+<header class="cc-header">
+  <div class="cc-header-left">
+    <button class="cc-icon-btn" id="cc-sidebar-toggle" title="طي/فتح القائمة">☰</button>
+    <div class="cc-brand">
+      <span class="cc-logo">🏥</span>
+      <span class="cc-brand-name">H1-AI</span>
+      <span class="cc-brand-sub">Control Center</span>
+    </div>
+  </div>
+  <div class="cc-header-center">
+    <button class="cc-search-btn" id="cc-open-search">
+      <span>🔍</span>
+      <span class="cc-search-placeholder">بحث سريع...</span>
+      <kbd class="cc-kbd">⌘K</kbd>
+    </button>
+  </div>
+  <div class="cc-header-right">
+    <span class="cc-live-indicator"><span class="cc-live-dot"></span> Live</span>
+    <button class="cc-icon-btn" id="cc-theme-btn" title="تغيير الثيم">🌙</button>
+    <button class="cc-icon-btn" id="cc-density-btn" title="تغيير الكثافة">📐</button>
+    <button class="cc-icon-btn" id="cc-notif-btn" title="التنبيهات" style="position:relative">🔔<span id="cc-notif-badge" style="position:absolute;top:2px;right:2px;background:#ef4444;color:#fff;font-size:9px;padding:1px 5px;border-radius:8px;display:none">0</span></button>
+    <button class="cc-icon-btn" id="cc-settings-btn" title="الإعدادات">⚙️</button>
+    <button class="cc-icon-btn" id="cc-export-btn" title="تصدير">📤</button>
+  </div>
+</header>
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="cc-sidebar" id="cc-sidebar">
+  <nav class="cc-nav">
+    <a href="#dashboard" class="cc-nav-item active" data-tab="dashboard">
+      <span class="cc-nav-icon">🏠</span>
+      <span class="cc-nav-label">لوحة التحكم</span>
+    </a>
+    <a href="#control" class="cc-nav-item" data-tab="control">
+      <span class="cc-nav-icon">🎛️</span>
+      <span class="cc-nav-label">التحكم</span>
+    </a>
+    <a href="#admin" class="cc-nav-item" data-tab="admin">
+      <span class="cc-nav-icon">📦</span>
+      <span class="cc-nav-label">الإدارة</span>
+    </a>
+    <a href="#ai" class="cc-nav-item" data-tab="ai">
+      <span class="cc-nav-icon">🤖</span>
+      <span class="cc-nav-label">الذكاء الاصطناعي</span>
+    </a>
+    <a href="#logs" class="cc-nav-item" data-tab="logs">
+      <span class="cc-nav-icon">📜</span>
+      <span class="cc-nav-label">السجلات</span>
+    </a>
+    <a href="#infra" class="cc-nav-item" data-tab="infra">
+      <span class="cc-nav-icon">🐳</span>
+      <span class="cc-nav-label">البنية التحتية</span>
+    </a>
+    <a href="#users" class="cc-nav-item" data-tab="users">
+      <span class="cc-nav-icon">👥</span>
+      <span class="cc-nav-label">المستخدمون</span>
+    </a>
+    <a href="#settings" class="cc-nav-item" data-tab="settings">
+      <span class="cc-nav-icon">⚙️</span>
+      <span class="cc-nav-label">الإعدادات</span>
+    </a>
+  </nav>
+  <div class="cc-sidebar-footer">
+    <div class="cc-version">v5.0.0</div>
+    <div class="cc-status" id="cc-sidebar-status">● شغال</div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<main class="cc-main" id="cc-main">
+  <div class="cc-tab-content" data-tab="dashboard">
+    <!-- KPI Cards -->
+    <div class="cc-kpi-grid" id="cc-kpi-grid">
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">CPU</div>
+        <div class="cc-kpi-value" id="kpi-cpu">—</div>
+        <div class="cc-kpi-bar"><div class="cc-kpi-fill" id="kpi-cpu-bar"></div></div>
+        <div class="cc-kpi-sub" id="kpi-cpu-sub">—</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">RAM</div>
+        <div class="cc-kpi-value" id="kpi-ram">—</div>
+        <div class="cc-kpi-bar"><div class="cc-kpi-fill" id="kpi-ram-bar"></div></div>
+        <div class="cc-kpi-sub" id="kpi-ram-sub">—</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">Disk</div>
+        <div class="cc-kpi-value" id="kpi-disk">—</div>
+        <div class="cc-kpi-bar"><div class="cc-kpi-fill" id="kpi-disk-bar"></div></div>
+        <div class="cc-kpi-sub" id="kpi-disk-sub">—</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">الطلبات (آخر دقيقة)</div>
+        <div class="cc-kpi-value cc-kpi-green" id="kpi-req">0</div>
+        <div class="cc-kpi-sub">إجمالي: <span id="kpi-req-total">0</span></div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">النجاح / الفشل</div>
+        <div class="cc-kpi-value cc-kpi-green" id="kpi-success">0</div>
+        <div class="cc-kpi-sub">4xx: <span id="kpi-4xx" style="color:#fbbf24">0</span> | 5xx: <span id="kpi-5xx" style="color:#ef4444">0</span></div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">متوسط الاستجابة</div>
+        <div class="cc-kpi-value cc-kpi-blue"><span id="kpi-avg">0</span><span class="cc-kpi-unit">ms</span></div>
+        <div class="cc-kpi-sub">Min: <span id="kpi-min">0</span>ms | Max: <span id="kpi-max">0</span>ms</div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="cc-charts-grid">
+      <div class="cc-card">
+        <div class="cc-card-title">📈 زمن الاستجابة (آخر 50 طلب)</div>
+        <div class="cc-chart-container"><canvas id="cc-chart-response"></canvas></div>
+      </div>
+      <div class="cc-card">
+        <div class="cc-card-title">🔧 استدعاءات الأدوات</div>
+        <div class="cc-chart-container"><canvas id="cc-chart-tools"></canvas></div>
+      </div>
+      <div class="cc-card">
+        <div class="cc-card-title">🌐 أكثر Endpoints</div>
+        <div class="cc-chart-container"><canvas id="cc-chart-endpoints"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Live Requests -->
+    <div class="cc-card">
+      <div class="cc-card-title">📋 آخر الطلبات <span class="cc-card-count" id="cc-req-count">0</span></div>
+      <div class="cc-table-wrapper">
+        <table class="cc-table">
+          <thead><tr><th>الوقت</th><th>Method</th><th>Path</th><th>Status</th><th>المدة</th></tr></thead>
+          <tbody id="cc-req-table"><tr><td colspan="5" class="cc-table-empty">في انتظار البيانات...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Live Logs -->
+    <div class="cc-card">
+      <div class="cc-card-title">📜 آخر 100 سطر من Log</div>
+      <div class="cc-logs" id="cc-logs">في انتظار البيانات...</div>
+    </div>
+  </div>
+  <div class="cc-tab-content hidden" data-tab="control">
+    <div class="cc-control-grid">
+      <div class="cc-control-card" data-action="restart">
+        <div class="cc-control-icon">🔄</div>
+        <div class="cc-control-title">إعادة تشغيل السيرفر</div>
+        <div class="cc-control-desc">Restart h1ai.service</div>
+        <button class="cc-btn cc-btn-primary" onclick="CC.controlAction('restart')">تنفيذ</button>
+      </div>
+      <div class="cc-control-card" data-action="clear-cache">
+        <div class="cc-control-icon">🧹</div>
+        <div class="cc-control-title">تفريغ الـ Cache</div>
+        <div class="cc-control-desc">Flush Redis cache</div>
+        <button class="cc-btn cc-btn-primary" onclick="CC.controlAction('clear-cache')">تنفيذ</button>
+      </div>
+      <div class="cc-control-card" data-action="run-health-test">
+        <div class="cc-control-icon">📊</div>
+        <div class="cc-control-title">اختبار الـ Health</div>
+        <div class="cc-control-desc">Test /health endpoint</div>
+        <button class="cc-btn cc-btn-primary" onclick="CC.controlAction('run-health-test')">تنفيذ</button>
+      </div>
+      <div class="cc-control-card" data-action="backup-db">
+        <div class="cc-control-icon">💾</div>
+        <div class="cc-control-title">نسخة احتياطية</div>
+        <div class="cc-control-desc">Backup PostgreSQL DB</div>
+        <button class="cc-btn cc-btn-primary" onclick="CC.controlAction('backup-db')">تنفيذ</button>
+      </div>
+      <div class="cc-control-card" data-action="clear-logs">
+        <div class="cc-control-icon">📝</div>
+        <div class="cc-control-title">تفريغ الـ Logs</div>
+        <div class="cc-control-desc">Clear log files</div>
+        <button class="cc-btn cc-btn-primary" onclick="CC.controlAction('clear-logs')">تنفيذ</button>
+      </div>
+      <div class="cc-control-card" data-action="system-info">
+        <div class="cc-control-icon">🖥️</div>
+        <div class="cc-control-title">معلومات النظام</div>
+        <div class="cc-control-desc">System info</div>
+        <button class="cc-btn cc-btn-secondary" onclick="CC.controlAction('system-info')">عرض</button>
+      </div>
+    </div>
+
+    <!-- Output -->
+    <div class="cc-card" id="cc-control-output-card" style="display:none">
+      <div class="cc-card-title">📤 النتيجة</div>
+      <pre class="cc-control-output" id="cc-control-output"></pre>
+    </div>
+  </div>
+  <div class="cc-tab-content hidden" data-tab="admin">
+    <!-- Admin Stats -->
+    <div class="cc-kpi-grid" id="admin-stats">
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">📦 المنتجات</div>
+        <div class="cc-kpi-value cc-kpi-green" id="stat-products">—</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">💊 الأدوية</div>
+        <div class="cc-kpi-value cc-kpi-blue" id="stat-drugs">—</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">🩺 الحالات</div>
+        <div class="cc-kpi-value" id="stat-conditions">—</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">⚠️ التداخلات</div>
+        <div class="cc-kpi-value" id="stat-interactions">—</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">🔤 المترادفات</div>
+        <div class="cc-kpi-value" id="stat-synonyms">—</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">👥 المستخدمون</div>
+        <div class="cc-kpi-value" id="stat-users">—</div>
+      </div>
+    </div>
+
+    <!-- Products Table -->
+    <div class="cc-card">
+      <div class="cc-card-title">
+        <span>📦 المنتجات</span>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input type="text" id="admin-products-search" class="cc-input" placeholder="🔍 ابحث..." style="padding:6px 10px;font-size:12px;width:200px">
+          <button class="cc-btn cc-btn-sm cc-btn-secondary" onclick="CC.loadProducts()">🔄</button>
+        </div>
+      </div>
+      <div class="cc-table-wrapper" style="max-height:400px">
+        <table class="cc-table">
+          <thead><tr>
+            <th>الكود</th><th>الاسم</th><th>الفئة</th><th>السعر</th><th>الكمية</th>
+          </tr></thead>
+          <tbody id="admin-products-table">
+            <tr><td colspan="5" class="cc-table-empty">جاري التحميل...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cc-pagination" id="admin-products-pagination"></div>
+    </div>
+
+    <!-- Drugs Table -->
+    <div class="cc-card">
+      <div class="cc-card-title">
+        <span>💊 الأدوية</span>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input type="text" id="admin-drugs-search" class="cc-input" placeholder="🔍 ابحث..." style="padding:6px 10px;font-size:12px;width:200px">
+          <button class="cc-btn cc-btn-sm cc-btn-secondary" onclick="CC.loadDrugs()">🔄</button>
+        </div>
+      </div>
+      <div class="cc-table-wrapper" style="max-height:400px">
+        <table class="cc-table">
+          <thead><tr>
+            <th>ID</th><th>الاسم</th><th>الاسم العام</th><th>الفئة</th>
+          </tr></thead>
+          <tbody id="admin-drugs-table">
+            <tr><td colspan="4" class="cc-table-empty">جاري التحميل...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cc-pagination" id="admin-drugs-pagination"></div>
+    </div>
+  </div>
+  <div class="cc-tab-content hidden" data-tab="ai">
+    <!-- AI KPI -->
+    <div class="cc-kpi-grid">
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">🤖 إجمالي LLM Calls</div>
+        <div class="cc-kpi-value cc-kpi-blue" id="ai-llm-total">0</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">⚡ متوسط الاستجابة</div>
+        <div class="cc-kpi-value" id="ai-llm-avg">0<span class="cc-kpi-unit">ms</span></div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">🔧 إجمالي Tool Calls</div>
+        <div class="cc-kpi-value cc-kpi-green" id="ai-tool-total">0</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">💬 محادثات</div>
+        <div class="cc-kpi-value" id="ai-chat-total">0</div>
+      </div>
+    </div>
+
+    <!-- AI Charts -->
+    <div class="cc-charts-grid">
+      <div class="cc-card">
+        <div class="cc-card-title">🤖 LLM Response Times</div>
+        <div class="cc-chart-container"><canvas id="cc-chart-llm"></canvas></div>
+      </div>
+      <div class="cc-card">
+        <div class="cc-card-title">🔧 Tool Usage</div>
+        <div class="cc-chart-container"><canvas id="cc-chart-tool-usage"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Tool Calls Table -->
+    <div class="cc-card">
+      <div class="cc-card-title">🔧 آخر استدعاءات الأدوات</div>
+      <div class="cc-table-wrapper" style="max-height:300px">
+        <table class="cc-table">
+          <thead><tr><th>الوقت</th><th>الأداة</th><th>الحالة</th><th>المدة</th></tr></thead>
+          <tbody id="ai-tools-table">
+            <tr><td colspan="4" class="cc-table-empty">لا توجد بيانات</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Chat Activity -->
+    <div class="cc-card">
+      <div class="cc-card-title">💬 آخر المحادثات</div>
+      <div class="cc-table-wrapper" style="max-height:300px">
+        <table class="cc-table">
+          <thead><tr><th>الوقت</th><th>المستخدم</th><th>الرسالة</th><th>الأدوات</th></tr></thead>
+          <tbody id="ai-chat-table">
+            <tr><td colspan="4" class="cc-table-empty">لا توجد بيانات</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="cc-tab-content hidden" data-tab="logs">
+    <div class="cc-placeholder">
+      <div class="cc-placeholder-icon">📜</div>
+      <h2>السجلات</h2>
+      <p>هيتم إضافة Live Logs في الدفعة 3</p>
+    </div>
+  </div>
+  <div class="cc-tab-content hidden" data-tab="infra">
+    <!-- Services -->
+    <div class="cc-card">
+      <div class="cc-card-title">🔧 الخدمات</div>
+      <div class="cc-services-grid" id="infra-services">
+        <div class="cc-table-empty">جاري التحميل...</div>
+      </div>
+    </div>
+
+    <!-- Docker -->
+    <div class="cc-card">
+      <div class="cc-card-title">🐳 Docker Containers</div>
+      <div class="cc-table-wrapper" style="max-height:300px">
+        <table class="cc-table">
+          <thead><tr><th>الاسم</th><th>الصورة</th><th>الحالة</th><th>Ports</th></tr></thead>
+          <tbody id="infra-docker-table">
+            <tr><td colspan="4" class="cc-table-empty">جاري التحميل...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Processes -->
+    <div class="cc-charts-grid">
+      <div class="cc-card">
+        <div class="cc-card-title">⚡ أعلى 15 Process (CPU)</div>
+        <div class="cc-table-wrapper" style="max-height:400px">
+          <table class="cc-table">
+            <thead><tr><th>PID</th><th>الاسم</th><th>CPU%</th><th>RAM%</th></tr></thead>
+            <tbody id="infra-procs-cpu"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="cc-card">
+        <div class="cc-card-title">🧠 أعلى 15 Process (RAM)</div>
+        <div class="cc-table-wrapper" style="max-height:400px">
+          <table class="cc-table">
+            <thead><tr><th>PID</th><th>الاسم</th><th>CPU%</th><th>RAM%</th></tr></thead>
+            <tbody id="infra-procs-mem"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ports -->
+    <div class="cc-card">
+      <div class="cc-card-title">🌐 Ports المفتوحة</div>
+      <div class="cc-table-wrapper" style="max-height:300px">
+        <table class="cc-table">
+          <thead><tr><th>State</th><th>Local Address</th><th>Process</th></tr></thead>
+          <tbody id="infra-ports-table">
+            <tr><td colspan="3" class="cc-table-empty">جاري التحميل...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="cc-tab-content hidden" data-tab="users">
+    <div class="cc-kpi-grid">
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">👥 إجمالي</div>
+        <div class="cc-kpi-value cc-kpi-blue" id="users-total">—</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">✅ نشط</div>
+        <div class="cc-kpi-value cc-kpi-green" id="users-active">—</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">❌ معطل</div>
+        <div class="cc-kpi-value" id="users-inactive">—</div>
+      </div>
+      <div class="cc-kpi-card">
+        <div class="cc-kpi-label">📊 الأدوار</div>
+        <div class="cc-kpi-value" style="font-size:14px" id="users-roles">—</div>
+      </div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-title">
+        <span>👥 المستخدمون</span>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <input type="text" id="users-search" class="cc-input" placeholder="🔍 ابحث..." style="padding:6px 10px;font-size:12px;width:180px">
+          <select id="users-role-filter" class="cc-input" style="padding:6px 10px;font-size:12px">
+            <option value="">كل الأدوار</option>
+            <option value="admin">Admin</option>
+            <option value="super_admin">Super Admin</option>
+            <option value="pharmacist">Pharmacist</option>
+            <option value="customer">Customer</option>
+          </select>
+          <select id="users-active-filter" class="cc-input" style="padding:6px 10px;font-size:12px">
+            <option value="">الكل</option>
+            <option value="true">نشط</option>
+            <option value="false">معطل</option>
+          </select>
+          <button class="cc-btn cc-btn-sm cc-btn-secondary" onclick="CC.loadUsers(1)">🔄</button>
+        </div>
+      </div>
+      <div class="cc-table-wrapper" style="max-height:500px">
+        <table class="cc-table">
+          <thead><tr>
+            <th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Pharmacy</th><th>الحالة</th><th></th>
+          </tr></thead>
+          <tbody id="users-table">
+            <tr><td colspan="7" class="cc-table-empty">جاري التحميل...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cc-pagination" id="users-pagination"></div>
+    </div>
+  </div>
+  <div class="cc-tab-content hidden" data-tab="settings">
+    <div class="cc-card">
+      <div class="cc-card-title"><span>🔑 متغيرات البيئة (.env)</span>
+        <button class="cc-btn cc-btn-sm cc-btn-secondary" onclick="CC.loadEnvSettings()">🔄 تحديث</button>
+      </div>
+      <div class="cc-table-wrapper" style="max-height:400px">
+        <table class="cc-table"><thead><tr><th>المفتاح</th><th>القيمة</th></tr></thead>
+          <tbody id="settings-env-table"><tr><td colspan="2" class="cc-table-empty">جاري التحميل...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-title">💾 قاعدة البيانات</div>
+      <div id="settings-db-info" class="cc-info-grid"><div class="cc-info-item">جاري التحميل...</div></div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-title">🚦 Rate Limits</div>
+      <div id="settings-rate-limits" class="cc-info-grid"><div class="cc-info-item">جاري التحميل...</div></div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-title">🎯 Feature Flags</div>
+      <div id="settings-features" class="cc-features-grid"><div class="cc-info-item">جاري التحميل...</div></div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-title">📤 التصدير</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="cc-btn cc-btn-primary" onclick="CC.exportMetricsJSON()">📄 تصدير JSON</button>
+        <button class="cc-btn cc-btn-secondary" onclick="CC.exportRequestsCSV()">📊 تصدير CSV</button>
+        <button class="cc-btn cc-btn-secondary" onclick="CC.exportSettings()">⚙️ تصدير الإعدادات</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ═══ SETTINGS PANEL ═══ -->
+<aside class="cc-settings-panel" id="cc-settings-panel">
+  <div class="cc-settings-header">
+    <h3>⚙️ الإعدادات</h3>
+    <button class="cc-icon-btn" id="cc-close-settings">✕</button>
+  </div>
+  <div class="cc-settings-body">
+    <div class="cc-setting-group">
+      <label class="cc-setting-label">الثيم</label>
+      <div class="cc-setting-options" data-setting="theme">
+        <button data-value="dark" class="active">🌙 داكن</button>
+        <button data-value="light">☀️ فاتح</button>
+        <button data-value="auto">🖥️ تلقائي</button>
+        <button data-value="custom">🎨 مخصص</button>
+      </div>
+    </div>
+    <div class="cc-setting-group">
+      <label class="cc-setting-label">الكثافة</label>
+      <div class="cc-setting-options" data-setting="density">
+        <button data-value="compact">📏 ضيق</button>
+        <button data-value="comfortable" class="active">📐 مريح</button>
+        <button data-value="spacious">🖼️ واسع</button>
+      </div>
+    </div>
+    <div class="cc-setting-group">
+      <label class="cc-setting-label">موضع القائمة</label>
+      <div class="cc-setting-options" data-setting="sidebarPosition">
+        <button data-value="left" class="active">⬅️ يسار</button>
+        <button data-value="right">➡️ يمين</button>
+        <button data-value="top">⬆️ أعلى</button>
+      </div>
+    </div>
+    <div class="cc-setting-group">
+      <label class="cc-setting-label">سرعة التحديث</label>
+      <div class="cc-setting-options" data-setting="refreshInterval">
+        <button data-value="1000">1s</button>
+        <button data-value="2000" class="active">2s</button>
+        <button data-value="5000">5s</button>
+        <button data-value="10000">10s</button>
+      </div>
+    </div>
+    <div class="cc-setting-group">
+      <label class="cc-setting-label">لون التمييز (Accent)</label>
+      <input type="color" id="cc-accent-color" value="#60a5fa">
+    </div>
+    <div class="cc-setting-group">
+      <label class="cc-setting-label">الحجم الافتراضي للجداول</label>
+      <div class="cc-setting-options" data-setting="tableSize">
+        <button data-value="10">10</button>
+        <button data-value="25" class="active">25</button>
+        <button data-value="50">50</button>
+        <button data-value="100">100</button>
+      </div>
+    </div>
+  </div>
+  <div class="cc-settings-footer">
+    <button class="cc-btn cc-btn-secondary" id="cc-reset-settings">🔄 إعادة تعيين</button>
+    <button class="cc-btn cc-btn-primary" id="cc-save-settings">💾 حفظ</button>
+  </div>
+</aside>
+<div class="cc-overlay" id="cc-overlay"></div>
+
+<!-- ═══ COMMAND PALETTE ═══ -->
+<div class="cc-cmd-palette" id="cc-cmd-palette">
+  <div class="cc-cmd-box">
+    <input type="text" class="cc-cmd-input" id="cc-cmd-input" placeholder="اكتب أمراً أو ابحث...">
+    <div class="cc-cmd-results" id="cc-cmd-results"></div>
+    <div class="cc-cmd-hint">↵ للتنفيذ • Esc للإغلاق</div>
+  </div>
+</div>
+
+<!-- ═══ TOAST ═══ -->
+<div class="cc-toast-container" id="cc-toasts"></div>
+
+<script src="/admin/static/cc/cc.js"></script>
+</body>
+</html>
