@@ -1,0 +1,229 @@
+# ═══════════════════════════════════════════════════════════
+#  H1-AI .gitignore — Security First
+# ═══════════════════════════════════════════════════════════
+
+# ─── Secrets ───
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.jks
+*.keystore
+keystore/
+credentials.json
+credentials.yml
+
+# ─── WhatsApp Session (CRITICAL!) ───
+whatsapp-bridge/auth/
+whatsapp-bridge/.wwebjs_cache/
+whatsapp-bridge/sessions/
+whatsapp-bridge/*.session
+whatsapp-bridge/.wwebjs_auth/
+whatsapp/sessions/
+whatsapp-service/sessions/
+whatsapp-service/auth_info/
+sessions/
+
+# ─── Backups ───
+backups/
+*.sql
+*.sql.gz
+*.dump
+*.backup
+*.bak
+*.bak.*
+*.broken.*
+*_backup_*
+_backup_*
+pwa_backup_*/
+whatsapp_backup_*/
+archived-projects/
+mobile-backup-*/
+.git.backup-*
+
+# ─── Python ───
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ─── Node ───
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-store/
+
+# ─── IDE ───
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── Logs ───
+*.log
+logs/
+
+# ─── OS ───
+.DS_Store
+Thumbs.db
+
+# ─── Mobile (Flutter) ───
+mobile/build/
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/android/.gradle/
+mobile/ios/Pods/
+mobile/.env
+mobile-backup-*/
+*.apk
+*.symbols
+*.map.json
+
+# ─── Frontend ───
+frontend/dist/
+frontend/build/
+
+# ─── Chrome/puppeteer ───
+.chromium/
+*.crx
+
+# ─── Database ───
+*.db
+*.db-journal
+h1ai.db
+*.sqlite
+*.sqlite3
+
+# ─── Config with secrets ───
+config/config.yaml
+config/*.local.yaml
+
+# ─── Android SDK ───
+android-sdk/
+.gradle/
+
+# ─── Test results ───
+/tmp/*.txt
+main.py.*
+*.before-*
+
+# ═══ Backups والملفات المؤقتة (إضافة جديدة) ═══
+*.backup_*
+*.backup
+*.bak
+backup_*/
+backups/*.sql
+backups/*.tar.gz
+
+# ═══ Logs ═══
+*.log
+logs/
+backend/logs/*.log
+whatsapp-service/*.log
+
+# ═══ WhatsApp Sessions (أمان) ═══
+.wwebjs_cache/
+whatsapp-service/sessions/
+whatsapp-service/auth_info/
+whatsapp-service/service.log
+
+# ═══ Cache ═══
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ═══ Node ═══
+node_modules/
+package-lock.json.bak
+
+# ═══ Audit reports (مؤقتة) ═══
+audit_report/
+project_audit/
+full_audit/
+deep_audit/
+05_python.txt
+06_api.txt
+07_docker.txt
+08_logs.txt
+09_errors.txt
+10_security.txt
+11_cleanup.txt
+12_resources.txt
+13_errors.txt
+12_size.txt
+
+# ═══ Test sessions ═══
+test_*.txt
+*.test
+
+# ═══ Secrets ═══
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.crt
+*.p12
+.secrets/
+!**/.secrets/README.md
+
+# ═══ Runtime data ═══
+backups/
+logs/
+*.log
+uploads/
+data/expanded/
+sessions/
+
+# ═══ Python ═══
+__pycache__/
+*.py[cod]
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ═══ Node ═══
+node_modules/
+npm-debug.log*
+
+# ═══ IDE ═══
+.vscode/
+.idea/
+*.swp
+
+# ═══ Audit reports (generated) ═══
+audit/full_scan_*/
+audit/odd_files/
+audit/archives/*.tar.gz
+audit/reports/final_status_*
+audit/reports/old_diagnostics/
+
+# ═══ Odd files ═══
+threading
+urllib.error
+json
+
+# ═══ QR temp ═══
+qr*.png
+
+# ═══ Runtime backups ═══
+h1ai-backup/
+*.bundle

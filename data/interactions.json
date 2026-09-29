@@ -1,0 +1,3136 @@
+{
+  "version": "4.0",
+  "interactions": [
+    {
+      "drug1": "warfarin",
+      "drug2": "aspirin",
+      "severity": "major",
+      "effect": "زيادة خطر النزيف",
+      "action": "لا تتناولهما معاً"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "ibuprofen",
+      "severity": "major",
+      "effect": "زيادة خطر النزيف",
+      "action": "استخدم paracetamol"
+    },
+    {
+      "drug1": "aspirin",
+      "drug2": "ibuprofen",
+      "severity": "moderate",
+      "effect": "تأثير متضاد على الصفائح",
+      "action": "افصل بينهما ساعتين"
+    },
+    {
+      "drug1": "metformin",
+      "drug2": "alcohol",
+      "severity": "major",
+      "effect": "خطر الحماض اللبني",
+      "action": "تجنّب الكحول"
+    },
+    {
+      "drug1": "ciprofloxacin",
+      "drug2": "calcium",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل بينهما ساعتين"
+    },
+    {
+      "drug1": "omeprazole",
+      "drug2": "clopidogrel",
+      "severity": "moderate",
+      "effect": "يقلل فعالية clopidogrel",
+      "action": "استشر الطبيب"
+    },
+    {
+      "drug1": "tramadol",
+      "drug2": "antidepressants",
+      "severity": "major",
+      "effect": "خطر متلازمة السيروتونين",
+      "action": "تحت إشراف طبي"
+    },
+    {
+      "drug1": "ibuprofen",
+      "drug2": "lisinopril",
+      "severity": "moderate",
+      "effect": "يقلل فعالية ضغط الدم",
+      "action": "راقب ضغط الدم"
+    },
+    {
+      "drug1": "aspirin",
+      "drug2": "methotrexate",
+      "severity": "major",
+      "effect": "خطر سمية methotrexate",
+      "action": "إشراف طبي صارم"
+    },
+    {
+      "drug1": "doxycycline",
+      "drug2": "calcium",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل بينهما ساعتين"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "naproxen",
+      "severity": "major",
+      "effect": "زيادة خطر النزيف",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "diclofenac",
+      "severity": "major",
+      "effect": "زيادة خطر النزيف",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "celecoxib",
+      "severity": "major",
+      "effect": "زيادة خطر النزيف",
+      "action": "استخدم paracetamol"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "metronidazole",
+      "severity": "major",
+      "effect": "زيادة تأثير warfarin",
+      "action": "راقب INR — قد يحتاج تعديل الجرعة"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "clarithromycin",
+      "severity": "major",
+      "effect": "زيادة تأثير warfarin",
+      "action": "راقب INR"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "ciprofloxacin",
+      "severity": "major",
+      "effect": "زيادة تأثير warfarin",
+      "action": "راقب INR"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "fluconazole",
+      "severity": "major",
+      "effect": "زيادة تأثير warfarin بشكل كبير",
+      "action": "تجنّب أو قلّل الجرعة تحت إشراف"
+    },
+    {
+      "drug1": "tramadol",
+      "drug2": "fluoxetine",
+      "severity": "major",
+      "effect": "متلازمة السيروتونين (Serotonin Syndrome)",
+      "action": "تجنّب الجمع — قد يهدد الحياة",
+      "notes": "أعراض: ارتفاع حرارة، رجفة، تشنجات"
+    },
+    {
+      "drug1": "tramadol",
+      "drug2": "sertraline",
+      "severity": "major",
+      "effect": "خطر متلازمة السيروتونين",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "tramadol",
+      "drug2": "paroxetine",
+      "severity": "major",
+      "effect": "خطر متلازمة السيروتونين",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "tramadol",
+      "drug2": "venlafaxine",
+      "severity": "major",
+      "effect": "خطر متلازمة السيروتونين",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "atorvastatin",
+      "drug2": "clarithromycin",
+      "severity": "major",
+      "effect": "زيادة خطر اعتلال العضلات (Rhabdomyolysis)",
+      "action": "أوقف statin مؤقتاً أو استبدل المضاد"
+    },
+    {
+      "drug1": "atorvastatin",
+      "drug2": "gemfibrozil",
+      "severity": "major",
+      "effect": "خطر اعتلال العضلات الشديد",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "simvastatin",
+      "drug2": "amlodipine",
+      "severity": "moderate",
+      "effect": "زيادة مستوى simvastatin",
+      "action": "لا تتجاوز 20mg simvastatin"
+    },
+    {
+      "drug1": "simvastatin",
+      "drug2": "verapamil",
+      "severity": "major",
+      "effect": "زيادة خطر اعتلال العضلات",
+      "action": "تجنّب simvastatin — استخدم pravastatin"
+    },
+    {
+      "drug1": "rosuvastatin",
+      "drug2": "gemfibrozil",
+      "severity": "major",
+      "effect": "خطر اعتلال العضلات",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "lisinopril",
+      "drug2": "spironolactone",
+      "severity": "major",
+      "effect": "خطر فرط بوتاسيوم الدم",
+      "action": "راقب البوتاسيوم بانتظام"
+    },
+    {
+      "drug1": "lisinopril",
+      "drug2": "potassium",
+      "severity": "major",
+      "effect": "خطر فرط بوتاسيوم الدم",
+      "action": "تجنّب مكملات البوتاسيوم"
+    },
+    {
+      "drug1": "losartan",
+      "drug2": "spironolactone",
+      "severity": "major",
+      "effect": "خطر فرط بوتاسيوم الدم",
+      "action": "راقب البوتاسيوم"
+    },
+    {
+      "drug1": "losartan",
+      "drug2": "ibuprofen",
+      "severity": "moderate",
+      "effect": "يقلل فعالية losartan",
+      "action": "راقب ضغط الدم"
+    },
+    {
+      "drug1": "valsartan",
+      "drug2": "spironolactone",
+      "severity": "major",
+      "effect": "خطر فرط بوتاسيوم الدم",
+      "action": "راقب البوتاسيوم"
+    },
+    {
+      "drug1": "metoprolol",
+      "drug2": "verapamil",
+      "severity": "major",
+      "effect": "خطر بطء القلب الشديد",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "atenolol",
+      "drug2": "diltiazem",
+      "severity": "major",
+      "effect": "خطر بطء القلب",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "metoprolol",
+      "drug2": "salbutamol",
+      "severity": "moderate",
+      "effect": "يقلل فعالية salbutamol",
+      "action": "استخدم cardioselective beta blocker"
+    },
+    {
+      "drug1": "atenolol",
+      "drug2": "salbutamol",
+      "severity": "moderate",
+      "effect": "قد يسبب تضييق الشعب",
+      "action": "راقب — استخدم بديل إن أمكن"
+    },
+    {
+      "drug1": "ciprofloxacin",
+      "drug2": "iron",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص ciprofloxacin",
+      "action": "افصل بينهما ساعتين"
+    },
+    {
+      "drug1": "ciprofloxacin",
+      "drug2": "antacid",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص ciprofloxacin",
+      "action": "افصل بينهما ساعتين"
+    },
+    {
+      "drug1": "levofloxacin",
+      "drug2": "calcium",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص levofloxacin",
+      "action": "افصل بينهما ساعتين"
+    },
+    {
+      "drug1": "doxycycline",
+      "drug2": "iron",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص doxycycline",
+      "action": "افصل بينهما ساعتين"
+    },
+    {
+      "drug1": "doxycycline",
+      "drug2": "antacid",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص doxycycline",
+      "action": "افصل بينهما ساعتين"
+    },
+    {
+      "drug1": "tetracycline",
+      "drug2": "calcium",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل بينهما ساعتين"
+    },
+    {
+      "drug1": "metformin",
+      "drug2": "iodinated_contrast",
+      "severity": "major",
+      "effect": "خطر الحماض اللبني",
+      "action": "أوقف metformin 48 ساعة قبل وبعد الأشعة"
+    },
+    {
+      "drug1": "glimepiride",
+      "drug2": "alcohol",
+      "severity": "moderate",
+      "effect": "خطر هبوط السكر الحاد",
+      "action": "تجنّب الكحول"
+    },
+    {
+      "drug1": "metformin",
+      "drug2": "furosemide",
+      "severity": "moderate",
+      "effect": "تأثير على وظائف الكلى",
+      "action": "راقب وظائف الكلى"
+    },
+    {
+      "drug1": "esomeprazole",
+      "drug2": "clopidogrel",
+      "severity": "moderate",
+      "effect": "يقلل فعالية clopidogrel",
+      "action": "استخدم pantoprazole"
+    },
+    {
+      "drug1": "diphenhydramine",
+      "drug2": "alcohol",
+      "severity": "moderate",
+      "effect": "زيادة النعاس بشكل كبير",
+      "action": "تجنّب القيادة"
+    },
+    {
+      "drug1": "chlorpheniramine",
+      "drug2": "diazepam",
+      "severity": "moderate",
+      "effect": "زيادة التثبيط العصبي",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "cetirizine",
+      "drug2": "alcohol",
+      "severity": "moderate",
+      "effect": "زيادة النعاس",
+      "action": "تجنّب القيادة"
+    },
+    {
+      "drug1": "hydroxyzine",
+      "drug2": "alcohol",
+      "severity": "moderate",
+      "effect": "زيادة التثبيط",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "fluoxetine",
+      "drug2": "maoi",
+      "severity": "contraindicated",
+      "effect": "متلازمة السيروتونين القاتلة",
+      "action": "ممنوع تماماً — افصل 14 يوم"
+    },
+    {
+      "drug1": "sertraline",
+      "drug2": "maoi",
+      "severity": "contraindicated",
+      "effect": "متلازمة السيروتونين",
+      "action": "ممنوع تماماً"
+    },
+    {
+      "drug1": "allopurinol",
+      "drug2": "azathioprine",
+      "severity": "major",
+      "effect": "تثبيط نخاع العظم (خطر الموت)",
+      "action": "قلّل جرعة azathioprine بـ 75%"
+    },
+    {
+      "drug1": "digoxin",
+      "drug2": "furosemide",
+      "severity": "moderate",
+      "effect": "خطر عدم توازن البوتاسيوم",
+      "action": "راقب البوتاسيوم"
+    },
+    {
+      "drug1": "digoxin",
+      "drug2": "verapamil",
+      "severity": "major",
+      "effect": "زيادة مستوى digoxin",
+      "action": "قلّل جرعة digoxin"
+    },
+    {
+      "drug1": "methotrexate",
+      "drug2": "ibuprofen",
+      "severity": "major",
+      "effect": "خطر سمية methotrexate",
+      "action": "تجنّب NSAIDs"
+    },
+    {
+      "drug1": "lithium",
+      "drug2": "ibuprofen",
+      "severity": "major",
+      "effect": "زيادة مستوى الليثيوم",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "lithium",
+      "drug2": "thiazide",
+      "severity": "major",
+      "effect": "زيادة مستوى الليثيوم",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "ondansetron",
+      "drug2": "tramadol",
+      "severity": "moderate",
+      "effect": "قد يسبب متلازمة السيروتونين",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "iron",
+      "drug2": "calcium",
+      "severity": "minor",
+      "effect": "يقلل امتصاص الحديد",
+      "action": "افصل بينهما ساعتين"
+    },
+    {
+      "drug1": "iron",
+      "drug2": "omeprazole",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص الحديد",
+      "action": "افصل 4 ساعات"
+    },
+    {
+      "drug1": "iron",
+      "drug2": "tea",
+      "severity": "minor",
+      "effect": "الشاي يقلل امتصاص الحديد",
+      "action": "تجنّب الشاي مع الحديد"
+    },
+    {
+      "drug1": "levothyroxine",
+      "drug2": "calcium",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص levothyroxine",
+      "action": "افصل 4 ساعات"
+    },
+    {
+      "drug1": "levothyroxine",
+      "drug2": "iron",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص levothyroxine",
+      "action": "افصل 4 ساعات"
+    },
+    {
+      "drug1": "levothyroxine",
+      "drug2": "omeprazole",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص levothyroxine",
+      "action": "افصل 4 ساعات"
+    },
+    {
+      "drug1": "metformin",
+      "drug2": "contrast_media",
+      "severity": "major",
+      "effect": "خطر الحماض اللبني",
+      "action": "إيقاف قبل الفحص 48 ساعة"
+    },
+    {
+      "drug1": "sertraline",
+      "drug2": "aspirin",
+      "severity": "moderate",
+      "effect": "زيادة خطر النزيف",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "simvastatin",
+      "drug2": "clarithromycin",
+      "severity": "major",
+      "effect": "زيادة خطر الإعتلال العضلي",
+      "action": "إيقاف الستاتين مؤقتاً"
+    },
+    {
+      "drug1": "simvastatin",
+      "drug2": "itraconazole",
+      "severity": "major",
+      "effect": "زيادة خطر الإعتلال العضلي",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "ciprofloxacin",
+      "drug2": "calcium_carbonate",
+      "severity": "moderate",
+      "effect": "انخفاض امتصاص السيبروفلوكساسين",
+      "action": "افصل بينهم ساعتين"
+    },
+    {
+      "drug1": "tetracycline",
+      "drug2": "calcium_carbonate",
+      "severity": "moderate",
+      "effect": "انخفاض الامتصاص",
+      "action": "افصل بينهم ساعتين"
+    },
+    {
+      "drug1": "doxycycline",
+      "drug2": "iron_sulfate",
+      "severity": "moderate",
+      "effect": "انخفاض الامتصاص",
+      "action": "افصل بينهم ساعتين"
+    },
+    {
+      "drug1": "digoxin",
+      "drug2": "amiodarone",
+      "severity": "major",
+      "effect": "زيادة تركيز الديجوكسين",
+      "action": "تقليل الجرعة 50%"
+    },
+    {
+      "drug1": "ibuprofen",
+      "drug2": "furosemide",
+      "severity": "moderate",
+      "effect": "انخفاض تأثير المدر",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "diazepam",
+      "drug2": "morphine",
+      "severity": "major",
+      "effect": "تثبيط الجهاز التنفسي",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "alprazolam",
+      "drug2": "alcohol",
+      "severity": "major",
+      "effect": "تثبيط الجهاز العصبي",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "diazepam",
+      "drug2": "tramadol",
+      "severity": "moderate",
+      "effect": "تثبيط CNS",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "levothyroxine",
+      "drug2": "calcium_carbonate",
+      "severity": "moderate",
+      "effect": "انخفاض امتصاص الثيروكسين",
+      "action": "افصل 4 ساعات"
+    },
+    {
+      "drug1": "levothyroxine",
+      "drug2": "iron_sulfate",
+      "severity": "moderate",
+      "effect": "انخفاض الامتصاص",
+      "action": "افصل 4 ساعات"
+    },
+    {
+      "drug1": "albuterol",
+      "drug2": "metoprolol",
+      "severity": "moderate",
+      "effect": "تضاد التأثير",
+      "action": "استخدم β1-selective"
+    },
+    {
+      "drug1": "ketoconazole",
+      "drug2": "omeprazole",
+      "severity": "moderate",
+      "effect": "انخفاض امتصاص الكيتوكونازول",
+      "action": "استخدم شراب مع حمض"
+    },
+    {
+      "drug1": "phenytoin",
+      "drug2": "warfarin",
+      "severity": "major",
+      "effect": "تغيرات متقلبة في INR",
+      "action": "مراقبة لصيقة"
+    },
+    {
+      "drug1": "carbamazepine",
+      "drug2": "warfarin",
+      "severity": "major",
+      "effect": "انخفاض تأثير الوارفارين",
+      "action": "زيادة الجرعة"
+    },
+    {
+      "drug1": "rifampin",
+      "drug2": "warfarin",
+      "severity": "major",
+      "effect": "انخفاض تأثير الوارفارين",
+      "action": "زيادة الجرعة"
+    },
+    {
+      "drug1": "colchicine",
+      "drug2": "clarithromycin",
+      "severity": "major",
+      "effect": "سمية الكولشيسين",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "methotrexate",
+      "drug2": "trimethoprim",
+      "severity": "major",
+      "effect": "سمية نقية للدم",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "ssri",
+      "drug2": "nsaid",
+      "severity": "moderate",
+      "effect": "خطر النزيف GI",
+      "action": "أضف PPI"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "amiodarone",
+      "severity": "major",
+      "effect": "زيادة تأثير الوارفارين",
+      "action": "تقليل الجرعة"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "levothyroxine",
+      "severity": "moderate",
+      "effect": "زيادة تأثير الوارفارين",
+      "action": "مراقبة INR"
+    },
+    {
+      "drug1": "simvastatin",
+      "drug2": "gemfibrozil",
+      "severity": "major",
+      "effect": "خطر التهاب عضلي",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "simvastatin",
+      "drug2": "cyclosporine",
+      "severity": "major",
+      "effect": "خطر التهاب عضلي",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "simvastatin",
+      "drug2": "diltiazem",
+      "severity": "moderate",
+      "effect": "زيادة تركيز الستاتين",
+      "action": "تقليل الجرعة"
+    },
+    {
+      "drug1": "atorvastatin",
+      "drug2": "itraconazole",
+      "severity": "major",
+      "effect": "خطر التهاب عضلي",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "ssri",
+      "drug2": "maoi",
+      "severity": "contraindicated",
+      "effect": "متلازمة السيروتونين",
+      "action": "ممنوع تماماً"
+    },
+    {
+      "drug1": "ssri",
+      "drug2": "linezolid",
+      "severity": "major",
+      "effect": "متلازمة السيروتونين",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "ssri",
+      "drug2": "triptan",
+      "severity": "moderate",
+      "effect": "متلازمة السيروتونين",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "digoxin",
+      "drug2": "quinidine",
+      "severity": "major",
+      "effect": "زيادة سمية الديجوكسين",
+      "action": "تقليل الجرعة 50%"
+    },
+    {
+      "drug1": "digoxin",
+      "drug2": "clarithromycin",
+      "severity": "major",
+      "effect": "زيادة تركيز الديجوكسين",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "ace_inhibitor",
+      "drug2": "spironolactone",
+      "severity": "major",
+      "effect": "ارتفاع البوتاسيوم",
+      "action": "مراقبة البوتاسيوم"
+    },
+    {
+      "drug1": "ace_inhibitor",
+      "drug2": "nsaid",
+      "severity": "moderate",
+      "effect": "انخفاض تأثير الضغط + كلى",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "ace_inhibitor",
+      "drug2": "potassium_chloride",
+      "severity": "major",
+      "effect": "ارتفاع البوتاسيوم",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "ace_inhibitor",
+      "drug2": "lithium",
+      "severity": "major",
+      "effect": "زيادة سمية الليثيوم",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "nifedipine",
+      "drug2": "grapefruit",
+      "severity": "moderate",
+      "effect": "زيادة تركيز النيفيديبين",
+      "action": "تجنب الجريب فروت"
+    },
+    {
+      "drug1": "verapamil",
+      "drug2": "beta_blocker",
+      "severity": "major",
+      "effect": "بطء القلب الشديد",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "beta_blocker",
+      "drug2": "insulin",
+      "severity": "moderate",
+      "effect": "إخفاء أعراض نقص السكر",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "beta_blocker",
+      "drug2": "albuterol",
+      "severity": "moderate",
+      "effect": "تضاد التأثير",
+      "action": "استخدم β1-selective"
+    },
+    {
+      "drug1": "nitrate",
+      "drug2": "pde5",
+      "severity": "contraindicated",
+      "effect": "انخفاض ضغط شديد",
+      "action": "ممنوع تماماً"
+    },
+    {
+      "drug1": "nitrate",
+      "drug2": "sildenafil",
+      "severity": "contraindicated",
+      "effect": "انخفاض ضغط خطير",
+      "action": "ممنوع"
+    },
+    {
+      "drug1": "lithium",
+      "drug2": "nsaid",
+      "severity": "major",
+      "effect": "زيادة سمية الليثيوم",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "methotrexate",
+      "drug2": "nsaid",
+      "severity": "major",
+      "effect": "زيادة سمية الميثوتريكسات",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "methotrexate",
+      "drug2": "penicillin",
+      "severity": "moderate",
+      "effect": "زيادة تركيز MTX",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "allopurinol",
+      "drug2": "mercaptopurine",
+      "severity": "major",
+      "effect": "سمية نقية للدم",
+      "action": "تقليل الجرعة 75%"
+    },
+    {
+      "drug1": "allopurinol",
+      "drug2": "amoxicillin",
+      "severity": "moderate",
+      "effect": "زيادة خطر الطفح الجلدي",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "colchicine",
+      "drug2": "cyclosporine",
+      "severity": "major",
+      "effect": "سمية الكولشيسين",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "colchicine",
+      "drug2": "verapamil",
+      "severity": "major",
+      "effect": "زيادة السمية",
+      "action": "تقليل الجرعة"
+    },
+    {
+      "drug1": "metronidazole",
+      "drug2": "alcohol",
+      "severity": "major",
+      "effect": "تفاعل ديسولفيرام",
+      "action": "تجنب الكحول"
+    },
+    {
+      "drug1": "phenytoin",
+      "drug2": "carbamazepine",
+      "severity": "moderate",
+      "effect": "تفاعل معقد",
+      "action": "مراقبة المستويات"
+    },
+    {
+      "drug1": "phenytoin",
+      "drug2": "omeprazole",
+      "severity": "moderate",
+      "effect": "زيادة تركيز الفينيتوين",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "ciprofloxacin",
+      "drug2": "theophylline",
+      "severity": "major",
+      "effect": "زيادة تركيز الثيوفيلين",
+      "action": "تقليل الجرعة"
+    },
+    {
+      "drug1": "ciprofloxacin",
+      "drug2": "tizanidine",
+      "severity": "contraindicated",
+      "effect": "انخفاض ضغط + تخدير",
+      "action": "ممنوع"
+    },
+    {
+      "drug1": "tramadol",
+      "drug2": "ssri",
+      "severity": "major",
+      "effect": "متلازمة السيروتونين",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "tramadol",
+      "drug2": "maoi",
+      "severity": "contraindicated",
+      "effect": "متلازمة السيروتونين",
+      "action": "ممنوع"
+    },
+    {
+      "drug1": "tramadol",
+      "drug2": "carbamazepine",
+      "severity": "moderate",
+      "effect": "انخفاض تأثير الترامادول",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "benzodiazepine",
+      "drug2": "opioid",
+      "severity": "major",
+      "effect": "تثبيط الجهاز التنفسي",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "benzodiazepine",
+      "drug2": "alcohol",
+      "severity": "major",
+      "effect": "تثبيط CNS",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "benzodiazepine",
+      "drug2": "clozapine",
+      "severity": "moderate",
+      "effect": "تثبيط CNS",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "metoclopramide",
+      "drug2": "antipsychotic",
+      "severity": "major",
+      "effect": "أعراض خارج هرمية",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "metoclopramide",
+      "drug2": "ssri",
+      "severity": "moderate",
+      "effect": "متلازمة السيروتونين",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "ondansetron",
+      "drug2": "apomorphine",
+      "severity": "contraindicated",
+      "effect": "انخفاض ضغط شديد",
+      "action": "ممنوع"
+    },
+    {
+      "drug1": "ondansetron",
+      "drug2": "ssri",
+      "severity": "moderate",
+      "effect": "QT prolongation",
+      "action": "مراقبة ECG"
+    },
+    {
+      "drug1": "amiodarone",
+      "drug2": "beta_blocker",
+      "severity": "major",
+      "effect": "بطء القلب",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "spironolactone",
+      "drug2": "potassium_chloride",
+      "severity": "major",
+      "effect": "ارتفاع البوتاسيوم",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "spironolactone",
+      "drug2": "nsaid",
+      "severity": "moderate",
+      "effect": "انخفاض تأثير المدر",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "furosemide",
+      "drug2": "nsaid",
+      "severity": "moderate",
+      "effect": "انخفاض تأثير المدر",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "furosemide",
+      "drug2": "aminoglycoside",
+      "severity": "major",
+      "effect": "زيادة سمية الأذن",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "octreotide",
+      "drug2": "insulin",
+      "severity": "moderate",
+      "effect": "تغيير مستويات السكر",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "sildenafil",
+      "drug2": "alpha_blocker",
+      "severity": "moderate",
+      "effect": "انخفاض ضغط",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "levodopa",
+      "drug2": "antipsychotic",
+      "severity": "major",
+      "effect": "تضاد التأثير",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "levodopa",
+      "drug2": "metoclopramide",
+      "severity": "major",
+      "effect": "تضاد التأثير",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "levodopa",
+      "drug2": "maoi",
+      "severity": "major",
+      "effect": "ارتفاع ضغط شديد",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "carbamazepine",
+      "drug2": "oral_contraceptive",
+      "severity": "major",
+      "effect": "انخفاض فعالية الحمل",
+      "action": "استخدم طريقة أخرى"
+    },
+    {
+      "drug1": "carbamazepine",
+      "drug2": "valproic_acid",
+      "severity": "moderate",
+      "effect": "انخفاض مستويات الاثنين",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "phenytoin",
+      "drug2": "oral_contraceptive",
+      "severity": "major",
+      "effect": "انخفاض فعالية الحمل",
+      "action": "استخدم طريقة أخرى"
+    },
+    {
+      "drug1": "rifampin",
+      "drug2": "oral_contraceptive",
+      "severity": "major",
+      "effect": "انخفاض فعالية الحمل",
+      "action": "استخدم طريقة أخرى"
+    },
+    {
+      "drug1": "tamoxifen",
+      "drug2": "ssri",
+      "severity": "major",
+      "effect": "انخفاض فعالية تاموكسيفين",
+      "action": "استخدم venlafaxine"
+    },
+    {
+      "drug1": "tamoxifen",
+      "drug2": "warfarin",
+      "severity": "major",
+      "effect": "زيادة خطر النزيف",
+      "action": "مراقبة"
+    },
+    {
+      "drug1": "statins",
+      "drug2": "grapefruit",
+      "severity": "moderate",
+      "effect": "زيادة تركيز الستاتين",
+      "action": "تجنب الجريب فروت"
+    },
+    {
+      "drug1": "amlodipine",
+      "drug2": "grapefruit",
+      "severity": "moderate",
+      "effect": "زيادة تركيز الأملوديبين",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "potassium",
+      "drug2": "ace_inhibitor",
+      "severity": "major",
+      "effect": "ارتفاع البوتاسيوم",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "potassium",
+      "drug2": "spironolactone",
+      "severity": "major",
+      "effect": "ارتفاع البوتاسيوم",
+      "action": "تجنب"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "ketorolac",
+      "severity": "major",
+      "effect": "نزيف حاد محتمل",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "meloxicam",
+      "severity": "major",
+      "effect": "زيادة خطر النزيف",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "aspirin_low",
+      "severity": "major",
+      "effect": "نزيف خطير",
+      "action": "تجنّب إلا بإشراف"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "clopidogrel",
+      "severity": "major",
+      "effect": "نزيف خطير",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "prasugrel",
+      "severity": "major",
+      "effect": "نزيف خطير",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "ticagrelor",
+      "severity": "major",
+      "effect": "نزيف خطير",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "rivaroxaban",
+      "severity": "major",
+      "effect": "نزيف خطير",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "apixaban",
+      "severity": "major",
+      "effect": "نزيف خطير",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "dabigatran",
+      "severity": "major",
+      "effect": "نزيف خطير",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "heparin",
+      "severity": "major",
+      "effect": "نزيف خطير",
+      "action": "راقب aPTT"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "enoxaparin",
+      "severity": "major",
+      "effect": "نزيف خطير",
+      "action": "راقب مضاد Xa"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "tranexamic",
+      "severity": "major",
+      "effect": "نزيف خطير",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "vitamin_k",
+      "severity": "major",
+      "effect": "يقلل تأثير الوارفارين",
+      "action": "تجنّب الجرعات العالية"
+    },
+    {
+      "drug1": "warfarin",
+      "drug2": "rifampicin",
+      "severity": "major",
+      "effect": "يقلل تأثير الوارفارين بشكل كبير",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "sertraline",
+      "drug2": "sumatriptan",
+      "severity": "major",
+      "effect": "خطر متلازمة السيروتونين",
+      "action": "استخدم بحذر"
+    },
+    {
+      "drug1": "sertraline",
+      "drug2": "linezolid",
+      "severity": "major",
+      "effect": "خطر متلازمة السيروتونين",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "fluoxetine",
+      "drug2": "phenelzine",
+      "severity": "major",
+      "effect": "خطر متلازمة السيروتونين",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "venlafaxine",
+      "drug2": "linezolid",
+      "severity": "major",
+      "effect": "خطر متلازمة السيروتونين",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "amitriptyline",
+      "drug2": "phenelzine",
+      "severity": "major",
+      "effect": "خطر متلازمة السيروتونين",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "citalopram",
+      "drug2": "linezolid",
+      "severity": "major",
+      "effect": "خطر متلازمة السيروتونين",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "atorvastatin",
+      "drug2": "ketoconazole",
+      "severity": "major",
+      "effect": "خطر انحلال العضلات",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "simvastatin",
+      "drug2": "amiodarone",
+      "severity": "major",
+      "effect": "خطر انحلال العضلات",
+      "action": "لا تتجاوز 20 مجم"
+    },
+    {
+      "drug1": "verapamil",
+      "drug2": "bisoprolol",
+      "severity": "major",
+      "effect": "بطء قلب شديد",
+      "action": "راقب النبض"
+    },
+    {
+      "drug1": "diltiazem",
+      "drug2": "digoxin",
+      "severity": "major",
+      "effect": "يرفع تركيز الديجوكسين",
+      "action": "قلل جرعة الديجوكسين"
+    },
+    {
+      "drug1": "amiodarone",
+      "drug2": "bisoprolol",
+      "severity": "major",
+      "effect": "بطء قلب شديد",
+      "action": "راقب النبض"
+    },
+    {
+      "drug1": "amiodarone",
+      "drug2": "sotalol",
+      "severity": "major",
+      "effect": "تطويل QT",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "amiodarone",
+      "drug2": "haloperidol",
+      "severity": "major",
+      "effect": "تطويل QT",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "amiodarone",
+      "drug2": "ondansetron",
+      "severity": "major",
+      "effect": "تطويل QT",
+      "action": "راقب ECG"
+    },
+    {
+      "drug1": "amiodarone",
+      "drug2": "azithromycin",
+      "severity": "major",
+      "effect": "تطويل QT",
+      "action": "راقب ECG"
+    },
+    {
+      "drug1": "amiodarone",
+      "drug2": "levofloxacin",
+      "severity": "major",
+      "effect": "تطويل QT",
+      "action": "راقب ECG"
+    },
+    {
+      "drug1": "amiodarone",
+      "drug2": "moxifloxacin",
+      "severity": "major",
+      "effect": "تطويل QT",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "haloperidol",
+      "drug2": "ondansetron",
+      "severity": "major",
+      "effect": "تطويل QT",
+      "action": "راقب ECG"
+    },
+    {
+      "drug1": "haloperidol",
+      "drug2": "azithromycin",
+      "severity": "major",
+      "effect": "تطويل QT",
+      "action": "راقب ECG"
+    },
+    {
+      "drug1": "ondansetron",
+      "drug2": "azithromycin",
+      "severity": "major",
+      "effect": "تطويل QT",
+      "action": "راقب ECG"
+    },
+    {
+      "drug1": "metoclopramide",
+      "drug2": "haloperidol",
+      "severity": "major",
+      "effect": "أعراض خارج الهرمية",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "digoxin",
+      "drug2": "spironolactone",
+      "severity": "major",
+      "effect": "يرفع تركيز الديجوكسين",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "ibuprofen",
+      "drug2": "ramipril",
+      "severity": "major",
+      "effect": "خطر فشل كلوي",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "ibuprofen",
+      "drug2": "enalapril",
+      "severity": "major",
+      "effect": "خطر فشل كلوي",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "ibuprofen",
+      "drug2": "valsartan",
+      "severity": "major",
+      "effect": "خطر فشل كلوي",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "diclofenac",
+      "drug2": "lisinopril",
+      "severity": "major",
+      "effect": "خطر فشل كلوي",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "diclofenac",
+      "drug2": "losartan",
+      "severity": "major",
+      "effect": "خطر فشل كلوي",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "celecoxib",
+      "drug2": "lisinopril",
+      "severity": "major",
+      "effect": "خطر فشل كلوي",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "ketorolac",
+      "drug2": "lisinopril",
+      "severity": "major",
+      "effect": "خطر فشل كلوي",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "ketorolac",
+      "drug2": "ramipril",
+      "severity": "major",
+      "effect": "خطر فشل كلوي",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "spironolactone",
+      "drug2": "ramipril",
+      "severity": "major",
+      "effect": "فرط بوتاسيوم",
+      "action": "راقب البوتاسيوم"
+    },
+    {
+      "drug1": "metformin",
+      "drug2": "contrast_iodine",
+      "severity": "major",
+      "effect": "خطر الحماض اللبني",
+      "action": "أوقف الميتفورمين 48 ساعة"
+    },
+    {
+      "drug1": "glibenclamide",
+      "drug2": "alcohol",
+      "severity": "major",
+      "effect": "نقص سكر حاد",
+      "action": "تجنّب الكحول"
+    },
+    {
+      "drug1": "gliclazide",
+      "drug2": "miconazole",
+      "severity": "major",
+      "effect": "نقص سكر حاد",
+      "action": "راقب السكر"
+    },
+    {
+      "drug1": "insulin_glargine",
+      "drug2": "pioglitazone",
+      "severity": "major",
+      "effect": "خطر فشل القلب",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "gliclazide",
+      "drug2": "aspirin",
+      "severity": "major",
+      "effect": "نقص سكر",
+      "action": "راقب السكر"
+    },
+    {
+      "drug1": "metformin",
+      "drug2": "cimetidine",
+      "severity": "major",
+      "effect": "يرفع الميتفورمين",
+      "action": "راقب السكر"
+    },
+    {
+      "drug1": "glimepiride",
+      "drug2": "fluconazole",
+      "severity": "major",
+      "effect": "نقص سكر حاد",
+      "action": "راقب السكر"
+    },
+    {
+      "drug1": "insulin_glargine",
+      "drug2": "prednisolone",
+      "severity": "major",
+      "effect": "يرفع السكر",
+      "action": "زد جرعة الأنسولين"
+    },
+    {
+      "drug1": "metformin",
+      "drug2": "dolutegravir",
+      "severity": "major",
+      "effect": "يرفع الميتفورمين",
+      "action": "راقب السكر"
+    },
+    {
+      "drug1": "levothyroxine",
+      "drug2": "aluminium",
+      "severity": "major",
+      "effect": "يقلل امتصاص الثيروكسين",
+      "action": "افصل 4 ساعات"
+    },
+    {
+      "drug1": "levothyroxine",
+      "drug2": "sucralfate",
+      "severity": "major",
+      "effect": "يقلل امتصاص الثيروكسين",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "methotrexate",
+      "drug2": "diclofenac",
+      "severity": "major",
+      "effect": "سمية الميثوتريكسات",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "methotrexate",
+      "drug2": "omeprazole",
+      "severity": "major",
+      "effect": "يرفع تركيز الميثوتريكسات",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "clopidogrel",
+      "drug2": "rifampicin",
+      "severity": "major",
+      "effect": "يقلل تأثير كلوبيدوجريل",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "phenytoin",
+      "drug2": "valproate",
+      "severity": "major",
+      "effect": "تغيرات متقلبة",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "carbamazepine",
+      "drug2": "valproate",
+      "severity": "major",
+      "effect": "تغيرات متقلبة",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "rifampicin",
+      "drug2": "oral_contraceptive",
+      "severity": "major",
+      "effect": "فشل مانع الحمل",
+      "action": "استخدم وسيلة احتياطية"
+    },
+    {
+      "drug1": "isotretinoin",
+      "drug2": "tetracycline",
+      "severity": "major",
+      "effect": "ارتفاع ضغط المخ",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "ciprofloxacin",
+      "drug2": "iron_sulfate",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "ciprofloxacin",
+      "drug2": "dairy",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "levofloxacin",
+      "drug2": "iron_sulfate",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "levofloxacin",
+      "drug2": "antacid",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "moxifloxacin",
+      "drug2": "antacid",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل 4 ساعات"
+    },
+    {
+      "drug1": "tetracycline",
+      "drug2": "iron_sulfate",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "azithromycin",
+      "drug2": "antacid",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "clarithromycin",
+      "drug2": "antacid",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "amoxicillin",
+      "drug2": "oral_contraceptive",
+      "severity": "moderate",
+      "effect": "قد يقلل فعالية المانع",
+      "action": "استخدم وسيلة احتياطية"
+    },
+    {
+      "drug1": "ampicillin",
+      "drug2": "oral_contraceptive",
+      "severity": "moderate",
+      "effect": "قد يقلل فعالية المانع",
+      "action": "استخدم وسيلة احتياطية"
+    },
+    {
+      "drug1": "tinidazole",
+      "drug2": "alcohol",
+      "severity": "moderate",
+      "effect": "تفاعل ديسولفيرام",
+      "action": "تجنّب الكحول 72 ساعة"
+    },
+    {
+      "drug1": "rifampicin",
+      "drug2": "isoniazid",
+      "severity": "moderate",
+      "effect": "سمية كبدية",
+      "action": "راقب وظائف الكبد"
+    },
+    {
+      "drug1": "isoniazid",
+      "drug2": "phenytoin",
+      "severity": "moderate",
+      "effect": "يرفع الفينيتوين",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "ethambutol",
+      "drug2": "aluminium",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص الإيثامبوتول",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "nitrofurantoin",
+      "drug2": "antacid",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "fosfomycin",
+      "drug2": "metoclopramide",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "linezolid",
+      "drug2": "tyramine",
+      "severity": "moderate",
+      "effect": "أزمة ضغط",
+      "action": "تجنّب الأطعمة المخمرة"
+    },
+    {
+      "drug1": "linezolid",
+      "drug2": "pseudoephedrine",
+      "severity": "moderate",
+      "effect": "أزمة ضغط",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "atenolol",
+      "drug2": "ibuprofen",
+      "severity": "moderate",
+      "effect": "يقلل تأثير الضغط",
+      "action": "راقب الضغط"
+    },
+    {
+      "drug1": "bisoprolol",
+      "drug2": "ibuprofen",
+      "severity": "moderate",
+      "effect": "يقلل تأثير الضغط",
+      "action": "راقب الضغط"
+    },
+    {
+      "drug1": "metoprolol",
+      "drug2": "ibuprofen",
+      "severity": "moderate",
+      "effect": "يقلل تأثير الضغط",
+      "action": "راقب الضغط"
+    },
+    {
+      "drug1": "propranolol",
+      "drug2": "ibuprofen",
+      "severity": "moderate",
+      "effect": "يقلل تأثير الضغط",
+      "action": "راقب الضغط"
+    },
+    {
+      "drug1": "furosemide",
+      "drug2": "lithium",
+      "severity": "moderate",
+      "effect": "يرفع الليثيوم",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "hctz",
+      "drug2": "lithium",
+      "severity": "moderate",
+      "effect": "يرفع الليثيوم",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "hctz",
+      "drug2": "allopurinol",
+      "severity": "moderate",
+      "effect": "خطر حساسية",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "hctz",
+      "drug2": "digoxin",
+      "severity": "moderate",
+      "effect": "نقص بوتاسيوم",
+      "action": "راقب البوتاسيوم"
+    },
+    {
+      "drug1": "furosemide",
+      "drug2": "gentamicin",
+      "severity": "moderate",
+      "effect": "سمية أذنية",
+      "action": "راقب السمع"
+    },
+    {
+      "drug1": "furosemide",
+      "drug2": "vancomycin",
+      "severity": "moderate",
+      "effect": "سمية أذنية",
+      "action": "راقب السمع"
+    },
+    {
+      "drug1": "nitroglycerin",
+      "drug2": "sildenafil",
+      "severity": "moderate",
+      "effect": "هبوط ضغط حاد",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "nitroglycerin",
+      "drug2": "tadalafil",
+      "severity": "moderate",
+      "effect": "هبوط ضغط حاد",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "nitroglycerin",
+      "drug2": "vardenafil",
+      "severity": "moderate",
+      "effect": "هبوط ضغط حاد",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "fluoxetine",
+      "drug2": "aspirin",
+      "severity": "moderate",
+      "effect": "خطر نزيف",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "paroxetine",
+      "drug2": "aspirin",
+      "severity": "moderate",
+      "effect": "خطر نزيف",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "venlafaxine",
+      "drug2": "aspirin",
+      "severity": "moderate",
+      "effect": "خطر نزيف",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "sertraline",
+      "drug2": "ibuprofen",
+      "severity": "moderate",
+      "effect": "خطر نزيف",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "fluoxetine",
+      "drug2": "ibuprofen",
+      "severity": "moderate",
+      "effect": "خطر نزيف",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "lithium",
+      "drug2": "diclofenac",
+      "severity": "moderate",
+      "effect": "يرفع الليثيوم",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "lithium",
+      "drug2": "lisinopril",
+      "severity": "moderate",
+      "effect": "يرفع الليثيوم",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "lithium",
+      "drug2": "spironolactone",
+      "severity": "moderate",
+      "effect": "يرفع الليثيوم",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "lithium",
+      "drug2": "caffeine",
+      "severity": "moderate",
+      "effect": "يقلل الليثيوم",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "olanzapine",
+      "drug2": "valproate",
+      "severity": "moderate",
+      "effect": "تأثير مثبط",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "clozapine",
+      "drug2": "caffeine",
+      "severity": "moderate",
+      "effect": "يرفع الكلوزابين",
+      "action": "قلل القهوة"
+    },
+    {
+      "drug1": "clozapine",
+      "drug2": "omeprazole",
+      "severity": "moderate",
+      "effect": "يرفع الكلوزابين",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "haloperidol",
+      "drug2": "lithium",
+      "severity": "moderate",
+      "effect": "تسمم عصبي",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "omeprazole",
+      "drug2": "iron_sulfate",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص الحديد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "omeprazole",
+      "drug2": "calcium",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص الكالسيوم",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "omeprazole",
+      "drug2": "magnesium",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المغنيسيوم",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "omeprazole",
+      "drug2": "vitamin_b12",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص B12",
+      "action": "راقب B12 سنوياً"
+    },
+    {
+      "drug1": "pantoprazole",
+      "drug2": "iron_sulfate",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص الحديد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "ranitidine",
+      "drug2": "antacid",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "metoclopramide",
+      "drug2": "digoxin",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص الديجوكسين",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "lactulose",
+      "drug2": "antacid",
+      "severity": "moderate",
+      "effect": "يقلل تأثير اللاكتيولوز",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "loperamide",
+      "drug2": "verapamil",
+      "severity": "moderate",
+      "effect": "يرفع اللوبيراميد",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "sucralfate",
+      "drug2": "ciprofloxacin",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص المضاد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "sucralfate",
+      "drug2": "digoxin",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص الديجوكسين",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "bismuth",
+      "drug2": "tetracycline",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "codeine",
+      "drug2": "rifampicin",
+      "severity": "moderate",
+      "effect": "يقلل تأثير الكودايين",
+      "action": "استخدم بديل"
+    },
+    {
+      "drug1": "morphine",
+      "drug2": "rifampicin",
+      "severity": "moderate",
+      "effect": "يقلل تأثير المورفين",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "fentanyl",
+      "drug2": "clarithromycin",
+      "severity": "moderate",
+      "effect": "سمية الفنتانيل",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "fentanyl",
+      "drug2": "itraconazole",
+      "severity": "moderate",
+      "effect": "سمية الفنتانيل",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "buprenorphine",
+      "drug2": "ketoconazole",
+      "severity": "moderate",
+      "effect": "يرفع البوبرينورفين",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "methadone",
+      "drug2": "fluconazole",
+      "severity": "moderate",
+      "effect": "تطويل QT",
+      "action": "راقب ECG"
+    },
+    {
+      "drug1": "paracetamol",
+      "drug2": "warfarin",
+      "severity": "moderate",
+      "effect": "يرفع INR",
+      "action": "راقب INR"
+    },
+    {
+      "drug1": "naproxen",
+      "drug2": "methotrexate",
+      "severity": "moderate",
+      "effect": "سمية الميثوتريكسات",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "celecoxib",
+      "drug2": "fluconazole",
+      "severity": "moderate",
+      "effect": "يرفع السيليكوكسيب",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "ketorolac",
+      "drug2": "lithium",
+      "severity": "moderate",
+      "effect": "يرفع الليثيوم",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "allopurinol",
+      "drug2": "ampicillin",
+      "severity": "moderate",
+      "effect": "خطر حساسية",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "colchicine",
+      "drug2": "ketoconazole",
+      "severity": "moderate",
+      "effect": "سمية الكولشيسين",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "theophylline",
+      "drug2": "clarithromycin",
+      "severity": "moderate",
+      "effect": "يرفع الثيوفيلين",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "theophylline",
+      "drug2": "cimetidine",
+      "severity": "moderate",
+      "effect": "يرفع الثيوفيلين",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "theophylline",
+      "drug2": "rifampicin",
+      "severity": "moderate",
+      "effect": "يقلل الثيوفيلين",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "theophylline",
+      "drug2": "phenytoin",
+      "severity": "moderate",
+      "effect": "يقلل الثيوفيلين",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "caffeine",
+      "drug2": "ciprofloxacin",
+      "severity": "moderate",
+      "effect": "يرفع الكافيين",
+      "action": "قلل القهوة"
+    },
+    {
+      "drug1": "caffeine",
+      "drug2": "oral_contraceptive",
+      "severity": "moderate",
+      "effect": "يرفع الكافيين",
+      "action": "قلل القهوة"
+    },
+    {
+      "drug1": "montelukast",
+      "drug2": "rifampicin",
+      "severity": "moderate",
+      "effect": "يقلل المونتيلوكاست",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "montelukast",
+      "drug2": "phenobarbital",
+      "severity": "moderate",
+      "effect": "يقلل المونتيلوكاست",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "sildenafil",
+      "drug2": "clarithromycin",
+      "severity": "moderate",
+      "effect": "يرفع السيلدينافيل",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "tadalafil",
+      "drug2": "clarithromycin",
+      "severity": "moderate",
+      "effect": "يرفع التادالافيل",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "finasteride",
+      "drug2": "clarithromycin",
+      "severity": "moderate",
+      "effect": "يرفع الفيناستيريد",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "saw_palmetto",
+      "drug2": "finasteride",
+      "severity": "moderate",
+      "effect": "تأثير مضاعف",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "saw_palmetto",
+      "drug2": "dutasteride",
+      "severity": "moderate",
+      "effect": "تأثير مضاعف",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "ginkgo",
+      "drug2": "warfarin",
+      "severity": "moderate",
+      "effect": "خطر نزيف",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "amoxicillin",
+      "drug2": "probiotics",
+      "severity": "minor",
+      "effect": "يقلل الإسهال المرافق",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "azithromycin",
+      "drug2": "probiotics",
+      "severity": "minor",
+      "effect": "يقلل الإسهال المرافق",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "cephalexin",
+      "drug2": "probiotics",
+      "severity": "minor",
+      "effect": "يقلل الإسهال المرافق",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "metronidazole",
+      "drug2": "probiotics",
+      "severity": "minor",
+      "effect": "يقلل الإسهال المرافق",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "clindamycin",
+      "drug2": "probiotics",
+      "severity": "minor",
+      "effect": "يقلل الإسهال المرافق",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "iron_sulfate",
+      "drug2": "vitamin_c",
+      "severity": "minor",
+      "effect": "يزيد امتصاص الحديد",
+      "action": "خذهما معاً"
+    },
+    {
+      "drug1": "iron_sulfate",
+      "drug2": "tea",
+      "severity": "minor",
+      "effect": "يقلل امتصاص الحديد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "iron_sulfate",
+      "drug2": "coffee",
+      "severity": "minor",
+      "effect": "يقلل امتصاص الحديد",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "calcium",
+      "drug2": "vitamin_d3",
+      "severity": "minor",
+      "effect": "يزيد امتصاص الكالسيوم",
+      "action": "خذهما معاً"
+    },
+    {
+      "drug1": "vitamin_d3",
+      "drug2": "fatty_meal",
+      "severity": "minor",
+      "effect": "يزيد امتصاص D3",
+      "action": "خذه مع وجبة دسمة"
+    },
+    {
+      "drug1": "vitamin_a",
+      "drug2": "vitamin_e",
+      "severity": "minor",
+      "effect": "تفاعل مضاد",
+      "action": "افصل بينهما"
+    },
+    {
+      "drug1": "zinc_sulfate",
+      "drug2": "iron_sulfate",
+      "severity": "minor",
+      "effect": "تنافس على الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "zinc_sulfate",
+      "drug2": "calcium",
+      "severity": "minor",
+      "effect": "تنافس على الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "folic_acid",
+      "drug2": "vitamin_b12",
+      "severity": "minor",
+      "effect": "تأثير متكامل",
+      "action": "خذهما معاً"
+    },
+    {
+      "drug1": "levothyroxine",
+      "drug2": "coffee",
+      "severity": "minor",
+      "effect": "يقلل امتصاص الثيروكسين",
+      "action": "افصل 30 دقيقة"
+    },
+    {
+      "drug1": "paracetamol",
+      "drug2": "caffeine",
+      "severity": "minor",
+      "effect": "يزيد تأثير المسكن",
+      "action": "خذهما معاً"
+    },
+    {
+      "drug1": "aspirin",
+      "drug2": "caffeine",
+      "severity": "minor",
+      "effect": "يزيد تأثير المسكن",
+      "action": "خذهما معاً"
+    },
+    {
+      "drug1": "loratadine",
+      "drug2": "grapefruit",
+      "severity": "minor",
+      "effect": "يزيد التركيز",
+      "action": "قلل الجريب فروت"
+    },
+    {
+      "drug1": "doxorubicin",
+      "drug2": "verapamil",
+      "severity": "major",
+      "effect": "يرفع سمية الدوكسوروبيسين",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "doxorubicin",
+      "drug2": "cyclosporine",
+      "severity": "major",
+      "effect": "يرفع سمية القلب",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "cisplatin",
+      "drug2": "aminoglycoside",
+      "severity": "major",
+      "effect": "سمية كلوية وأذنية",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "cisplatin",
+      "drug2": "furosemide",
+      "severity": "major",
+      "effect": "سمية أذنية",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "methotrexate_hd",
+      "drug2": "nsaid",
+      "severity": "major",
+      "effect": "سمية نخاع العظم",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "methotrexate_hd",
+      "drug2": "penicillin",
+      "severity": "major",
+      "effect": "يرفع الميثوتريكسات",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "cyclophosphamide",
+      "drug2": "allopurinol",
+      "severity": "major",
+      "effect": "سمية نخاع العظم",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "vincristine",
+      "drug2": "itraconazole",
+      "severity": "major",
+      "effect": "سمية عصبية",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "vinblastine",
+      "drug2": "phenytoin",
+      "severity": "major",
+      "effect": "يقلل الفينيتوين",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "paclitaxel",
+      "drug2": "ketoconazole",
+      "severity": "major",
+      "effect": "يرفع الباكليتاكسيل",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "docetaxel",
+      "drug2": "ketoconazole",
+      "severity": "major",
+      "effect": "يرفع الدوسيتاكسيل",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "irinotecan",
+      "drug2": "ketoconazole",
+      "severity": "major",
+      "effect": "يرفع الإيرينوتيكان",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "etoposide",
+      "drug2": "warfarin",
+      "severity": "major",
+      "effect": "يرفع INR",
+      "action": "راقب INR"
+    },
+    {
+      "drug1": "tamoxifen",
+      "drug2": "paroxetine",
+      "severity": "major",
+      "effect": "يقلل تأثير تاموكسيفين",
+      "action": "استخدم بديل"
+    },
+    {
+      "drug1": "imatinib",
+      "drug2": "ketoconazole",
+      "severity": "major",
+      "effect": "يرفع الإيماتينيب",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "imatinib",
+      "drug2": "rifampicin",
+      "severity": "major",
+      "effect": "يقلل الإيماتينيب",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "imatinib",
+      "drug2": "simvastatin",
+      "severity": "major",
+      "effect": "سمية عضلية",
+      "action": "استخدم بديل"
+    },
+    {
+      "drug1": "rituximab",
+      "drug2": "live_vaccine",
+      "severity": "major",
+      "effect": "خطر عدوى",
+      "action": "ممنوع اللقاح الحي"
+    },
+    {
+      "drug1": "norepinephrine",
+      "drug2": "maoi",
+      "severity": "major",
+      "effect": "أزمة ضغط",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "epinephrine",
+      "drug2": "maoi",
+      "severity": "major",
+      "effect": "أزمة ضغط",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "epinephrine",
+      "drug2": "beta_blocker",
+      "severity": "major",
+      "effect": "أزمة ضغط",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "dopamine",
+      "drug2": "maoi",
+      "severity": "major",
+      "effect": "أزمة ضغط",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "dobutamine",
+      "drug2": "maoi",
+      "severity": "major",
+      "effect": "أزمة ضغط",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "nitroprusside",
+      "drug2": "sildenafil",
+      "severity": "major",
+      "effect": "هبوط ضغط حاد",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "milrinone",
+      "drug2": "furosemide",
+      "severity": "major",
+      "effect": "هبوط ضغط",
+      "action": "راقب الضغط"
+    },
+    {
+      "drug1": "levosimendan",
+      "drug2": "beta_blocker",
+      "severity": "major",
+      "effect": "هبوط ضغط",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "magnesium_sulfate",
+      "drug2": "nifedipine",
+      "severity": "major",
+      "effect": "هبوط ضغط",
+      "action": "راقب الضغط"
+    },
+    {
+      "drug1": "magnesium_sulfate",
+      "drug2": "neuromuscular_blocker",
+      "severity": "major",
+      "effect": "ضعف عضلي",
+      "action": "راقب التنفس"
+    },
+    {
+      "drug1": "potassium_chloride",
+      "drug2": "arb",
+      "severity": "major",
+      "effect": "فرط بوتاسيوم",
+      "action": "راقب البوتاسيوم"
+    },
+    {
+      "drug1": "calcium_gluconate",
+      "drug2": "digoxin",
+      "severity": "major",
+      "effect": "تسمم ديجوكسين",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "sodium_bicarbonate",
+      "drug2": "calcium",
+      "severity": "major",
+      "effect": "ترسب كالسيوم",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "insulin_regular_icu",
+      "drug2": "beta_blocker",
+      "severity": "major",
+      "effect": "يخفي نقص السكر",
+      "action": "راقب السكر"
+    },
+    {
+      "drug1": "insulin_regular_icu",
+      "drug2": "corticosteroid",
+      "severity": "major",
+      "effect": "يرفع السكر",
+      "action": "زد الأنسولين"
+    },
+    {
+      "drug1": "hydrocortisone_icu",
+      "drug2": "phenytoin",
+      "severity": "major",
+      "effect": "يقلل الفينيتوين",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "fludrocortisone_icu",
+      "drug2": "warfarin",
+      "severity": "major",
+      "effect": "يقلل تأثير الوارفارين",
+      "action": "راقب INR"
+    },
+    {
+      "drug1": "dexmedetomidine",
+      "drug2": "beta_blocker",
+      "severity": "major",
+      "effect": "بطء قلب",
+      "action": "راقب النبض"
+    },
+    {
+      "drug1": "propofol",
+      "drug2": "midazolam_anes",
+      "severity": "major",
+      "effect": "تثبيط تنفسي",
+      "action": "راقب التنفس"
+    },
+    {
+      "drug1": "propofol",
+      "drug2": "fentanyl_anes",
+      "severity": "major",
+      "effect": "تثبيط تنفسي",
+      "action": "راقب التنفس"
+    },
+    {
+      "drug1": "ketamine",
+      "drug2": "sympathomimetic",
+      "severity": "major",
+      "effect": "أزمة ضغط",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "succinylcholine",
+      "drug2": "digoxin",
+      "severity": "major",
+      "effect": "اضطراب نظم",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "succinylcholine",
+      "drug2": "malignant_hyperthermia",
+      "severity": "major",
+      "effect": "فرط حرارة خبيث",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "rocuronium",
+      "drug2": "magnesium_sulfate",
+      "severity": "major",
+      "effect": "ضعف عضلي",
+      "action": "راقب التنفس"
+    },
+    {
+      "drug1": "vecuronium",
+      "drug2": "aminoglycoside",
+      "severity": "major",
+      "effect": "ضعف عضلي",
+      "action": "راقب التنفس"
+    },
+    {
+      "drug1": "neostigmine",
+      "drug2": "atropine",
+      "severity": "major",
+      "effect": "بطء قلب",
+      "action": "استخدم معاً"
+    },
+    {
+      "drug1": "bupivacaine",
+      "drug2": "epinephrine",
+      "severity": "major",
+      "effect": "سمية قلبية",
+      "action": "استخدم بحذر"
+    },
+    {
+      "drug1": "lidocaine",
+      "drug2": "beta_blocker",
+      "severity": "major",
+      "effect": "بطء قلب",
+      "action": "راقب النبض"
+    },
+    {
+      "drug1": "lidocaine",
+      "drug2": "cimetidine",
+      "severity": "major",
+      "effect": "يرفع الليدوكايين",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "nitrous_oxide",
+      "drug2": "vitamin_b12",
+      "severity": "major",
+      "effect": "نقص B12",
+      "action": "قلل التعرض"
+    },
+    {
+      "drug1": "remifentanil",
+      "drug2": "beta_blocker",
+      "severity": "major",
+      "effect": "بطء قلب",
+      "action": "راقب النبض"
+    },
+    {
+      "drug1": "droperidol",
+      "drug2": "ssri",
+      "severity": "major",
+      "effect": "تطويل QT",
+      "action": "راقب ECG"
+    },
+    {
+      "drug1": "droperidol",
+      "drug2": "haloperidol",
+      "severity": "major",
+      "effect": "تطويل QT",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "eculizumab",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "eculizumab",
+      "drug2": "warfarin",
+      "severity": "moderate",
+      "effect": "يرفع INR",
+      "action": "راقب INR"
+    },
+    {
+      "drug1": "ravulizumab",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "emicizumab",
+      "drug2": "tranexamic",
+      "severity": "moderate",
+      "effect": "خطر جلطات",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "miglustat",
+      "drug2": "imiglucerase",
+      "severity": "moderate",
+      "effect": "تفاعل غير معروف",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "eliglustat",
+      "drug2": "cyp2d6_inhibitor",
+      "severity": "moderate",
+      "effect": "يرفع الإليجلوستات",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "sapropterin",
+      "drug2": "levodopa",
+      "severity": "moderate",
+      "effect": "تفاعل عصبي",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "nitisinone",
+      "drug2": "warfarin",
+      "severity": "moderate",
+      "effect": "يرفع INR",
+      "action": "راقب INR"
+    },
+    {
+      "drug1": "cysteamine",
+      "drug2": "antacid",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "penicillamine",
+      "drug2": "iron_sulfate",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "penicillamine",
+      "drug2": "zinc",
+      "severity": "moderate",
+      "effect": "يقلل الزنك",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "trientine",
+      "drug2": "iron_sulfate",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "deferoxamine",
+      "drug2": "vitamin_c",
+      "severity": "moderate",
+      "effect": "سمية قلبية",
+      "action": "تجنّب الجرعات العالية"
+    },
+    {
+      "drug1": "deferiprone",
+      "drug2": "vitamin_c",
+      "severity": "moderate",
+      "effect": "سمية قلبية",
+      "action": "تجنّب الجرعات العالية"
+    },
+    {
+      "drug1": "deferasirox",
+      "drug2": "aluminium",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "sodium_oxybate",
+      "drug2": "alcohol",
+      "severity": "moderate",
+      "effect": "تثبيط تنفسي",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "sodium_oxybate",
+      "drug2": "sedative",
+      "severity": "moderate",
+      "effect": "تثبيط تنفسي",
+      "action": "ممنوع الجمع"
+    },
+    {
+      "drug1": "pitolisant",
+      "drug2": "ssri",
+      "severity": "moderate",
+      "effect": "تطويل QT",
+      "action": "راقب ECG"
+    },
+    {
+      "drug1": "pitolisant",
+      "drug2": "antihistamine",
+      "severity": "moderate",
+      "effect": "يقلل التأثير",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "teduglutide",
+      "drug2": "oral_medication",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "asfotase",
+      "drug2": "warfarin",
+      "severity": "moderate",
+      "effect": "يرفع INR",
+      "action": "راقب INR"
+    },
+    {
+      "drug1": "sebelipase",
+      "drug2": "statin",
+      "severity": "moderate",
+      "effect": "سمية عضلية",
+      "action": "راقب الإنزيمات"
+    },
+    {
+      "drug1": "cerliponase",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "idursulfase",
+      "drug2": "antihistamine",
+      "severity": "moderate",
+      "effect": "تفاعل حساسية",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "alglucosidase",
+      "drug2": "beta_blocker",
+      "severity": "moderate",
+      "effect": "تفاعل قلبي",
+      "action": "راقب القلب"
+    },
+    {
+      "drug1": "sevelamer",
+      "drug2": "ciprofloxacin",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "sevelamer",
+      "drug2": "levothyroxine",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص الثيروكسين",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "lanthanum",
+      "drug2": "ciprofloxacin",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "lanthanum",
+      "drug2": "levothyroxine",
+      "severity": "moderate",
+      "effect": "يقلل امتصاص الثيروكسين",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "calcium_acetate",
+      "drug2": "ciprofloxacin",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "cinacalcet_2",
+      "drug2": "amiodarone",
+      "severity": "moderate",
+      "effect": "تطويل QT",
+      "action": "راقب ECG"
+    },
+    {
+      "drug1": "paricalcitol",
+      "drug2": "digoxin",
+      "severity": "moderate",
+      "effect": "يرفع الديجوكسين",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "epoetin",
+      "drug2": "iron_sulfate",
+      "severity": "moderate",
+      "effect": "يزيد الفعالية",
+      "action": "استخدم معاً"
+    },
+    {
+      "drug1": "darbepoetin",
+      "drug2": "iron_sulfate",
+      "severity": "moderate",
+      "effect": "يزيد الفعالية",
+      "action": "استخدم معاً"
+    },
+    {
+      "drug1": "ferric_carboxymaltose",
+      "drug2": "ace_inhibitor",
+      "severity": "moderate",
+      "effect": "هبوط ضغط",
+      "action": "راقب الضغط"
+    },
+    {
+      "drug1": "tolvaptan",
+      "drug2": "cyp3a4_inhibitor",
+      "severity": "moderate",
+      "effect": "يرفع التولفابتان",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "entecavir",
+      "drug2": "tenofovir",
+      "severity": "moderate",
+      "effect": "سمية كلوية",
+      "action": "راقب الكلى"
+    },
+    {
+      "drug1": "tenofovir",
+      "drug2": "nsaid",
+      "severity": "moderate",
+      "effect": "سمية كلوية",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "lamivudine",
+      "drug2": "trimethoprim",
+      "severity": "moderate",
+      "effect": "يرفع اللاميفودين",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "adefovir",
+      "drug2": "nsaid",
+      "severity": "moderate",
+      "effect": "سمية كلوية",
+      "action": "تجنّب الجمع"
+    },
+    {
+      "drug1": "ribavirin",
+      "drug2": "azathioprine",
+      "severity": "moderate",
+      "effect": "سمية نخاع العظم",
+      "action": "راقب CBC"
+    },
+    {
+      "drug1": "sofosbuvir_2",
+      "drug2": "amiodarone",
+      "severity": "moderate",
+      "effect": "بطء قلب",
+      "action": "راقب النبض"
+    },
+    {
+      "drug1": "ledipasvir",
+      "drug2": "antacid",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "velpatasvir",
+      "drug2": "antacid",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "ursodiol",
+      "drug2": "cholestyramine",
+      "severity": "moderate",
+      "effect": "يقلل الامتصاص",
+      "action": "افصل ساعتين"
+    },
+    {
+      "drug1": "tofacitinib",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "tofacitinib",
+      "drug2": "rifampicin",
+      "severity": "moderate",
+      "effect": "يقلل التوفاسيتينيب",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "tofacitinib",
+      "drug2": "ketoconazole",
+      "severity": "moderate",
+      "effect": "يرفع التوفاسيتينيب",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "baricitinib",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "baricitinib",
+      "drug2": "nsaid",
+      "severity": "moderate",
+      "effect": "خطر نزيف",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "upadacitinib",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "upadacitinib",
+      "drug2": "rifampicin",
+      "severity": "moderate",
+      "effect": "يقلل الأوباداسيتينيب",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "adalimumab",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "adalimumab",
+      "drug2": "warfarin",
+      "severity": "moderate",
+      "effect": "يرفع INR",
+      "action": "راقب INR"
+    },
+    {
+      "drug1": "infliximab",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "infliximab",
+      "drug2": "methotrexate",
+      "severity": "moderate",
+      "effect": "سمية كبدية",
+      "action": "راقب الكبد"
+    },
+    {
+      "drug1": "etanercept",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "etanercept",
+      "drug2": "warfarin",
+      "severity": "moderate",
+      "effect": "يرفع INR",
+      "action": "راقب INR"
+    },
+    {
+      "drug1": "certolizumab",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "golimumab",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "ustekinumab",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "secukinumab",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "ixekizumab",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "guselkumab",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "belimumab",
+      "drug2": "live_vaccine",
+      "severity": "moderate",
+      "effect": "خطر عدوى",
+      "action": "تجنّب اللقاح الحي"
+    },
+    {
+      "drug1": "amiodarone",
+      "drug2": "phenytoin",
+      "severity": "moderate",
+      "effect": "يرفع الفينيتوين",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "amiodarone",
+      "drug2": "cyclosporine",
+      "severity": "moderate",
+      "effect": "يرفع السيكلوسبورين",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "carbamazepine",
+      "drug2": "lamotrigine",
+      "severity": "moderate",
+      "effect": "يقلل اللاموتريجين",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "valproate",
+      "drug2": "lamotrigine",
+      "severity": "moderate",
+      "effect": "يرفع اللاموتريجين",
+      "action": "قلل الجرعة"
+    },
+    {
+      "drug1": "valproate",
+      "drug2": "aspirin",
+      "severity": "moderate",
+      "effect": "خطر نزيف",
+      "action": "راقب الأعراض"
+    },
+    {
+      "drug1": "lamotrigine",
+      "drug2": "oral_contraceptive",
+      "severity": "moderate",
+      "effect": "يقلل اللاموتريجين",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "levetiracetam",
+      "drug2": "carbamazepine",
+      "severity": "moderate",
+      "effect": "تغيرات متقلبة",
+      "action": "راقب المستوى"
+    },
+    {
+      "drug1": "gabapentin",
+      "drug2": "morphine",
+      "severity": "moderate",
+      "effect": "تثبيط تنفسي",
+      "action": "راقب التنفس"
+    },
+    {
+      "drug1": "pregabalin",
+      "drug2": "morphine",
+      "severity": "moderate",
+      "effect": "تثبيط تنفسي",
+      "action": "راقب التنفس"
+    },
+    {
+      "drug1": "pregabalin",
+      "drug2": "alcohol",
+      "severity": "moderate",
+      "effect": "تثبيط تنفسي",
+      "action": "تجنّب الكحول"
+    },
+    {
+      "drug1": "topiramate",
+      "drug2": "oral_contraceptive",
+      "severity": "moderate",
+      "effect": "يقلل الفعالية",
+      "action": "استخدم وسيلة احتياطية"
+    },
+    {
+      "drug1": "topiramate",
+      "drug2": "carbamazepine",
+      "severity": "moderate",
+      "effect": "يقلل التوبيراميت",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "zonisamide",
+      "drug2": "carbamazepine",
+      "severity": "moderate",
+      "effect": "يقلل الزونيساميد",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "oxcarbazepine",
+      "drug2": "oral_contraceptive",
+      "severity": "moderate",
+      "effect": "فشل مانع الحمل",
+      "action": "استخدم وسيلة احتياطية"
+    },
+    {
+      "drug1": "oxcarbazepine",
+      "drug2": "carbamazepine",
+      "severity": "moderate",
+      "effect": "يقلل الأوكسكاربازيبين",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "lacosamide",
+      "drug2": "carbamazepine",
+      "severity": "moderate",
+      "effect": "يقلل اللاكوساميد",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "perampanel",
+      "drug2": "oral_contraceptive",
+      "severity": "moderate",
+      "effect": "يقلل الفعالية",
+      "action": "استخدم وسيلة احتياطية"
+    },
+    {
+      "drug1": "brivaracetam",
+      "drug2": "carbamazepine",
+      "severity": "moderate",
+      "effect": "يقلل البريvarاسيتام",
+      "action": "زد الجرعة"
+    },
+    {
+      "drug1": "felbamate",
+      "drug2": "carbamazepine",
+      "severity": "moderate",
+      "effect": "تغيرات متقلبة",
+      "action": "راقب المستوى"
+    }
+  ],
+  "updated_at": "2026-09-16T12:03:04.918943"
+}

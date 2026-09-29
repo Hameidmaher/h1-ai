@@ -1,0 +1,215 @@
+/* ═══════════════════════════════════════════════════════════
+   H1-AI — Dark Mode
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --dm-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode {
+  background: #0F172A !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .main,
+body.dark-mode .content {
+  background: #0F172A !important;
+}
+
+body.dark-mode .sidebar {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .sidebar .nav-item {
+  color: #CBD5E1 !important;
+}
+
+body.dark-mode .sidebar .nav-item:hover {
+  background: #334155 !important;
+  color: white !important;
+}
+
+body.dark-mode .sidebar .nav-item.active {
+  background: #0EA5E9 !important;
+  color: white !important;
+}
+
+body.dark-mode .topbar {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .card,
+body.dark-mode .settings-section,
+body.dark-mode .stat-card,
+body.dark-mode .chart-card {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .card h1,
+body.dark-mode .card h2,
+body.dark-mode .card h3,
+body.dark-mode .settings-section h3,
+body.dark-mode .chart-card h3 {
+  color: #F1F5F9 !important;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background: #0F172A !important;
+  color: #E2E8F0 !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode input:focus,
+body.dark-mode select:focus,
+body.dark-mode textarea:focus {
+  border-color: #0EA5E9 !important;
+}
+
+body.dark-mode .settings-input {
+  background: #0F172A !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .settings-label {
+  color: #94A3B8 !important;
+}
+
+body.dark-mode .settings-value {
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .settings-row {
+  border-color: #334155 !important;
+}
+
+body.dark-mode .chat-container {
+  background: #1E293B !important;
+}
+
+body.dark-mode .chat-messages {
+  background: #0F172A !important;
+}
+
+body.dark-mode .chat-message.agent {
+  background: #1E293B !important;
+  color: #E2E8F0 !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .chat-message.system {
+  background: #422006 !important;
+  color: #FCD34D !important;
+}
+
+body.dark-mode .chat-input-bar {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .chat-input-bar input {
+  background: #0F172A !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .quick-actions {
+  background: #1E293B !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .quick-action {
+  background: #334155 !important;
+  color: #E2E8F0 !important;
+  border-color: #475569 !important;
+}
+
+body.dark-mode .quick-action:hover {
+  background: #0EA5E9 !important;
+  color: white !important;
+}
+
+body.dark-mode .btn-ghost {
+  color: #94A3B8 !important;
+}
+
+body.dark-mode .btn-ghost:hover {
+  background: #334155 !important;
+  color: white !important;
+}
+
+body.dark-mode table {
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode th {
+  background: #1E293B !important;
+  color: #94A3B8 !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode td {
+  border-color: #334155 !important;
+}
+
+body.dark-mode tr:hover {
+  background: #334155 !important;
+}
+
+body.dark-mode .modal-content {
+  background: #1E293B !important;
+  color: #E2E8F0 !important;
+}
+
+body.dark-mode .settings-hint {
+  color: #64748B !important;
+}
+
+body.dark-mode .empty-state {
+  color: #64748B !important;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #0EA5E9;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+  transition: all 0.2s;
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+}
+
+body.dark-mode .theme-toggle {
+  background: #FCD34D;
+  color: #1E293B;
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    bottom: 16px;
+    left: 16px;
+    width: 44px;
+    height: 44px;
+  }
+}

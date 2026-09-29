@@ -1,0 +1,160 @@
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  Team Management Page                                   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div id="page-team" class="page">
+    <div class="page-header">
+        <h1>👥 إدارة الفريق</h1>
+        <button onclick="openTeamModal()" class="btn-primary">
+            ➕ إضافة عضو جديد
+        </button>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+        <input type="text" 
+               id="team-search" 
+               placeholder="🔍 بحث بالاسم أو الرقم..."
+               oninput="filterTeamTable()">
+        <select id="team-role-filter" onchange="filterTeamTable()">
+            <option value="">كل الأدوار</option>
+            <option value="pharmacist">صيدلي</option>
+            <option value="customer_service">خدمة عملاء</option>
+            <option value="supervisor">مشرف</option>
+            <option value="manager">مدير</option>
+        </select>
+        <select id="team-shift-filter" onchange="filterTeamTable()">
+            <option value="">كل الورديات</option>
+            <option value="morning">صباحية</option>
+            <option value="evening">مسائية</option>
+            <option value="night">ليلية</option>
+            <option value="flexible">مرنة</option>
+        </select>
+        <button onclick="loadTeamTable()" class="btn-refresh">🔄 تحديث</button>
+    </div>
+
+    <!-- Team Table -->
+    <div class="table-container">
+        <table class="data-table" id="team-table">
+            <thead>
+                <tr>
+                    <th>الاسم</th>
+                    <th>الدور</th>
+                    <th>التخصصات</th>
+                    <th>الوردية</th>
+                    <th>الهاتف</th>
+                    <th>الحمل</th>
+                    <th>الحالة</th>
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+            <tbody id="team-table-body">
+                <tr><td colspan="8" class="loading">جاري التحميل...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  Team Modal (Add/Edit)                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div id="team-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="team-modal-title">➕ إضافة عضو جديد</h2>
+            <button onclick="closeTeamModal()" class="btn-close">✕</button>
+        </div>
+
+        <form id="team-form" onsubmit="saveTeamMember(event)">
+            <input type="hidden" id="team-id">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>الاسم (عربي) *</label>
+                    <input type="text" id="team-name-ar" required>
+                </div>
+                <div class="form-group">
+                    <label>الاسم (إنجليزي)</label>
+                    <input type="text" id="team-name">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>رقم الهاتف *</label>
+                    <input type="tel" id="team-phone" 
+                           placeholder="+201xxxxxxxxx" required>
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="team-email">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>الدور *</label>
+                    <select id="team-role" required>
+                        <option value="pharmacist">صيدلي</option>
+                        <option value="customer_service">خدمة عملاء</option>
+                        <option value="supervisor">مشرف</option>
+                        <option value="manager">مدير</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>الوردية *</label>
+                    <select id="team-shift" required>
+                        <option value="morning">صباحية (6ص - 2م)</option>
+                        <option value="evening">مسائية (2م - 10م)</option>
+                        <option value="night">ليلية (10م - 6ص)</option>
+                        <option value="flexible">مرنة</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>التخصصات</label>
+                <div id="team-specialties" class="checkbox-grid">
+                    <!-- يملأ من API -->
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>الحد الأقصى للمهام المتزامنة</label>
+                    <input type="number" id="team-max" value="10" min="1" max="100">
+                </div>
+                <div class="form-group">
+                    <label>اللغات</label>
+                    <div class="checkbox-inline">
+                        <label>
+                            <input type="checkbox" id="team-lang-ar" checked>
+                            العربية
+                        </label>
+                        <label>
+                            <input type="checkbox" id="team-lang-en">
+                            English
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="team-whatsapp" checked>
+                    إرسال إشعارات WhatsApp
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" onclick="closeTeamModal()" class="btn-secondary">
+                    إلغاء
+                </button>
+                <button type="submit" class="btn-primary">
+                    💾 حفظ
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H1-AI — مساعد صيدلية ذكي</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        .container { max-width: 800px; }
+        h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .tagline { font-size: 1.5rem; opacity: 0.9; margin-bottom: 2rem; }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+        .feature {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        .feature-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .cta {
+            display: inline-block;
+            background: white;
+            color: #0EA5E9;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+        .cta:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .stats { margin-top: 3rem; font-size: 1.1rem; opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏥 H1-AI</h1>
+        <p class="tagline">مساعد صيدلية ذكي على WhatsApp</p>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🤖</div>
+                <div>AI Agent ذكي</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💊</div>
+                <div>كشف التفاعلات الدوائية</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <div>رد تلقائي على WhatsApp</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <div>توزيع ذكي للفريق</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🚨</div>
+                <div>كشف الحالات الطارئة</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌍</div>
+                <div>عربي + إنجليزي</div>
+            </div>
+        </div>
+        
+        <a href="https://wa.me/201110049371" class="cta">
+            🚀 اطلب تجربة مجانية
+        </a>
+        
+        <div class="stats">
+            ✅ 756 منتج | ✅ 380 دواء | ✅ 149 تفاعل
+        </div>
+    </div>
+</body>
+</html>

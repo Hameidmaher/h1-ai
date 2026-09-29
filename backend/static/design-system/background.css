@@ -1,0 +1,53 @@
+/* ═══════════════════════════════════════════════════════════════
+   H1-AI Design System — Animated Background
+   ═══════════════════════════════════════════════════════════════ */
+
+.h1-bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: var(--h1-z-bg);
+  background: radial-gradient(ellipse at top left, #0f2027, #0a0e1a 60%);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.h1-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  animation: h1-float 20s ease-in-out infinite;
+}
+
+.h1-bg-blob.b1 {
+  width: 500px; height: 500px;
+  background: var(--h1-primary);
+  top: -150px; right: -100px;
+  animation-delay: 0s;
+}
+
+.h1-bg-blob.b2 {
+  width: 600px; height: 600px;
+  background: var(--h1-secondary);
+  bottom: -200px; left: -200px;
+  animation-delay: -7s;
+}
+
+.h1-bg-blob.b3 {
+  width: 400px; height: 400px;
+  background: var(--h1-pink);
+  top: 40%; left: 40%;
+  animation-delay: -14s;
+  opacity: 0.2;
+}
+
+.h1-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}

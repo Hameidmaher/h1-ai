@@ -1,0 +1,3498 @@
+==================================================
+        تقرير فحص العتاد الشامل والدقيق          
+==================================================
+
+--- 1. معلومات النظام الأساسية (inxi) ---
+System:
+  Kernel: 6.12.107+deb13-amd64 arch: x86_64 bits: 64 compiler: gcc v: 14.2.0
+  Desktop: Cinnamon v: 6.6.9 Distro: LMDE 7 Gigi base: Debian 13.0 trixie
+Machine:
+  Type: Desktop System: Apple product: iMac12,1 v: 1.0
+    serial: <superuser required>
+  Mobo: Apple model: Mac-942B5BF58194151B serial: <superuser required>
+    UEFI: Apple v: 87.0.0.0.0 date: 06/14/2019
+CPU:
+  Info: quad core model: Intel Core i5-2400S bits: 64 type: MCP
+    arch: Sandy Bridge rev: 7 cache: L1: 256 KiB L2: 1024 KiB L3: 6 MiB
+  Speed (MHz): avg: 2900 min/max: 1600/3300 cores: 1: 2900 2: 2900 3: 2900
+    4: 2900 bogomips: 19956
+  Flags: avx ht lm nx pae sse sse2 sse3 sse4_1 sse4_2 ssse3 vmx
+Graphics:
+  Device-1: Intel 2nd Generation Core Processor Family Integrated Graphics
+    driver: i915 v: kernel arch: Gen-6 bus-ID: 00:02.0
+  Device-2: Advanced Micro Devices [AMD/ATI] Whistler [Radeon HD
+    6630M/6650M/6750M/7670M/7690M] vendor: Apple driver: radeon v: kernel
+    arch: TeraScale-2 bus-ID: 01:00.0
+  Device-3: Apple FaceTime HD Camera (Built-in) driver: uvcvideo type: USB
+    bus-ID: 1-2:3
+  Display: x11 server: X.Org v: 21.1.16 with: Xwayland v: 24.1.6 driver: X:
+    loaded: modesetting,radeon unloaded: fbdev,vesa dri: r600 gpu: radeon
+    resolution: 1920x1080~60Hz
+  API: EGL v: 1.5 drivers: crocus,kms_swrast,r600,swrast platforms:
+    active: gbm,x11,surfaceless,device inactive: wayland
+  API: OpenGL v: 4.5 compat-v: 3.3 vendor: mesa v: 25.0.7-2+deb13u1
+    glx-v: 1.4 direct-render: yes renderer: AMD TURKS (DRM 2.50.0 /
+    6.12.107+deb13-amd64 LLVM 19.1.7)
+  API: Vulkan v: 1.4.309 drivers: llvmpipe surfaces: xcb,xlib devices: 1
+  Info: Tools: api: eglinfo, glxinfo, vulkaninfo x11: xdriinfo, xdpyinfo,
+    xprop, xrandr
+Audio:
+  Device-1: Intel 6 Series/C200 Series Family High Definition Audio
+    driver: snd_hda_intel v: kernel bus-ID: 00:1b.0
+  Device-2: Advanced Micro Devices [AMD/ATI] Turks HDMI Audio [Radeon HD
+    6500/6600 / 6700M Series] vendor: Apple driver: snd_hda_intel v: kernel
+    bus-ID: 01:00.1
+  API: ALSA v: k6.12.107+deb13-amd64 status: kernel-api
+  Server-1: PipeWire v: 1.4.2 status: active
+Network:
+  Device-1: Broadcom NetXtreme BCM57765 Gigabit Ethernet PCIe driver: tg3
+    v: kernel port: N/A bus-ID: 02:00.0
+  IF: enp2s0 state: up speed: 1000 Mbps duplex: full mac: <filter>
+  Device-2: Qualcomm Atheros AR93xx Wireless Network Adapter
+    vendor: Apple AirPort Extreme driver: ath9k v: kernel bus-ID: 03:00.0
+  IF: wlp3s0 state: up mac: <filter>
+  IF-ID-1: br-07c1732d4317 state: up speed: 10000 Mbps duplex: unknown
+    mac: <filter>
+  IF-ID-2: docker0 state: down mac: <filter>
+  IF-ID-3: tailscale0 state: unknown speed: -1 duplex: full mac: N/A
+  IF-ID-4: veth0d424f1 state: up speed: 10000 Mbps duplex: full
+    mac: <filter>
+  IF-ID-5: veth1781efd state: up speed: 10000 Mbps duplex: full
+    mac: <filter>
+  IF-ID-6: veth1cfd1bb state: up speed: 10000 Mbps duplex: full
+    mac: <filter>
+  IF-ID-7: veth7cd92ca state: up speed: 10000 Mbps duplex: full
+    mac: <filter>
+Bluetooth:
+  Device-1: Apple Built-in Bluetooth 2.0+EDR HCI driver: btusb v: 0.8
+    type: USB bus-ID: 1-1.1.1:6
+  Report: hciconfig ID: hci0 rfk-id: 0 state: up address: <filter> bt-v: 2.1
+    lmp-v: 4
+  Device-2: TP-Link Bluetooth USB Adapter driver: btusb v: 0.8 type: USB
+    bus-ID: 2-1.4:6
+  Report: ID: hci1 rfk-id: 1 state: up address: <filter> bt-v: 5.1 lmp-v: 10
+Drives:
+  Local Storage: total: 238.47 GiB used: 79.35 GiB (33.3%)
+  ID-1: /dev/sda vendor: Samsung model: SSD PM851 2.5 7mm 256GB
+    size: 238.47 GiB
+Partition:
+  ID-1: / size: 225.33 GiB used: 79.35 GiB (35.2%) fs: ext4 dev: /dev/sda3
+  ID-2: /boot/efi size: 285.4 MiB used: 4.5 MiB (1.6%) fs: vfat
+    dev: /dev/sda1
+Swap:
+  ID-1: swap-1 type: partition size: 8.2 GiB used: 0 KiB (0.0%) dev: /dev/sda2
+Sensors:
+  System Temperatures: cpu: 65.0 C mobo: N/A
+  Fan Speeds (rpm): cpu: 1197
+Info:
+  Memory: total: 16 GiB available: 15.6 GiB used: 3.18 GiB (20.4%)
+  Processes: 314 Uptime: 16m Init: systemd
+  Packages: 2762 Compilers: clang: 19.1.7 gcc: 14.2.0 Shell: Bash v: 5.2.37
+    inxi: 3.3.38
+
+--- 2. شجرة العتاد الكاملة (lshw) ---
+h
+    description: All In One
+    product: iMac12,1
+    vendor: Apple Inc.
+    version: 1.0
+    serial: C02GY0ACDHJF
+    width: 64 bits
+    capabilities: smbios-2.4 dmi-2.4 smp vsyscall32
+    configuration: boot=normal chassis=all-in-one family=iMac uuid=159807e6-7d2a-5f22-bb19-34d05201019a
+  *-core
+       description: Motherboard
+       product: Mac-942B5BF58194151B
+       vendor: Apple Inc.
+       physical id: 0
+       serial: C02151604WFDNJK1V
+       slot: Part Component
+     *-cpu:0
+          description: CPU
+          product: Intel(R) Core(TM) i5-2400S CPU @ 2.50GHz
+          vendor: Intel Corp.
+          physical id: 0
+          bus info: cpu@0
+          version: 6.42.7
+          slot: U2E1
+          size: 2790MHz
+          capacity: 3300MHz
+          width: 64 bits
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ht tm pbe syscall nx rdtscp x86-64 constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx lahf_lm pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid xsaveopt dtherm ida arat pln pts vnmi md_clear flush_l1d cpufreq
+          configuration: microcode=47
+        *-cache:0
+             description: L1 cache
+             physical id: 2
+             slot: Unknown
+             size: 32KiB
+             capacity: 32KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 3
+             slot: Unknown
+             size: 256KiB
+             capacity: 256KiB
+             capabilities: asynchronous internal write-back instruction
+             configuration: level=2
+        *-cache:2
+             description: L3 cache
+             physical id: 4
+             slot: Unknown
+             size: 6KiB
+             capacity: 6KiB
+             capabilities: asynchronous internal write-back instruction
+             configuration: level=3
+     *-cache:0
+          description: L1 cache
+          physical id: 1
+          slot: Unknown
+          size: 32KiB
+          capacity: 32KiB
+          capabilities: asynchronous internal write-back
+          configuration: level=1
+     *-cpu:1
+          description: CPU
+          vendor: Intel(R) Corporation
+          physical id: 5
+          bus info: cpu@1
+          version: Intel(R) Core(TM) i5-2400S CPU @ 2.50GHz
+          slot: U2E1
+          size: 2790MHz
+          capacity: 3300MHz
+          capabilities: cpufreq
+        *-cache:0
+             description: L1 cache
+             physical id: 7
+             slot: Unknown
+             size: 32KiB
+             capacity: 32KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 8
+             slot: Unknown
+             size: 256KiB
+             capacity: 256KiB
+             capabilities: asynchronous internal write-back instruction
+             configuration: level=2
+        *-cache:2
+             description: L3 cache
+             physical id: 9
+             slot: Unknown
+             size: 6KiB
+             capacity: 6KiB
+             capabilities: asynchronous internal write-back instruction
+             configuration: level=3
+     *-cache:1
+          description: L1 cache
+          physical id: 6
+          slot: Unknown
+          size: 32KiB
+          capacity: 32KiB
+          capabilities: asynchronous internal write-back
+          configuration: level=1
+     *-cpu:2
+          description: CPU
+          vendor: Intel(R) Corporation
+          physical id: a
+          bus info: cpu@2
+          version: Intel(R) Core(TM) i5-2400S CPU @ 2.50GHz
+          slot: U2E1
+          size: 2594MHz
+          capacity: 3300MHz
+          capabilities: cpufreq
+        *-cache:0
+             description: L1 cache
+             physical id: c
+             slot: Unknown
+             size: 32KiB
+             capacity: 32KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: d
+             slot: Unknown
+             size: 256KiB
+             capacity: 256KiB
+             capabilities: asynchronous internal write-back instruction
+             configuration: level=2
+        *-cache:2
+             description: L3 cache
+             physical id: e
+             slot: Unknown
+             size: 6KiB
+             capacity: 6KiB
+             capabilities: asynchronous internal write-back instruction
+             configuration: level=3
+     *-cache:2
+          description: L1 cache
+          physical id: b
+          slot: Unknown
+          size: 32KiB
+          capacity: 32KiB
+          capabilities: asynchronous internal write-back
+          configuration: level=1
+     *-cpu:3
+          description: CPU
+          vendor: Intel(R) Corporation
+          physical id: f
+          bus info: cpu@3
+          version: Intel(R) Core(TM) i5-2400S CPU @ 2.50GHz
+          slot: U2E1
+          size: 2790MHz
+          capacity: 3300MHz
+          capabilities: cpufreq
+        *-cache:0
+             description: L1 cache
+             physical id: 11
+             slot: Unknown
+             size: 32KiB
+             capacity: 32KiB
+             capabilities: asynchronous internal write-back
+             configuration: level=1
+        *-cache:1
+             description: L2 cache
+             physical id: 12
+             slot: Unknown
+             size: 256KiB
+             capacity: 256KiB
+             capabilities: asynchronous internal write-back instruction
+             configuration: level=2
+        *-cache:2
+             description: L3 cache
+             physical id: 13
+             slot: Unknown
+             size: 6KiB
+             capacity: 6KiB
+             capabilities: asynchronous internal write-back instruction
+             configuration: level=3
+     *-cache:3
+          description: L1 cache
+          physical id: 10
+          slot: Unknown
+          size: 32KiB
+          capacity: 32KiB
+          capabilities: asynchronous internal write-back
+          configuration: level=1
+     *-memory
+          description: System Memory
+          physical id: 14
+          slot: System board or motherboard
+          size: 16GiB
+        *-bank:0
+             description: SODIMM [empty]
+             physical id: 0
+             slot: DIMM0
+        *-bank:1
+             description: SODIMM DDR3 Synchronous 1333 MHz (0.8 ns)
+             product: 0x000000000000000000000000000000000000
+             vendor: 0x0000
+             physical id: 1
+             serial: 0x0000025C
+             slot: DIMM0
+             size: 8GiB
+             clock: 1333MHz (0.8ns)
+        *-bank:2
+             description: SODIMM [empty]
+             physical id: 2
+             slot: DIMM1
+        *-bank:3
+             description: SODIMM DDR3 Synchronous 1333 MHz (0.8 ns)
+             product: 0x000000000000000000000000000000000000
+             vendor: 0x0000
+             physical id: 3
+             serial: 0x000009B8
+             slot: DIMM1
+             size: 8GiB
+             clock: 1333MHz (0.8ns)
+     *-firmware
+          description: BIOS
+          vendor: Apple Inc.
+          physical id: 1c
+          version: 87.0.0.0.0
+          date: 06/14/2019
+          size: 1MiB
+          capacity: 8MiB
+          capabilities: pci upgrade shadowing cdboot bootselect acpi ieee1394boot smartbattery netboot
+     *-pci
+          description: Host bridge
+          product: 2nd Generation Core Processor Family DRAM Controller
+          vendor: Intel Corporation
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 09
+          width: 32 bits
+          clock: 33MHz
+          configuration: driver=snb_uncore
+          resources: irq:0
+        *-pci:0
+             description: PCI bridge
+             product: Xeon E3-1200/2nd Generation Core Processor Family PCI Express Root Port
+             vendor: Intel Corporation
+             physical id: 1
+             bus info: pci@0000:00:01.0
+             version: 09
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:24 ioport:2000(size=4096) memory:a8800000-a88fffff ioport:90000000(size=268435456)
+           *-display
+                description: VGA compatible controller
+                product: Whistler [Radeon HD 6630M/6650M/6750M/7670M/7690M]
+                vendor: Advanced Micro Devices, Inc. [AMD/ATI]
+                physical id: 0
+                bus info: pci@0000:01:00.0
+                logical name: /dev/fb0
+                version: 00
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm pciexpress msi vga_controller bus_master cap_list rom fb
+                configuration: depth=32 driver=radeon latency=0 resolution=1920,1080
+                resources: irq:44 memory:90000000-9fffffff memory:a8800000-a881ffff ioport:2000(size=256) memory:a8820000-a883ffff
+           *-multimedia
+                description: Audio device
+                product: Turks HDMI Audio [Radeon HD 6500/6600 / 6700M Series]
+                vendor: Advanced Micro Devices, Inc. [AMD/ATI]
+                physical id: 0.1
+                bus info: pci@0000:01:00.1
+                logical name: card1
+                logical name: /dev/snd/controlC1
+                logical name: /dev/snd/hwC1D0
+                logical name: /dev/snd/pcmC1D3p
+                version: 00
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm pciexpress msi bus_master cap_list
+                configuration: driver=snd_hda_intel latency=0
+                resources: irq:50 memory:a8840000-a8843fff
+              *-input
+                   product: HDA ATI HDMI HDMI/DP,pcm=3
+                   physical id: 0
+                   logical name: input12
+                   logical name: /dev/input/event12
+        *-display
+             description: Display controller
+             product: 2nd Generation Core Processor Family Integrated Graphics Controller
+             vendor: Intel Corporation
+             physical id: 2
+             bus info: pci@0000:00:02.0
+             version: 09
+             width: 64 bits
+             clock: 33MHz
+             capabilities: msi pm bus_master cap_list
+             configuration: driver=i915 latency=0
+             resources: irq:45 memory:a8000000-a83fffff memory:a0000000-a7ffffff ioport:3000(size=64)
+        *-communication
+             description: Communication controller
+             product: 6 Series/C200 Series Chipset Family MEI Controller #1
+             vendor: Intel Corporation
+             physical id: 16
+             bus info: pci@0000:00:16.0
+             version: 04
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi bus_master cap_list
+             configuration: driver=mei_me latency=0
+             resources: irq:48 memory:a8907100-a890710f
+        *-usb:0
+             description: USB controller
+             product: 6 Series/C200 Series Chipset Family USB Universal Host Controller #5
+             vendor: Intel Corporation
+             physical id: 1a
+             bus info: pci@0000:00:1a.0
+             version: 05
+             width: 32 bits
+             clock: 33MHz
+             capabilities: uhci bus_master cap_list
+             configuration: driver=uhci_hcd latency=0
+             resources: irq:21 ioport:3140(size=32)
+           *-usbhost
+                product: UHCI Host Controller
+                vendor: Linux 6.12.107+deb13-amd64 uhci_hcd
+                physical id: 1
+                bus info: usb@3
+                logical name: usb3
+                version: 6.12
+                capabilities: usb-1.10
+                configuration: driver=hub slots=2 speed=12Mbit/s
+        *-usb:1
+             description: USB controller
+             product: 6 Series/C200 Series Chipset Family USB Enhanced Host Controller #2
+             vendor: Intel Corporation
+             physical id: 1a.7
+             bus info: pci@0000:00:1a.7
+             version: 05
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pm debug ehci bus_master cap_list
+             configuration: driver=ehci-pci latency=0
+             resources: irq:23 memory:a8906c00-a8906fff
+           *-usbhost
+                product: EHCI Host Controller
+                vendor: Linux 6.12.107+deb13-amd64 ehci_hcd
+                physical id: 1
+                bus info: usb@1
+                logical name: usb1
+                version: 6.12
+                capabilities: usb-2.00
+                configuration: driver=hub slots=6 speed=480Mbit/s
+              *-usb:0
+                   description: USB hub
+                   product: USB 2.0 Hub
+                   vendor: Microchip Technology, Inc. (formerly SMSC)
+                   physical id: 1
+                   bus info: usb@1:1
+                   version: 0.03
+                   capabilities: usb-2.00
+                   configuration: driver=hub maxpower=2mA slots=3 speed=480Mbit/s
+                 *-usb:0
+                      description: USB hub
+                      product: BRCM2046 Hub
+                      vendor: Apple Inc.
+                      physical id: 1
+                      bus info: usb@1:1.1
+                      version: 1.00
+                      capabilities: usb-2.00
+                      configuration: driver=hub slots=3 speed=12Mbit/s
+                    *-usb
+                         description: Bluetooth wireless interface
+                         product: Bluetooth USB Host Controller
+                         vendor: Apple Inc.
+                         physical id: 1
+                         bus info: usb@1:1.1.1
+                         version: 2.08
+                         serial: 7CC3A1501097
+                         capabilities: usb-2.00 bluetooth
+                         configuration: driver=btusb speed=12Mbit/s
+                 *-usb:1
+                      description: Mouse
+                      product: YSPRINGTECH USB OPTICAL MOUSE
+                      vendor: YSPRINGTECH
+                      physical id: 2
+                      bus info: usb@1:1.2
+                      logical name: input6
+                      logical name: /dev/input/event6
+                      logical name: /dev/input/mouse0
+                      version: 0.00
+                      capabilities: usb-2.00 usb
+                      configuration: driver=usbhid maxpower=100mA speed=2Mbit/s
+              *-usb:1
+                   description: Video
+                   product: FaceTime HD Camera (Built-in)
+                   vendor: Apple Inc.
+                   physical id: 2
+                   bus info: usb@1:2
+                   version: 7.55
+                   serial: CC2BC7048FDGGDLP
+                   capabilities: usb-2.00
+                   configuration: driver=uvcvideo maxpower=500mA speed=480Mbit/s
+        *-multimedia
+             description: Audio device
+             product: 6 Series/C200 Series Chipset Family High Definition Audio Controller
+             vendor: Intel Corporation
+             physical id: 1b
+             bus info: pci@0000:00:1b.0
+             logical name: card0
+             logical name: /dev/snd/controlC0
+             logical name: /dev/snd/hwC0D0
+             logical name: /dev/snd/pcmC0D0c
+             logical name: /dev/snd/pcmC0D0p
+             logical name: /dev/snd/pcmC0D1c
+             logical name: /dev/snd/pcmC0D1p
+             version: 05
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi pciexpress bus_master cap_list
+             configuration: driver=snd_hda_intel latency=0
+             resources: irq:49 memory:a8900000-a8903fff
+           *-input:0
+                product: HDA Intel PCH Line
+                physical id: 0
+                logical name: input13
+                logical name: /dev/input/event13
+           *-input:1
+                product: HDA Intel PCH Headphone
+                physical id: 1
+                logical name: input14
+                logical name: /dev/input/event14
+           *-input:2
+                product: HDA Intel PCH SPDIF In
+                physical id: 2
+                logical name: input15
+                logical name: /dev/input/event15
+        *-pci:1
+             description: PCI bridge
+             product: 6 Series/C200 Series Chipset Family PCI Express Root Port 1
+             vendor: Intel Corporation
+             physical id: 1c
+             bus info: pci@0000:00:1c.0
+             version: b5
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:16 memory:a8700000-a87fffff ioport:a8400000(size=1048576)
+           *-network
+                description: Ethernet interface
+                product: NetXtreme BCM57765 Gigabit Ethernet PCIe
+                vendor: Broadcom Inc. and subsidiaries
+                physical id: 0
+                bus info: pci@0000:02:00.0
+                logical name: enp2s0
+                version: 10
+                serial: 3c:07:54:65:f3:d6
+                size: 1Gbit/s
+                capacity: 1Gbit/s
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm msi msix pciexpress bus_master cap_list ethernet physical tp 10bt 10bt-fd 100bt 100bt-fd 1000bt 1000bt-fd autonegotiation
+                configuration: autonegotiation=on broadcast=yes driver=tg3 driverversion=6.12.107+deb13-amd64 duplex=full firmware=57765-v1.37 ip=192.168.1.17 latency=0 link=yes multicast=yes port=twisted pair speed=1Gbit/s
+                resources: irq:16 memory:a8400000-a840ffff memory:a8410000-a841ffff
+        *-pci:2
+             description: PCI bridge
+             product: 6 Series/C200 Series Chipset Family PCI Express Root Port 2
+             vendor: Intel Corporation
+             physical id: 1c.1
+             bus info: pci@0000:00:1c.1
+             version: b5
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:17 memory:a8600000-a86fffff
+           *-network
+                description: Wireless interface
+                product: AR93xx Wireless Network Adapter
+                vendor: Qualcomm Atheros
+                physical id: 0
+                bus info: pci@0000:03:00.0
+                logical name: wlp3s0
+                version: 01
+                serial: 7c:c3:a1:9e:df:58
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm msi pciexpress bus_master cap_list rom ethernet physical wireless
+                configuration: broadcast=yes driver=ath9k driverversion=6.12.107+deb13-amd64 firmware=N/A ip=192.168.1.24 latency=0 link=yes multicast=yes wireless=IEEE 802.11
+                resources: irq:17 memory:a8600000-a861ffff memory:a8620000-a862ffff
+        *-pci:3
+             description: PCI bridge
+             product: 6 Series/C200 Series Chipset Family PCI Express Root Port 3
+             vendor: Intel Corporation
+             physical id: 1c.2
+             bus info: pci@0000:00:1c.2
+             version: b5
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:18 memory:a8500000-a85fffff
+           *-firewire
+                description: FireWire (IEEE 1394)
+                product: FW643 [TrueFire] PCIe 1394b Controller
+                vendor: LSI Corporation
+                physical id: 0
+                bus info: pci@0000:04:00.0
+                version: 08
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm msi pciexpress ohci bus_master cap_list
+                configuration: driver=firewire_ohci latency=0
+                resources: irq:26 memory:a8500000-a8500fff
+        *-pci:4
+             description: PCI bridge
+             product: 6 Series/C200 Series Chipset Family PCI Express Root Port 5
+             vendor: Intel Corporation
+             physical id: 1c.4
+             bus info: pci@0000:00:1c.4
+             version: b5
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:16 ioport:4000(size=4096) memory:a8a00000-acefffff ioport:acf00000(size=67108864)
+           *-pci
+                description: PCI bridge
+                product: CV82524 Thunderbolt Controller [Light Ridge 4C 2010]
+                vendor: Intel Corporation
+                physical id: 0
+                bus info: pci@0000:05:00.0
+                version: 00
+                width: 32 bits
+                clock: 33MHz
+                capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+                configuration: driver=pcieport
+                resources: irq:16 memory:a8a00000-a8efffff ioport:acf00000(size=12582912)
+              *-pci:0
+                   description: PCI bridge
+                   product: CV82524 Thunderbolt Controller [Light Ridge 4C 2010]
+                   vendor: Intel Corporation
+                   physical id: 0
+                   bus info: pci@0000:06:00.0
+                   version: 00
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: irq:25 memory:a8c00000-a8cfffff
+                 *-generic
+                      description: System peripheral
+                      product: CV82524 Thunderbolt Controller [Light Ridge 4C 2010]
+                      vendor: Intel Corporation
+                      physical id: 0
+                      bus info: pci@0000:07:00.0
+                      version: 00
+                      width: 32 bits
+                      clock: 33MHz
+                      capabilities: pm msi pciexpress msix bus_master cap_list
+                      configuration: driver=thunderbolt latency=0
+                      resources: irq:16 memory:a8c00000-a8c3ffff memory:a8c40000-a8c40fff
+              *-pci:1
+                   description: PCI bridge
+                   product: CV82524 Thunderbolt Controller [Light Ridge 4C 2010]
+                   vendor: Intel Corporation
+                   physical id: 3
+                   bus info: pci@0000:06:03.0
+                   version: 00
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: irq:19 memory:a8b00000-a8bfffff ioport:acf00000(size=2097152)
+              *-pci:2
+                   description: PCI bridge
+                   product: CV82524 Thunderbolt Controller [Light Ridge 4C 2010]
+                   vendor: Intel Corporation
+                   physical id: 4
+                   bus info: pci@0000:06:04.0
+                   version: 00
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: irq:16 memory:a8d00000-a8dfffff ioport:ad100000(size=2097152)
+              *-pci:3
+                   description: PCI bridge
+                   product: CV82524 Thunderbolt Controller [Light Ridge 4C 2010]
+                   vendor: Intel Corporation
+                   physical id: 5
+                   bus info: pci@0000:06:05.0
+                   version: 00
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: irq:17 memory:a8e00000-a8efffff ioport:ad300000(size=2097152)
+              *-pci:4
+                   description: PCI bridge
+                   product: CV82524 Thunderbolt Controller [Light Ridge 4C 2010]
+                   vendor: Intel Corporation
+                   physical id: 6
+                   bus info: pci@0000:06:06.0
+                   version: 00
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: irq:18 memory:a8a00000-a8afffff ioport:ad500000(size=2097152)
+        *-usb:2
+             description: USB controller
+             product: 6 Series/C200 Series Chipset Family USB Universal Host Controller #1
+             vendor: Intel Corporation
+             physical id: 1d
+             bus info: pci@0000:00:1d.0
+             version: 05
+             width: 32 bits
+             clock: 33MHz
+             capabilities: uhci bus_master cap_list
+             configuration: driver=uhci_hcd latency=0
+             resources: irq:19 ioport:30e0(size=32)
+           *-usbhost
+                product: UHCI Host Controller
+                vendor: Linux 6.12.107+deb13-amd64 uhci_hcd
+                physical id: 1
+                bus info: usb@4
+                logical name: usb4
+                version: 6.12
+                capabilities: usb-1.10
+                configuration: driver=hub slots=2 speed=12Mbit/s
+        *-usb:3
+             description: USB controller
+             product: 6 Series/C200 Series Chipset Family USB Enhanced Host Controller #1
+             vendor: Intel Corporation
+             physical id: 1d.7
+             bus info: pci@0000:00:1d.7
+             version: 05
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pm debug ehci bus_master cap_list
+             configuration: driver=ehci-pci latency=0
+             resources: irq:22 memory:a8906800-a8906bff
+           *-usbhost
+                product: EHCI Host Controller
+                vendor: Linux 6.12.107+deb13-amd64 ehci_hcd
+                physical id: 1
+                bus info: usb@2
+                logical name: usb2
+                version: 6.12
+                capabilities: usb-2.00
+                configuration: driver=hub slots=8 speed=480Mbit/s
+              *-usb
+                   description: USB hub
+                   product: USB 2.0 Hub
+                   vendor: Microchip Technology, Inc. (formerly SMSC)
+                   physical id: 1
+                   bus info: usb@2:1
+                   version: 0.03
+                   capabilities: usb-2.00
+                   configuration: driver=hub maxpower=2mA slots=4 speed=480Mbit/s
+                 *-usb:0
+                      description: Mass storage device
+                      product: Card Reader
+                      vendor: Apple
+                      physical id: 1
+                      bus info: usb@2:1.1
+                      logical name: scsi6
+                      version: 98.33
+                      serial: 000000009833
+                      capabilities: usb-2.00 scsi emulated
+                      configuration: driver=usb-storage maxpower=500mA speed=480Mbit/s
+                    *-disk
+                         description: SCSI Disk
+                         product: SD Card Reader
+                         vendor: APPLE
+                         physical id: 0.0.0
+                         bus info: scsi@6:0.0.0
+                         logical name: /dev/sdb
+                         version: 1.00
+                         capabilities: removable
+                         configuration: logicalsectorsize=512 sectorsize=512
+                       *-medium
+                            physical id: 0
+                            logical name: /dev/sdb
+                 *-usb:1
+                      description: Human interface device
+                      product: Apple Computer, Inc. IR Receiver
+                      vendor: Apple Computer, Inc.
+                      physical id: 2
+                      bus info: usb@2:1.2
+                      logical name: input4
+                      logical name: /dev/input/event4
+                      version: 0.16
+                      capabilities: usb-2.00 usb
+                      configuration: driver=usbhid maxpower=100mA speed=2Mbit/s
+                 *-usb:2
+                      description: Keyboard
+                      product: Dell KB216 Wired Keyboard Consumer Control
+                      vendor: Dell Computer Corp.
+                      physical id: 3
+                      bus info: usb@2:1.3
+                      logical name: input5
+                      logical name: /dev/input/event5
+                      logical name: input5::capslock
+                      logical name: input5::numlock
+                      logical name: input5::scrolllock
+                      logical name: input7
+                      logical name: /dev/input/event7
+                      logical name: input8
+                      logical name: /dev/input/event8
+                      version: 1.10
+                      capabilities: usb-1.10 usb
+                      configuration: driver=usbhid maxpower=100mA speed=2Mbit/s
+                 *-usb:3
+                      description: Bluetooth wireless interface
+                      product: TP-Link Bluetooth USB Adapter
+                      physical id: 4
+                      bus info: usb@2:1.4
+                      version: 2.00
+                      serial: 8C86DD2E1E58
+                      capabilities: bluetooth usb-1.10
+                      configuration: driver=btusb maxpower=500mA speed=12Mbit/s
+        *-isa
+             description: ISA bridge
+             product: Z68 Express Chipset LPC Controller
+             vendor: Intel Corporation
+             physical id: 1f
+             bus info: pci@0000:00:1f.0
+             version: 05
+             width: 32 bits
+             clock: 33MHz
+             capabilities: isa bus_master cap_list
+             configuration: driver=lpc_ich latency=0
+             resources: irq:0
+           *-pnp00:00
+                product: PnP device PNP0103
+                physical id: 0
+                capabilities: pnp
+                configuration: driver=system
+           *-pnp00:01
+                product: PnP device PNP0c02
+                physical id: 1
+                capabilities: pnp
+                configuration: driver=system
+           *-pnp00:02
+                product: PnP device PNP0b00
+                physical id: 2
+                capabilities: pnp
+                configuration: driver=rtc_cmos
+           *-pnp00:03
+                product: PnP device PNP0c02
+                physical id: 3
+                capabilities: pnp
+                configuration: driver=system
+        *-sata
+             description: SATA controller
+             product: 6 Series/C200 Series Chipset Family 6 port Desktop SATA AHCI Controller
+             vendor: Intel Corporation
+             physical id: 1f.2
+             bus info: pci@0000:00:1f.2
+             logical name: scsi0
+             logical name: scsi2
+             version: 05
+             width: 32 bits
+             clock: 66MHz
+             capabilities: sata msi pm ahci_1.0 bus_master cap_list emulated
+             configuration: driver=ahci latency=0
+             resources: irq:43 ioport:3168(size=8) ioport:317c(size=4) ioport:3160(size=8) ioport:3178(size=4) ioport:3060(size=32) memory:a8906000-a89067ff
+           *-disk
+                description: ATA Disk
+                product: SAMSUNG SSD PM85
+                physical id: 0
+                bus info: scsi@0:0.0.0
+                logical name: /dev/sda
+                version: 8D0Q
+                serial: S1CUNSAFB48894
+                size: 238GiB (256GB)
+                capabilities: partitioned partitioned:dos
+                configuration: ansiversion=5 logicalsectorsize=512 sectorsize=512
+              *-volume:0 UNCLAIMED
+                   description: EFI GPT partition
+                   physical id: 1
+                   bus info: scsi@0:0.0.0,1
+                   capacity: 287MiB
+                   capabilities: primary nofs
+              *-volume:1
+                   description: Linux swap volume
+                   physical id: 2
+                   bus info: scsi@0:0.0.0,2
+                   logical name: /dev/sda2
+                   version: 1
+                   serial: ea60fd7d-8ce7-480a-b07f-4ac2fbbe5d58
+                   size: 8392MiB
+                   capacity: 8392MiB
+                   capabilities: primary bootable nofs swap initialized
+                   configuration: filesystem=swap pagesize=4096
+              *-volume:2
+                   description: EXT4 volume
+                   vendor: Linux
+                   physical id: 3
+                   bus info: scsi@0:0.0.0,3
+                   logical name: /dev/sda3
+                   logical name: /
+                   version: 1.0
+                   serial: bc309e79-da63-4ae2-8764-cec235dc7d9d
+                   size: 229GiB
+                   capacity: 229GiB
+                   capabilities: primary journaled extended_attributes large_files huge_files dir_nlink recover 64bit extents ext4 ext2 initialized
+                   configuration: created=2026-09-09 13:16:19 filesystem=ext4 lastmountpoint=/ modified=2026-09-26 22:52:33 mount.fstype=ext4 mount.options=rw,relatime mounted=2026-09-26 22:52:44 state=mounted
+           *-cdrom
+                description: DVD writer
+                product: DVD RW AD-5690H
+                vendor: OPTIARC
+                physical id: 1
+                bus info: scsi@2:0.0.0
+                logical name: /dev/cdrom
+                logical name: /dev/sr0
+                version: 4AH5
+                capabilities: removable audio cd-r cd-rw dvd dvd-r
+                configuration: ansiversion=5 status=open
+        *-serial
+             description: SMBus
+             product: 6 Series/C200 Series Chipset Family SMBus Controller
+             vendor: Intel Corporation
+             physical id: 1f.3
+             bus info: pci@0000:00:1f.3
+             version: 05
+             width: 64 bits
+             clock: 33MHz
+             configuration: driver=i801_smbus latency=0
+             resources: irq:18 memory:a8907000-a89070ff ioport:efa0(size=32)
+  *-input:0
+       product: Power Button
+       physical id: 1
+       logical name: input0
+       logical name: /dev/input/event0
+       capabilities: platform
+  *-input:1
+       product: Sleep Button
+       physical id: 2
+       logical name: input1
+       logical name: /dev/input/event1
+       capabilities: platform
+  *-input:2
+       product: PC Speaker
+       physical id: 3
+       logical name: input11
+       logical name: /dev/input/event11
+       capabilities: isa
+  *-input:3
+       product: Power Button
+       physical id: 4
+       logical name: input2
+       logical name: /dev/input/event2
+       capabilities: platform
+  *-input:4
+       product: Video Bus
+       physical id: 5
+       logical name: input3
+       logical name: /dev/input/event3
+       capabilities: platform
+
+--- 3. تفاصيل الذاكرة العشوائية RAM (dmidecode) ---
+# dmidecode 3.6
+Getting SMBIOS data from sysfs.
+SMBIOS 2.4 present.
+
+Handle 0x0014, DMI type 16, 15 bytes
+Physical Memory Array
+	Location: System Board Or Motherboard
+	Use: System Memory
+	Error Correction Type: None
+	Maximum Capacity: 16 GB
+	Error Information Handle: Not Provided
+	Number Of Devices: 4
+
+Handle 0x0015, DMI type 17, 27 bytes
+Memory Device
+	Array Handle: 0x0014
+	Error Information Handle: No Error
+	Total Width: Unknown
+	Data Width: Unknown
+	Size: No Module Installed
+	Form Factor: SODIMM
+	Set: None
+	Locator: DIMM0
+	Bank Locator: BANK 0
+	Type: Unknown
+	Type Detail: None
+
+Handle 0x0017, DMI type 17, 27 bytes
+Memory Device
+	Array Handle: 0x0014
+	Error Information Handle: No Error
+	Total Width: Unknown
+	Data Width: Unknown
+	Size: 8 GB
+	Form Factor: SODIMM
+	Set: None
+	Locator: DIMM0
+	Bank Locator: BANK 1
+	Type: DDR3
+	Type Detail: Synchronous
+	Speed: 1333 MT/s
+	Manufacturer: 0x0000
+	Serial Number: 0x0000025C
+	Asset Tag: Unknown
+	Part Number: 0x000000000000000000000000000000000000
+
+Handle 0x0018, DMI type 17, 27 bytes
+Memory Device
+	Array Handle: 0x0014
+	Error Information Handle: No Error
+	Total Width: Unknown
+	Data Width: Unknown
+	Size: No Module Installed
+	Form Factor: SODIMM
+	Set: None
+	Locator: DIMM1
+	Bank Locator: BANK 0
+	Type: Unknown
+	Type Detail: None
+
+Handle 0x001A, DMI type 17, 27 bytes
+Memory Device
+	Array Handle: 0x0014
+	Error Information Handle: No Error
+	Total Width: Unknown
+	Data Width: Unknown
+	Size: 8 GB
+	Form Factor: SODIMM
+	Set: None
+	Locator: DIMM1
+	Bank Locator: BANK 1
+	Type: DDR3
+	Type Detail: Synchronous
+	Speed: 1333 MT/s
+	Manufacturer: 0x0000
+	Serial Number: 0x000009B8
+	Asset Tag: Unknown
+	Part Number: 0x000000000000000000000000000000000000
+
+
+--- 4. تفاصيل اللوحة الأم والنظام (dmidecode) ---
+# dmidecode 3.6
+Getting SMBIOS data from sysfs.
+SMBIOS 2.4 present.
+
+Handle 0x001D, DMI type 1, 27 bytes
+System Information
+	Manufacturer: Apple Inc.
+	Product Name: iMac12,1
+	Version: 1.0
+	Serial Number: C02GY0ACDHJF
+	UUID: e6079815-2a7d-225f-bb19-34d05201019a
+	Wake-up Type: Power Switch
+	SKU Number: Not Specified
+	Family: iMac
+
+Handle 0x0037, DMI type 12, 5 bytes
+System Configuration Options
+
+Handle 0x0039, DMI type 32, 20 bytes
+System Boot Information
+	Status: No errors detected
+
+
+--- 5. تفاصيل المعالج CPU (lscpu) ---
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           36 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  4
+On-line CPU(s) list:                     0-3
+Vendor ID:                               GenuineIntel
+Model name:                              Intel(R) Core(TM) i5-2400S CPU @ 2.50GHz
+CPU family:                              6
+Model:                                   42
+Thread(s) per core:                      1
+Core(s) per socket:                      4
+Socket(s):                               1
+Stepping:                                7
+CPU(s) scaling MHz:                      82%
+CPU max MHz:                             3300.0000
+CPU min MHz:                             1600.0000
+BogoMIPS:                                4989.04
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx lahf_lm pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid xsaveopt dtherm ida arat pln pts vnmi md_clear flush_l1d
+Virtualization:                          VT-x
+L1d cache:                               128 KiB (4 instances)
+L1i cache:                               128 KiB (4 instances)
+L2 cache:                                1 MiB (4 instances)
+L3 cache:                                6 MiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-3
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             KVM: Mitigation: Split huge pages
+Vulnerability L1tf:                      Mitigation; PTE Inversion; VMX conditional cache flushes, SMT disabled
+Vulnerability Mds:                       Mitigation; Clear CPU buffers; SMT disabled
+Vulnerability Meltdown:                  Mitigation; PTI
+Vulnerability Mmio stale data:           Unknown: No mitigations
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Not affected
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; IBRS_FW; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Mitigation; IBPB before exit to userspace
+
+--- 6. أجهزة PCI (كرت الشاشة، الصوت، الشبكة) ---
+00:00.0 Host bridge: Intel Corporation 2nd Generation Core Processor Family DRAM Controller (rev 09)
+	Subsystem: Intel Corporation Device 2010
+	Flags: bus master, fast devsel, latency 0
+	Capabilities: [e0] Vendor Specific Information: Len=0c <?>
+	Kernel driver in use: snb_uncore
+
+00:01.0 PCI bridge: Intel Corporation Xeon E3-1200/2nd Generation Core Processor Family PCI Express Root Port (rev 09) (prog-if 00 [Normal decode])
+	Subsystem: Intel Corporation Device 2010
+	Flags: bus master, fast devsel, latency 0, IRQ 24
+	Bus: primary=00, secondary=01, subordinate=01, sec-latency=0
+	I/O behind bridge: 2000-2fff [size=4K] [16-bit]
+	Memory behind bridge: a8800000-a88fffff [size=1M] [32-bit]
+	Prefetchable memory behind bridge: 90000000-9fffffff [size=256M] [32-bit]
+	Capabilities: [88] Subsystem: Intel Corporation Device 2010
+	Capabilities: [80] Power Management version 3
+	Capabilities: [90] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [a0] Express Root Port (Slot+), IntMsgNum 0
+	Capabilities: [100] Virtual Channel
+	Capabilities: [140] Root Complex Link
+	Kernel driver in use: pcieport
+
+00:02.0 Display controller: Intel Corporation 2nd Generation Core Processor Family Integrated Graphics Controller (rev 09)
+	Subsystem: Intel Corporation Device 2010
+	Flags: bus master, fast devsel, latency 0, IRQ 45
+	Memory at a8000000 (64-bit, non-prefetchable) [size=4M]
+	Memory at a0000000 (64-bit, prefetchable) [size=128M]
+	I/O ports at 3000 [size=64]
+	Capabilities: [90] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [d0] Power Management version 2
+	Capabilities: [a4] PCI Advanced Features
+	Kernel driver in use: i915
+	Kernel modules: i915
+
+00:16.0 Communication controller: Intel Corporation 6 Series/C200 Series Chipset Family MEI Controller #1 (rev 04)
+	Subsystem: Intel Corporation Apple MacBookPro8,2 [Core i7, 15", 2011]
+	Flags: bus master, fast devsel, latency 0, IRQ 48
+	Memory at a8907100 (64-bit, non-prefetchable) [size=16]
+	Capabilities: [50] Power Management version 3
+	Capabilities: [8c] MSI: Enable+ Count=1/1 Maskable- 64bit+
+	Kernel driver in use: mei_me
+	Kernel modules: mei_me
+
+00:1a.0 USB controller: Intel Corporation 6 Series/C200 Series Chipset Family USB Universal Host Controller #5 (rev 05) (prog-if 00 [UHCI])
+	Subsystem: Intel Corporation Apple MacBookPro8,2 [Core i7, 15", 2011]
+	Flags: bus master, medium devsel, latency 0, IRQ 21
+	I/O ports at 3140 [size=32]
+	Capabilities: [50] PCI Advanced Features
+	Kernel driver in use: uhci_hcd
+	Kernel modules: uhci_hcd
+
+00:1a.7 USB controller: Intel Corporation 6 Series/C200 Series Chipset Family USB Enhanced Host Controller #2 (rev 05) (prog-if 20 [EHCI])
+	Subsystem: Intel Corporation Server Board S1200BT Family / Apple MacBook Pro 8,1/8,2
+	Flags: bus master, medium devsel, latency 0, IRQ 23
+	Memory at a8906c00 (32-bit, non-prefetchable) [size=1K]
+	Capabilities: [50] Power Management version 2
+	Capabilities: [58] Debug port: BAR=1 offset=00a0
+	Capabilities: [98] PCI Advanced Features
+	Kernel driver in use: ehci-pci
+	Kernel modules: ehci_pci
+
+00:1b.0 Audio device: Intel Corporation 6 Series/C200 Series Chipset Family High Definition Audio Controller (rev 05) (prog-if 00 [HDA compatible])
+	Subsystem: Intel Corporation Apple MacBookPro8,2 [Core i7, 15", 2011]
+	Flags: bus master, fast devsel, latency 0, IRQ 49
+	Memory at a8900000 (64-bit, non-prefetchable) [size=16K]
+	Capabilities: [50] Power Management version 2
+	Capabilities: [60] MSI: Enable+ Count=1/1 Maskable- 64bit+
+	Capabilities: [70] Express Root Complex Integrated Endpoint, IntMsgNum 0
+	Capabilities: [100] Virtual Channel
+	Capabilities: [130] Root Complex Link
+	Kernel driver in use: snd_hda_intel
+	Kernel modules: snd_hda_intel
+
+00:1c.0 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 1 (rev b5) (prog-if 00 [Normal decode])
+	Subsystem: Intel Corporation Server Board S1200BTS / Apple MacBook Pro 8,1/8,2
+	Flags: bus master, fast devsel, latency 0, IRQ 16
+	Bus: primary=00, secondary=02, subordinate=02, sec-latency=0
+	I/O behind bridge: [disabled] [16-bit]
+	Memory behind bridge: a8700000-a87fffff [size=1M] [32-bit]
+	Prefetchable memory behind bridge: a8400000-a84fffff [size=1M] [32-bit]
+	Capabilities: [40] Express Root Port (Slot+), IntMsgNum 0
+	Capabilities: [80] MSI: Enable- Count=1/1 Maskable- 64bit-
+	Capabilities: [90] Subsystem: Intel Corporation Server Board S1200BTS / Apple MacBook Pro 8,1/8,2
+	Capabilities: [a0] Power Management version 2
+	Kernel driver in use: pcieport
+
+00:1c.1 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 2 (rev b5) (prog-if 00 [Normal decode])
+	Subsystem: Intel Corporation Apple MacBookPro8,2 [Core i7, 15", 2011]
+	Flags: bus master, fast devsel, latency 0, IRQ 17
+	Bus: primary=00, secondary=03, subordinate=03, sec-latency=0
+	I/O behind bridge: [disabled] [16-bit]
+	Memory behind bridge: a8600000-a86fffff [size=1M] [32-bit]
+	Prefetchable memory behind bridge: [disabled] [64-bit]
+	Capabilities: [40] Express Root Port (Slot+), IntMsgNum 0
+	Capabilities: [80] MSI: Enable- Count=1/1 Maskable- 64bit-
+	Capabilities: [90] Subsystem: Intel Corporation Apple MacBookPro8,2 [Core i7, 15", 2011]
+	Capabilities: [a0] Power Management version 2
+	Kernel driver in use: pcieport
+
+00:1c.2 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 3 (rev b5) (prog-if 00 [Normal decode])
+	Subsystem: Intel Corporation Apple MacBookPro8,2 [Core i7, 15", 2011]
+	Flags: bus master, fast devsel, latency 0, IRQ 18
+	Bus: primary=00, secondary=04, subordinate=04, sec-latency=0
+	I/O behind bridge: [disabled] [16-bit]
+	Memory behind bridge: a8500000-a85fffff [size=1M] [32-bit]
+	Prefetchable memory behind bridge: [disabled] [64-bit]
+	Capabilities: [40] Express Root Port (Slot+), IntMsgNum 0
+	Capabilities: [80] MSI: Enable- Count=1/1 Maskable- 64bit-
+	Capabilities: [90] Subsystem: Intel Corporation Apple MacBookPro8,2 [Core i7, 15", 2011]
+	Capabilities: [a0] Power Management version 2
+	Kernel driver in use: pcieport
+
+00:1c.4 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 5 (rev b5) (prog-if 00 [Normal decode])
+	Subsystem: Intel Corporation Server Board S1200BTS
+	Flags: bus master, fast devsel, latency 0, IRQ 16
+	Bus: primary=00, secondary=05, subordinate=9b, sec-latency=0
+	I/O behind bridge: 4000-4fff [size=4K] [16-bit]
+	Memory behind bridge: a8a00000-acefffff [size=69M] [32-bit]
+	Prefetchable memory behind bridge: acf00000-b0efffff [size=64M] [32-bit]
+	Capabilities: [40] Express Root Port (Slot+), IntMsgNum 0
+	Capabilities: [80] MSI: Enable- Count=1/1 Maskable- 64bit-
+	Capabilities: [90] Subsystem: Intel Corporation Server Board S1200BTS
+	Capabilities: [a0] Power Management version 2
+	Kernel driver in use: pcieport
+
+00:1d.0 USB controller: Intel Corporation 6 Series/C200 Series Chipset Family USB Universal Host Controller #1 (rev 05) (prog-if 00 [UHCI])
+	Subsystem: Intel Corporation Apple MacBookPro8,2 [Core i7, 15", 2011]
+	Flags: bus master, medium devsel, latency 0, IRQ 19
+	I/O ports at 30e0 [size=32]
+	Capabilities: [50] PCI Advanced Features
+	Kernel driver in use: uhci_hcd
+	Kernel modules: uhci_hcd
+
+00:1d.7 USB controller: Intel Corporation 6 Series/C200 Series Chipset Family USB Enhanced Host Controller #1 (rev 05) (prog-if 20 [EHCI])
+	Subsystem: Intel Corporation Server Board S1200BT Family / Apple MacBook Pro 8,1/8,2
+	Flags: bus master, medium devsel, latency 0, IRQ 22
+	Memory at a8906800 (32-bit, non-prefetchable) [size=1K]
+	Capabilities: [50] Power Management version 2
+	Capabilities: [58] Debug port: BAR=1 offset=00a0
+	Capabilities: [98] PCI Advanced Features
+	Kernel driver in use: ehci-pci
+	Kernel modules: ehci_pci
+
+00:1f.0 ISA bridge: Intel Corporation Z68 Express Chipset LPC Controller (rev 05)
+	Subsystem: Intel Corporation Device 7270
+	Flags: bus master, medium devsel, latency 0
+	Capabilities: [e0] Vendor Specific Information: Len=0c <?>
+	Kernel driver in use: lpc_ich
+	Kernel modules: lpc_ich
+
+00:1f.2 SATA controller: Intel Corporation 6 Series/C200 Series Chipset Family 6 port Desktop SATA AHCI Controller (rev 05) (prog-if 01 [AHCI 1.0])
+	Subsystem: Intel Corporation Server Board S1200BT Family
+	Flags: bus master, 66MHz, medium devsel, latency 0, IRQ 43
+	I/O ports at 3168 [size=8]
+	I/O ports at 317c [size=4]
+	I/O ports at 3160 [size=8]
+	I/O ports at 3178 [size=4]
+	I/O ports at 3060 [size=32]
+	Memory at a8906000 (32-bit, non-prefetchable) [size=2K]
+	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [70] Power Management version 3
+	Capabilities: [a8] SATA HBA v1.0
+	Capabilities: [b0] PCI Advanced Features
+	Kernel driver in use: ahci
+	Kernel modules: ahci
+
+00:1f.3 SMBus: Intel Corporation 6 Series/C200 Series Chipset Family SMBus Controller (rev 05)
+	Subsystem: Intel Corporation Server Board S1200BT Family / Apple MacBook Pro 8,1/8,2
+	Flags: medium devsel, IRQ 18
+	Memory at a8907000 (64-bit, non-prefetchable) [size=256]
+	I/O ports at efa0 [size=32]
+	Kernel driver in use: i801_smbus
+	Kernel modules: i2c_i801
+
+01:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Whistler [Radeon HD 6630M/6650M/6750M/7670M/7690M] (prog-if 00 [VGA controller])
+	Subsystem: Apple Inc. Device 6741
+	Flags: bus master, fast devsel, latency 0, IRQ 44
+	Memory at 90000000 (64-bit, prefetchable) [size=256M]
+	Memory at a8800000 (64-bit, non-prefetchable) [size=128K]
+	I/O ports at 2000 [size=256]
+	Expansion ROM at a8820000 [disabled] [size=128K]
+	Capabilities: [50] Power Management version 3
+	Capabilities: [58] Express Legacy Endpoint, IntMsgNum 0
+	Capabilities: [a0] MSI: Enable+ Count=1/1 Maskable- 64bit+
+	Capabilities: [100] Vendor Specific Information: ID=0001 Rev=1 Len=010 <?>
+	Capabilities: [150] Advanced Error Reporting
+	Kernel driver in use: radeon
+	Kernel modules: radeon, amdgpu
+
+01:00.1 Audio device: Advanced Micro Devices, Inc. [AMD/ATI] Turks HDMI Audio [Radeon HD 6500/6600 / 6700M Series] (prog-if 00 [HDA compatible])
+	Subsystem: Apple Inc. Device aa90
+	Flags: bus master, fast devsel, latency 0, IRQ 50
+	Memory at a8840000 (64-bit, non-prefetchable) [size=16K]
+	Capabilities: [50] Power Management version 3
+	Capabilities: [58] Express Legacy Endpoint, IntMsgNum 0
+	Capabilities: [a0] MSI: Enable+ Count=1/1 Maskable- 64bit+
+	Capabilities: [100] Vendor Specific Information: ID=0001 Rev=1 Len=010 <?>
+	Capabilities: [150] Advanced Error Reporting
+	Kernel driver in use: snd_hda_intel
+	Kernel modules: snd_hda_intel
+
+02:00.0 Ethernet controller: Broadcom Inc. and subsidiaries NetXtreme BCM57765 Gigabit Ethernet PCIe (rev 10)
+	Subsystem: Broadcom Inc. and subsidiaries NetXtreme BCM57765 Gigabit Ethernet PCIe
+	Flags: bus master, fast devsel, latency 0, IRQ 16
+	Memory at a8400000 (64-bit, prefetchable) [size=64K]
+	Memory at a8410000 (64-bit, prefetchable) [size=64K]
+	Capabilities: [48] Power Management version 3
+	Capabilities: [58] MSI: Enable- Count=1/8 Maskable- 64bit+
+	Capabilities: [a0] MSI-X: Enable+ Count=6 Masked-
+	Capabilities: [ac] Express Endpoint, IntMsgNum 0
+	Capabilities: [100] Advanced Error Reporting
+	Capabilities: [13c] Device Serial Number 00-00-3c-07-54-65-f3-d6
+	Capabilities: [150] Power Budgeting <?>
+	Capabilities: [160] Virtual Channel
+	Kernel driver in use: tg3
+	Kernel modules: tg3
+
+03:00.0 Network controller: Qualcomm Atheros AR93xx Wireless Network Adapter (rev 01)
+	Subsystem: Apple Inc. AirPort Extreme
+	Flags: bus master, fast devsel, latency 0, IRQ 17
+	Memory at a8600000 (64-bit, non-prefetchable) [size=128K]
+	Expansion ROM at a8620000 [disabled] [size=64K]
+	Capabilities: [40] Power Management version 2
+	Capabilities: [50] MSI: Enable- Count=1/4 Maskable+ 64bit+
+	Capabilities: [70] Express Endpoint, IntMsgNum 0
+	Capabilities: [100] Advanced Error Reporting
+	Capabilities: [140] Virtual Channel
+	Capabilities: [300] Device Serial Number 00-00-00-00-00-00-00-00
+	Kernel driver in use: ath9k
+	Kernel modules: ath9k
+
+04:00.0 FireWire (IEEE 1394): LSI Corporation FW643 [TrueFire] PCIe 1394b Controller (rev 08) (prog-if 10 [OHCI])
+	Subsystem: LSI Corporation FW643 [TrueFire] PCIe 1394b Controller
+	Flags: bus master, fast devsel, latency 0, IRQ 26
+	Memory at a8500000 (64-bit, non-prefetchable) [size=4K]
+	Capabilities: [44] Power Management version 3
+	Capabilities: [4c] MSI: Enable+ Count=1/1 Maskable- 64bit+
+	Capabilities: [60] Express Endpoint, IntMsgNum 0
+	Capabilities: [100] Advanced Error Reporting
+	Capabilities: [140] Virtual Channel
+	Capabilities: [170] Device Serial Number 00-00-00-00-00-00-00-00
+	Kernel driver in use: firewire_ohci
+	Kernel modules: firewire_ohci
+
+05:00.0 PCI bridge: Intel Corporation CV82524 Thunderbolt Controller [Light Ridge 4C 2010] (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0, IRQ 16
+	Bus: primary=05, secondary=06, subordinate=6b, sec-latency=0
+	I/O behind bridge: [disabled] [32-bit]
+	Memory behind bridge: a8a00000-a8efffff [size=5M] [32-bit]
+	Prefetchable memory behind bridge: acf00000-adafffff [size=12M] [32-bit]
+	Capabilities: [80] Power Management version 3
+	Capabilities: [88] MSI: Enable- Count=1/32 Maskable- 64bit+
+	Capabilities: [c0] Express Upstream Port, IntMsgNum 0
+	Capabilities: [100] Device Serial Number 01-00-00-00-00-c9-a0-00
+	Capabilities: [200] Advanced Error Reporting
+	Capabilities: [300] Virtual Channel
+	Capabilities: [400] Power Budgeting <?>
+	Capabilities: [500] Vendor Specific Information: ID=1234 Rev=1 Len=01c <?>
+	Kernel driver in use: pcieport
+
+06:00.0 PCI bridge: Intel Corporation CV82524 Thunderbolt Controller [Light Ridge 4C 2010] (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0, IRQ 25
+	Bus: primary=06, secondary=07, subordinate=07, sec-latency=0
+	I/O behind bridge: [disabled] [32-bit]
+	Memory behind bridge: a8c00000-a8cfffff [size=1M] [32-bit]
+	Prefetchable memory behind bridge: [disabled] [64-bit]
+	Capabilities: [80] Power Management version 3
+	Capabilities: [88] MSI: Enable+ Count=1/32 Maskable- 64bit+
+	Capabilities: [c0] Express Downstream Port (Slot+), IntMsgNum 0
+	Capabilities: [100] Device Serial Number 01-00-00-00-00-c9-a0-00
+	Capabilities: [200] Advanced Error Reporting
+	Capabilities: [300] Virtual Channel
+	Capabilities: [400] Power Budgeting <?>
+	Capabilities: [500] Vendor Specific Information: ID=1234 Rev=1 Len=01c <?>
+	Kernel driver in use: pcieport
+
+06:03.0 PCI bridge: Intel Corporation CV82524 Thunderbolt Controller [Light Ridge 4C 2010] (prog-if 00 [Normal decode])
+	Physical Slot: 2
+	Flags: bus master, fast devsel, latency 0, IRQ 19
+	Bus: primary=06, secondary=08, subordinate=08, sec-latency=0
+	I/O behind bridge: [disabled] [32-bit]
+	Memory behind bridge: a8b00000-a8bfffff [size=1M] [32-bit]
+	Prefetchable memory behind bridge: acf00000-ad0fffff [size=2M] [32-bit]
+	Capabilities: [80] Power Management version 3
+	Capabilities: [88] MSI: Enable- Count=1/32 Maskable- 64bit+
+	Capabilities: [c0] Express Downstream Port (Slot+), IntMsgNum 0
+	Capabilities: [100] Device Serial Number 01-00-00-00-00-c9-a0-00
+	Capabilities: [200] Advanced Error Reporting
+	Capabilities: [300] Virtual Channel
+	Capabilities: [400] Power Budgeting <?>
+	Capabilities: [500] Vendor Specific Information: ID=1234 Rev=1 Len=01c <?>
+	Kernel driver in use: pcieport
+
+06:04.0 PCI bridge: Intel Corporation CV82524 Thunderbolt Controller [Light Ridge 4C 2010] (prog-if 00 [Normal decode])
+	Physical Slot: 3
+	Flags: bus master, fast devsel, latency 0, IRQ 16
+	Bus: primary=06, secondary=09, subordinate=39, sec-latency=0
+	I/O behind bridge: [disabled] [32-bit]
+	Memory behind bridge: a8d00000-a8dfffff [size=1M] [32-bit]
+	Prefetchable memory behind bridge: ad100000-ad2fffff [size=2M] [32-bit]
+	Capabilities: [80] Power Management version 3
+	Capabilities: [88] MSI: Enable- Count=1/32 Maskable- 64bit+
+	Capabilities: [c0] Express Downstream Port (Slot+), IntMsgNum 0
+	Capabilities: [100] Device Serial Number 01-00-00-00-00-c9-a0-00
+	Capabilities: [200] Advanced Error Reporting
+	Capabilities: [300] Virtual Channel
+	Capabilities: [400] Power Budgeting <?>
+	Capabilities: [500] Vendor Specific Information: ID=1234 Rev=1 Len=01c <?>
+	Kernel driver in use: pcieport
+
+06:05.0 PCI bridge: Intel Corporation CV82524 Thunderbolt Controller [Light Ridge 4C 2010] (prog-if 00 [Normal decode])
+	Physical Slot: 4
+	Flags: bus master, fast devsel, latency 0, IRQ 17
+	Bus: primary=06, secondary=3a, subordinate=6a, sec-latency=0
+	I/O behind bridge: [disabled] [32-bit]
+	Memory behind bridge: a8e00000-a8efffff [size=1M] [32-bit]
+	Prefetchable memory behind bridge: ad300000-ad4fffff [size=2M] [32-bit]
+	Capabilities: [80] Power Management version 3
+	Capabilities: [88] MSI: Enable- Count=1/32 Maskable- 64bit+
+	Capabilities: [c0] Express Downstream Port (Slot+), IntMsgNum 0
+	Capabilities: [100] Device Serial Number 01-00-00-00-00-c9-a0-00
+	Capabilities: [200] Advanced Error Reporting
+	Capabilities: [300] Virtual Channel
+	Capabilities: [400] Power Budgeting <?>
+	Capabilities: [500] Vendor Specific Information: ID=1234 Rev=1 Len=01c <?>
+	Kernel driver in use: pcieport
+
+06:06.0 PCI bridge: Intel Corporation CV82524 Thunderbolt Controller [Light Ridge 4C 2010] (prog-if 00 [Normal decode])
+	Physical Slot: 5
+	Flags: bus master, fast devsel, latency 0, IRQ 18
+	Bus: primary=06, secondary=6b, subordinate=6b, sec-latency=0
+	I/O behind bridge: [disabled] [32-bit]
+	Memory behind bridge: a8a00000-a8afffff [size=1M] [32-bit]
+	Prefetchable memory behind bridge: ad500000-ad6fffff [size=2M] [32-bit]
+	Capabilities: [80] Power Management version 3
+	Capabilities: [88] MSI: Enable- Count=1/32 Maskable- 64bit+
+	Capabilities: [c0] Express Downstream Port (Slot+), IntMsgNum 0
+	Capabilities: [100] Device Serial Number 01-00-00-00-00-c9-a0-00
+	Capabilities: [200] Advanced Error Reporting
+	Capabilities: [300] Virtual Channel
+	Capabilities: [400] Power Budgeting <?>
+	Capabilities: [500] Vendor Specific Information: ID=1234 Rev=1 Len=01c <?>
+	Kernel driver in use: pcieport
+
+07:00.0 System peripheral: Intel Corporation CV82524 Thunderbolt Controller [Light Ridge 4C 2010]
+	Subsystem: Device 2222:1111
+	Physical Slot: 1
+	Flags: bus master, fast devsel, latency 0, IRQ 16
+	Memory at a8c00000 (32-bit, non-prefetchable) [size=256K]
+	Memory at a8c40000 (32-bit, non-prefetchable) [size=4K]
+	Capabilities: [80] Power Management version 3
+	Capabilities: [88] MSI: Enable- Count=1/1 Maskable- 64bit+
+	Capabilities: [c0] Express Endpoint, IntMsgNum 0
+	Capabilities: [a0] MSI-X: Enable+ Count=16 Masked-
+	Capabilities: [100] Device Serial Number 01-00-00-00-00-c9-a0-00
+	Capabilities: [200] Advanced Error Reporting
+	Capabilities: [300] Virtual Channel
+	Capabilities: [400] Power Budgeting <?>
+	Capabilities: [500] Vendor Specific Information: ID=1234 Rev=1 Len=01c <?>
+	Kernel driver in use: thunderbolt
+	Kernel modules: thunderbolt
+
+
+--- 7. أجهزة USB ---
+
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Negotiated speed: High Speed (480Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 Full speed (or root) hub
+  bMaxPacketSize0        64
+  idVendor           0x1d6b Linux Foundation
+  idProduct          0x0002 2.0 root hub
+  bcdDevice            6.12
+  iManufacturer           3 Linux 6.12.107+deb13-amd64 ehci_hcd
+  iProduct                2 EHCI Host Controller
+  iSerial                 1 0000:00:1a.7
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0019
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                0mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 Full speed (or root) hub
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0004  1x 4 bytes
+        bInterval              12
+
+Bus 001 Device 002: ID 0424:2514 Microchip Technology, Inc. (formerly SMSC) USB 2.0 Hub
+Negotiated speed: High Speed (480Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         2 TT per port
+  bMaxPacketSize0        64
+  idVendor           0x0424 Microchip Technology, Inc. (formerly SMSC)
+  idProduct          0x2514 USB 2.0 Hub
+  bcdDevice            0.03
+  iManufacturer           0 
+  iProduct                0 
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0029
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                2mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      1 Single TT
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0001  1x 1 bytes
+        bInterval              12
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       1
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      2 TT per port
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0001  1x 1 bytes
+        bInterval              12
+
+Bus 001 Device 003: ID 05ac:850b Apple, Inc. FaceTime HD Camera (Built-in)
+Negotiated speed: High Speed (480Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass          239 Miscellaneous Device
+  bDeviceSubClass         2 [unknown]
+  bDeviceProtocol         1 Interface Association
+  bMaxPacketSize0        64
+  idVendor           0x05ac Apple, Inc.
+  idProduct          0x850b FaceTime HD Camera (Built-in)
+  bcdDevice            7.55
+  iManufacturer           1 Apple Inc.
+  iProduct                2 FaceTime HD Camera (Built-in)
+  iSerial                 3 CC2BC7048FDGGDLP
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x02ba
+    bNumInterfaces          3
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0x80
+      (Bus Powered)
+    MaxPower              500mA
+    Interface Association:
+      bLength                 8
+      bDescriptorType        11
+      bFirstInterface         0
+      bInterfaceCount         2
+      bFunctionClass         14 Video
+      bFunctionSubClass       3 Video Interface Collection
+      bFunctionProtocol       0 
+      iFunction               2 
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      1 Video Control
+      bInterfaceProtocol      0 
+      iInterface              2 
+      VideoControl Interface Descriptor:
+        bLength                13
+        bDescriptorType        36
+        bDescriptorSubtype      1 (HEADER)
+        bcdUVC               1.00
+        wTotalLength       0x0033
+        dwClockFrequency        4.000000MHz
+        bInCollection           1
+        baInterfaceNr( 0)       1
+      VideoControl Interface Descriptor:
+        bLength                18
+        bDescriptorType        36
+        bDescriptorSubtype      2 (INPUT_TERMINAL)
+        bTerminalID             1
+        wTerminalType      0x0201 Camera Sensor
+        bAssocTerminal          0
+        iTerminal               0 
+        wObjectiveFocalLengthMin      0
+        wObjectiveFocalLengthMax      0
+        wOcularFocalLength            0
+        bControlSize                  3
+        bmControls           0x0000010a
+          Auto-Exposure Mode
+          Exposure Time (Absolute)
+          Iris (Relative)
+      VideoControl Interface Descriptor:
+        bLength                 9
+        bDescriptorType        36
+        bDescriptorSubtype      3 (OUTPUT_TERMINAL)
+        bTerminalID             2
+        wTerminalType      0x0101 USB Streaming
+        bAssocTerminal          0
+        bSourceID               3
+        iTerminal               0 
+      VideoControl Interface Descriptor:
+        bLength                11
+        bDescriptorType        36
+        bDescriptorSubtype      5 (PROCESSING_UNIT)
+      Warning: Descriptor too short
+        bUnitID                 3
+        bSourceID               1
+        wMaxMultiplier          0
+        bControlSize            2
+        bmControls     0x0000157f
+          Brightness
+          Contrast
+          Hue
+          Saturation
+          Sharpness
+          Gamma
+          White Balance Temperature
+          Backlight Compensation
+          Power Line Frequency
+          White Balance Temperature, Auto
+        iProcessing             0 
+        bmVideoStandards     0x00
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval               6
+        VideoControl Endpoint Descriptor:
+          bLength                 5
+          bDescriptorType        37
+          bDescriptorSubtype      3 (EP_INTERRUPT)
+          wMaxTransferSize       40
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       0
+      bNumEndpoints           0
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      VideoStreaming Interface Descriptor:
+        bLength                            15
+        bDescriptorType                    36
+        bDescriptorSubtype                  1 (INPUT_HEADER)
+        bNumFormats                         2
+        wTotalLength                   0x01df
+        bEndpointAddress                 0x82  EP 2 IN
+        bmInfo                              0
+        bTerminalLink                       2
+        bStillCaptureMethod                 2
+        bTriggerSupport                     0
+        bTriggerUsage                       0
+        bControlSize                        1
+        bmaControls( 0)                     0
+        bmaControls( 1)                     0
+      VideoStreaming Interface Descriptor:
+        bLength                            27
+        bDescriptorType                    36
+        bDescriptorSubtype                  4 (FORMAT_UNCOMPRESSED)
+        bFormatIndex                        1
+        bNumFrameDescriptors                6
+        guidFormat                            {32595559-0000-0010-8000-00aa00389b71}
+        bBitsPerPixel                      16
+        bDefaultFrameIndex                  5
+        bAspectRatioX                       0
+        bAspectRatioY                       0
+        bmInterlaceFlags                 0x00
+          Interlaced stream or variable: No
+          Fields per frame: 2 fields
+          Field 1 first: No
+          Field pattern: Field 1 only
+        bCopyProtect                        0
+      VideoStreaming Interface Descriptor:
+        bLength                            42
+        bDescriptorType                    36
+        bDescriptorSubtype                  5 (FRAME_UNCOMPRESSED)
+        bFrameIndex                         1
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            160
+        wHeight                           120
+        dwMinBitRate                 24576000
+        dwMaxBitRate                147456000
+        dwMaxVideoFrameBufferSize       38400
+        dwDefaultFrameInterval         333667
+        bFrameIntervalType                  4
+        dwFrameInterval( 0)            333667
+        dwFrameInterval( 1)            400000
+        dwFrameInterval( 2)            416667
+        dwFrameInterval( 3)            666667
+      VideoStreaming Interface Descriptor:
+        bLength                            42
+        bDescriptorType                    36
+        bDescriptorSubtype                  5 (FRAME_UNCOMPRESSED)
+        bFrameIndex                         2
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            176
+        wHeight                           144
+        dwMinBitRate                 24576000
+        dwMaxBitRate                147456000
+        dwMaxVideoFrameBufferSize       50688
+        dwDefaultFrameInterval         333667
+        bFrameIntervalType                  4
+        dwFrameInterval( 0)            333667
+        dwFrameInterval( 1)            400000
+        dwFrameInterval( 2)            416667
+        dwFrameInterval( 3)            666667
+      VideoStreaming Interface Descriptor:
+        bLength                            42
+        bDescriptorType                    36
+        bDescriptorSubtype                  5 (FRAME_UNCOMPRESSED)
+        bFrameIndex                         3
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            320
+        wHeight                           240
+        dwMinBitRate                 24576000
+        dwMaxBitRate                147456000
+        dwMaxVideoFrameBufferSize      153600
+        dwDefaultFrameInterval         333667
+        bFrameIntervalType                  4
+        dwFrameInterval( 0)            333667
+        dwFrameInterval( 1)            400000
+        dwFrameInterval( 2)            416667
+        dwFrameInterval( 3)            666667
+      VideoStreaming Interface Descriptor:
+        bLength                            42
+        bDescriptorType                    36
+        bDescriptorSubtype                  5 (FRAME_UNCOMPRESSED)
+        bFrameIndex                         4
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            352
+        wHeight                           288
+        dwMinBitRate                 24576000
+        dwMaxBitRate                147456000
+        dwMaxVideoFrameBufferSize      202752
+        dwDefaultFrameInterval         333667
+        bFrameIntervalType                  4
+        dwFrameInterval( 0)            333667
+        dwFrameInterval( 1)            400000
+        dwFrameInterval( 2)            416667
+        dwFrameInterval( 3)            666667
+      VideoStreaming Interface Descriptor:
+        bLength                            42
+        bDescriptorType                    36
+        bDescriptorSubtype                  5 (FRAME_UNCOMPRESSED)
+        bFrameIndex                         5
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            640
+        wHeight                           480
+        dwMinBitRate                 24576000
+        dwMaxBitRate                147456000
+        dwMaxVideoFrameBufferSize      614400
+        dwDefaultFrameInterval         333667
+        bFrameIntervalType                  4
+        dwFrameInterval( 0)            333667
+        dwFrameInterval( 1)            400000
+        dwFrameInterval( 2)            416667
+        dwFrameInterval( 3)            666667
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  5 (FRAME_UNCOMPRESSED)
+        bFrameIndex                         6
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                           1280
+        wHeight                           720
+        dwMinBitRate                 24576000
+        dwMaxBitRate                147456000
+        dwMaxVideoFrameBufferSize     1843200
+        dwDefaultFrameInterval        1000000
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)           1000000
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  3 (STILL_IMAGE_FRAME)
+        bEndpointAddress                 0x00  EP 0 OUT
+        bNumImageSizePatterns               6
+        wWidth( 0)                        160
+        wHeight( 0)                       120
+        wWidth( 1)                        176
+        wHeight( 1)                       144
+        wWidth( 2)                        320
+        wHeight( 2)                       240
+        wWidth( 3)                        352
+        wHeight( 3)                       288
+        wWidth( 4)                        640
+        wHeight( 4)                       480
+        wWidth( 5)                       1280
+        wHeight( 5)                       720
+        bNumCompressionPatterns             0
+      VideoStreaming Interface Descriptor:
+        bLength                             6
+        bDescriptorType                    36
+        bDescriptorSubtype                 13 (COLORFORMAT)
+        bColorPrimaries                     1 (BT.709,sRGB)
+        bTransferCharacteristics            1 (BT.709)
+        bMatrixCoefficients                 1 (BT.709)
+      VideoStreaming Interface Descriptor:
+        bLength                            11
+        bDescriptorType                    36
+        bDescriptorSubtype                  6 (FORMAT_MJPEG)
+        bFormatIndex                        2
+        bNumFrameDescriptors                3
+        bFlags                              0
+          Fixed-size samples: No
+        bDefaultFrameIndex                  2
+        bAspectRatioX                       0
+        bAspectRatioY                       0
+        bmInterlaceFlags                 0x00
+          Interlaced stream or variable: No
+          Fields per frame: 1 fields
+          Field 1 first: No
+          Field pattern: Field 1 only
+        bCopyProtect                        0
+      VideoStreaming Interface Descriptor:
+        bLength                            42
+        bDescriptorType                    36
+        bDescriptorSubtype                  7 (FRAME_MJPEG)
+        bFrameIndex                         1
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            960
+        wHeight                           540
+        dwMinBitRate                 24576000
+        dwMaxBitRate                147456000
+        dwMaxVideoFrameBufferSize     1036800
+        dwDefaultFrameInterval         333667
+        bFrameIntervalType                  4
+        dwFrameInterval( 0)            333667
+        dwFrameInterval( 1)            400000
+        dwFrameInterval( 2)            416667
+        dwFrameInterval( 3)            666667
+      VideoStreaming Interface Descriptor:
+        bLength                            42
+        bDescriptorType                    36
+        bDescriptorSubtype                  7 (FRAME_MJPEG)
+        bFrameIndex                         2
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                           1024
+        wHeight                           576
+        dwMinBitRate                 24576000
+        dwMaxBitRate                147456000
+        dwMaxVideoFrameBufferSize     1179648
+        dwDefaultFrameInterval         333667
+        bFrameIntervalType                  4
+        dwFrameInterval( 0)            333667
+        dwFrameInterval( 1)            400000
+        dwFrameInterval( 2)            416667
+        dwFrameInterval( 3)            666667
+      VideoStreaming Interface Descriptor:
+        bLength                            42
+        bDescriptorType                    36
+        bDescriptorSubtype                  7 (FRAME_MJPEG)
+        bFrameIndex                         3
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                           1280
+        wHeight                           720
+        dwMinBitRate                 24576000
+        dwMaxBitRate                147456000
+        dwMaxVideoFrameBufferSize     1843200
+        dwDefaultFrameInterval         333667
+        bFrameIntervalType                  4
+        dwFrameInterval( 0)            333667
+        dwFrameInterval( 1)            400000
+        dwFrameInterval( 2)            416667
+        dwFrameInterval( 3)            666667
+      VideoStreaming Interface Descriptor:
+        bLength                            18
+        bDescriptorType                    36
+        bDescriptorSubtype                  3 (STILL_IMAGE_FRAME)
+        bEndpointAddress                 0x00  EP 0 OUT
+        bNumImageSizePatterns               3
+        wWidth( 0)                        960
+        wHeight( 0)                       540
+        wWidth( 1)                       1024
+        wHeight( 1)                       576
+        wWidth( 2)                       1280
+        wHeight( 2)                       720
+        bNumCompressionPatterns             0
+      VideoStreaming Interface Descriptor:
+        bLength                             6
+        bDescriptorType                    36
+        bDescriptorSubtype                 13 (COLORFORMAT)
+        bColorPrimaries                     1 (BT.709,sRGB)
+        bTransferCharacteristics            1 (BT.709)
+        bMatrixCoefficients                 1 (BT.709)
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       1
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x0080  1x 128 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       2
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       3
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x0400  1x 1024 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       4
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x0b00  2x 768 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       5
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x0c00  2x 1024 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       6
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x1380  3x 896 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       7
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x1400  3x 1024 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        2
+      bAlternateSetting       0
+      bNumEndpoints           0
+      bInterfaceClass       255 Vendor Specific Class
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 
+      iInterface              0 
+
+Bus 001 Device 004: ID 0a5c:4500 Broadcom Corp. BCM2046B1 USB 2.0 Hub (part of BCM2046 Bluetooth)
+Negotiated speed: Full Speed (12Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 Full speed (or root) hub
+  bMaxPacketSize0         8
+  idVendor           0x0a5c Broadcom Corp.
+  idProduct          0x4500 BCM2046B1 USB 2.0 Hub (part of BCM2046 Bluetooth)
+  bcdDevice            1.00
+  iManufacturer           1 Apple Inc.
+  iProduct                2 BRCM2046 Hub
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0019
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                0mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 Full speed (or root) hub
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0001  1x 1 bytes
+        bInterval             255
+
+Bus 001 Device 005: ID 10c4:8108 Silicon Labs USB OPTICAL MOUSE
+Negotiated speed: Low Speed (1Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            0 [unknown]
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 
+  bMaxPacketSize0         8
+  idVendor           0x10c4 Silicon Labs
+  idProduct          0x8108 USB OPTICAL MOUSE
+  bcdDevice            0.00
+  iManufacturer           1 YSPRINGTECH
+  iProduct                2 USB OPTICAL MOUSE
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0022
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xa0
+      (Bus Powered)
+      Remote Wakeup
+    MaxPower              100mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      1 Boot Interface Subclass
+      bInterfaceProtocol      2 Mouse
+      iInterface              0 
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.11
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 (null)
+          wDescriptorLength      64
+          Report Descriptors: 
+            ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval              10
+
+Bus 001 Device 006: ID 05ac:8215 Apple, Inc. Built-in Bluetooth 2.0+EDR HCI
+Negotiated speed: Full Speed (12Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass          255 Vendor Specific Class
+  bDeviceSubClass         1 [unknown]
+  bDeviceProtocol         1 
+  bMaxPacketSize0        64
+  idVendor           0x05ac Apple, Inc.
+  idProduct          0x8215 Built-in Bluetooth 2.0+EDR HCI
+  bcdDevice            2.08
+  iManufacturer           1 Apple Inc.
+  iProduct                2 Bluetooth USB Host Controller
+  iSerial                 3 7CC3A1501097
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x00d8
+    bNumInterfaces          4
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                0mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           3
+      bInterfaceClass       255 Vendor Specific Class
+      bInterfaceSubClass      1 [unknown]
+      bInterfaceProtocol      1 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0010  1x 16 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x02  EP 2 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       0
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0000  1x 0 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0000  1x 0 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       1
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0009  1x 9 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0009  1x 9 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       2
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0011  1x 17 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0011  1x 17 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       3
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0020  1x 32 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0020  1x 32 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       4
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       5
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        2
+      bAlternateSetting       0
+      bNumEndpoints           2
+      bInterfaceClass       255 Vendor Specific Class
+      bInterfaceSubClass    255 Vendor Specific Subclass
+      bInterfaceProtocol    255 Vendor Specific Protocol
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x84  EP 4 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0020  1x 32 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x04  EP 4 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0020  1x 32 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        3
+      bAlternateSetting       0
+      bNumEndpoints           0
+      bInterfaceClass       254 Application Specific Interface
+      bInterfaceSubClass      1 Device Firmware Update
+      bInterfaceProtocol      1 
+      iInterface              0 
+      Device Firmware Upgrade Interface Descriptor:
+        bLength                             7
+        bDescriptorType                    33
+        bmAttributes                        7
+          Will Not Detach
+          Manifestation Tolerant
+          Upload Supported
+          Download Supported
+        wDetachTimeout                   5000 milliseconds
+        wTransferSize                      64 bytes
+
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Negotiated speed: High Speed (480Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 Full speed (or root) hub
+  bMaxPacketSize0        64
+  idVendor           0x1d6b Linux Foundation
+  idProduct          0x0002 2.0 root hub
+  bcdDevice            6.12
+  iManufacturer           3 Linux 6.12.107+deb13-amd64 ehci_hcd
+  iProduct                2 EHCI Host Controller
+  iSerial                 1 0000:00:1d.7
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0019
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                0mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 Full speed (or root) hub
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0004  1x 4 bytes
+        bInterval              12
+
+Bus 002 Device 002: ID 0424:2514 Microchip Technology, Inc. (formerly SMSC) USB 2.0 Hub
+Negotiated speed: High Speed (480Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         2 TT per port
+  bMaxPacketSize0        64
+  idVendor           0x0424 Microchip Technology, Inc. (formerly SMSC)
+  idProduct          0x2514 USB 2.0 Hub
+  bcdDevice            0.03
+  iManufacturer           0 
+  iProduct                0 
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0029
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                2mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      1 Single TT
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0001  1x 1 bytes
+        bInterval              12
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       1
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      2 TT per port
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0001  1x 1 bytes
+        bInterval              12
+
+Bus 002 Device 003: ID 05ac:8403 Apple, Inc. Internal Memory Card Reader
+Negotiated speed: High Speed (480Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            0 [unknown]
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 
+  bMaxPacketSize0        64
+  idVendor           0x05ac Apple, Inc.
+  idProduct          0x8403 Internal Memory Card Reader
+  bcdDevice           98.33
+  iManufacturer           3 Apple
+  iProduct                4 Card Reader
+  iSerial                 2 000000009833
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0020
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xa0
+      (Bus Powered)
+      Remote Wakeup
+    MaxPower              500mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           2
+      bInterfaceClass         8 Mass Storage
+      bInterfaceSubClass      6 SCSI
+      bInterfaceProtocol     80 Bulk-Only
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x02  EP 2 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               0
+
+Bus 002 Device 004: ID 05ac:8242 Apple, Inc. Built-in IR Receiver
+Negotiated speed: Low Speed (1Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            0 [unknown]
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 
+  bMaxPacketSize0         8
+  idVendor           0x05ac Apple, Inc.
+  idProduct          0x8242 Built-in IR Receiver
+  bcdDevice            0.16
+  iManufacturer           1 Apple Computer, Inc.
+  iProduct                2 IR Receiver
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0022
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          1 
+    bmAttributes         0xa0
+      (Bus Powered)
+      Remote Wakeup
+    MaxPower              100mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 
+      iInterface              0 
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.11
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 (null)
+          wDescriptorLength      42
+          Report Descriptors: 
+            ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval              10
+
+Bus 002 Device 005: ID 413c:2113 Dell Computer Corp. KB216 Wired Keyboard
+Negotiated speed: Low Speed (1Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               1.10
+  bDeviceClass            0 [unknown]
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 
+  bMaxPacketSize0         8
+  idVendor           0x413c Dell Computer Corp.
+  idProduct          0x2113 KB216 Wired Keyboard
+  bcdDevice            1.10
+  iManufacturer           0 
+  iProduct                2 Dell KB216 Wired Keyboard
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x003b
+    bNumInterfaces          2
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xa0
+      (Bus Powered)
+      Remote Wakeup
+    MaxPower              100mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      1 Boot Interface Subclass
+      bInterfaceProtocol      1 Keyboard
+      iInterface              0 
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.11
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 (null)
+          wDescriptorLength      65
+          Report Descriptors: 
+            ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval              24
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 
+      iInterface              0 
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.11
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 (null)
+          wDescriptorLength     109
+          Report Descriptors: 
+            ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval              48
+
+Bus 002 Device 006: ID 2357:0604 TP-Link TP-Link Bluetooth USB Adapter
+Negotiated speed: Full Speed (12Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               1.10
+  bDeviceClass          224 Wireless
+  bDeviceSubClass         1 Radio Frequency
+  bDeviceProtocol         1 Bluetooth
+  bMaxPacketSize0        64
+  idVendor           0x2357 TP-Link
+  idProduct          0x0604 TP-Link Bluetooth USB Adapter
+  bcdDevice            2.00
+  iManufacturer           1  
+  iProduct                2 TP-Link Bluetooth USB Adapter
+  iSerial                 3 8C86DD2E1E58
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x00b1
+    bNumInterfaces          2
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower              500mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           3
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              4 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0010  1x 16 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x02  EP 2 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               0
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       0
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              4 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0000  1x 0 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0000  1x 0 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       1
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              4 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0009  1x 9 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0009  1x 9 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       2
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              4 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0011  1x 17 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0011  1x 17 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       3
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              4 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0019  1x 25 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0019  1x 25 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       4
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              4 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0021  1x 33 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0021  1x 33 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       5
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              4 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0031  1x 49 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0031  1x 49 bytes
+        bInterval               1
+
+Bus 003 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Negotiated speed: Full Speed (12Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               1.10
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 Full speed (or root) hub
+  bMaxPacketSize0        64
+  idVendor           0x1d6b Linux Foundation
+  idProduct          0x0001 1.1 root hub
+  bcdDevice            6.12
+  iManufacturer           3 Linux 6.12.107+deb13-amd64 uhci_hcd
+  iProduct                2 UHCI Host Controller
+  iSerial                 1 0000:00:1a.0
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0019
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                0mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 Full speed (or root) hub
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0002  1x 2 bytes
+        bInterval             255
+
+Bus 004 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Negotiated speed: Full Speed (12Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               1.10
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 Full speed (or root) hub
+  bMaxPacketSize0        64
+  idVendor           0x1d6b Linux Foundation
+  idProduct          0x0001 1.1 root hub
+  bcdDevice            6.12
+  iManufacturer           3 Linux 6.12.107+deb13-amd64 uhci_hcd
+  iProduct                2 UHCI Host Controller
+  iSerial                 1 0000:00:1d.0
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0019
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                0mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 Full speed (or root) hub
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0002  1x 2 bytes
+        bInterval             255
+
+--- 8. أجهزة التخزين والأقراص ---
+NAME   FSTYPE     SIZE MOUNTPOINT        LABEL UUID                                 MODEL
+loop0  squashfs    74M /snap/core22/2955                                            
+loop1  squashfs  50.3M /snap/snapd/27738                                            
+loop2  squashfs  60.1M /snap/core26/462                                             
+sda             238.5G                                                              SAMSUNG SSD PM851 2.5 7mm 256GB
+├─sda1 vfat       286M /boot/efi               1F32-9A9D                            
+├─sda2 swap       8.2G [SWAP]                  ea60fd7d-8ce7-480a-b07f-4ac2fbbe5d58 
+└─sda3 ext4       230G /                       bc309e79-da63-4ae2-8764-cec235dc7d9d 
+sdb                 0B                                                              SD Card Reader
+sr0              1024M                                                              OPTIARC DVD RW AD-5690H
+
+--- 9. أجهزة الإدخال (لوحة المفاتيح، الماوس) ---
+I: Bus=0019 Vendor=0000 Product=0001 Version=0000
+N: Name="Power Button"
+P: Phys=PNP0C0C/button/input0
+S: Sysfs=/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input0
+U: Uniq=
+H: Handlers=kbd event0 
+B: PROP=0
+B: EV=3
+B: KEY=8000 10000000000000 0
+
+I: Bus=0019 Vendor=0000 Product=0003 Version=0000
+N: Name="Sleep Button"
+P: Phys=PNP0C0E/button/input0
+S: Sysfs=/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0E:00/input/input1
+U: Uniq=
+H: Handlers=kbd event1 
+B: PROP=0
+B: EV=3
+B: KEY=4000 0 0
+
+I: Bus=0019 Vendor=0000 Product=0001 Version=0000
+N: Name="Power Button"
+P: Phys=LNXPWRBN/button/input0
+S: Sysfs=/devices/LNXSYSTM:00/LNXPWRBN:00/input/input2
+U: Uniq=
+H: Handlers=kbd event2 
+B: PROP=0
+B: EV=3
+B: KEY=8000 10000000000000 0
+
+I: Bus=0019 Vendor=0000 Product=0006 Version=0000
+N: Name="Video Bus"
+P: Phys=LNXVIDEO/video/input0
+S: Sysfs=/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:01/LNXVIDEO:00/input/input3
+U: Uniq=
+H: Handlers=kbd event3 
+B: PROP=0
+B: EV=3
+B: KEY=3e000b00000000 0 0 0
+
+I: Bus=0003 Vendor=05ac Product=8242 Version=0111
+N: Name="Apple Computer, Inc. IR Receiver"
+P: Phys=usb-0000:00:1d.7-1.2/input0
+S: Sysfs=/devices/pci0000:00/0000:00:1d.7/usb2/2-1/2-1.2/2-1.2:1.0/0003:05AC:8242.0001/input/input4
+U: Uniq=
+H: Handlers=kbd event4 
+B: PROP=0
+B: EV=100003
+B: KEY=10c0000800 c000000000000 10000000
+
+I: Bus=0003 Vendor=413c Product=2113 Version=0111
+N: Name="Dell KB216 Wired Keyboard"
+P: Phys=usb-0000:00:1d.7-1.3/input0
+S: Sysfs=/devices/pci0000:00/0000:00:1d.7/usb2/2-1/2-1.3/2-1.3:1.0/0003:413C:2113.0002/input/input5
+U: Uniq=
+H: Handlers=sysrq kbd leds event5 
+B: PROP=0
+B: EV=120013
+B: KEY=1000000000007 ff9f207ac14057ff febeffdfffefffff fffffffffffffffe
+B: MSC=10
+B: LED=7
+
+I: Bus=0003 Vendor=10c4 Product=8108 Version=0111
+N: Name="YSPRINGTECH USB OPTICAL MOUSE"
+P: Phys=usb-0000:00:1a.7-1.2/input0
+S: Sysfs=/devices/pci0000:00/0000:00:1a.7/usb1/1-1/1-1.2/1-1.2:1.0/0003:10C4:8108.0003/input/input6
+U: Uniq=
+H: Handlers=mouse0 event6 
+B: PROP=0
+B: EV=17
+B: KEY=70000 0 0 0 0
+B: REL=903
+B: MSC=10
+
+I: Bus=0003 Vendor=413c Product=2113 Version=0111
+N: Name="Dell KB216 Wired Keyboard System Control"
+P: Phys=usb-0000:00:1d.7-1.3/input1
+S: Sysfs=/devices/pci0000:00/0000:00:1d.7/usb2/2-1/2-1.3/2-1.3:1.1/0003:413C:2113.0004/input/input7
+U: Uniq=
+H: Handlers=kbd event7 
+B: PROP=0
+B: EV=13
+B: KEY=c000 10000000000000 0
+B: MSC=10
+
+I: Bus=0003 Vendor=413c Product=2113 Version=0111
+N: Name="Dell KB216 Wired Keyboard Consumer Control"
+P: Phys=usb-0000:00:1d.7-1.3/input1
+S: Sysfs=/devices/pci0000:00/0000:00:1d.7/usb2/2-1/2-1.3/2-1.3:1.1/0003:413C:2113.0004/input/input8
+U: Uniq=
+H: Handlers=kbd event8 
+B: PROP=0
+B: EV=13
+B: KEY=80002000000 387ad8011001 e000000000000 0
+B: MSC=10
+
+I: Bus=0010 Vendor=001f Product=0001 Version=0100
+N: Name="PC Speaker"
+P: Phys=isa0061/input0
+S: Sysfs=/devices/platform/pcspkr/input/input11
+U: Uniq=
+H: Handlers=kbd event11 
+B: PROP=0
+B: EV=40001
+B: SND=6
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="HDA ATI HDMI HDMI/DP,pcm=3"
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:01.0/0000:01:00.1/sound/card1/input12
+U: Uniq=
+H: Handlers=event12 
+B: PROP=0
+B: EV=21
+B: SW=140
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="HDA Intel PCH Line"
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:1b.0/sound/card0/input13
+U: Uniq=
+H: Handlers=event13 
+B: PROP=0
+B: EV=21
+B: SW=2000
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="HDA Intel PCH Headphone"
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:1b.0/sound/card0/input14
+U: Uniq=
+H: Handlers=event14 
+B: PROP=0
+B: EV=21
+B: SW=4
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="HDA Intel PCH SPDIF In"
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:1b.0/sound/card0/input15
+U: Uniq=
+H: Handlers=event15 
+B: PROP=0
+B: EV=21
+B: SW=2000
+
+
+--- 10. أجهزة البلوتوث ---
+hci1:	Type: Primary  Bus: USB
+	BD Address: 8C:86:DD:2E:1E:58  ACL MTU: 1021:6  SCO MTU: 255:12
+	UP RUNNING PSCAN 
+	RX bytes:2402 acl:0 sco:0 events:244 errors:0
+	TX bytes:39062 acl:0 sco:0 commands:228 errors:0
+	Features: 0xff 0xff 0xff 0xfe 0xdb 0xfd 0x7b 0x87
+	Packet type: DM1 DM3 DM5 DH1 DH3 DH5 HV1 HV2 HV3 
+	Link policy: RSWITCH HOLD SNIFF PARK 
+	Link mode: PERIPHERAL ACCEPT 
+	Name: 'h'
+	Class: 0x7c0104
+	Service Classes: Rendering, Capturing, Object Transfer, Audio, Telephony
+	Device Class: Computer, Desktop workstation
+	HCI Version: 5.1 (0xa)  Revision: 0xdfc6
+	LMP Version: 5.1 (0xa)  Subversion: 0xd922
+	Manufacturer: Realtek Semiconductor Corporation (93)
+
+hci0:	Type: Primary  Bus: USB
+	BD Address: 7C:C3:A1:50:10:97  ACL MTU: 1021:5  SCO MTU: 64:1
+	UP RUNNING 
+	RX bytes:21821 acl:375 sco:0 events:1218 errors:0
+	TX bytes:14857 acl:74 sco:0 commands:1047 errors:0
+	Features: 0xff 0xff 0x8f 0xfe 0x9b 0xff 0x79 0x83
+	Packet type: DM1 DM3 DM5 DH1 DH3 DH5 HV1 HV2 HV3 
+	Link policy: RSWITCH HOLD SNIFF PARK 
+	Link mode: PERIPHERAL ACCEPT 
+	Name: 'h #1'
+	Class: 0x7c0104
+	Service Classes: Rendering, Capturing, Object Transfer, Audio, Telephony
+	Device Class: Computer, Desktop workstation
+	HCI Version: 2.1 (0x4)  Revision: 0x206
+	LMP Version: 2.1 (0x4)  Subversion: 0x21d0
+	Manufacturer: Broadcom Corporation (15)
+
+
+--- 11. درجة الحرارة والمراوح (إن وجدت) ---
+applesmc-isa-0300
+Adapter: ISA adapter
+ODD :        1399 RPM  (min = 1400 RPM, max = 4350 RPM)
+HDD :        2501 RPM  (min = 1100 RPM, max = 6300 RPM)
+CPU :        1199 RPM  (min = 1200 RPM, max = 3950 RPM)
+TA0P:         +33.8°C  
+TA0V:         +33.8°C  
+TA0p:         +34.5°C  
+TC0H:         +60.2°C  
+TC0P:         +56.2°C  
+TC0c:         +71.0°C  
+TC0h:         +60.2°C  
+TC0p:         +56.2°C  
+TC1c:         +67.0°C  
+TC2c:         +65.0°C  
+TC3c:         +66.0°C  
+TCGc:         +71.0°C  
+TCSc:         +68.0°C  
+TCXc:         +70.0°C  
+TG0D:         +53.8°C  
+TG0H:         +50.0°C  
+TG0d:         +53.8°C  
+TG0h:         +50.0°C  
+TG0p:         +54.0°C  
+TH0O:          +9.0°C  
+TH1O:          +9.0°C  
+TL0P:         +37.8°C  
+TL0V:         +39.8°C  
+TL0p:         +49.2°C  
+TL1P:         +42.5°C  
+TL1V:         +40.5°C  
+TL1p:         +42.5°C  
+TL1v:         +40.5°C  
+TL2V:         +41.5°C  
+TLAV:         +41.5°C  
+TLBV:         +39.5°C  
+TLCV:         +39.8°C  
+TO0P:         +42.2°C  
+TO0p:         +43.2°C  
+TPCD:         +67.0°C  
+TS0P:         +40.2°C  
+TS0V:         +37.8°C  
+TS0p:         +40.2°C  
+TS2P:         +41.2°C  
+TS2V:         +40.8°C  
+TS2p:         +41.2°C  
+Tm0P:         +55.2°C  
+Tm0p:         +55.2°C  
+Tp1P:         +57.2°C  
+Tp1p:         +57.2°C  
+Tp2H:         +65.2°C  
+Tp2h:         +65.2°C  
+Tp3H:         +61.0°C  
+Tp3h:         +61.0°C  
+
+coretemp-isa-0000
+Adapter: ISA adapter
+Package id 0:  +68.0°C  (high = +80.0°C, crit = +86.0°C)
+Core 0:        +68.0°C  (high = +80.0°C, crit = +86.0°C)
+Core 1:        +67.0°C  (high = +80.0°C, crit = +86.0°C)
+Core 2:        +67.0°C  (high = +80.0°C, crit = +86.0°C)
+Core 3:        +66.0°C  (high = +80.0°C, crit = +86.0°C)
+
+
+--- 12. حالة البطارية والطاقة ---
+Device: /org/freedesktop/UPower/devices/DisplayDevice
+  power supply:         no
+  updated:              Sat 26 Sep 2026 10:52:51 PM EEST (988 seconds ago)
+  has history:          no
+  has statistics:       no
+  unknown
+    warning-level:       none
+    percentage:          0%
+    icon-name:          'battery-missing-symbolic'
+
+Daemon:
+  daemon-version:  1.90.9
+  on-battery:      no
+  lid-is-closed:   no
+  lid-is-present:  no
+  critical-action: HybridSleep
+
+--- 13. تفاصيل نواة لينكس والإصدار ---
+Linux h 6.12.107+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.107-1 (2026-08-29) x86_64 GNU/Linux
+
+--- 14. توزيعة لينكس والإصدار ---
+PRETTY_NAME="LMDE 7 (gigi)"
+NAME="LMDE"
+VERSION_ID="7"
+VERSION="7 (gigi)"
+VERSION_CODENAME=gigi
+ID=linuxmint
+HOME_URL="https://www.linuxmint.com/"
+SUPPORT_URL="https://forums.linuxmint.com/"
+BUG_REPORT_URL="http://linuxmint-troubleshooting-guide.readthedocs.io/en/latest/"
+PRIVACY_POLICY_URL="https://www.linuxmint.com/"
+ID_LIKE=debian
+DEBIAN_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.0
+
+==================================================
+              نهاية التقرير                       
+==================================================

@@ -1,0 +1,68 @@
+/* ═══════════════════════════════════════════════════════════════
+   H1-AI Design System — Animations
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes h1-slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes h1-slide-down {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes h1-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes h1-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(60px, -80px) scale(1.1); }
+  66% { transform: translate(-40px, 60px) scale(0.9); }
+}
+
+@keyframes h1-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes h1-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes h1-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+@keyframes h1-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-8px); opacity: 1; }
+}
+
+@keyframes h1-shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes h1-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--h1-primary-glow); }
+  50% { box-shadow: 0 0 40px var(--h1-primary-glow), 0 0 60px var(--h1-primary-glow); }
+}
+
+/* ═══ Utility Classes ═══ */
+.h1-animate-slide-up { animation: h1-slide-up 0.6s ease both; }
+.h1-animate-fade-in { animation: h1-fade-in 0.6s ease both; }
+.h1-animate-pulse { animation: h1-pulse 2s infinite; }
+.h1-animate-spin { animation: h1-spin 0.8s linear infinite; }
+.h1-animate-shake { animation: h1-shake 0.4s; }
+.h1-animate-float { animation: h1-float 20s ease-in-out infinite; }
+
+.h1-delay-1 { animation-delay: 0.1s; }
+.h1-delay-2 { animation-delay: 0.2s; }
+.h1-delay-3 { animation-delay: 0.3s; }
+.h1-delay-4 { animation-delay: 0.4s; }
+.h1-delay-5 { animation-delay: 0.5s; }

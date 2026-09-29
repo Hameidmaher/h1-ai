@@ -1,0 +1,31 @@
+═══ Services ═══
+● h1ai.service - H1-AI Backend API
+     Active: active (running) since Mon 2026-09-28 15:53:48 EEST; 8min ago
+● h1ai-whatsapp.service - H1-AI WhatsApp Multi-Session Service
+     Active: active (running) since Mon 2026-09-28 11:55:41 EEST; 4h 6min ago
+● postgresql.service - PostgreSQL RDBMS
+     Active: active (exited) since Mon 2026-09-28 11:55:45 EEST; 4h 6min ago
+● redis-server.service - Advanced key-value store
+     Active: active (running) since Mon 2026-09-28 11:55:41 EEST; 4h 6min ago
+
+═══ Ports ═══
+LISTEN 0      511                      127.0.0.1:6379       0.0.0.0:*    users:(("redis-server",pid=1169,fd=8))                                                                                         
+LISTEN 0      200                      127.0.0.1:5432       0.0.0.0:*    users:(("postgres",pid=1264,fd=7))                                                                                             
+LISTEN 0      2048                       0.0.0.0:8000       0.0.0.0:*    users:(("python3",pid=154346,fd=3),("python3",pid=154345,fd=3),("uvicorn",pid=154342,fd=3))                                    
+LISTEN 0      511                          [::1]:6379          [::]:*    users:(("redis-server",pid=1169,fd=9))                                                                                         
+LISTEN 0      200                          [::1]:5432          [::]:*    users:(("postgres",pid=1264,fd=6))                                                                                             
+LISTEN 0      511                              *:3001             *:*    users:(("node",pid=1162,fd=21))                                                                                                
+
+═══ Docker ═══
+CONTAINER ID   IMAGE                           COMMAND                  CREATED      STATUS       PORTS     NAMES
+b3a5621b4a0a   cloudflare/cloudflared:latest   "cloudflared --no-au…"   4 days ago   Up 4 hours             h1ai-tunnel
+
+═══ API ═══
+{"status":"healthy","version":"5.0.0","uptime_seconds":507.4}
+{"status":"running","total_sessions":1,"connected":0,"sessions":[{"phone_number":"+201001234567","status":"waiting_qr","pharmacy_id":null,"has_qr":true}]}
+═══ Groq key ═══
+GROQ_API_KEY=***
+
+═══ Disk ═══
+323M	/home/h/h1-ai
+/dev/sda3       226G   97G  117G  46% /

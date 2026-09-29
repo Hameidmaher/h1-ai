@@ -1,0 +1,82 @@
+# ═══════════════════════════════════════════════════════
+#  H1-AI Comprehensive .gitignore
+# ═══════════════════════════════════════════════════════
+
+# ─── Secrets ───
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+secrets/
+ADMIN-CREDENTIALS.txt
+config.production.yaml
+
+# ─── Databases ───
+*.db
+*.sqlite
+*.sqlite3
+h1ai.db
+postgres_data/
+
+# ─── WhatsApp Sessions ───
+whatsapp/sessions/
+whatsapp-service/sessions/
+whatsapp-service/auth_info/
+auth_info_*/
+session*.json
+
+# ─── Backups ───
+backups/
+*.bak
+*.bak.*
+*.backup
+*.backup.*
+*.before-fix.*
+*.broken.*
+*.old
+*_backup_*
+
+# ─── Logs ───
+logs/
+*.log
+*.log.*
+
+# ─── Python ───
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ─── Node ───
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+
+# ─── Test artifacts ───
+tests/load/*.csv
+tests/load/results_*
+coverage.xml
+
+# ─── OS/IDE ───
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
+
+# ─── Mobile ───
+mobile/build/
+mobile/.dart_tool/
+
+# ─── Temporary ───
+tmp/
+temp/
+*.tmp

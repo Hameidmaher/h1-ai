@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "emergency_numbers": {
+    "ambulance": "123",
+    "police": "122",
+    "fire": "180",
+    "poison_center": "08008880700"
+  },
+  "patterns": [
+    {"id": "cardiac", "severity": "critical", "keywords": ["ألم في الصدر", "chest pain"], "action": "call_ambulance"},
+    {"id": "respiratory", "severity": "critical", "keywords": ["مخنوق", "can not breathe"], "action": "call_ambulance"},
+    {"id": "stroke", "severity": "critical", "keywords": ["شلل", "stroke"], "action": "call_ambulance"},
+    {"id": "poisoning", "severity": "critical", "keywords": ["تسمم", "poisoning"], "action": "call_poison_center"}
+  ]
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H1-AI Pharmacy Admin</title>
+  <link rel="stylesheet" href="/admin/static/css/pharmacy.css">
+</head>
+<body>
+
+<div id="app" class="ph-layout">
+
+  <!-- Sidebar -->
+  <aside class="ph-sidebar">
+    <div class="ph-brand">
+      <h2>🏥 H1-AI</h2>
+      <span id="pharmacy-name">...</span>
+    </div>
+
+    <nav class="ph-nav">
+      <a href="#dashboard" class="ph-nav-item active" data-page="dashboard">
+        <span class="icon">📊</span>
+        <span>لوحة التحكم</span>
+      </a>
+      <a href="#products" class="ph-nav-item" data-page="products">
+        <span class="icon">📦</span>
+        <span>المنتجات</span>
+      </a>
+      <a href="#drugs" class="ph-nav-item" data-page="drugs">
+        <span class="icon">💊</span>
+        <span>الأدوية</span>
+      </a>
+      <a href="#whatsapp" class="ph-nav-item" data-page="whatsapp">
+        <span class="icon">📱</span>
+        <span>WhatsApp</span>
+      </a>
+      <a href="#orders" class="ph-nav-item" data-page="orders">
+        <span class="icon">🛒</span>
+        <span>الطلبات</span>
+      </a>
+      <a href="#team" class="ph-nav-item" data-page="team">
+        <span class="icon">👥</span>
+        <span>الفريق</span>
+      </a>
+      <a href="#settings" class="ph-nav-item" data-page="settings">
+        <span class="icon">⚙️</span>
+        <span>الإعدادات</span>
+      </a>
+    </nav>
+
+    <div class="ph-footer">
+      <span id="ph-user-name">...</span>
+      <button id="ph-logout" class="btn-logout">تسجيل خروج</button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="ph-main">
+    <header class="ph-topbar">
+      <h1 id="page-title">لوحة التحكم</h1>
+      <div class="ph-actions">
+        <span id="ph-user-role" class="role-badge"></span>
+      </div>
+    </header>
+
+    <div id="page-content" class="ph-content">
+      <div class="loading">جاري التحميل...</div>
+    </div>
+  </main>
+
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal hidden">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="modal-title"></h2>
+      <button id="modal-close" class="btn-close">✕</button>
+    </div>
+    <div id="modal-body" class="modal-body"></div>
+    <div id="modal-foot" class="modal-foot"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<script src="/admin/static/js/pharmacy.js"></script>
+</body>
+</html>

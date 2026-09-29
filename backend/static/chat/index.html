@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0ea5e9">
+    <title>H1-AI | مساعد صيدلي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-content">
+                <div class="brand">
+                    <div class="brand-icon">💊</div>
+                    <div class="brand-text">
+                        <h1>H1-AI</h1>
+                        <span class="status">
+                            <span class="status-dot"></span>
+                            مساعد صيدلي ذكي
+                        </span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="newChat" class="icon-btn" title="محادثة جديدة">🔄</button>
+                    <button id="clearChat" class="icon-btn" title="مسح">🗑️</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- CHAT -->
+        <main class="chat" id="chat">
+            <div class="welcome">
+                <div class="welcome-icon">💊</div>
+                <h2>أهلاً بيك 👋</h2>
+                <p>أنا مساعد صيدلية H1-AI.<br>اسألني عن أي دواء، سعره، أو بديله.</p>
+                
+                <div class="suggestions">
+                    <button class="suggestion" data-q="عندك بنادول؟">
+                        🔍 عندك بنادول؟
+                    </button>
+                    <button class="suggestion" data-q="بكام الفولتارين؟">
+                        💰 بكام الفولتارين؟
+                    </button>
+                    <button class="suggestion" data-q="عندك أوجمنتين؟">
+                        💊 عندك أوجمنتين؟
+                    </button>
+                    <button class="suggestion" data-q="فيه بديل أرخص للبنادول؟">
+                        🔄 فيه بديل أرخص للبنادول؟
+                    </button>
+                    <button class="suggestion" data-q="دوا للصداع">
+                        🤕 دوا للصداع
+                    </button>
+                    <button class="suggestion" data-q="دوا للبرد">
+                        🤧 دوا للبرد
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- TYPING INDICATOR -->
+        <div class="typing" id="typing" style="display:none">
+            <div class="typing-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="typing-text">بيفكر...</span>
+        </div>
+
+        <!-- INPUT -->
+        <footer class="input-area">
+            <form id="form" class="input-form">
+                <input 
+                    type="text" 
+                    id="input" 
+                    placeholder="اكتب سؤالك..." 
+                    autocomplete="off"
+                    autofocus
+                    dir="auto"
+                />
+                <button type="submit" id="sendBtn" aria-label="إرسال">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </form>
+            <div class="input-info">
+                <span id="sessionInfo">✨ جلسة جديدة</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

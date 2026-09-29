@@ -1,0 +1,24 @@
+[DEFAULT]
+bantime = 1h
+findtime = 10m
+maxretry = 5
+destemail = admin@h1ai.local
+action = %(action_mwl)s
+
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3
+bantime = 24h
+
+[nginx-http-auth]
+enabled = true
+
+[nginx-limit-req]
+enabled = true
+filter = nginx-limit-req
+logpath = /var/log/nginx/error.log
+maxretry = 10
+bantime = 1h

@@ -1,0 +1,158 @@
+/* ═══════════════════════════════════════════════════════════════
+   H1-AI Design System — Layouts
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ═══ Auth Layout (Split: Hero + Form) ═══ */
+.h1-auth-layout {
+  position: relative;
+  z-index: var(--h1-z-base);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  min-height: 100vh;
+}
+
+@media (max-width: 900px) {
+  .h1-auth-layout { grid-template-columns: 1fr; }
+  .h1-auth-hero { display: none !important; }
+}
+
+.h1-auth-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.h1-auth-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 212, 170, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+.h1-auth-hero-wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+}
+
+.h1-auth-form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.h1-auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ═══ Center Layout (single card) ═══ */
+.h1-center-layout {
+  position: relative;
+  z-index: var(--h1-z-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* ═══ App Layout (Header + Sidebar + Main) ═══ */
+.h1-app-layout {
+  position: relative;
+  z-index: var(--h1-z-base);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: 64px 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  height: 100vh;
+}
+
+.h1-app-header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--h1-space-lg);
+  background: var(--h1-surface);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--h1-border);
+  z-index: var(--h1-z-header);
+}
+
+.h1-app-sidebar {
+  grid-area: sidebar;
+  background: var(--h1-surface);
+  backdrop-filter: blur(20px);
+  border-left: 1px solid var(--h1-border);
+  overflow-y: auto;
+  padding: var(--h1-space);
+}
+
+.h1-app-main {
+  grid-area: main;
+  overflow-y: auto;
+  padding: var(--h1-space-lg);
+}
+
+@media (max-width: 768px) {
+  .h1-app-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas: "header" "main";
+  }
+  .h1-app-sidebar {
+    position: fixed;
+    top: 64px;
+    bottom: 0;
+    right: 0;
+    width: 260px;
+    transform: translateX(100%);
+    transition: var(--h1-transition);
+    z-index: var(--h1-z-sidebar);
+  }
+  .h1-app-sidebar.open { transform: translateX(0); }
+}
+
+/* ═══ Nav Item ═══ */
+.h1-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--h1-space);
+  padding: 12px var(--h1-space);
+  border-radius: var(--h1-radius);
+  color: var(--h1-text-muted);
+  text-decoration: none;
+  transition: var(--h1-transition);
+  margin-bottom: 4px;
+  font-size: var(--h1-fs-md);
+  font-weight: 500;
+}
+
+.h1-nav-item:hover {
+  background: var(--h1-surface-hover);
+  color: var(--h1-text);
+}
+
+.h1-nav-item.active {
+  background: linear-gradient(135deg, var(--h1-primary), var(--h1-primary-dark));
+  color: #001f18;
+  font-weight: 700;
+  box-shadow: var(--h1-shadow-glow);
+}
+
+/* ═══ Grid utilities ═══ */
+.h1-grid {
+  display: grid;
+  gap: var(--h1-space);
+}
+.h1-grid-2 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.h1-grid-3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.h1-grid-4 { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }

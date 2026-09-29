@@ -1,0 +1,111 @@
+/* ═══════════════════════════════════════════════════════════════
+   H1-AI Design System — Design Tokens
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ═══ Colors ═══ */
+  --h1-primary: #00d4aa;
+  --h1-primary-dark: #00a888;
+  --h1-primary-light: #5ff7d0;
+  --h1-primary-glow: rgba(0, 212, 170, 0.35);
+  --h1-primary-soft: rgba(0, 212, 170, 0.08);
+  --h1-primary-border: rgba(0, 212, 170, 0.2);
+
+  --h1-secondary: #6366f1;
+  --h1-secondary-dark: #4f46e5;
+  --h1-secondary-light: #818cf8;
+
+  --h1-accent: #f59e0b;
+  --h1-accent-light: #fbbf24;
+
+  --h1-pink: #ec4899;
+  --h1-pink-light: #f472b6;
+
+  --h1-danger: #ef4444;
+  --h1-danger-dark: #dc2626;
+  --h1-danger-soft: rgba(239, 68, 68, 0.08);
+  --h1-danger-border: rgba(239, 68, 68, 0.2);
+
+  --h1-success: #4ade80;
+  --h1-success-dark: #22c55e;
+
+  --h1-warning: #fbbf24;
+
+  /* ═══ Backgrounds ═══ */
+  --h1-bg: #0a0e1a;
+  --h1-bg-2: #0f1626;
+  --h1-surface: rgba(17, 24, 39, 0.7);
+  --h1-surface-solid: #111827;
+  --h1-surface-2: rgba(10, 14, 26, 0.6);
+  --h1-surface-hover: rgba(30, 41, 59, 0.8);
+
+  /* ═══ Text ═══ */
+  --h1-text: #f8fafc;
+  --h1-text-secondary: #cbd5e1;
+  --h1-text-muted: #94a3b8;
+  --h1-text-dim: #64748b;
+
+  /* ═══ Borders ═══ */
+  --h1-border: rgba(255, 255, 255, 0.08);
+  --h1-border-hover: rgba(0, 212, 170, 0.3);
+  --h1-border-strong: rgba(255, 255, 255, 0.15);
+
+  /* ═══ Radius ═══ */
+  --h1-radius-sm: 8px;
+  --h1-radius: 12px;
+  --h1-radius-lg: 16px;
+  --h1-radius-xl: 24px;
+  --h1-radius-pill: 100px;
+
+  /* ═══ Shadows ═══ */
+  --h1-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --h1-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --h1-shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.4);
+  --h1-shadow-glow: 0 10px 30px var(--h1-primary-glow);
+  --h1-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  /* ═══ Spacing ═══ */
+  --h1-space-xs: 4px;
+  --h1-space-sm: 8px;
+  --h1-space: 16px;
+  --h1-space-md: 20px;
+  --h1-space-lg: 24px;
+  --h1-space-xl: 40px;
+
+  /* ═══ Typography ═══ */
+  --h1-font: 'Cairo', system-ui, -apple-system, sans-serif;
+  --h1-font-mono: 'Courier New', monospace;
+  --h1-fs-xs: 11px;
+  --h1-fs-sm: 13px;
+  --h1-fs: 14px;
+  --h1-fs-md: 15px;
+  --h1-fs-lg: 17px;
+  --h1-fs-xl: 20px;
+  --h1-fs-2xl: 26px;
+  --h1-fs-3xl: clamp(36px, 5vw, 56px);
+
+  /* ═══ Transitions ═══ */
+  --h1-transition-fast: 0.15s ease;
+  --h1-transition: 0.25s ease;
+  --h1-transition-slow: 0.5s ease;
+  --h1-transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ═══ Z-index ═══ */
+  --h1-z-bg: 0;
+  --h1-z-base: 1;
+  --h1-z-header: 100;
+  --h1-z-sidebar: 90;
+  --h1-z-modal: 200;
+  --h1-z-overlay: 300;
+  --h1-z-toast: 400;
+}
+
+/* ═══ Accessibility ═══ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

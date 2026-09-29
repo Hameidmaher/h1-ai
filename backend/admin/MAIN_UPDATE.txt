@@ -1,0 +1,23 @@
+# ============================================================
+# ADMIN ROUTES — أضف هذا في main.py
+# ============================================================
+# 1. في أعلى الملف، أضف:
+from admin.api.products_routes import router as admin_products_router
+from admin.api.drugs_routes import router as admin_drugs_router
+from admin.api.interactions_routes import router as admin_interactions_router
+from admin.api.conditions_routes import router as admin_conditions_router
+from admin.api.synonyms_routes import router as admin_synonyms_router
+from admin.api.audit_routes import router as admin_audit_router
+from admin.api.export_routes import router as admin_export_router
+from admin.api.import_routes import router as admin_import_router
+
+# 2. بعد سطر `app.include_router(whatsapp_router)`، أضف:
+
+app.include_router(admin_products_router)
+app.include_router(admin_drugs_router)
+app.include_router(admin_interactions_router)
+app.include_router(admin_conditions_router)
+app.include_router(admin_synonyms_router)
+app.include_router(admin_audit_router)
+app.include_router(admin_export_router)
+app.include_router(admin_import_router)

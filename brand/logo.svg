@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="240" fill="url(#bgGrad)"/>
+  <path d="M 200 130 L 312 130 L 312 200 L 382 200 L 382 312 L 312 312 L 312 382 L 200 382 L 200 312 L 130 312 L 130 200 L 200 200 Z" fill="#FFFFFF" opacity="0.95"/>
+  <text x="256" y="270" font-family="Arial Black" font-size="72" font-weight="900" fill="#0EA5E9" text-anchor="middle" dominant-baseline="middle">H1</text>
+  <text x="256" y="460" font-family="Arial" font-size="28" font-weight="600" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">ASSISTANT PHARMACY</text>
+</svg>

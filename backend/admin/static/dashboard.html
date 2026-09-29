@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H1-AI — لوحة التحكم</title>
+    <link rel="stylesheet" href="/admin/static/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">🏥</span>
+            <span class="logo-text">H1-AI Dashboard</span>
+        </div>
+        <div class="user-info">
+            <span id="user-name">👤 Admin</span>
+            <button onclick="logout()" class="btn-logout">خروج</button>
+        </div>
+    </header>
+
+    <!-- Layout -->
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <a href="#dashboard" class="nav-item active" data-page="dashboard">
+                    📊 لوحة المعلومات
+                </a>
+                <a href="#team" class="nav-item" data-page="team">
+                    👥 الفريق
+                </a>
+                <a href="#reports" class="nav-item" data-page="reports">
+                    📋 التقارير
+                </a>
+                <a href="#messages" class="nav-item" data-page="messages">
+                    📥 الرسائل
+                </a>
+                <a href="#products" class="nav-item" data-page="products">
+                    📦 المنتجات
+                </a>
+                <a href="#drugs" class="nav-item" data-page="drugs">
+                    💊 الأدوية
+                </a>
+                <a href="#settings" class="nav-item" data-page="settings">
+                    ⚙️ الإعدادات
+                </a>
+                <a href="#live" class="nav-item" data-page="live">
+                    🔴 مراقبة مباشرة
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Dashboard Page -->
+            <div id="page-dashboard" class="page active">
+                <h1>📊 لوحة المعلومات</h1>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📥</div>
+                        <div class="stat-value" id="stat-messages">—</div>
+                        <div class="stat-label">رسائل اليوم</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📋</div>
+                        <div class="stat-value" id="stat-reports">—</div>
+                        <div class="stat-label">إجمالي التقارير</div>
+                    </div>
+                    <div class="stat-card stat-urgent">
+                        <div class="stat-icon">🚨</div>
+                        <div class="stat-value" id="stat-urgent">—</div>
+                        <div class="stat-label">حالات عاجلة</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-value" id="stat-team">—</div>
+                        <div class="stat-label">أعضاء الفريق</div>
+                    </div>
+                </div>
+
+                <!-- Recent Messages -->
+                <div class="section">
+                    <h2>📥 آخر الرسائل</h2>
+                    <div id="recent-messages" class="messages-list">
+                        <div class="loading">جاري التحميل...</div>
+                    </div>
+                </div>
+
+                <!-- Team Status -->
+                <div class="section">
+                    <h2>👥 حالة الفريق</h2>
+                    <div id="team-status" class="team-list">
+                        <div class="loading">جاري التحميل...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Page (loaded from team.html) -->
+            <div id="page-team" class="page">
+                <div id="team-page-container"></div>
+            </div>
+
+            <!-- Reports Page -->
+            <div id="page-reports" class="page">
+                <h1>📋 التقارير</h1>
+                <div class="filters">
+                    <select id="filter-status">
+                        <option value="">كل الحالات</option>
+                        <option value="pending">معلّق</option>
+                        <option value="assigned">موزّع</option>
+                        <option value="resolved">محلول</option>
+                    </select>
+                    <select id="filter-priority">
+                        <option value="">كل الأولويات</option>
+                        <option value="urgent">🚨 عاجل</option>
+                        <option value="high">عالية</option>
+                        <option value="normal">عادية</option>
+                        <option value="low">منخفضة</option>
+                    </select>
+                    <button onclick="loadReports()" class="btn-refresh">🔄 تحديث</button>
+                </div>
+                <div id="reports-list" class="reports-list">
+                    <div class="loading">جاري التحميل...</div>
+                </div>
+            </div>
+
+            <!-- Messages Page -->
+            <div id="page-messages" class="page">
+                <h1>📥 الرسائل</h1>
+                <div class="filters">
+                    <select id="filter-classification">
+                        <option value="">كل الأنواع</option>
+                        <option value="customer">عميل</option>
+                        <option value="supplier">مورد</option>
+                        <option value="urgent">🚨 طوارئ</option>
+                        <option value="spam">🚫 spam</option>
+                    </select>
+                    <button onclick="loadMessages()" class="btn-refresh">🔄 تحديث</button>
+                </div>
+                <div id="messages-list" class="messages-full-list">
+                    <div class="loading">جاري التحميل...</div>
+                </div>
+            </div>
+
+            <!-- Live Page -->
+            <div id="page-live" class="page">
+                <h1>🔴 مراقبة مباشرة</h1>
+                <div class="live-indicator">
+                    <span class="pulse"></span>
+                    <span>Live — يتحدث كل 5 ثواني</span>
+                </div>
+                <div id="live-feed" class="live-feed">
+                    <div class="loading">جاري التحميل...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/admin/static/js/api.js"></script>
+    <script src="/admin/static/js/dashboard.js"></script>
+</body>
+</html>

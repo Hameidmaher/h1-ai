@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H1-AI Super Admin</title>
+  <link rel="stylesheet" href="/admin/static/css/design-system.css">
+  <link rel="stylesheet" href="/admin/static/css/super.css">
+</head>
+<body>
+
+<div id="app" class="super-layout">
+
+  <!-- Sidebar -->
+  <aside class="super-sidebar">
+    <div class="super-brand">
+      <h2>👑 H1-AI</h2>
+      <span>Super Admin</span>
+    </div>
+
+    <nav class="super-nav">
+      <a href="#dashboard" class="super-nav-item active" data-page="dashboard">
+        <span class="icon">📊</span>
+        <span>لوحة التحكم</span>
+      </a>
+      <a href="#pharmacies" class="super-nav-item" data-page="pharmacies">
+        <span class="icon">🏥</span>
+        <span>الصيدليات</span>
+        <span class="badge" id="pharmacies-count">0</span>
+      </a>
+      <a href="#users" class="super-nav-item" data-page="users">
+        <span class="icon">👥</span>
+        <span>المستخدمين</span>
+        <span class="badge" id="users-count">0</span>
+      </a>
+      <a href="#subscriptions" class="super-nav-item" data-page="subscriptions">
+        <span class="icon">💳</span>
+        <span>الاشتراكات</span>
+      </a>
+      <a href="#flags" class="super-nav-item" data-page="flags">
+        <span class="icon">🎛️</span>
+        <span>Feature Flags</span>
+      </a>
+      <a href="#logs" class="super-nav-item" data-page="logs">
+        <span class="icon">📜</span>
+        <span>السجلات</span>
+      </a>
+      <a href="#settings" class="super-nav-item" data-page="settings">
+        <span class="icon">⚙️</span>
+        <span>الإعدادات</span>
+      </a>
+    </nav>
+
+    <div class="super-footer">
+      <span id="super-user-name">...</span>
+      <button id="super-logout" class="btn-logout">تسجيل خروج</button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="super-main">
+    <header class="super-topbar">
+      <h1 id="page-title">لوحة التحكم</h1>
+      <div class="super-actions">
+        <span id="super-user-role" class="role-badge"></span>
+      </div>
+    </header>
+
+    <div id="page-content" class="super-content">
+      <div class="loading">جاري التحميل...</div>
+    </div>
+  </main>
+
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal hidden">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="modal-title"></h2>
+      <button id="modal-close" class="btn-close">✕</button>
+    </div>
+    <div id="modal-body" class="modal-body"></div>
+    <div id="modal-foot" class="modal-foot"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<script src="/admin/static/js/super.js"></script>
+</body>
+</html>
