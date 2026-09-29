@@ -71,10 +71,6 @@
       <span class="cc-nav-icon">⚙️</span>
       <span class="cc-nav-label">الإعدادات</span>
     </a>
-    <a href="#docs" class="cc-nav-item" data-tab="docs">
-      <span class="cc-nav-icon">📚</span>
-      <span>API Docs</span>
-    </a>
     
     
   </nav>
@@ -542,33 +538,7 @@
   <div class="cc-settings-footer">
     <button class="cc-btn cc-btn-secondary" id="cc-reset-settings">🔄 إعادة تعيين</button>
     <button class="cc-btn cc-btn-primary" id="cc-save-settings">💾 حفظ</button>
-  
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       📚 API Documentation Tab
-       ═══════════════════════════════════════════════════════════════ -->
-  <div class="cc-tab-content hidden" data-tab="docs">
-    <div class="cc-card" style="padding:0;overflow:hidden;">
-      <div class="cc-card-title" style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #1e293b;">
-        <span>📚 API Documentation — Swagger UI</span>
-        <div style="display:flex;gap:8px;">
-          <a href="/docs" target="_blank" class="cc-btn cc-btn-secondary" style="text-decoration:none;">🔗 فتح خارجي</a>
-          <button class="cc-btn cc-btn-primary" onclick="var i=document.getElementById('docs-iframe'); i.src=i.src;">🔄 إعادة تحميل</button>
-        </div>
-      </div>
-      <div style="padding:50px 20px;text-align:center;">
-        <div style="font-size:64px;margin-bottom:20px;">📚</div>
-        <h2 style="color:#e2e8f0;margin-bottom:8px;">API Documentation</h2>
-        <p style="color:#94a3b8;margin-bottom:32px;font-size:14px;">210 endpoints متاحة</p>
-        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;max-width:700px;margin:0 auto;">
-          <a href="/docs" target="_blank" rel="noopener" style="padding:16px 32px;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;text-decoration:none;border-radius:12px;font-weight:600;font-size:15px;box-shadow:0 4px 20px rgba(79,70,229,0.4);">📖 Swagger UI</a>
-          <a href="/redoc" target="_blank" rel="noopener" style="padding:16px 32px;background:#1e293b;color:#e2e8f0;text-decoration:none;border-radius:12px;font-weight:600;font-size:15px;border:1px solid #334155;">📚 ReDoc</a>
-          <a href="/openapi.json" target="_blank" rel="noopener" style="padding:16px 32px;background:#1e293b;color:#e2e8f0;text-decoration:none;border-radius:12px;font-weight:600;font-size:15px;border:1px solid #334155;">📄 OpenAPI</a>
-        </div>
-      </div>
-    </div>
   </div>
-</div>
 </aside>
 <div class="cc-overlay" id="cc-overlay"></div>
 

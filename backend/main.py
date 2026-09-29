@@ -122,6 +122,28 @@ app = FastAPI(
     openapi_url="/openapi.json" if not settings.is_production else None,
 )
 
+# ═══════════════════════════════════════════════════════════════
+# 🖼️  Allow Iframe Middleware
+# ═══════════════════════════════════════════════════════════════
+try:
+    from starlette.middleware.base import BaseHTTPMiddleware
+    from starlette.requests import Request as _IframeRequest
+
+    class AllowIframeMiddleware(BaseHTTPMiddleware):
+        async def dispatch(self, request: _IframeRequest, call_next):
+            response = await call_next(request)
+            path = request.url.path
+            if path in ('/docs', '/redoc', '/openapi.json') or path.startswith('/docs/'):
+                response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+                response.headers['Content-Security-Policy'] = "frame-ancestors 'self'"
+            return response
+
+    app.add_middleware(AllowIframeMiddleware)
+    print("✅ AllowIframeMiddleware أُضيف")
+except Exception as _e:
+    print(f"⚠️  {_e}")
+
+
 app.add_middleware(TenantMiddleware)
 
 
